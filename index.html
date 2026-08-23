@@ -3,34 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omah Les Privat - Portal Belajar</title>
+    <title>Omah Les Privat - Portal Belajar Anak</title>
     <link rel="icon" type="image/jpeg" href="./logo.jpg">
     
-    <!-- Optimize Google Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* TONE WARNA LOGO OMAH LES PRIVAT */
-            --brand-main: #8b4513;        /* Warm Teracotta / Cokelat Kayu Utama */
-            --brand-secondary: #a0522d;   /* Cokelat Medium */
-            --brand-accent: #d97706;      /* Amber / Warm Gold */
-            --brand-soft-bg: #fef8f0;     /* Krim Cokelat Muda */
+            --brand-main: #8b4513;        
+            --brand-secondary: #a0522d;   
+            --brand-accent: #d97706;      
+            --brand-soft-bg: #fef8f0;     
             
-            --bg-body: #fdfbf7;           /* Background Utama Hangat */
-            --card-bg: #ffffff;
-            --text-main: #3d2b1f;         /* Cokelat Gelap untuk Teks */
-            --text-sub: #786454;          /* Cokelat Soft untuk Deskripsi */
-            --border-soft: #f3e9dc;       /* Garis Pinggir Cream */
+            --bg-body: #fdfbf7;           
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-main: #3d2b1f;         
+            --text-sub: #786454;          
+            --border-soft: #f3e9dc;       
             --radius-main: 22px;
             --radius-sm: 14px;
         }
 
         body.dark-theme {
             --bg-body: #1c1512;
-            --card-bg: #281e19;
+            --card-bg: rgba(40, 30, 25, 0.95);
             --text-main: #fcf8f5;
             --text-sub: #c4b5a5;
             --border-soft: #3a2e26;
@@ -41,18 +39,20 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
 
+        /* BACKGROUND TEKSTUR DOODLE PENDIDIKAN */
         body {
             background-color: var(--bg-body);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18l1.5-1.5L14 18l-1.5 1.5zm24 6l1-2 1 2-1 2zm30-10l2 1-1 2-2-1zm-40 50l3 1-1 3-3-1zm55-15l2-2 2 2-2 2zm-20 30l1-3 3 1-1 3z' fill='%20d97706' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
             color: var(--text-main);
             display: flex;
             min-height: 100vh;
         }
 
-        /* SIDEBAR NAVIGATION */
+        /* SIDEBAR NAVIGASI */
         .sidebar {
             width: 270px;
             background: var(--card-bg);
@@ -64,6 +64,7 @@
             position: fixed;
             height: 100vh;
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         .brand-header {
@@ -84,7 +85,7 @@
         }
 
         .brand-title {
-            font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Fredoka', sans-serif;
             font-size: 1.3rem;
             color: var(--brand-main);
             line-height: 1.1;
@@ -102,7 +103,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* CARD PROFIL SISWA */
         .profile-card {
             background: var(--brand-soft-bg);
             border-radius: var(--radius-sm);
@@ -175,9 +175,10 @@
             max-width: 1280px;
         }
 
-        /* HERO BANNER TONE LOGO */
+        /* HERO BANNER BERTEKSTUR DOODLE */
         .hero-banner {
-            background: linear-gradient(135deg, #8b4513 0%, #b45309 100%);
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.95) 0%, rgba(180, 83, 9, 0.95) 100%),
+                        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
             color: #ffffff;
             border-radius: var(--radius-main);
             padding: 28px 32px;
@@ -186,12 +187,10 @@
             align-items: center;
             box-shadow: 0 12px 28px rgba(139, 69, 19, 0.2);
             margin-bottom: 28px;
-            position: relative;
-            overflow: hidden;
         }
 
         .hero-text h1 {
-            font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Fredoka', sans-serif;
             font-size: 1.8rem;
             margin-bottom: 6px;
             font-weight: 700;
@@ -230,9 +229,8 @@
             opacity: 0.9;
         }
 
-        /* GRID CONTENT & CATEGORY */
         .section-header {
-            font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Fredoka', sans-serif;
             font-size: 1.25rem;
             margin-bottom: 16px;
             color: var(--text-main);
@@ -242,6 +240,7 @@
             font-weight: 700;
         }
 
+        /* GRID MODUL TK & SD */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -291,7 +290,6 @@
             font-weight: 600;
         }
 
-        /* PANELS: JADWAL LES & TARGET */
         .dashboard-columns {
             display: grid;
             grid-template-columns: 1fr 340px;
@@ -344,10 +342,6 @@
             cursor: pointer;
         }
 
-        .btn-action-sm:hover {
-            opacity: 0.9;
-        }
-
         .target-item {
             padding: 12px 14px;
             background: var(--brand-soft-bg);
@@ -358,7 +352,6 @@
             color: var(--text-main);
         }
 
-        /* RESPONSIVE DESIGN */
         @media (max-width: 992px) {
             .sidebar {
                 width: 80px;
@@ -398,17 +391,17 @@
             <div class="profile-card">
                 <div class="avatar-box">🐰</div>
                 <div class="profile-info">
-                    <div class="profile-name">Rezky</div>
-                    <div class="profile-badge">Kelas 10 • SMA</div>
+                    <div class="profile-name">Sahabat Cilik</div>
+                    <div class="profile-badge">Mode TK & SD</div>
                 </div>
             </div>
 
             <ul class="menu-list">
                 <li class="menu-item active"><a href="#"><span>🏠</span> <span>Beranda</span></a></li>
-                <li class="menu-item"><a href="#"><span>📚</span> <span>Modul Materi</span></a></li>
+                <li class="menu-item"><a href="#"><span>🧸</span> <span>Modul TK/PAUD</span></a></li>
+                <li class="menu-item"><a href="#"><span>🎒</span> <span>Modul SD</span></a></li>
                 <li class="menu-item"><a href="#"><span>📝</span> <span>Latihan Soal</span></a></li>
-                <li class="menu-item"><a href="#"><span>📅</span> <span>Jadwal Les</span></a></li>
-                <li class="menu-item"><a href="#"><span>🏆</span> <span>Papan Prestasi</span></a></li>
+                <li class="menu-item"><a href="#"><span>⭐</span> <span>Toko Bintang</span></a></li>
             </ul>
         </div>
 
@@ -422,105 +415,141 @@
     <!-- CONTENT AREA -->
     <main class="content-area">
 
-        <!-- BANNER UTAMA HASIL HARMONI WARNA LOGO -->
+        <!-- BANNER UTAMA -->
         <section class="hero-banner">
             <div class="hero-text">
-                <h1>Semangat Belajar, Rezky! ✨</h1>
-                <p>Mari tuntaskan materi dan persiapkan sesi les privat berikutnya.</p>
+                <h1>Halo, Selamat Belajar! ✨</h1>
+                <p>Pilih materi TK atau SD di bawah untuk mulai belajar dengan gembira.</p>
             </div>
             <div class="hero-stats">
                 <div class="stat-badge">
-                    <div class="stat-val">⭐ 145</div>
+                    <div class="stat-val">⭐ 85</div>
                     <div class="stat-lbl">Bintang</div>
                 </div>
                 <div class="stat-badge">
-                    <div class="stat-val">🔥 5 Hari</div>
+                    <div class="stat-val">🔥 4 Hari</div>
                     <div class="stat-lbl">Absensi</div>
                 </div>
             </div>
         </section>
 
-        <!-- KATEGORI MATA PELAJARAN -->
+        <!-- KATEGORI TK / PAUD -->
         <section>
             <div class="section-header">
-                <span>Pilih Mata Pelajaran</span>
+                <span>🧸 Modul Belajar TK & PAUD</span>
             </div>
             <div class="category-grid">
+                <div class="category-card">
+                    <div class="cat-icon">🔤</div>
+                    <div>
+                        <div class="cat-title">Huruf A - Z</div>
+                        <div class="cat-desc">Suara & Gambar Lucu</div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">📖</div>
+                    <div>
+                        <div class="cat-title">Belajar Membaca</div>
+                        <div class="cat-desc">Suku Kata Mudah</div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">🔢</div>
+                    <div>
+                        <div class="cat-title">Berhitung Benda</div>
+                        <div class="cat-desc">Hitung Buah & Hewan</div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">✏️</div>
+                    <div>
+                        <div class="cat-title">Jiplak Huruf</div>
+                        <div class="cat-desc">Latihan Menulis</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KATEGORI SD KURIKULUM MERDEKA -->
+        <section>
+            <div class="section-header">
+                <span>🎒 Modul Belajar Sekolah Dasar (SD)</span>
+            </div>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="cat-icon">🇮🇩</div>
+                    <div>
+                        <div class="cat-title">B. Indonesia</div>
+                        <div class="cat-desc">Membaca Teks & Tata Bahasa</div>
+                    </div>
+                </div>
                 <div class="category-card">
                     <div class="cat-icon">📐</div>
                     <div>
                         <div class="cat-title">Matematika</div>
-                        <div class="cat-desc">Trigonometri & Algebra</div>
+                        <div class="cat-desc">Penjumlahan, Perkalian & Bangun</div>
                     </div>
                 </div>
                 <div class="category-card">
-                    <div class="cat-icon">⚡</div>
+                    <div class="cat-icon">🔬</div>
                     <div>
-                        <div class="cat-title">Fisika</div>
-                        <div class="cat-desc">Momen Inersia & Dinamika</div>
-                    </div>
-                </div>
-                <div class="category-card">
-                    <div class="cat-icon">🧪</div>
-                    <div>
-                        <div class="cat-title">Kimia</div>
-                        <div class="cat-desc">Ikatan Kimia & Reaksi</div>
+                        <div class="cat-title">IPAS / Sains</div>
+                        <div class="cat-desc">Panca Indra, Alam & Hewan</div>
                     </div>
                 </div>
                 <div class="category-card">
                     <div class="cat-icon">🇬🇧</div>
                     <div>
                         <div class="cat-title">Bahasa Inggris</div>
-                        <div class="cat-desc">Grammar & Structure</div>
+                        <div class="cat-desc">Vocab & Daily Expressions</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PANEL AGENDA LES & TARGET BELAJAR -->
+        <!-- AGENDA & TARGET -->
         <div class="dashboard-columns">
             <div class="panel-box">
                 <div class="section-header">
-                    <span>📅 Agenda Les Privat</span>
+                    <span>📅 Sesi Les Privat Pekan Ini</span>
                 </div>
 
                 <div class="schedule-item">
                     <div class="schedule-info">
-                        <span class="tag-subject">Matematika</span>
+                        <span class="tag-subject">TK / Paud</span>
                         <div>
-                            <div style="font-weight: 800; font-size: 0.95rem;">Latihan Trigonometri Identitas</div>
-                            <div style="font-size: 0.78rem; color: var(--text-sub); font-weight: 600;">Hari Ini • 15.30 - 17.00 WIB</div>
+                            <div style="font-weight: 800; font-size: 0.95rem;">Latihan Membaca Suku Kata</div>
+                            <div style="font-size: 0.78rem; color: var(--text-sub); font-weight: 600;">Hari Ini • 15.30 WIB</div>
                         </div>
                     </div>
-                    <button class="btn-action-sm">Buka Materi</button>
+                    <button class="btn-action-sm">Buka Modul</button>
                 </div>
 
                 <div class="schedule-item">
                     <div class="schedule-info">
-                        <span class="tag-subject" style="background: var(--brand-secondary);">Fisika</span>
+                        <span class="tag-subject" style="background: var(--brand-secondary);">SD Kelas 1</span>
                         <div>
-                            <div style="font-weight: 800; font-size: 0.95rem;">Pembahasan Momen Inersia</div>
-                            <div style="font-size: 0.78rem; color: var(--text-sub); font-weight: 600;">Rabu • 15.30 - 17.00 WIB</div>
+                            <div style="font-weight: 800; font-size: 0.95rem;">Latihan Berhitung Susun</div>
+                            <div style="font-size: 0.78rem; color: var(--text-sub); font-weight: 600;">Rabu • 15.30 WIB</div>
                         </div>
                     </div>
                     <button class="btn-action-sm" style="background: var(--text-sub);">Persiapan</button>
                 </div>
             </div>
 
-            <!-- PANEL TARGET PEKAN INI -->
             <div class="panel-box">
                 <div class="section-header">
-                    <span>📌 Target Pekan Ini</span>
+                    <span>📌 Target Bintang Pekan Ini</span>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 12px;">
                     <div class="target-item">
-                        ✅ Selesaikan Soal Latihan Trigonometri
+                        ✅ Selesaikan Kuis Tebak Gambar (TK)
                     </div>
                     <div class="target-item">
-                        ⏳ Review Ringkasan Rumus Momen Inersia
+                        ⏳ Kuis Bahasa Indonesia Bab 1 (SD)
                     </div>
                     <div class="target-item">
-                        ⏳ Penyusunan Draft Research Paper
+                        ⏳ Kumpulkan 100 ⭐ Bintang Toko
                     </div>
                 </div>
             </div>
