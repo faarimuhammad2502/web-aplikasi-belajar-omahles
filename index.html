@@ -157,7 +157,7 @@
         .lov-submit-btn { width: 100%; max-width: 300px; background: #e9d5ff; color: #7e22ce; border: none; padding: 16px; border-radius: 20px; font-family: 'Fredoka', sans-serif; font-size: 1.1rem; font-weight: 700; cursor: pointer; }
         .lov-submit-btn:hover { background: #a855f7; color: #ffffff; }
 
-        /* APP LAYOUT */
+        /* APP LAYOUT & MOBILE RESPONSIVE UNTUK HP */
         .app-wrapper { display: flex; flex: 1; }
         .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); overflow-y: auto; }
         
@@ -188,7 +188,7 @@
         .profile-badge { font-size: 0.68rem; color: var(--brand-yellow); font-weight: 700; }
         .btn-switch-user { background: var(--brand-amber); border: none; color: white; padding: 5px 8px; border-radius: 8px; font-size: 0.68rem; font-weight: 800; cursor: pointer; }
 
-        /* MAIN CONTENT AREA */
+        /* MAIN CONTENT AREA & MOBILE ADAPTATION */
         .content-area { margin-left: 280px; flex: 1; padding: 36px 48px; max-width: 1300px; }
         .roadmap-banner { background: linear-gradient(135deg, rgba(139, 69, 19, 0.95) 0%, rgba(180, 83, 9, 0.95) 100%); color: #ffffff; border-radius: var(--radius-main); padding: 32px; text-align: center; margin-bottom: 28px; box-shadow: 0 12px 28px rgba(139, 69, 19, 0.2); }
         .banner-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25); color: #fef08a; padding: 6px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
@@ -263,6 +263,16 @@
         .journal-item-card { background: #ffffff; border: 1.5px solid var(--card-border); border-radius: 16px; padding: 14px 18px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
 
         .portal-footer { margin-left: 280px; background: var(--card-bg); border-top: 2px solid var(--card-border); padding: 24px 48px; display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
+
+        /* RESPONSIVE DESIGN UNTUK HP / MOBILE */
+        @media (max-width: 768px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .content-area { margin-left: 0; padding: 20px; }
+            .portal-footer { margin-left: 0; padding: 20px; flex-direction: column; text-align: center; gap: 10px; }
+            .login-page-container { flex-direction: column; }
+            .login-left-brand { padding: 40px 20px; min-height: 40vh; }
+            .login-right-form { width: 100%; padding: 30px 20px; }
+        }
     </style>
 </head>
 <body>
@@ -281,7 +291,7 @@
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
                     <label class="form-label">Email Terdaftar</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="faarimuhammad25@gmail.com" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
@@ -647,7 +657,7 @@
                 'math': { tag: '🧮 Logika & Angka', title: 'Matematika Dasar', sub: 'Berhitung itu menyenangkan.' },
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & IPA', sub: 'Eksplorasi alam semesta.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni Budaya', sub: 'Berkreasi tanpa batas.' },
-                'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama AI.' },
+                'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Ruang AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
                 'games': { tag: '🎮 Game Center', title: 'LovSpeak Games', sub: `Tantangan khusus ${currentStudent.classLevel}.` },
                 'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar', sub: 'Tulis target harianmu.' }
             };
@@ -676,7 +686,7 @@
                 renderBadges(area);
             } else if (secKey === 'aitutor') {
                 filterBar.style.display = 'none';
-                renderAiChat(area);
+                renderAiChatDirect(area);
             } else if (secKey === 'games') {
                 filterBar.style.display = 'none';
                 renderGameCenterGrid(area);
@@ -985,23 +995,23 @@
             renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
-        function renderAiChat(container) {
+        // TAMPILAN RUANG AI TUTOR LANGSUNG CHAT TANPA PILIH JENJANG
+        function renderAiChatDirect(container) {
             container.innerHTML = `
                 <div class="ai-chat-wrapper animate-section">
-                    <div class="ai-chat-header"><div class="ai-chat-title">🎙️ Kak Omah (AI)</div></div>
+                    <div class="ai-chat-header"><div class="ai-chat-title">🎙️ Ruang Chat Kak Omah (AI Tutor)</div></div>
                     <div class="ai-chat-messages-area" id="chatMessagesBox">
-                        <div class="chat-bubble-row ai"><div class="chat-bubble ai">Halo ${currentStudent.name}! Ada pertanyaan materi pelajaran atau sains yang ingin kamu tanyakan hari ini? 😊</div></div>
+                        <div class="chat-bubble-row ai"><div class="chat-bubble ai">Halo ${currentStudent.name}! Ada pertanyaan seputar materi pelajaran, sains, atau PR yang ingin kita bahas hari ini? 😊</div></div>
                     </div>
                     <div class="ai-chat-input-container">
-                        <input type="text" id="userChatInput" class="ai-chat-input-field" placeholder="Ketik pesan..." onkeypress="if(event.key==='Enter') sendChatMessage()">
-                        <button class="btn-send-chat" onclick="sendChatMessage()">KIRIM</button>
+                        <input type="text" id="userChatInput" class="ai-chat-input-field" placeholder="Ketik pertanyaan atau topik di sini..." onkeypress="if(event.key==='Enter') sendChatMessageDirect()">
+                        <button class="btn-send-chat" onclick="sendChatMessageDirect()">KIRIM</button>
                     </div>
                 </div>
             `;
         }
 
-        // PERBAIKAN MUTLAK AI TUTOR (SMART LOCAL AI ENGINE - BEBAS ERROR API KEY)
-        function sendChatMessage() {
+        function sendChatMessageDirect() {
             const i = document.getElementById('userChatInput');
             const msg = i.value.trim();
             if(!msg) return;
@@ -1015,7 +1025,7 @@
             
             setTimeout(() => {
                 let lower = msg.toLowerCase();
-                let reply = `Halo ${currentStudent.name}! Pertanyaan yang sangat menarik mengenai "${msg}". Mari kita pelajari bersama: Dalam sains dan materi sekolah dasar, setiap fenomena alam atau konsep ilmu pengetahuan bekerja secara sistematis dan terstruktur. Apakah ada bagian spesifik dari materi ini yang ingin kita bedah bersama lewat modul latihan? ✨`;
+                let reply = `Halo ${currentStudent.name}! Pertanyaan hebat mengenai "${msg}". Di Omah Les Privat, setiap konsep ilmu pengetahuan dan rumus dipelajari secara bertahap agar mudah dipahami. Ada bagian spesifik yang ingin kita bedah bersama? ✨`;
 
                 if (lower.includes('fosil') || lower.includes('fosil terbentuk')) {
                     reply = `Fosil adalah sisa-sisa makhluk hidup masa lampau (tumbuhan, hewan, atau manusia) yang telah membatu karena tertimbun lapisan sedimen bumi dalam waktu jutaan tahun! Prosesnya dimulai saat makhluk hidup mati, terkubur lumpur/pasir sebelum membusuk, lalu mineral meresap menggantikan jaringan organiknya. 🦖✨`;
