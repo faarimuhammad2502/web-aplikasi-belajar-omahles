@@ -74,11 +74,14 @@
         .modal-card { background: #ffffff; width: 100%; max-width: 480px; border-radius: 32px; padding: 48px 40px 36px 40px; text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 2px solid var(--card-border); animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.92) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
-        @keyframes sectionTransition {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* TRANSISI ANIMASI SECTION ALUS ALA LOVSPEAK */
+        @keyframes lovspeakTransition {
+            0% { opacity: 0; transform: translateY(16px) scale(0.99); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
-        .animate-section { animation: sectionTransition 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-section {
+            animation: lovspeakTransition 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
 
         .wisdom-quote-icon { width: 64px; height: 64px; background: var(--sidebar-bg); color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-family: 'Playfair Display', serif; margin: 0 auto 24px auto; }
         .wisdom-tag-title { font-size: 0.75rem; font-weight: 800; color: var(--brand-amber); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
@@ -207,14 +210,13 @@
         .card-footer { display: flex; align-items: center; justify-content: space-between; border-top: 2px dashed var(--card-border); padding-top: 16px; }
         .btn-open-module { background: var(--brand-amber); color: white; border: none; padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
 
-        /* MY PROFILE (REFERENSI GAYA LOVSPEAK YANG RAPI & LENGKAP) */
+        /* MY PROFILE */
         .profile-main-box { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 32px; display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         .profile-top-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
         .profile-user-left { display: flex; align-items: center; gap: 20px; }
         .profile-big-avatar { width: 84px; height: 84px; border-radius: 50%; background: var(--brand-cream); border: 3px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
         .profile-user-name { font-family: 'Fredoka', sans-serif; font-size: 1.7rem; color: var(--text-main); margin-bottom: 4px; }
         .profile-user-badge-pill { display: inline-block; background: var(--brand-cream); color: var(--brand-brown); border: 1.5px solid var(--brand-amber); padding: 4px 14px; border-radius: 20px; font-weight: 800; font-size: 0.78rem; }
-        
         .profile-stats-card { background: var(--bg-body); border: 2px solid var(--card-border); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
         .profile-xp-bar-bg { width: 100%; height: 10px; background: #e5e7eb; border-radius: 10px; overflow: hidden; }
         .profile-xp-bar-fill { height: 100%; background: var(--brand-amber); width: 25%; border-radius: 10px; }
@@ -223,7 +225,7 @@
         .insight-heading { font-size: 0.75rem; font-weight: 800; color: var(--brand-amber); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
         .insight-body-text { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; line-height: 1.6; color: var(--text-main); font-style: italic; }
 
-        /* BADGES / PRESTASI SECTION */
+        /* BADGES SECTION */
         .badges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
         .badge-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; position: relative; }
         .badge-item-card.unlocked { border-color: var(--brand-amber); background: linear-gradient(180deg, #ffffff 0%, #fef8f0 100%); }
@@ -424,7 +426,7 @@
             </div>
 
             <div id="dynamicMainContentArea">
-                <!-- Content injected here with transition animation -->
+                <!-- Content injected here with LovSpeak transition animation -->
             </div>
         </main>
     </div>
@@ -516,15 +518,22 @@
             }
         };
 
+        // KOLEKSI GAME YANG DITAMBAHKAN JAUH LEBIH BANYAK DAN LENGKAP
         const adaptiveGamesDatabase = {
             'tk': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Tebak Hewan', desc: 'Tebak hewan dari emoji.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka wortel', answer: 'kelinci' }] }
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Tebak Hewan', desc: 'Tebak hewan dari emoji.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka wortel', answer: 'kelinci' }, { emojis: '🐮 🌾', clue: 'Penghasil susu segar bersuara moo', answer: 'sapi' }] },
+                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎨', title: 'Warna Buah & Benda', desc: 'Tebak warna benda alam.', questions: [{ emojis: '🍎', clue: 'Warna buah apel matang', answer: 'merah' }, { emojis: '🍌', clue: 'Warna buah pisang', answer: 'kuning' }, { emojis: '🍃', clue: 'Warna daun segar', answer: 'hijau' }] },
+                { id: 'g3', bg: '#e0f2fe', color: '#0369a1', icon: '🔢', title: 'Hitung Jari 1-5', desc: 'Mengenal angka dasar.', questions: [{ emojis: '🖐️', clue: 'Jumlah jari dalam satu tangan', answer: '5' }, { emojis: '✌️', clue: 'Jumlah jari yang diacungkan', answer: '2' }] }
             ],
             'sd1_3': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Vocabulary', desc: 'Tebak kosakata bahasa Indonesia.', questions: [{ emojis: '🎒 🏫', clue: 'Tempat untuk menuntut ilmu', answer: 'sekolah' }, { emojis: '📖 ✍️', clue: 'Kegiatan di kelas', answer: 'belajar' }] }
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Vocabulary', desc: 'Tebak kosakata bahasa Indonesia.', questions: [{ emojis: '🎒 🏫', clue: 'Tempat untuk menuntut ilmu', answer: 'sekolah' }, { emojis: '📖 ✍️', clue: 'Kegiatan membaca dan menulis di kelas', answer: 'belajar' }, { emojis: '☀️ ☁️', clue: 'Keadaan cuaca di siang hari', answer: 'cerah' }] },
+                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🧮', title: 'Math Speed Dasar', desc: 'Hitung cepat tambah kurang.', questions: [{ emojis: '5️⃣ ✖️ 2️⃣', clue: 'Lima dikali dua', answer: '10' }, { emojis: '8️⃣ ➖ 3️⃣', clue: 'Delapan dikurang tiga', answer: '5' }, { emojis: '6️⃣ ➕ 4️⃣', clue: 'Enam ditambah empat', answer: '10' }] },
+                { id: 'g3', bg: '#fef3c7', color: '#b45309', icon: '⚖️', title: 'Tebak Satuan Berat', desc: 'Konversi berat benda.', questions: [{ emojis: '1️⃣ ⚖️ 🔤', clue: '1 Kg sama dengan berapa gram?', answer: '1000' }] }
             ],
             'sd4_6': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Sains Lanjutan', desc: 'Proses alam dan sistem tubuh.', questions: [{ emojis: '☀️ 🌊 ☁️', clue: 'Proses air laut menguap karena matahari', answer: 'evaporasi' }] }
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧬', title: 'Sains & Alam Lanjutan', desc: 'Proses alam dan sistem tubuh.', questions: [{ emojis: '☀️ 🌊 ☁️', clue: 'Proses penguapan air laut oleh panas matahari', answer: 'evaporasi' }, { emojis: '🫀 🩺', clue: 'Organ pemompa darah dalam tubuh manusia', answer: 'jantung' }, { emojis: '🌍 🔄', clue: 'Gerakan bumi berputar pada porosnya', answer: 'rotasi' }] },
+                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '📐', title: 'Math Master Geometri', desc: 'Hitung volume dan luas.', questions: [{ emojis: '📦', clue: 'Isi atau kapasitas dari sebuah balok atau kubus', answer: 'volume' }, { emojis: '📊', clue: 'Nilai rata-rata dari sekelompok data', answer: 'mean' }, { emojis: '📏 ✖️ 📏', clue: 'Rumus luas persegi adalah sisi dikali...', answer: 'sisi' }] },
+                { id: 'g3', bg: '#e0f2fe', color: '#0369a1', icon: '📜', title: 'Teks & Sastra', desc: 'Analisis jenis teks.', questions: [{ emojis: '📰 🔬', clue: 'Teks yang menjelaskan proses terjadinya fenomena alam', answer: 'eksplanasi' }] }
             ]
         };
 
@@ -634,6 +643,7 @@
             const filterBar = document.getElementById('filterHeaderBar');
             clearInterval(lovInterval);
 
+            // MENERAPKAN ANIMASI TRANSISI ALUS ALA LOVSPEAK SETIAP PINDAH SECTION
             area.className = '';
             void area.offsetWidth;
             area.className = 'animate-section';
@@ -681,7 +691,6 @@
             container.appendChild(grid);
         }
 
-        // RENDER MY PROFILE (DENGAN DESAIN LENGKAP MIRIP REFERENSI LOVSPEAK)
         function renderProfile(container) {
             let xpTotal = userCompletedQuizzes * 50;
             container.innerHTML = `
@@ -718,7 +727,6 @@
             `;
         }
 
-        // RENDER BADGES BERDASARKAN HASIL BELAJAR / KUIS
         function renderBadges(container) {
             const isUnlocked1 = userCompletedQuizzes >= 1;
             const isUnlocked2 = userCompletedQuizzes >= 3;
@@ -765,7 +773,7 @@
                                 <div class="game-card-title">${g.title}</div>
                                 <div class="game-card-desc">${g.desc}</div>
                             </div>
-                            <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:800; color:var(--text-sub);"><span>REWARD: ⭐ +20</span><span>Play</span></div>
+                            <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:800; color:var(--text-sub);"><span>REWARD: ⭐ +20</span><span>Play 🎮</span></div>
                         </div>
                     `).join('')}
                 </div>
@@ -794,7 +802,7 @@
             for(let i=0; i<lovLives; i++) heartsStr += '❤️';
 
             container.innerHTML = `
-                <div class="lov-game-wrapper">
+                <div class="lov-game-wrapper animate-section">
                     <div class="lov-top-bar">
                         <div class="lov-level-dots">
                             <div class="lov-btn-close" onclick="switchSection('games')">✕</div>
@@ -938,7 +946,6 @@
             `;
         }
 
-        // PERBAIKAN AI CHAT: PROMPT GEMINI DIPERBAIKI AGAR MENJAWAB PERTANYAAN SECARA SPESIFIK & EDUKATIF
         async function sendChatMessage() {
             const i = document.getElementById('userChatInput');
             const msg = i.value.trim();
@@ -967,7 +974,7 @@
                 const data = await res.json();
                 if (data.candidates && data.candidates[0].content.parts[0].text) {
                     const replyText = data.candidates[0].content.parts[0].text;
-                    document.getElementById(ln = lid).innerHTML = `<div class="chat-bubble ai">${replyText.replace(/\n/g,'<br>')}</div>`;
+                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">${replyText.replace(/\n/g,'<br>')}</div>`;
                 } else {
                     document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Mengenai pertanyaan "${msg}", hal ini terjadi karena proses alam yang terstruktur. Misalnya pada hujan, air laut menguap membentuk awan lalu turun kembali. Semangat belajarnya ya! 🌟</div>`;
                 }
