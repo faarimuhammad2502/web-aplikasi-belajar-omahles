@@ -123,7 +123,7 @@
         .dash-info-title { font-size: 0.75rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; margin-bottom: 4px; }
         .dash-info-val { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); }
 
-        /* GAME CENTER STYLES */
+        /* OMAH GAMES CENTER STYLES */
         .game-level-tag-box { background: var(--brand-cream); border: 2px solid var(--brand-amber); border-radius: 16px; padding: 12px 20px; font-weight: 800; font-size: 0.9rem; color: var(--brand-brown); margin-bottom: 20px; display: inline-block; }
         .game-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 10px; }
         .game-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 28px 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: all 0.25s; cursor: pointer; }
@@ -249,25 +249,19 @@
         .lovespeak-badge-mode { background: #fffbeb; border: 1.5px solid #fde68a; color: #b45309; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.78rem; text-transform: uppercase; }
 
         .lovespeak-messages-area { flex: 1; padding: 32px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; background: #fdfbf7; }
-        
-        /* Bubble Chat Model LovSpeak */
         .lovespeak-bubble-row { display: flex; flex-direction: column; width: 100%; max-width: 85%; }
         .lovespeak-bubble-row.ai { align-self: flex-start; }
         .lovespeak-bubble-row.user { align-self: flex-end; align-items: flex-end; }
-        
         .lovespeak-bubble { background: #ffffff; border: 2px solid var(--card-border); border-radius: 20px; padding: 20px 24px; font-size: 0.95rem; color: var(--text-main); line-height: 1.6; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
         .lovespeak-bubble-row.user .lovespeak-bubble { background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: #ffffff; border: none; }
-        
         .lovespeak-bubble-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 0.72rem; color: var(--text-sub); font-weight: 700; }
         .lovespeak-btn-listen { background: var(--brand-cream); border: 1px solid var(--card-border); color: var(--brand-brown); padding: 4px 12px; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 0.7rem; display: flex; align-items: center; gap: 4px; }
         .lovespeak-btn-listen:hover { background: var(--brand-amber); color: white; }
 
-        /* Quick Suggestions Pills */
         .lovespeak-suggestions-bar { display: flex; gap: 10px; padding: 12px 28px; background: #ffffff; border-top: 1px solid var(--card-border); overflow-x: auto; white-space: nowrap; }
         .lovespeak-suggestion-chip { background: var(--brand-cream); border: 1.5px solid var(--card-border); color: var(--brand-brown); padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; cursor: pointer; transition: all 0.2s; }
         .lovespeak-suggestion-chip:hover { background: var(--brand-amber); color: white; border-color: var(--brand-amber); }
 
-        /* Chat Input Bar ala LovSpeak */
         .lovespeak-input-bar { display: flex; align-items: center; gap: 12px; padding: 16px 28px; background: #ffffff; border-top: 2px solid var(--card-border); }
         .lovespeak-input-icon-btn { background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-sub); padding: 4px; }
         .lovespeak-text-input { flex: 1; border: none; outline: none; font-size: 0.95rem; font-weight: 600; color: var(--text-main); background: transparent; }
@@ -281,7 +275,6 @@
 
         .portal-footer { margin-left: 280px; background: var(--card-bg); border-top: 2px solid var(--card-border); padding: 24px 48px; display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
 
-        /* RESPONSIVE DESIGN UNTUK HP / MOBILE */
         @media (max-width: 768px) {
             .sidebar { width: 100%; height: auto; position: relative; }
             .content-area { margin-left: 0; padding: 20px; }
@@ -309,7 +302,7 @@
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
                     <label class="form-label">Email Terdaftar</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="faarimuhammad25@gmail.com" required>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
@@ -561,21 +554,42 @@
             }
         };
 
-        const adaptiveGamesDatabase = {
+        // DATABASE OMAH GAMES UNIK SPESIFIK TIAP JENJANG (TK & SD 1 s.d. 6)
+        const omahGamesDatabasePerLevel = {
             'tk': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Tebak Hewan', desc: 'Tebak hewan dari emoji.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka wortel', answer: 'kelinci' }, { emojis: '🐮 🌾', clue: 'Penghasil susu segar bersuara moo', answer: 'sapi' }] },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎨', title: 'Warna Buah & Benda', desc: 'Tebak warna benda alam.', questions: [{ emojis: '🍎', clue: 'Warna buah apel matang', answer: 'merah' }, { emojis: '🍌', clue: 'Warna buah pisang', answer: 'kuning' }, { emojis: '🍃', clue: 'Warna daun segar', answer: 'hijau' }] },
-                { id: 'g3', bg: '#e0f2fe', color: '#0369a1', icon: '🔢', title: 'Hitung Jari 1-5', desc: 'Mengenal angka dasar.', questions: [{ emojis: '🖐️', clue: 'Jumlah jari dalam satu tangan', answer: '5' }, { emojis: '✌️', clue: 'Jumlah jari yang diacungkan', answer: '2' }] }
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🐱', title: 'Tebak Hewan & Suara', desc: 'Mengenal hewan peliharaan dari emoji & cirinya.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka melompat makan wortel', answer: 'kelinci' }, { emojis: '🐮 🌾', clue: 'Penghasil susu segar bersuara moo', answer: 'sapi' }] },
+                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎨', title: 'Warna Buah & Alam', desc: 'Mengenal warna dasar buah dan lingkungan.', questions: [{ emojis: '🍎', clue: 'Warna buah apel segar matang', answer: 'merah' }, { emojis: '🍌', clue: 'Warna buah pisang manis', answer: 'kuning' }, { emojis: '🍃', clue: 'Warna daun pohon di hutan', answer: 'hijau' }] },
+                { id: 'g3', bg: '#e0f2fe', color: '#0369a1', icon: '🖐️', title: 'Hitung Jari 1-5', desc: 'Belajar berhitung jumlah jari tangan.', questions: [{ emojis: '🖐️', clue: 'Berapa jumlah jari dalam satu tangan manusia?', answer: '5' }, { emojis: '✌️', clue: 'Berapa jari yang diacungkan pada simbol ini?', answer: '2' }] }
             ],
-            'sd1_3': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Vocabulary', desc: 'Tebak kosakata bahasa Indonesia.', questions: [{ emojis: '🎒 🏫', clue: 'Tempat untuk menuntut ilmu', answer: 'sekolah' }, { emojis: '📖 ✍️', clue: 'Kegiatan membaca dan menulis di kelas', answer: 'belajar' }, { emojis: '☀️ ☁️', clue: 'Keadaan cuaca di siang hari', answer: 'cerah' }] },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🧮', title: 'Math Speed Dasar', desc: 'Hitung cepat tambah kurang.', questions: [{ emojis: '5️⃣ ✖️ 2️⃣', clue: 'Lima dikali dua', answer: '10' }, { emojis: '8️⃣ ➖ 3️⃣', clue: 'Delapan dikurang tiga', answer: '5' }, { emojis: '6️⃣ ➕ 4️⃣', clue: 'Enam ditambah empat', answer: '10' }] },
-                { id: 'g3', bg: '#fef3c7', color: '#b45309', icon: '⚖️', title: 'Tebak Satuan Berat', desc: 'Konversi berat benda.', questions: [{ emojis: '1️⃣ ⚖️ 🔤', clue: '1 Kg sama dengan berapa gram?', answer: '1000' }] }
+            'sd1': [
+                { id: 'g1', bg: '#fef3c7', color: '#b45309', icon: '📖', title: 'Mengeja Suku Kata', desc: 'Latihan membaca dan merangkai kata dasar.', questions: [{ emojis: '🎒 🏫', clue: 'Tempat anak-anak belajar bersama guru di sekolah', answer: 'sekolah' }, { emojis: '👕 👖', clue: 'Pakaian yang kita pakai setiap hari', answer: 'baju' }, { emojis: '⚽ 🥅', clue: 'Bola digiring dan ditendang masuk ke...', answer: 'gawang' }] },
+                { id: 'g2', bg: '#dcfce7', color: '#16a34a', icon: '➕', title: 'Penjumlahan Ceria 1-20', desc: 'Latihan hitung tambah benda sehari-hari.', questions: [{ emojis: '🍎 🍎 ➕ 🍎', clue: '2 buah apel ditambah 1 buah apel jadi berapa?', answer: '3' }, { emojis: '⭐ 5️⃣ ➕ 5️⃣', clue: 'Lima ditambah lima hasilnya adalah', answer: '10' }, { emojis: '🍬 7️⃣ ➕ 2️⃣', clue: 'Tujuh ditambah dua permen', answer: '9' }] },
+                { id: 'g3', bg: '#fae8ff', color: '#a855f7', icon: '👁️', title: 'Panca Indra Kita', desc: 'Mengenal fungsi bagian tubuh manusia.', questions: [{ emojis: '👁️ 📺', clue: 'Alat tubuh untuk melihat pemandangan dan televisi', answer: 'mata' }, { emojis: '👃 🌸', clue: 'Alat tubuh untuk mencium bau harum bunga', answer: 'hidung' }] }
             ],
-            'sd4_6': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧬', title: 'Sains & Alam Lanjutan', desc: 'Proses alam dan sistem tubuh.', questions: [{ emojis: '☀️ 🌊 ☁️', clue: 'Proses penguapan air laut oleh panas matahari', answer: 'evaporasi' }, { emojis: '🫀 🩺', clue: 'Organ pemompa darah dalam tubuh manusia', answer: 'jantung' }, { emojis: '🌍 🔄', clue: 'Gerakan bumi berputar pada porosnya', answer: 'rotasi' }] },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '📐', title: 'Math Master Geometri', desc: 'Hitung volume dan luas.', questions: [{ emojis: '📦', clue: 'Isi atau kapasitas dari sebuah balok atau kubus', answer: 'volume' }, { emojis: '📊', clue: 'Nilai rata-rata dari sekelompok data', answer: 'mean' }, { emojis: '📏 ✖️ 📏', clue: 'Rumus luas persegi adalah sisi dikali...', answer: 'sisi' }] },
-                { id: 'g3', bg: '#e0f2fe', color: '#0369a1', icon: '📜', title: 'Teks & Sastra', desc: 'Analisis jenis teks.', questions: [{ emojis: '📰 🔬', clue: 'Teks yang menjelaskan proses terjadinya fenomena alam', answer: 'eksplanasi' }] }
+            'sd2': [
+                { id: 'g1', bg: '#ccfbf1', color: '#0f766e', icon: '❓', title: 'Tanya Jawab Kalimat', desc: 'Melatih penggunaan kata tanya yang tepat.', questions: [{ emojis: '👤 ❓', clue: 'Kata tanya untuk menanyakan orang atau nama disebut...', answer: 'siapa' }, { emojis: '📍 ❓', clue: 'Kata tanya untuk menanyakan tempat atau lokasi', answer: 'di mana' }, { emojis: '⏰ ❓', clue: 'Kata tanya untuk menanyakan waktu kejadian', answer: 'kapan' }] },
+                { id: 'g2', bg: '#ffedd5', color: '#c2410c', icon: '✖️', title: 'Perkalian Dasar Asyik', desc: 'Penjumlahan berulang angka dasar.', questions: [{ emojis: '2️⃣ ✖️ 3️⃣', clue: 'Berapa hasil dari 2 dikali 3 (atau 3 + 3)?', answer: '6' }, { emojis: '4️⃣ ✖️ 2️⃣', clue: 'Empat dikali dua hasilnya adalah', answer: '8' }, { emojis: '5️⃣ ✖️ 3️⃣', clue: 'Lima dikali tiga', answer: '15' }] },
+                { id: 'g3', bg: '#e0f2fe', color: '#0369a1', icon: '🧊', title: 'Wujud Benda Padat & Cair', desc: 'Memahami sifat perubahan wujud benda.', questions: [{ emojis: '🧊 ➡️ 💧', clue: 'Es batu yang dibiarkan di suhu ruang akan berubah menjadi...', answer: 'cair' }, { emojis: '🪨 🪵', clue: 'Batu dan kayu termasuk golongan wujud benda...', answer: 'padat' }] }
+            ],
+            'sd3': [
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '📝', title: 'Ide Pokok Paragraf', desc: 'Menemukan gagasan utama dalam bacaan.', questions: [{ emojis: '📖 🔍', clue: 'Gagasan utama atau inti pembahasan dalam sebuah paragraf disebut ide...', answer: 'pokok' }, { emojis: '📌 📋', clue: 'Kalimat yang memuat gagasan utama disebut kalimat...', answer: 'utama' }] },
+                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🍕', title: 'Pecahan Sederhana', desc: 'Mengenal pembagian nilai pecahan.', questions: [{ emojis: '🍕 ➗ 2️⃣', clue: 'Satu buah roti dipotong dua sama besar, nilai bagiannya adalah 1/...', answer: '2' }, { emojis: '1️⃣ 🧮 4️⃣', clue: 'Pecahan seperempat ditulis dengan angka 1 per...', answer: '4' }] },
+                { id: 'g3', bg: '#fef3c7', color: '#b45309', icon: '🐛', title: 'Siklus Metamorfosis', desc: 'Daur hidup hewan di alam.', questions: [{ emojis: '🐛 ➡️ 🦋', clue: 'Sebelum menjadi kupu-kupu yang indah, ulat berubah menjadi...', answer: 'kepompong' }, { emojis: '🥚 ➡️ 🐣', clue: 'Awal mula daur hidup ayam berasal dari sebutir...', answer: 'telur' }] }
+            ],
+            'sd4': [
+                { id: 'g1', bg: '#e0e7ff', color: '#3730a3', icon: '📐', title: 'Master Luas Persegi', desc: 'Menghitung keliling dan luas bangun datar.', questions: [{ emojis: '⬛ 📏', clue: 'Rumus luas persegi adalah sisi dikali...', answer: 'sisi' }, { emojis: '📐 🔲', clue: 'Besar sudut siku-siku adalah ... derajat', answer: '90' }] },
+                { id: 'g2', bg: '#ccfbf1', color: '#115e59', icon: '🧲', title: 'Gaya & Gerak Benda', desc: 'Eksplorasi fisika dasar gaya tarik dan dorong.', questions: [{ emojis: '🌍 🍎 ⬇️', clue: 'Gaya tarik pusat bumi yang membuat buah jatuh ke bawah disebut...', answer: 'gravitasi' }, { emojis: '🛞 🛣️ 🛑', clue: 'Gaya yang timbul karena gesekan dua permukaan benda disebut gaya...', answer: 'gesek' }] },
+                { id: 'g3', bg: '#fae8ff', color: '#86198f', icon: '🗣️', title: 'Majas Personifikasi', desc: 'Mengenal gaya bahasa sastra Indonesia.', questions: [{ emojis: '🍃 💃 🌬️', clue: 'Majas yang seolah-olah menghidupkan benda mati (misal: daun menari) adalah...', answer: 'personifikasi' }] }
+            ],
+            'sd5': [
+                { id: 'g1', bg: '#ffedd5', color: '#9a3412', icon: '📜', title: 'Teks Sejarah 5W+1H', desc: 'Analisis unsur penting dalam teks narasi sejarah.', questions: [{ emojis: '⏰ ❓', clue: 'Unsur tanya dalam 5W+1H yang menanyakan waktu kejadian sejarah adalah...', answer: 'kapan' }, { emojis: '📍 🏛️', clue: 'Unsur tanya yang menanyakan tempat terjadinya peristiwa adalah di...', answer: 'mana' }] },
+                { id: 'g2', bg: '#dcfce7', color: '#14532d', icon: '📦', title: 'Volume Bangun Ruang', desc: 'Menghitung isi balok dan kubus.', questions: [{ emojis: '📦 📐', clue: 'Rumus volume balok adalah panjang dikali lebar dikali...', answer: 'tinggi' }, { emojis: '🧊 🧮', clue: 'Satuan baku volume kubus adalah sentimeter...', answer: 'kubik' }] },
+                { id: 'g3', bg: '#fef3c7', color: '#78350f', icon: '🍎', title: 'Sistem Pencernaan', desc: 'Organ tubuh manusia dan fungsinya.', questions: [{ emojis: '🫀 🍎 🫁', clue: 'Tempat penyerapan sari-sari makanan terjadi di usus...', answer: 'halus' }] }
+            ],
+            'sd6': [
+                { id: 'g1', bg: '#f3e8ff', color: '#581c87', icon: '📰', title: 'Teks Eksplanasi Ilmiah', desc: 'Menganalisis fenomena alam dan sosial.', questions: [{ emojis: '🌋 ⚡ 🔬', clue: 'Teks yang berisi penjelasan tentang proses terjadinya fenomena alam disebut teks...', answer: 'eksplanasi' }, { emojis: '🌧️ ☀️ 🔄', clue: 'Hubungan sebab akibat dalam teks eksplanasi disebut hubungan...', answer: 'kausalitas' }] },
+                { id: 'g2', bg: '#e0f2fe', color: '#0c4a6e', icon: '📊', title: 'Statistika & Mean', desc: 'Mengolah data nilai dan hitung rata-rata.', questions: [{ emojis: '📊 ➕ ➗', clue: 'Nilai rata-rata dari sekelompok data dalam matematika disebut juga dengan...', answer: 'mean' }, { emojis: '📈 🔢', clue: 'Nilai data yang paling sering muncul disebut...', answer: 'modus' }] },
+                { id: 'g3', bg: '#fee2e2', color: '#7f1d1d', icon: '🪐', title: 'Tata Surya & Rotasi', desc: 'Pergerakan planet dan bumi kita.', questions: [{ emojis: '🌍 ☀️ 🌙', clue: 'Pergantian siang dan malam di bumi disebabkan oleh gerak ... bumi', answer: 'rotasi' }, { emojis: '🪐 🚀', clue: 'Planet terbesar yang berada di dalam sistem tata surya kita adalah...', answer: 'jupiter' }] }
             ]
         };
 
@@ -676,7 +690,7 @@
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & IPA', sub: 'Eksplorasi alam semesta.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni Budaya', sub: 'Berkreasi tanpa batas.' },
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
-                'games': { tag: '🎮 Game Center', title: 'LovSpeak Games', sub: `Tantangan khusus ${currentStudent.classLevel}.` },
+                'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif khusus ${currentStudent.classLevel}.` },
                 'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar', sub: 'Tulis target harianmu.' }
             };
 
@@ -754,7 +768,7 @@
                 <div class="insight-card-box">
                     <div class="insight-heading">💡 Ringkasan Sistem Omah Les Privat</div>
                     <div class="insight-body-text">
-                        "Halo ${currentStudent.name}, Anda masuk menggunakan akun dengan hak akses penuh. Anda dapat meninjau seluruh materi dari jenjang TK hingga SD Kelas 6 melalui menu <strong>Learning Roadmap</strong> atau menguji coba fitur interaktif di <strong>Game Center</strong> dan <strong>Ruang AI Tutor</strong>."
+                        "Halo ${currentStudent.name}, Anda masuk menggunakan akun dengan hak akses penuh. Anda dapat meninjau seluruh materi dari jenjang TK hingga SD Kelas 6 melalui menu <strong>Learning Roadmap</strong> atau menguji coba fitur interaktif di <strong>Omah Games</strong> dan <strong>Ruang AI Tutor</strong>."
                     </div>
                 </div>
             `;
@@ -812,7 +826,7 @@
                 <div class="insight-card-box">
                     <div class="insight-heading">💡 AI Insight • Personalized for ${currentStudent.name}</div>
                     <div class="insight-body-text">
-                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu sudah menyelesaikan ${userCompletedQuizzes} kuis latihan. Terus pertahankan semangat mengajarnya/belajarnya!"
+                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu sudah menyelesaikan ${userCompletedQuizzes} kuis latihan. Terus pertahankan semangat belajar dan mengajarmu!"
                     </div>
                 </div>
             `;
@@ -848,17 +862,14 @@
         }
 
         function renderGameCenterGrid(container) {
-            let catKey = currentStudent.categoryKey;
-            let targetGroup = 'sd1_3';
-            if (catKey === 'tk') targetGroup = 'tk';
-            else if (['sd4', 'sd5', 'sd6'].includes(catKey)) targetGroup = 'sd4_6';
-            const gamesList = adaptiveGamesDatabase[targetGroup] || adaptiveGamesDatabase['sd1_3'];
+            let catKey = currentStudent.categoryKey; // 'tk', 'sd1', 'sd2', 'sd3', 'sd4', 'sd5', 'sd6'
+            const gamesList = omahGamesDatabasePerLevel[catKey] || omahGamesDatabasePerLevel['sd3'];
 
             container.innerHTML = `
-                <div class="game-level-tag-box">🎯 JENJANG GAME: <strong>${currentStudent.classLevel.toUpperCase()}</strong></div>
+                <div class="game-level-tag-box">🎮 OMAH GAMES KELAS: <strong>${currentStudent.classLevel.toUpperCase()}</strong></div>
                 <div class="game-card-grid">
                     ${gamesList.map((g, idx) => `
-                        <div class="game-item-card" onclick="startLovSpeakGame('${targetGroup}', ${idx})">
+                        <div class="game-item-card" onclick="startOmahGame('${catKey}', ${idx})">
                             <div>
                                 <div class="game-icon-box" style="background:${g.bg}; color:${g.color};">${g.icon}</div>
                                 <div class="game-card-title">${g.title}</div>
@@ -871,16 +882,16 @@
             `;
         }
 
-        function startLovSpeakGame(targetGroup, gameIdx) {
-            const gameObj = adaptiveGamesDatabase[targetGroup][gameIdx];
+        function startOmahGame(catKey, gameIdx) {
+            const gameObj = omahGamesDatabasePerLevel[catKey][gameIdx];
             currentActiveGameQuestions = gameObj.questions;
             currentLovQuestionIdx = 0;
             lovScore = 0;
             lovLives = 3;
-            renderLovSpeakUI(document.getElementById('dynamicMainContentArea'));
+            renderOmahGameUI(document.getElementById('dynamicMainContentArea'));
         }
 
-        function renderLovSpeakUI(container) {
+        function renderOmahGameUI(container) {
             if (lovLives <= 0 || currentLovQuestionIdx >= currentActiveGameQuestions.length) {
                 alert(`Permainan Selesai! Score akhir: ${lovScore}`);
                 return switchSection('games');
@@ -897,7 +908,7 @@
                     <div class="lov-top-bar">
                         <div class="lov-level-dots">
                             <div class="lov-btn-close" onclick="switchSection('games')">✕</div>
-                            <span>LEVEL ${currentLovQuestionIdx + 1}</span>
+                            <span>TANTANGAN ${currentLovQuestionIdx + 1}</span>
                         </div>
                         <div class="lov-score-pill">
                             <div class="lov-score-label">SCORE</div>
@@ -911,15 +922,15 @@
                     <div class="lov-stage-card"><div class="lov-emoji-display">${qObj.emojis}</div></div>
                     <div class="lov-clue-box">💡 ${qObj.clue}</div>
                     <div class="lov-input-container">
-                        <input type="text" id="lovAnswerInput" class="lov-text-input" placeholder="Ketik jawaban..." onkeypress="if(event.key==='Enter') submitLovAnswer('${qObj.answer}')">
-                        <button class="lov-submit-btn" onclick="submitLovAnswer('${qObj.answer}')">Kirim Jawaban</button>
+                        <input type="text" id="lovAnswerInput" class="lov-text-input" placeholder="Ketik jawaban..." onkeypress="if(event.key==='Enter') submitOmahGameAnswer('${qObj.answer}')">
+                        <button class="lov-submit-btn" onclick="submitOmahGameAnswer('${qObj.answer}')">Kirim Jawaban</button>
                     </div>
                 </div>
             `;
             document.getElementById('lovAnswerInput').focus();
         }
 
-        function submitLovAnswer(correctAns) {
+        function submitOmahGameAnswer(correctAns) {
             const userAns = document.getElementById('lovAnswerInput').value.trim().toLowerCase();
             if (!userAns) return;
             if (userAns === correctAns.toLowerCase()) {
@@ -935,7 +946,7 @@
                 lovLives--;
                 alert(`❌ Kurang tepat! Jawaban benar: "${correctAns.toUpperCase()}".`);
             }
-            renderLovSpeakUI(document.getElementById('dynamicMainContentArea'));
+            renderOmahGameUI(document.getElementById('dynamicMainContentArea'));
         }
 
         function openSequenceModal(secKey, index) {
@@ -1022,7 +1033,6 @@
             renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
-        // TAMPILAN UTUH RUANG AI TUTOR PERSIS GAYA LOVSPEAK
         function renderLovSpeakAiChat(container) {
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             container.innerHTML = `
