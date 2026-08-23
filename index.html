@@ -37,7 +37,7 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* SPLIT LOGIN SCREEN */
+        /* LOGIN SCREEN */
         .login-page-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; z-index: 10000; background: var(--bg-body);
@@ -69,7 +69,7 @@
 
         .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 15px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; }
 
-        /* DAILY WISDOM POPUP MODAL */
+        /* DAILY WISDOM MODAL */
         .wisdom-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(18, 10, 5, 0.75); backdrop-filter: blur(8px);
@@ -128,12 +128,6 @@
         }
         .tour-overlay-bg.active { display: block !important; }
 
-        .tour-highlight {
-            position: relative; z-index: 3001 !important;
-            box-shadow: 0 0 0 6px var(--brand-yellow), 0 0 25px rgba(245, 158, 11, 0.6) !important;
-            border-radius: 18px; background: #ffffff !important;
-        }
-
         .tour-popover-card {
             position: fixed; z-index: 3002; width: 340px; background: #ffffff;
             border-radius: 24px; padding: 24px 22px 20px 22px;
@@ -164,7 +158,7 @@
         .tour-btn-next { background: var(--brand-amber); color: white; border: none; padding: 10px 22px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; font-family: 'Fredoka', sans-serif; cursor: pointer; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25); }
         .tour-btn-next:hover { background: var(--brand-brown); }
 
-        /* APP LAYOUT LOVSPEAK STYLE */
+        /* APP LAYOUT */
         .app-wrapper { display: flex; flex: 1; }
 
         .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); overflow-y: auto; }
@@ -174,18 +168,17 @@
         .brand-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: #ffffff; font-weight: 700; line-height: 1.1; }
         .brand-sub { font-size: 0.7rem; color: var(--brand-yellow); font-weight: 800; letter-spacing: 1px; }
 
-        .gamification-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .gamification-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
         .stat-badge-card { background: rgba(255, 255, 255, 0.06); border: 1.5px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
         .stat-icon { font-size: 1.3rem; }
         .stat-val { font-family: 'Fredoka', sans-serif; font-size: 1.1rem; color: #ffffff; font-weight: 700; }
         .stat-lbl { font-size: 0.65rem; color: var(--brand-yellow); text-transform: uppercase; font-weight: 800; }
 
         .menu-group-label { font-size: 0.68rem; font-weight: 800; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.2px; margin: 16px 0 8px 4px; }
-        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
         .menu-item a { display: flex; align-items: center; gap: 12px; padding: 10px 14px; text-decoration: none; color: #d6c7b2; font-weight: 700; font-size: 0.88rem; border-radius: var(--radius-sm); cursor: pointer; }
         .menu-item.active a, .menu-item a:hover { background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: #ffffff; }
 
-        /* LOVSPEAK EXTRA CONTROLS (REFRESH & APPEARANCE) */
         .sidebar-bottom-controls { border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 14px; margin-top: 10px; }
         .btn-refresh-app { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #ffffff; padding: 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 800; cursor: pointer; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .btn-theme-color { width: 100%; background: linear-gradient(135deg, var(--brand-amber) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 12px; border-radius: 14px; font-weight: 800; font-size: 0.78rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Fredoka', sans-serif; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2); }
@@ -234,7 +227,7 @@
         .btn-open-module { background: var(--brand-amber); color: white; border: none; padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
         .btn-open-module:hover { background: var(--brand-brown); }
 
-        /* LOVSPEAK FULL-PAGE READER VIEW */
+        /* READER VIEW */
         .reader-view-container { display: none; margin-left: 280px; flex: 1; padding: 36px 48px; max-width: 1100px; position: relative; }
         .reader-view-container.active { display: block; }
 
@@ -340,7 +333,7 @@
 
     <!-- MAIN APP WRAPPER -->
     <div class="app-wrapper">
-        <!-- SIDEBAR ALA LOVSPEAK -->
+        <!-- SIDEBAR TERSTRUKTUR SEPERTI LOVSPEAK UNTUK ANAK -->
         <aside class="sidebar">
             <div>
                 <div class="brand-header">
@@ -351,7 +344,7 @@
                     </div>
                 </div>
 
-                <!-- GAMIFICATION STAR & STREAK DISPLAY -->
+                <!-- GAMIFICATION DISPLAY -->
                 <div class="gamification-bar" id="tourGamificationBar">
                     <div class="stat-badge-card">
                         <div class="stat-icon">⭐</div>
@@ -369,36 +362,44 @@
                     </div>
                 </div>
 
-                <!-- SECTION 1: PRACTICE -->
-                <div class="menu-group-label">PRACTICE</div>
+                <!-- MAIN MENU -->
+                <div class="menu-group-label">MAIN MENU</div>
                 <ul class="menu-list">
-                    <li class="menu-item active" id="menuRoadmap"><a onclick="switchSection('roadmap')"><span>📖</span> <span>Reading & Roadmap</span></a></li>
-                    <li class="menu-item" id="menuListening"><a onclick="switchSection('listening')"><span>🎧</span> <span>Listening Lab</span></a></li>
-                    <li class="menu-item" id="menuGrammar"><a onclick="switchSection('grammar')"><span>✍️</span> <span>Grammar & Writing</span></a></li>
-                    <li class="menu-item" id="menuVocab"><a onclick="switchSection('vocab')"><span>🧩</span> <span>Vocabulary</span></a></li>
+                    <li class="menu-item active" id="menuRoadmap"><a onclick="switchSection('roadmap')"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
+                    <li class="menu-item" id="menuBadges"><a onclick="switchSection('badges')"><span>🏆</span> <span>Prestasi & Badges</span></a></li>
                 </ul>
 
-                <!-- SECTION 2: TOOLS -->
-                <div class="menu-group-label">TOOLS</div>
+                <!-- LEARNING / PRACTICE -->
+                <div class="menu-group-label">LEARNING / PRACTICE</div>
                 <ul class="menu-list">
-                    <li class="menu-item" id="menuAiTutor"><a onclick="switchSection('aitutor')"><span>💬</span> <span>AI Tutor Chat</span></a></li>
-                    <li class="menu-item" id="menuDiary"><a onclick="switchSection('diary')"><span>💾</span> <span>My Study Diary</span></a></li>
+                    <li class="menu-item" id="menuIndo"><a onclick="switchSection('indo')"><span>📖</span> <span>Bahasa Indonesia</span></a></li>
+                    <li class="menu-item" id="menuMath"><a onclick="switchSection('math')"><span>🧮</span> <span>Matematika Dasar</span></a></li>
+                    <li class="menu-item" id="menuSains"><a onclick="switchSection('sains')"><span>🔬</span> <span>Sains & IPA</span></a></li>
+                    <li class="menu-item" id="menuSeni"><a onclick="switchSection('seni')"><span>🎨</span> <span>Seni & Karakter</span></a></li>
                 </ul>
 
-                <!-- SECTION 3: SYSTEM -->
+                <!-- TOOLS & FITUR INTERAKTIF -->
+                <div class="menu-group-label">TOOLS & FITUR</div>
+                <ul class="menu-list">
+                    <li class="menu-item" id="menuAiTutor"><a onclick="switchSection('aitutor')"><span>🎙️</span> <span>Ruang AI Tutor</span></a></li>
+                    <li class="menu-item" id="menuDiary"><a onclick="switchSection('diary')"><span>📝</span> <span>Jurnal Belajar</span></a></li>
+                    <li class="menu-item" id="menuGames"><a onclick="switchSection('games')"><span>🎮</span> <span>Game Edukasi</span></a></li>
+                </ul>
+
+                <!-- SYSTEM -->
                 <div class="menu-group-label">SYSTEM</div>
                 <ul class="menu-list">
-                    <li class="menu-item"><a onclick="startTourGuide('roadmap', true)"><span>💡</span> <span>Portal Guide</span></a></li>
+                    <li class="menu-item"><a onclick="startTourGuide(activeSection, true)"><span>💡</span> <span>Panduan Section Ini</span></a></li>
                     <li class="menu-item"><a onclick="openLoginForm()"><span>👤</span> <span>Switch User</span></a></li>
                 </ul>
             </div>
 
             <div>
-                <!-- SIDEBAR BOTTOM CONTROLS ALA LOVSPEAK -->
+                <!-- SIDEBAR BOTTOM CONTROLS -->
                 <div class="sidebar-bottom-controls">
-                    <button class="btn-refresh-app" onclick="location.reload()">↺ REFRESH APP</button>
+                    <button class="btn-refresh-app" onclick="location.reload()">↺ REFRESH PORTAL</button>
                     <div style="font-size: 0.68rem; font-weight: 800; color: rgba(255,255,255,0.4); margin-bottom: 6px;">APPEARANCE</div>
-                    <button class="btn-theme-color" onclick="alert('Tema Omah Les Terracotta Aktif!')">THEME COLOR 🎨</button>
+                    <button class="btn-theme-color" onclick="alert('Tema Omah Les Terracotta Aktif!')">WARNA TEMA 🎨</button>
                 </div>
 
                 <div class="profile-card">
@@ -414,16 +415,16 @@
             </div>
         </aside>
 
-        <!-- DASHBOARD GRID VIEW -->
+        <!-- DASHBOARD GRID VIEW DINAMIS PER SECTION -->
         <main class="content-area" id="mainDashboardView">
 
             <div class="roadmap-banner" id="tourRoadmapBanner">
-                <div class="banner-tag">🎓 Master Learning Path</div>
+                <div class="banner-tag" id="bannerTagText">🎓 Master Learning Path</div>
                 <div class="banner-title" id="bannerWelcomeTitle">Curriculum Roadmap</div>
                 <div class="banner-sub" id="bannerWelcomeSub">Modul materi terstruktur disesuaikan secara otomatis berdasarkan kelas dan jenjang pilihanmu.</div>
             </div>
 
-            <!-- TOMBOL KHUSUS DEVELOPER UNTUK GANTI JENJANG INSTAN -->
+            <!-- TOMBOL DEVELOPER -->
             <div class="dev-level-switcher" id="devLevelSwitcherBox">
                 <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">🛠️ DEVELOPER MODE: Pilih Jenjang Mana Saja Kapan Saja</span>
                 <button class="dev-switch-btn" onclick="devSwitchClass('tk', 'TK / PAUD')">TK / PAUD</button>
@@ -448,11 +449,12 @@
                 </div>
             </div>
 
+            <!-- KONTEN MODUL DINAMIS -->
             <div class="modules-grid" id="modulesGridContainer"></div>
 
         </main>
 
-        <!-- LOVSPEAK FULL READER VIEW -->
+        <!-- READER VIEW -->
         <main class="reader-view-container" id="readerPageContainer">
             
             <div class="reader-control-bar">
@@ -503,10 +505,8 @@
     </footer>
 
     <script>
-        // LINK CSV GOOGLE SHEETS
         const GOOGLE_SHEET_CSV_URL = 'PASTE_LINK_CSV_GOOGLE_SHEETS_DI_SINI';
 
-        // DAFTAR EMAIL DEVELOPER & TUTOR MASTER ACCESS
         const DEV_MASTER_ACCOUNTS = {
             'faarimuhammad25@gmail.com': 'Muhammad Faari (Developer)',
             'michellehimmelda@gmail.com': 'Michelle Himmelda Cahyadi (Tutor & Founder)'
@@ -518,34 +518,71 @@
             { quote: "Niatkan belajar karena Allah, agar setiap detik membaca dan berhitung menjadi pahala kebaikan.", author: "— Omah Les Privat" }
         ];
 
-        // MASTER DATABASE MATERI MODUL PER SECTION
-        const databaseMateriLengkap = {
-            'sd3': [
-                { tierTag: 'SD KLS 3', title: 'Bahasa Indonesia - Ide Pokok', desc: 'Menentukan gagasan utama dan ide pokok paragraf.', progress: '0/4', content: `Ide pokok adalah inti pembahasan dalam suatu paragraf.` },
-                { tierTag: 'SD KLS 3', title: 'Matematika - Pecahan Sederhana', desc: 'Konsep pecahan dasar ½, ⅓, ¼, pembilang, dan penyebut.', progress: '0/4', content: `• Pecahan ½: Satu buah pizza dipotong menjadi 2 bagian sama besar.` }
+        /* MASTER DATABASE MATERI PER SECTION KREATIF ANAK */
+        const sectionDatabase = {
+            'roadmap': [
+                { tierTag: 'SD KLS 3', title: 'Bahasa Indonesia - Ide Pokok Paragraf', desc: 'Menentukan gagasan utama dalam setiap bacaan sederhana.', progress: '0/4', content: 'Ide pokok adalah kalimat utama yang menjadi inti pembahasan paragraf.' },
+                { tierTag: 'SD KLS 3', title: 'Matematika - Pecahan Sederhana', desc: 'Mengenal bentuk ½, ⅓, dan ¼ secara visual.', progress: '0/4', content: 'Pecahan ½ berarti 1 benda dibagi menjadi 2 bagian sama besar.' }
+            ],
+            'badges': [
+                { tierTag: 'PRESTASI', title: '🥇 Bintang Rajin Membaca', desc: 'Diberikan setelah menyelesaikan 5 modul Bahasa Indonesia.', progress: '4/5', content: 'Selamat! Kamu hampir membuka Lencana membaca bintang emas.' },
+                { tierTag: 'PRESTASI', title: '🔥 Streak Belajar 7 Hari', desc: 'Pertahankan kebiasaan belajar tanpa putus selama satu minggu!', progress: '3/7', content: 'Terus tingkatkan semangat belajarmu setiap hari!' }
+            ],
+            'indo': [
+                { tierTag: 'BAHASA INDO', title: 'Mengeja & Membaca Suku Kata', desc: 'Latihan mengeja kata berimbuhan awalan dan akhiran.', progress: '0/3', content: 'Contoh kata berimbuhan: Membaca, Menulis, Berhitung.' },
+                { tierTag: 'BAHASA INDO', title: 'Menulis Puisi Anak Sederhana', desc: 'Ekspresikan perasaan lewat bait indah tentang alam dan keluarga.', progress: '0/2', content: 'Puisi anak berisi ungkapan kasih sayang dan keindahan alam.' }
+            ],
+            'math': [
+                { tierTag: 'MATEMATIKA', title: 'Penjumlahan Bersusun & Perkalian', desc: 'Trik cepat berhitung perkalian dasar 1 sampai 10.', progress: '0/5', content: 'Perkalian adalah penjumlahan berulang dari suatu angka.' },
+                { tierTag: 'MATEMATIKA', title: 'Mengenal Bangun Datar & Ruang', desc: 'Ciri-ciri kubus, balok, segitiga, dan lingkaran.', progress: '0/4', content: 'Kubus memiliki 6 sisi yang semuanya berbentuk persegi.' }
+            ],
+            'sains': [
+                { tierTag: 'SAINS & IPA', title: 'Daur Hidup Kupu-kupu (Metamorfosis)', desc: 'Proses perubahan dari telur, ulat, kepompong hingga kupu-kupu.', progress: '0/4', content: 'Tahapan metamorfosis sempurna: Telur -> Ulat -> Kepompong -> Kupu-kupu.' },
+                { tierTag: 'SAINS & IPA', title: 'Eksperimen Air & Sifat Benda', desc: 'Uji coba benda tenggelam, terapung, dan melayang di air.', progress: '0/3', content: 'Benda terapung jika massa jenisnya lebih kecil daripada air.' }
+            ],
+            'seni': [
+                { tierTag: 'SENI & KARAKTER', title: 'Mewarnai & Kombinasi Warna Dasar', desc: 'Mengenal warna primer (merah, kuning, biru) & sekunder.', progress: '0/3', content: 'Merah + Kuning menghasilkan warna Oranye.' },
+                { tierTag: 'SENI & KARAKTER', title: 'Sikap Sopan Santun & Tolong Menolong', desc: 'Belajar mengucapkan terima kasih, maaf, dan tolong.', progress: '0/4', content: '3 Kata Ajaib: Tolong, Maaf, dan Terima Kasih.' }
+            ],
+            'aitutor': [
+                { tierTag: 'AI TUTOR', title: '🎙️ Sesi Diskusi Suara AI Omah Les', desc: 'Tanyakan soal matematika atau IPA sulit langsung ke AI!', progress: 'Aktif', content: 'Siswa dapat mengetik atau menggunakan ikon mikrofon untuk bertanya.' }
+            ],
+            'diary': [
+                { tierTag: 'JURNAL', title: '📝 Catatan Harian & Tugas Rumah', desc: 'Catat progres tugas sekolah dan target bintang mingguan.', progress: '2 Tugas', content: 'Simpan target belajarmu di jurnal agar selalu ingat!' }
+            ],
+            'games': [
+                { tierTag: 'GAME EDUKASI', title: '🎮 Kuis Petualangan Angka & Kata', desc: 'Bermain sambil mengumpulkan ⭐ Stars ekstra!', progress: 'Level 1', content: 'Jawab kuis dengan cepat dan tepat untuk mendapatkan poin tertinggi!' }
             ]
         };
 
-        // DATABASE PANDUAN TOUR GUIDE KHUSUS SETIAP SECTION (LOVSPEAK CONCEPT)
+        /* CONFIG TOUR GUIDE UNIK PER SECTION */
         const sectionTourConfigs = {
             'roadmap': [
-                { title: 'Reading & Roadmap Path', desc: 'Selamat datang di alur belajar membaca dan kurikulum utama Omah Les Privat.', top: '25%', left: '35%' },
-                { title: 'Gamification Stars', desc: 'Pantau bintang ⭐ dan hari belajar 🔥 kamu di sini!', top: '20%', left: '310px' }
+                { title: 'Curriculum Roadmap', desc: 'Peta alur belajar utama anak disesuaikan dengan jenjang sekolah.', top: '25%', left: '35%' }
             ],
-            'listening': [
-                { title: 'Listening Lab Section', desc: 'Di sini siswa bisa mendengarkan audio instruksi interaktif dan lagu belajar.', top: '25%', left: '35%' }
+            'badges': [
+                { title: 'Prestasi & Badges', desc: 'Halaman apresiasi bintang dan piala kebanggaan siswa.', top: '25%', left: '35%' }
             ],
-            'grammar': [
-                { title: 'Grammar & Writing Section', desc: 'Seksi ini berisi latihan menyusun kalimat, pola tata bahasa, dan ejaan.', top: '25%', left: '35%' }
+            'indo': [
+                { title: 'Pelajaran Bahasa Indonesia', desc: 'Kumpulan modul membaca, ejaan, puisi, dan kosa kata.', top: '25%', left: '35%' }
             ],
-            'vocab': [
-                { title: 'Vocabulary Flashcards', desc: 'Kumpulan kosakata baru bergambar untuk memperkaya kata-kata siswa.', top: '25%', left: '35%' }
+            'math': [
+                { title: 'Pelajaran Matematika', desc: 'Latihan angka, berhitung cepat, dan logika matematika.', top: '25%', left: '35%' }
+            ],
+            'sains': [
+                { title: 'Pelajaran Sains & IPA', desc: 'Eksperimen sains seru dan pengetahuan dunia hewan/tumbuhan.', top: '25%', left: '35%' }
+            ],
+            'seni': [
+                { title: 'Seni & Karakter', desc: 'Aktivitas mewarnai kreatif & pembentukan sikap terpuji anak.', top: '25%', left: '35%' }
             ],
             'aitutor': [
-                { title: 'AI Tutor Practice', desc: 'Fitur AI interaktif untuk latihan percakapan dan tanya jawab mandiri.', top: '25%', left: '35%' }
+                { title: 'Ruang AI Tutor Omah Les', desc: 'Fitur asisten tanya-jawab cerdas pendamping belajar.', top: '25%', left: '35%' }
             ],
             'diary': [
-                { title: 'My Study Diary', desc: 'Catatan perkembangan belajar harian dan pencapaian modul siswa.', top: '25%', left: '35%' }
+                { title: 'Jurnal Belajar Siswa', desc: 'Buku catatan digital harian dan daftar target sekolah.', top: '25%', left: '35%' }
+            ],
+            'games': [
+                { title: 'Game Edukasi Interaktif', desc: 'Permainan cerdas berhadiah Bintang ⭐ tambahan!', top: '25%', left: '35%' }
             ]
         };
 
@@ -585,34 +622,61 @@
             startTourGuide('roadmap');
         }
 
-        /* PERPINDAHAN MENU & TRIGGER TOUR KHUSUS PER SECTION */
+        /* LOGIKA PERPINDAHAN SECTION & UPDATE KONTEN DINAMIS */
         function switchSection(secKey) {
             activeSection = secKey;
             closeReaderView();
 
-            // Active Class Menu Sidebar
             document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
             const activeMenu = document.getElementById(`menu${secKey.charAt(0).toUpperCase() + secKey.slice(1)}`);
             if (activeMenu) activeMenu.classList.add('active');
 
-            // Banner Title Update
-            const titles = {
-                'roadmap': 'Reading & Curriculum Roadmap',
-                'listening': 'Listening & Audio Lab',
-                'grammar': 'Grammar & Writing Practice',
-                'vocab': 'Vocabulary Building Flashcards',
-                'aitutor': 'Interactive AI Tutor Sesi',
-                'diary': 'My Personal Study Diary'
+            const sectionHeaders = {
+                'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: 'Modul materi terstruktur disesuaikan otomatis dengan kelas siswa.' },
+                'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges Siswa', sub: 'Kumpulkan ⭐ Bintang dan buka piala kebanggaan belajarmu!' },
+                'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia Interaktif', sub: 'Melatih kemampuan membaca, menyusun kalimat, dan puisi.' },
+                'math': { tag: '🧮 Logika & Angka', title: 'Matematika Dasar & Logika', sub: 'Metode belajar angka yang gampang, seru, dan menyenangkan.' },
+                'sains': { tag: '🔬 Dunia IPA', title: 'Sains & Eksperimen IPA', sub: 'Menjelajahi fenomena alam, hewan, dan percobaan sederhana.' },
+                'seni': { tag: '🎨 Kreativitas', title: 'Seni, Warna & Karakter', sub: 'Mengasah imajinasi kreatif dan pembentukan karakter terpuji.' },
+                'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Ruang AI Tutor Omah Les', sub: 'Tanya soal sulit kapan saja bersama AI Tutor Omah Les.' },
+                'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar Harian', sub: 'Pantau tugas rumah dan rencana belajarmu di sini.' },
+                'games': { tag: '🎮 Minigames', title: 'Game Edukasi Berhadiah', sub: 'Asah otak sambil mengumpulkan Bintang ⭐ tambahan!' }
             };
-            document.getElementById('bannerWelcomeTitle').innerText = titles[secKey] || 'Curriculum Roadmap';
 
-            // Trigger Tour Guide Khusus Section Baru jika Belum Pernah Dibuka
+            const h = sectionHeaders[secKey] || sectionHeaders['roadmap'];
+            document.getElementById('bannerTagText').innerText = h.tag;
+            document.getElementById('bannerWelcomeTitle').innerText = h.title;
+            document.getElementById('bannerWelcomeSub').innerText = h.sub;
+
+            renderSectionContent(secKey);
+
             if (!localStorage.getItem(`omahles_tour_${secKey}`)) {
                 setTimeout(() => { startTourGuide(secKey); }, 200);
             }
         }
 
-        /* TOUR GUIDE ENGINE PER SECTION */
+        function renderSectionContent(secKey) {
+            const container = document.getElementById('modulesGridContainer');
+            container.innerHTML = '';
+            const list = sectionDatabase[secKey] || sectionDatabase['roadmap'];
+
+            list.forEach((m, idx) => {
+                container.innerHTML += `
+                    <div class="module-card">
+                        <div>
+                            <div class="card-top"><span class="tier-badge">${m.tierTag}</span><span class="progress-count">${m.progress}</span></div>
+                            <div class="card-body"><h3>${m.title}</h3><p>${m.desc}</p></div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="icons-group">📖 🎧 📝</div>
+                            <button class="btn-open-module" onclick="openReaderView('${secKey}', ${idx})">OPEN &gt;</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        /* TOUR GUIDE ENGINE */
         let currentTourStep = 0;
         let activeTourSteps = [];
 
@@ -683,7 +747,7 @@
             const devBox = document.getElementById('devLevelSwitcherBox');
             if (currentStudent.isDev) devBox.classList.add('active'); else devBox.classList.remove('active');
 
-            renderModulesForStudentLevel(currentStudent.categoryKey);
+            renderSectionContent('roadmap');
         }
 
         function devSwitchClass(catKey, classLabel) {
@@ -691,28 +755,8 @@
             renderDashboardData();
         }
 
-        function renderModulesForStudentLevel(categoryKey) {
-            const container = document.getElementById('modulesGridContainer'); container.innerHTML = '';
-            const list = databaseMateriLengkap['sd3'];
-
-            list.forEach((m, idx) => {
-                container.innerHTML += `
-                    <div class="module-card">
-                        <div>
-                            <div class="card-top"><span class="tier-badge">${m.tierTag}</span><span class="progress-count">${m.progress}</span></div>
-                            <div class="card-body"><h3>${m.title}</h3><p>${m.desc}</p></div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="icons-group">📖 🎧 📝</div>
-                            <button class="btn-open-module" onclick="openReaderView('${categoryKey}', ${idx})">OPEN &gt;</button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function openReaderView(categoryKey, index) {
-            const list = databaseMateriLengkap['sd3'];
+        function openReaderView(secKey, index) {
+            const list = sectionDatabase[secKey] || sectionDatabase['roadmap'];
             const item = list[index];
             document.getElementById('readerHeaderTag').innerText = item.tierTag;
             document.getElementById('readerTitleDisplay').innerText = item.title;
