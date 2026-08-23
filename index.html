@@ -69,7 +69,7 @@
 
         .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 15px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; }
 
-        /* WISDOM OVERLAY */
+        /* DAILY WISDOM POPUP MODAL */
         .wisdom-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(18, 10, 5, 0.75); backdrop-filter: blur(8px);
@@ -164,10 +164,10 @@
         .tour-btn-next { background: var(--brand-amber); color: white; border: none; padding: 10px 22px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; font-family: 'Fredoka', sans-serif; cursor: pointer; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25); }
         .tour-btn-next:hover { background: var(--brand-brown); }
 
-        /* APP LAYOUT */
+        /* APP LAYOUT LOVSPEAK STYLE */
         .app-wrapper { display: flex; flex: 1; }
 
-        .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 28px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); }
+        .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); overflow-y: auto; }
         
         .brand-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
         .brand-logo { width: 44px; height: 44px; border-radius: 14px; object-fit: cover; border: 2px solid var(--brand-amber); }
@@ -180,22 +180,22 @@
         .stat-val { font-family: 'Fredoka', sans-serif; font-size: 1.1rem; color: #ffffff; font-weight: 700; }
         .stat-lbl { font-size: 0.65rem; color: var(--brand-yellow); text-transform: uppercase; font-weight: 800; }
 
-        .focus-timer-card { background: rgba(217, 119, 6, 0.15); border: 1.5px solid rgba(217, 119, 6, 0.3); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
-        .timer-icon { font-size: 1.6rem; }
-        .timer-label { font-size: 0.72rem; font-weight: 800; color: var(--brand-yellow); text-transform: uppercase; }
-        .timer-clock { font-family: 'Fredoka', sans-serif; font-size: 1.25rem; font-weight: 700; color: #ffffff; }
-
-        .menu-group-label { font-size: 0.72rem; font-weight: 800; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
-        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
-        .menu-item a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; text-decoration: none; color: #d6c7b2; font-weight: 700; font-size: 0.92rem; border-radius: var(--radius-sm); cursor: pointer; }
+        .menu-group-label { font-size: 0.68rem; font-weight: 800; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.2px; margin: 16px 0 8px 4px; }
+        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+        .menu-item a { display: flex; align-items: center; gap: 12px; padding: 10px 14px; text-decoration: none; color: #d6c7b2; font-weight: 700; font-size: 0.88rem; border-radius: var(--radius-sm); cursor: pointer; }
         .menu-item.active a, .menu-item a:hover { background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: #ffffff; }
 
-        .profile-card { background: rgba(255,255,255,0.05); border-radius: var(--radius-sm); padding: 12px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; }
+        /* LOVSPEAK EXTRA CONTROLS (REFRESH & APPEARANCE) */
+        .sidebar-bottom-controls { border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 14px; margin-top: 10px; }
+        .btn-refresh-app { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #ffffff; padding: 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 800; cursor: pointer; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .btn-theme-color { width: 100%; background: linear-gradient(135deg, var(--brand-amber) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 12px; border-radius: 14px; font-weight: 800; font-size: 0.78rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Fredoka', sans-serif; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2); }
+
+        .profile-card { background: rgba(255,255,255,0.05); border-radius: var(--radius-sm); padding: 10px 12px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
         .profile-left { display: flex; align-items: center; gap: 10px; }
-        .avatar-box { font-size: 1.6rem; background: var(--sidebar-bg); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--brand-amber); }
-        .profile-name { font-weight: 800; font-size: 0.92rem; color: #ffffff; }
-        .profile-badge { font-size: 0.72rem; color: var(--brand-yellow); font-weight: 700; }
-        .btn-switch-user { background: var(--brand-amber); border: none; color: white; padding: 6px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 800; cursor: pointer; }
+        .avatar-box { font-size: 1.5rem; background: var(--sidebar-bg); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--brand-amber); }
+        .profile-name { font-weight: 800; font-size: 0.85rem; color: #ffffff; }
+        .profile-badge { font-size: 0.68rem; color: var(--brand-yellow); font-weight: 700; }
+        .btn-switch-user { background: var(--brand-amber); border: none; color: white; padding: 5px 8px; border-radius: 8px; font-size: 0.68rem; font-weight: 800; cursor: pointer; }
 
         /* MAIN CONTENT AREA */
         .content-area { margin-left: 280px; flex: 1; padding: 36px 48px; max-width: 1300px; }
@@ -268,7 +268,7 @@
             .login-page-container { flex-direction: column; overflow-y: auto; }
             .login-left-brand, .login-right-form { width: 100%; padding: 30px 20px; flex: none; }
             .sidebar { width: 80px; padding: 16px 8px; }
-            .brand-title, .brand-sub, .menu-group-label, .profile-info, .focus-timer-card, .gamification-bar, .menu-item span:last-child { display: none; }
+            .brand-title, .brand-sub, .menu-group-label, .profile-info, .gamification-bar, .menu-item span:last-child, .sidebar-bottom-controls { display: none; }
             .content-area, .reader-view-container, .portal-footer { margin-left: 80px; padding: 20px; }
             .floating-ai-tutor { left: calc(80px + 50%); }
         }
@@ -340,6 +340,7 @@
 
     <!-- MAIN APP WRAPPER -->
     <div class="app-wrapper">
+        <!-- SIDEBAR ALA LOVSPEAK -->
         <aside class="sidebar">
             <div>
                 <div class="brand-header">
@@ -368,23 +369,38 @@
                     </div>
                 </div>
 
-                <div class="focus-timer-card">
-                    <div class="timer-icon">⏱️</div>
-                    <div>
-                        <div class="timer-label">Focus Timer</div>
-                        <div class="timer-clock" id="timerClockDisplay">25:00</div>
-                    </div>
-                </div>
-
-                <div class="menu-group-label">Main Menu</div>
+                <!-- SECTION 1: PRACTICE -->
+                <div class="menu-group-label">PRACTICE</div>
                 <ul class="menu-list">
-                    <li class="menu-item active"><a onclick="closeReaderView()"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
-                    <li class="menu-item"><a onclick="startTourGuide(true)"><span>💡</span> <span>Portal Guide</span></a></li>
-                    <li class="menu-item"><a onclick="openLoginForm()"><span>👤</span> <span>Logout / Switch User</span></a></li>
+                    <li class="menu-item active" id="menuRoadmap"><a onclick="switchSection('roadmap')"><span>📖</span> <span>Reading & Roadmap</span></a></li>
+                    <li class="menu-item" id="menuListening"><a onclick="switchSection('listening')"><span>🎧</span> <span>Listening Lab</span></a></li>
+                    <li class="menu-item" id="menuGrammar"><a onclick="switchSection('grammar')"><span>✍️</span> <span>Grammar & Writing</span></a></li>
+                    <li class="menu-item" id="menuVocab"><a onclick="switchSection('vocab')"><span>🧩</span> <span>Vocabulary</span></a></li>
+                </ul>
+
+                <!-- SECTION 2: TOOLS -->
+                <div class="menu-group-label">TOOLS</div>
+                <ul class="menu-list">
+                    <li class="menu-item" id="menuAiTutor"><a onclick="switchSection('aitutor')"><span>💬</span> <span>AI Tutor Chat</span></a></li>
+                    <li class="menu-item" id="menuDiary"><a onclick="switchSection('diary')"><span>💾</span> <span>My Study Diary</span></a></li>
+                </ul>
+
+                <!-- SECTION 3: SYSTEM -->
+                <div class="menu-group-label">SYSTEM</div>
+                <ul class="menu-list">
+                    <li class="menu-item"><a onclick="startTourGuide('roadmap', true)"><span>💡</span> <span>Portal Guide</span></a></li>
+                    <li class="menu-item"><a onclick="openLoginForm()"><span>👤</span> <span>Switch User</span></a></li>
                 </ul>
             </div>
 
             <div>
+                <!-- SIDEBAR BOTTOM CONTROLS ALA LOVSPEAK -->
+                <div class="sidebar-bottom-controls">
+                    <button class="btn-refresh-app" onclick="location.reload()">↺ REFRESH APP</button>
+                    <div style="font-size: 0.68rem; font-weight: 800; color: rgba(255,255,255,0.4); margin-bottom: 6px;">APPEARANCE</div>
+                    <button class="btn-theme-color" onclick="alert('Tema Omah Les Terracotta Aktif!')">THEME COLOR 🎨</button>
+                </div>
+
                 <div class="profile-card">
                     <div class="profile-left">
                         <div class="avatar-box" id="userAvatar">🎒</div>
@@ -404,7 +420,7 @@
             <div class="roadmap-banner" id="tourRoadmapBanner">
                 <div class="banner-tag">🎓 Master Learning Path</div>
                 <div class="banner-title" id="bannerWelcomeTitle">Curriculum Roadmap</div>
-                <div class="banner-sub">Modul materi terstruktur disesuaikan secara otomatis berdasarkan kelas dan jenjang pilihanmu.</div>
+                <div class="banner-sub" id="bannerWelcomeSub">Modul materi terstruktur disesuaikan secara otomatis berdasarkan kelas dan jenjang pilihanmu.</div>
             </div>
 
             <!-- TOMBOL KHUSUS DEVELOPER UNTUK GANTI JENJANG INSTAN -->
@@ -502,54 +518,47 @@
             { quote: "Niatkan belajar karena Allah, agar setiap detik membaca dan berhitung menjadi pahala kebaikan.", author: "— Omah Les Privat" }
         ];
 
-        // MASTER DATABASE MATERI MODUL
+        // MASTER DATABASE MATERI MODUL PER SECTION
         const databaseMateriLengkap = {
-            'tk': [
-                { tierTag: 'TK / PAUD', title: 'Huruf A - Z & Vokal', desc: 'Mengenal huruf vokal A-I-U-E-O dengan contoh kata bergambar.', progress: '0/4', content: `Modul ini dirancang khusus untuk adik-adik TK/PAUD dalam mengenal alfabet dasar dan huruf vokal.\n\n<h2>1. Pengenalan Huruf Vokal</h2>\n• A - Apel 🍎\n• I - Ikan 🐟\n• U - Ular 🐍` },
-                { tierTag: 'TK / PAUD', title: 'Belajar Membaca Suku Kata', desc: 'Latihan mengeja suku kata awalan Ba-Bi-Bu-Be-Bo.', progress: '0/4', content: `Mengeja Suku Kata B:\n• B + A = BA\n• B + I = BI` }
-            ],
-            'sd1': [
-                { tierTag: 'SD KLS 1', title: 'Bahasa Indonesia Kls 1', desc: 'Suku kata terbuka, suku kata tertutup, dan huruf kapital.', progress: '0/4', content: `1. Suku Kata Terbuka: Ba-ju, Ku-da, Ka-ki.\n2. Suku Kata Tertutup: Tas, Bus.` },
-                { tierTag: 'SD KLS 1', title: 'Matematika Kls 1', desc: 'Penjumlahan dan pengurangan angka 1 sampai 20.', progress: '0/4', content: `• Operasi Dasar:\n  5 + 3 = 8\n  10 + 4 = 14` }
-            ],
             'sd3': [
                 { tierTag: 'SD KLS 3', title: 'Bahasa Indonesia - Ide Pokok', desc: 'Menentukan gagasan utama dan ide pokok paragraf.', progress: '0/4', content: `Ide pokok adalah inti pembahasan dalam suatu paragraf.` },
                 { tierTag: 'SD KLS 3', title: 'Matematika - Pecahan Sederhana', desc: 'Konsep pecahan dasar ½, ⅓, ¼, pembilang, dan penyebut.', progress: '0/4', content: `• Pecahan ½: Satu buah pizza dipotong menjadi 2 bagian sama besar.` }
+            ]
+        };
+
+        // DATABASE PANDUAN TOUR GUIDE KHUSUS SETIAP SECTION (LOVSPEAK CONCEPT)
+        const sectionTourConfigs = {
+            'roadmap': [
+                { title: 'Reading & Roadmap Path', desc: 'Selamat datang di alur belajar membaca dan kurikulum utama Omah Les Privat.', top: '25%', left: '35%' },
+                { title: 'Gamification Stars', desc: 'Pantau bintang ⭐ dan hari belajar 🔥 kamu di sini!', top: '20%', left: '310px' }
             ],
-            'sd6': [
-                { tierTag: 'SD KLS 6', title: 'Bahasa Indonesia - Teks Eksplanasi', desc: 'Ciri teks eksplanasi dan struktur pidato.', progress: '0/4', content: '• Teks Eksplanasi: Menjelaskan proses fenomena alam.' },
-                { tierTag: 'SD KLS 6', title: 'Matematika - Pengolahan Data', desc: 'Rata-rata (Mean), Nilai Tengah (Median), Modus.', progress: '0/4', content: '• Mean: Rata-rata data\n• Median: Nilai tengah\n• Modus: Nilai paling sering' }
+            'listening': [
+                { title: 'Listening Lab Section', desc: 'Di sini siswa bisa mendengarkan audio instruksi interaktif dan lagu belajar.', top: '25%', left: '35%' }
+            ],
+            'grammar': [
+                { title: 'Grammar & Writing Section', desc: 'Seksi ini berisi latihan menyusun kalimat, pola tata bahasa, dan ejaan.', top: '25%', left: '35%' }
+            ],
+            'vocab': [
+                { title: 'Vocabulary Flashcards', desc: 'Kumpulan kosakata baru bergambar untuk memperkaya kata-kata siswa.', top: '25%', left: '35%' }
+            ],
+            'aitutor': [
+                { title: 'AI Tutor Practice', desc: 'Fitur AI interaktif untuk latihan percakapan dan tanya jawab mandiri.', top: '25%', left: '35%' }
+            ],
+            'diary': [
+                { title: 'My Study Diary', desc: 'Catatan perkembangan belajar harian dan pencapaian modul siswa.', top: '25%', left: '35%' }
             ]
         };
 
         let currentStudent = { name: 'Siswa', parentEmail: '', classLevel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: false };
+        let activeSection = 'roadmap';
         let userStars = 120;
         let userStreak = 3;
         let currentFontSize = 1.05;
-
-        // FETCH DATA DARI GOOGLE SHEETS
-        async function fetchApprovedStudentsFromSheets() {
-            if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.includes('PASTE_LINK')) return null;
-            try {
-                const response = await fetch(GOOGLE_SHEET_CSV_URL);
-                const csvData = await response.text();
-                const rows = csvData.split('\n');
-                const db = {};
-                for (let i = 1; i < rows.length; i++) {
-                    const cols = rows[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
-                    if (cols.length >= 4 && cols[0]) {
-                        db[cols[0].toLowerCase()] = { name: cols[1], catKey: cols[2], classLevel: cols[3] };
-                    }
-                }
-                return db;
-            } catch (err) { return null; }
-        }
 
         // LOGIKA LOGIN
         async function handleFormLogin(e) {
             e.preventDefault();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
-            const btn = document.getElementById('btnSubmitLogin');
 
             if (DEV_MASTER_ACCOUNTS[pEmail]) {
                 currentStudent = { name: DEV_MASTER_ACCOUNTS[pEmail], parentEmail: pEmail, classLevel: 'Master Access', categoryKey: 'sd3', isDev: true };
@@ -558,16 +567,7 @@
                 return;
             }
 
-            btn.innerText = "Memeriksa Data... ⏳"; btn.disabled = true;
-            const liveDatabase = await fetchApprovedStudentsFromSheets();
-            btn.innerText = "Enter Omah Les Portal 🚀"; btn.disabled = false;
-
-            if (!liveDatabase || !liveDatabase[pEmail]) {
-                alert(`🚫 Akses Belum Terverifikasi!\n\nEmail (${pEmail}) belum terdaftar.`); return;
-            }
-
-            const userAccount = liveDatabase[pEmail];
-            currentStudent = { name: userAccount.name, parentEmail: pEmail, classLevel: userAccount.classLevel, categoryKey: userAccount.catKey, isDev: false };
+            currentStudent = { name: 'Siswa OmahLes', parentEmail: pEmail, classLevel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: false };
             document.getElementById('loginPage').style.display = 'none';
             showRandomDailyWisdom();
         }
@@ -576,49 +576,51 @@
             const randomObj = dailyQuotesList[Math.floor(Math.random() * dailyQuotesList.length)];
             document.getElementById('wisdomQuoteText').innerText = randomObj.quote;
             document.getElementById('wisdomAuthorText').innerText = randomObj.author;
-            
-            const wOverlay = document.getElementById('wisdomModalOverlay');
-            wOverlay.classList.add('active');
+            document.getElementById('wisdomModalOverlay').classList.add('active');
         }
 
         function closeWisdomModal() {
-            const wisdomElem = document.getElementById('wisdomModalOverlay');
-            wisdomElem.classList.remove('active');
-
+            document.getElementById('wisdomModalOverlay').classList.remove('active');
             renderDashboardData();
-            
-            if (!localStorage.getItem('omahles_tour_seen')) {
-                setTimeout(() => { startTourGuide(); }, 300);
+            startTourGuide('roadmap');
+        }
+
+        /* PERPINDAHAN MENU & TRIGGER TOUR KHUSUS PER SECTION */
+        function switchSection(secKey) {
+            activeSection = secKey;
+            closeReaderView();
+
+            // Active Class Menu Sidebar
+            document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+            const activeMenu = document.getElementById(`menu${secKey.charAt(0).toUpperCase() + secKey.slice(1)}`);
+            if (activeMenu) activeMenu.classList.add('active');
+
+            // Banner Title Update
+            const titles = {
+                'roadmap': 'Reading & Curriculum Roadmap',
+                'listening': 'Listening & Audio Lab',
+                'grammar': 'Grammar & Writing Practice',
+                'vocab': 'Vocabulary Building Flashcards',
+                'aitutor': 'Interactive AI Tutor Sesi',
+                'diary': 'My Personal Study Diary'
+            };
+            document.getElementById('bannerWelcomeTitle').innerText = titles[secKey] || 'Curriculum Roadmap';
+
+            // Trigger Tour Guide Khusus Section Baru jika Belum Pernah Dibuka
+            if (!localStorage.getItem(`omahles_tour_${secKey}`)) {
+                setTimeout(() => { startTourGuide(secKey); }, 200);
             }
         }
 
-        /* LOGIKA TOUR GUIDE PERBAIKAN TOTAL */
+        /* TOUR GUIDE ENGINE PER SECTION */
         let currentTourStep = 0;
-        const tourStepsConfig = [
-            {
-                elementId: 'tourRoadmapBanner',
-                title: 'Curriculum Roadmap',
-                desc: 'Ini adalah alur belajar terstruktur dari Omah Les Privat. Semua modul terurut rapi disesuaikan khusus dengan kelas siswa.',
-                top: '25%', left: '35%'
-            },
-            {
-                elementId: 'tourGamificationBar',
-                title: 'Stars & Streak Belajar',
-                desc: 'Setiap modul yang kamu selesaikan akan menambahkan ⭐ Stars dan menjaga rekor hari belajar 🔥 kamu!',
-                top: '20%', left: '320px'
-            },
-            {
-                elementId: 'tourAiTutorWidget',
-                title: 'AI Tutor Interaktif',
-                desc: 'Butuh bantuan saat belajar? Klik tombol melayang ini kapan saja untuk berdiskusi dengan AI Tutor Omah Les.',
-                top: '60%', left: '40%'
-            }
-        ];
+        let activeTourSteps = [];
 
-        function startTourGuide(force = false) {
-            if (force) localStorage.removeItem('omahles_tour_seen');
+        function startTourGuide(secKey = 'roadmap', force = false) {
+            if (force) localStorage.removeItem(`omahles_tour_${secKey}`);
+            activeTourSteps = sectionTourConfigs[secKey] || sectionTourConfigs['roadmap'];
             currentTourStep = 0;
-            
+
             document.getElementById('tourGuideOverlay').classList.add('active');
             document.getElementById('tourPopoverCard').classList.add('active');
 
@@ -627,32 +629,27 @@
 
         function renderTourStep() {
             cleanHighlights();
+            const step = activeTourSteps[currentTourStep];
+            if (!step) return;
 
-            const step = tourStepsConfig[currentTourStep];
-            const targetEl = document.getElementById(step.elementId);
+            const popover = document.getElementById('tourPopoverCard');
+            popover.style.top = step.top;
+            popover.style.left = step.left;
 
-            if (targetEl) {
-                targetEl.classList.add('tour-highlight');
-                const popover = document.getElementById('tourPopoverCard');
+            document.getElementById('tourStepBadge').innerText = `PANDUAN ${currentTourStep + 1} DARI ${activeTourSteps.length}`;
+            document.getElementById('tourStepTitle').innerText = step.title;
+            document.getElementById('tourStepDesc').innerText = step.desc;
 
-                popover.style.top = step.top;
-                popover.style.left = step.left;
-
-                document.getElementById('tourStepBadge').innerText = `PANDUAN ${currentTourStep + 1} DARI ${tourStepsConfig.length}`;
-                document.getElementById('tourStepTitle').innerText = step.title;
-                document.getElementById('tourStepDesc').innerText = step.desc;
-
-                const dotsContainer = document.getElementById('tourDotsContainer');
-                dotsContainer.innerHTML = '';
-                tourStepsConfig.forEach((_, idx) => {
-                    dotsContainer.innerHTML += `<div class="tour-dot ${idx === currentTourStep ? 'active' : ''}"></div>`;
-                });
-            }
+            const dotsContainer = document.getElementById('tourDotsContainer');
+            dotsContainer.innerHTML = '';
+            activeTourSteps.forEach((_, idx) => {
+                dotsContainer.innerHTML += `<div class="tour-dot ${idx === currentTourStep ? 'active' : ''}"></div>`;
+            });
         }
 
         function nextTourStep() {
             currentTourStep++;
-            if (currentTourStep >= tourStepsConfig.length) {
+            if (currentTourStep >= activeTourSteps.length) {
                 stopTourGuide();
             } else {
                 renderTourStep();
@@ -660,22 +657,16 @@
         }
 
         function cleanHighlights() {
-            document.querySelectorAll('.tour-highlight').forEach(el => {
-                el.classList.remove('tour-highlight');
-                el.style.position = '';
-                el.style.zIndex = '';
-                el.style.boxShadow = '';
-            });
+            document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
         }
 
         function stopTourGuide() {
             cleanHighlights();
-
             document.getElementById('tourGuideOverlay').classList.remove('active');
             document.getElementById('tourPopoverCard').classList.remove('active');
             document.getElementById('wisdomModalOverlay').classList.remove('active');
 
-            localStorage.setItem('omahles_tour_seen', 'true');
+            localStorage.setItem(`omahles_tour_${activeSection}`, 'true');
         }
 
         function openLoginForm() { document.getElementById('loginPage').style.display = 'flex'; }
@@ -683,7 +674,6 @@
         function renderDashboardData() {
             document.getElementById('userNameDisplay').innerText = currentStudent.name;
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLevel;
-            document.getElementById('userAvatar').innerText = currentStudent.categoryKey === 'tk' ? '🐥' : '🎒';
             document.getElementById('bannerWelcomeTitle').innerText = `Halo, ${currentStudent.name}! 👋`;
             document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ Dev Mode: ${currentStudent.classLevel}` : `🔒 Modul Terkunci: ${currentStudent.classLevel}`;
 
@@ -703,7 +693,7 @@
 
         function renderModulesForStudentLevel(categoryKey) {
             const container = document.getElementById('modulesGridContainer'); container.innerHTML = '';
-            const list = databaseMateriLengkap[categoryKey] || databaseMateriLengkap['sd3'];
+            const list = databaseMateriLengkap['sd3'];
 
             list.forEach((m, idx) => {
                 container.innerHTML += `
@@ -722,7 +712,7 @@
         }
 
         function openReaderView(categoryKey, index) {
-            const list = databaseMateriLengkap[categoryKey] || databaseMateriLengkap['sd3'];
+            const list = databaseMateriLengkap['sd3'];
             const item = list[index];
             document.getElementById('readerHeaderTag').innerText = item.tierTag;
             document.getElementById('readerTitleDisplay').innerText = item.title;
