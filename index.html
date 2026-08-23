@@ -74,9 +74,8 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(18, 10, 5, 0.75); backdrop-filter: blur(8px);
             z-index: 5000; display: none; align-items: center; justify-content: center; padding: 20px;
-            pointer-events: none;
         }
-        .wisdom-overlay.active { display: flex !important; pointer-events: auto !important; }
+        .wisdom-overlay.active { display: flex !important; }
 
         .modal-card {
             background: #ffffff; width: 100%; max-width: 480px; border-radius: 32px;
@@ -125,9 +124,9 @@
         .tour-overlay-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(18, 10, 5, 0.45);
-            z-index: 3000; display: none; pointer-events: none;
+            z-index: 3000; display: none;
         }
-        .tour-overlay-bg.active { display: block !important; pointer-events: auto !important; }
+        .tour-overlay-bg.active { display: block !important; }
 
         .tour-highlight {
             position: relative; z-index: 3001 !important;
@@ -136,26 +135,18 @@
         }
 
         .tour-popover-card {
-            position: absolute; z-index: 3002; width: 340px; background: #ffffff;
+            position: fixed; z-index: 3002; width: 340px; background: #ffffff;
             border-radius: 24px; padding: 24px 22px 20px 22px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.25); border: 2px solid var(--card-border);
             animation: popoverBounce 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: none; pointer-events: none;
+            display: none;
         }
-        .tour-popover-card.active { display: block !important; pointer-events: auto !important; }
+        .tour-popover-card.active { display: block !important; }
 
         @keyframes popoverBounce {
             from { opacity: 0; transform: scale(0.85); }
             to { opacity: 1; transform: scale(1); }
         }
-
-        .tour-popover-card::before {
-            content: ""; position: absolute; width: 16px; height: 16px; background: #ffffff;
-            border-left: 2px solid var(--card-border); border-top: 2px solid var(--card-border);
-            transform: rotate(45deg);
-        }
-        .tour-popover-card.arrow-top::before { top: -9px; left: 30px; }
-        .tour-popover-card.arrow-left::before { top: 30px; left: -9px; border-top: none; border-right: 2px solid var(--card-border); }
 
         .tour-pop-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
         .tour-step-badge { font-size: 0.72rem; font-weight: 800; color: var(--brand-amber); letter-spacing: 1.5px; text-transform: uppercase; }
@@ -326,9 +317,9 @@
     </div>
 
     <!-- TOUR GUIDE OVERLAY -->
-    <div class="tour-overlay-bg" id="tourGuideOverlay"></div>
+    <div class="tour-overlay-bg" id="tourGuideOverlay" onclick="stopTourGuide()"></div>
 
-    <div class="tour-popover-card arrow-top" id="tourPopoverCard">
+    <div class="tour-popover-card" id="tourPopoverCard">
         <div class="tour-pop-header">
             <span class="tour-step-badge" id="tourStepBadge">PANDUAN 1 DARI 3</span>
             <button class="tour-btn-skip" onclick="stopTourGuide()">Lewati</button>
@@ -588,13 +579,11 @@
             
             const wOverlay = document.getElementById('wisdomModalOverlay');
             wOverlay.classList.add('active');
-            wOverlay.style.display = 'flex';
         }
 
         function closeWisdomModal() {
             const wisdomElem = document.getElementById('wisdomModalOverlay');
             wisdomElem.classList.remove('active');
-            wisdomElem.style.display = 'none';
 
             renderDashboardData();
             
@@ -603,29 +592,26 @@
             }
         }
 
-        /* LOGIKA LOVSPEAK TOUR GUIDE SYSTEM PERBAIKAN TOTAL */
+        /* LOGIKA TOUR GUIDE PERBAIKAN TOTAL */
         let currentTourStep = 0;
         const tourStepsConfig = [
             {
                 elementId: 'tourRoadmapBanner',
                 title: 'Curriculum Roadmap',
                 desc: 'Ini adalah alur belajar terstruktur dari Omah Les Privat. Semua modul terurut rapi disesuaikan khusus dengan kelas siswa.',
-                arrowClass: 'arrow-top',
-                offsetX: 20, offsetY: 20
+                top: '25%', left: '35%'
             },
             {
                 elementId: 'tourGamificationBar',
                 title: 'Stars & Streak Belajar',
                 desc: 'Setiap modul yang kamu selesaikan akan menambahkan ⭐ Stars dan menjaga rekor hari belajar 🔥 kamu!',
-                arrowClass: 'arrow-left',
-                offsetX: 300, offsetY: 0
+                top: '20%', left: '320px'
             },
             {
                 elementId: 'tourAiTutorWidget',
                 title: 'AI Tutor Interaktif',
                 desc: 'Butuh bantuan saat belajar? Klik tombol melayang ini kapan saja untuk berdiskusi dengan AI Tutor Omah Les.',
-                arrowClass: 'arrow-left',
-                offsetX: -360, offsetY: -100
+                top: '60%', left: '40%'
             }
         ];
 
@@ -633,31 +619,24 @@
             if (force) localStorage.removeItem('omahles_tour_seen');
             currentTourStep = 0;
             
-            const overlay = document.getElementById('tourGuideOverlay');
-            const popover = document.getElementById('tourPopoverCard');
-
-            overlay.classList.add('active');
-            popover.classList.add('active');
-            overlay.style.display = 'block';
-            popover.style.display = 'block';
+            document.getElementById('tourGuideOverlay').classList.add('active');
+            document.getElementById('tourPopoverCard').classList.add('active');
 
             renderTourStep();
         }
 
         function renderTourStep() {
-            document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+            cleanHighlights();
 
             const step = tourStepsConfig[currentTourStep];
             const targetEl = document.getElementById(step.elementId);
 
             if (targetEl) {
                 targetEl.classList.add('tour-highlight');
-                const rect = targetEl.getBoundingClientRect();
                 const popover = document.getElementById('tourPopoverCard');
 
-                popover.className = `tour-popover-card active ${step.arrowClass}`;
-                popover.style.top = `${window.scrollY + rect.bottom + step.offsetY}px`;
-                popover.style.left = `${rect.left + step.offsetX}px`;
+                popover.style.top = step.top;
+                popover.style.left = step.left;
 
                 document.getElementById('tourStepBadge').innerText = `PANDUAN ${currentTourStep + 1} DARI ${tourStepsConfig.length}`;
                 document.getElementById('tourStepTitle').innerText = step.title;
@@ -680,26 +659,21 @@
             }
         }
 
-        function stopTourGuide() {
-            // BERSIHKAN SEMUA OVERLAY & EFEK BLUR SECARA MUTLAK
+        function cleanHighlights() {
             document.querySelectorAll('.tour-highlight').forEach(el => {
                 el.classList.remove('tour-highlight');
                 el.style.position = '';
                 el.style.zIndex = '';
                 el.style.boxShadow = '';
             });
-            
-            const tourBg = document.getElementById('tourGuideOverlay');
-            const popover = document.getElementById('tourPopoverCard');
-            const wisdomModal = document.getElementById('wisdomModalOverlay');
+        }
 
-            tourBg.classList.remove('active');
-            popover.classList.remove('active');
-            wisdomModal.classList.remove('active');
+        function stopTourGuide() {
+            cleanHighlights();
 
-            tourBg.style.display = 'none';
-            popover.style.display = 'none';
-            wisdomModal.style.display = 'none';
+            document.getElementById('tourGuideOverlay').classList.remove('active');
+            document.getElementById('tourPopoverCard').classList.remove('active');
+            document.getElementById('wisdomModalOverlay').classList.remove('active');
 
             localStorage.setItem('omahles_tour_seen', 'true');
         }
