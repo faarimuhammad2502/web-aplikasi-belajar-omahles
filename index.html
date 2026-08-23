@@ -86,6 +86,12 @@
         .wisdom-author { font-size: 0.8rem; font-weight: 700; color: var(--text-sub); margin-bottom: 32px; }
         .btn-enter-wisdom { width: 100%; background: var(--sidebar-bg); color: #ffffff; border: none; padding: 18px; border-radius: 18px; font-weight: 800; cursor: pointer; font-family: 'Fredoka', sans-serif; text-transform: uppercase; }
 
+        /* CERTIFICATE MODAL */
+        .cert-modal-card { background: #ffffff; width: 100%; max-width: 580px; border-radius: 32px; padding: 40px; text-align: center; border: 6px double var(--brand-amber); position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.25); animation: modalFadeIn 0.3s; }
+        .cert-title { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--brand-brown); margin-bottom: 6px; }
+        .cert-sub { font-size: 0.85rem; color: var(--text-sub); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .cert-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--brand-amber); margin: 15px 0; border-bottom: 2px solid var(--card-border); padding-bottom: 10px; display: inline-block; min-width: 80%; }
+
         /* SEQUENCE MODAL */
         .sequence-modal-card { background: #ffffff; width: 100%; max-width: 540px; border-radius: 32px; padding: 0; overflow: hidden; position: relative; border: 2px solid var(--card-border); animation: modalFadeIn 0.3s; }
         .sequence-header { background: linear-gradient(135deg, var(--brand-amber) 0%, var(--brand-terracotta) 100%); color: white; padding: 28px 32px; position: relative; }
@@ -131,6 +137,15 @@
         .game-icon-box { width: 56px; height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px; }
         .game-card-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: var(--text-main); margin-bottom: 6px; }
         .game-card-desc { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; line-height: 1.5; margin-bottom: 24px; }
+
+        /* FLASHCARD STYLES */
+        .flashcard-wrapper { display: flex; flex-direction: column; align-items: center; gap: 24px; max-width: 600px; margin: 0 auto; }
+        .flashcard-box { width: 100%; height: 280px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 3px solid var(--brand-amber); border-radius: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; text-align: center; cursor: pointer; box-shadow: 0 10px 25px rgba(217, 119, 6, 0.15); transition: transform 0.3s; }
+        .flashcard-box:hover { transform: scale(1.02); }
+        .flashcard-instruction { font-size: 0.75rem; font-weight: 800; color: #b45309; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+        .flashcard-content { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); line-height: 1.4; }
+        .flashcard-controls { display: flex; gap: 16px; width: 100%; }
+        .btn-flashcard { flex: 1; padding: 14px; border-radius: 16px; font-weight: 800; font-size: 0.95rem; cursor: pointer; border: none; font-family: 'Fredoka', sans-serif; }
 
         /* GAMEPLAY UI */
         .lov-game-wrapper { width: 100%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; animation: modalFadeIn 0.3s; }
@@ -231,8 +246,9 @@
 
         /* BADGES SECTION */
         .badges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-        .badge-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; position: relative; }
-        .badge-item-card.unlocked { border-color: var(--brand-amber); background: linear-gradient(180deg, #ffffff 0%, #fef8f0 100%); }
+        .badge-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; position: relative; transition: transform 0.2s; }
+        .badge-item-card.unlocked { border-color: var(--brand-amber); background: linear-gradient(180deg, #ffffff 0%, #fef8f0 100%); cursor: pointer; }
+        .badge-item-card.unlocked:hover { transform: translateY(-4px); }
         .badge-icon-wrap { width: 64px; height: 64px; border-radius: 50%; background: var(--brand-cream); border: 2px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
         .badge-title-text { font-family: 'Fredoka', sans-serif; font-size: 1.15rem; color: var(--text-main); }
         .badge-status-tag { font-size: 0.72rem; font-weight: 800; padding: 4px 12px; border-radius: 12px; text-transform: uppercase; }
@@ -275,6 +291,13 @@
 
         .portal-footer { margin-left: 280px; background: var(--card-bg); border-top: 2px solid var(--card-border); padding: 24px 48px; display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
 
+        @media print {
+            body * { visibility: hidden; }
+            #printAreaReport, #printAreaReport * { visibility: visible; }
+            #printAreaReport { position: absolute; left: 0; top: 0; width: 100%; background: #fff; padding: 40px; }
+            .sidebar, .portal-footer, .dev-level-switcher, button { display: none !important; }
+        }
+
         @media (max-width: 768px) {
             .sidebar { width: 100%; height: auto; position: relative; }
             .content-area { margin-left: 0; padding: 20px; }
@@ -316,7 +339,23 @@
             <div class="wisdom-tag-title">Daily Wisdom</div>
             <div class="wisdom-quote-text" id="wisdomQuoteText">"Pendidikan adalah senjata paling ampuh."</div>
             <div class="wisdom-author" id="wisdomAuthorText">— Nelson Mandela</div>
-            <button class="btn-enter-wisdom" onclick="closeWisdomModal()">ENTER OMAH LES PORTAL</button>
+            <button class="btn-enter-wisdom" onclick="playClickSound(); closeWisdomModal()">ENTER OMAH LES PORTAL</button>
+        </div>
+    </div>
+
+    <!-- CERTIFICATE MODAL -->
+    <div class="modal-overlay" id="certModalOverlay">
+        <div class="cert-modal-card">
+            <button class="btn-close-modal" style="color:var(--text-main); background:var(--brand-cream);" onclick="closeCertModal()">✕</button>
+            <div style="font-size:3rem; margin-bottom:10px;">🏆</div>
+            <div class="cert-title">Sertifikat Penghargaan</div>
+            <div class="cert-sub">Omah Les Privat Learning System</div>
+            <p style="font-size:0.9rem; color:var(--text-sub); margin-top:10px;">Diberikan dengan bangga kepada:</p>
+            <div class="cert-name" id="certStudentName">Nama Siswa</div>
+            <p style="font-size:0.85rem; color:var(--text-main); font-weight:600; line-height:1.6; max-width:400px; margin:0 auto 20px auto;" id="certDescText">
+                Atas dedikasi luar biasa dalam menyelesaikan tantangan dan mengumpulkan prestasi gemilang di Omah Les.
+            </p>
+            <button class="btn-enter-wisdom" onclick="window.print()">🖨️ Cetak / Simpan Sertifikat</button>
         </div>
     </div>
 
@@ -386,31 +425,32 @@
 
                 <div class="menu-group-label">MAIN MENU</div>
                 <ul class="menu-list">
-                    <li class="menu-item active" id="menuDashboard"><a onclick="switchSection('dashboard')"><span>📊</span> <span>Dashboard</span></a></li>
-                    <li class="menu-item" id="menuRoadmap"><a onclick="switchSection('roadmap')"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
-                    <li class="menu-item" id="menuProfile"><a onclick="switchSection('profile')"><span>👤</span> <span>My Profile</span></a></li>
-                    <li class="menu-item" id="menuBadges"><a onclick="switchSection('badges')"><span>🏆</span> <span>Prestasi & Badges</span></a></li>
+                    <li class="menu-item active" id="menuDashboard"><a onclick="playClickSound(); switchSection('dashboard')"><span>📊</span> <span>Dashboard</span></a></li>
+                    <li class="menu-item" id="menuRoadmap"><a onclick="playClickSound(); switchSection('roadmap')"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
+                    <li class="menu-item" id="menuProfile"><a onclick="playClickSound(); switchSection('profile')"><span>👤</span> <span>My Profile</span></a></li>
+                    <li class="menu-item" id="menuBadges"><a onclick="playClickSound(); switchSection('badges')"><span>🏆</span> <span>Prestasi & Badges</span></a></li>
                 </ul>
 
                 <div class="menu-group-label">LEARNING / PRACTICE</div>
                 <ul class="menu-list">
-                    <li class="menu-item" id="menuIndo"><a onclick="switchSection('indo')"><span>📖</span> <span>Bahasa Indonesia</span></a></li>
-                    <li class="menu-item" id="menuMath"><a onclick="switchSection('math')"><span>🧮</span> <span>Matematika Dasar</span></a></li>
-                    <li class="menu-item" id="menuSains"><a onclick="switchSection('sains')"><span>🔬</span> <span>Sains & IPA</span></a></li>
-                    <li class="menu-item" id="menuSeni"><a onclick="switchSection('seni')"><span>🎨</span> <span>Seni & Karakter</span></a></li>
+                    <li class="menu-item" id="menuIndo"><a onclick="playClickSound(); switchSection('indo')"><span>📖</span> <span>Bahasa Indonesia</span></a></li>
+                    <li class="menu-item" id="menuMath"><a onclick="playClickSound(); switchSection('math')"><span>🧮</span> <span>Matematika Dasar</span></a></li>
+                    <li class="menu-item" id="menuSains"><a onclick="playClickSound(); switchSection('sains')"><span>🔬</span> <span>Sains & IPA</span></a></li>
+                    <li class="menu-item" id="menuSeni"><a onclick="playClickSound(); switchSection('seni')"><span>🎨</span> <span>Seni & Karakter</span></a></li>
                 </ul>
 
                 <div class="menu-group-label">TOOLS & FITUR</div>
                 <ul class="menu-list">
-                    <li class="menu-item" id="menuAitutor"><a onclick="switchSection('aitutor')"><span>🎙️</span> <span>Ruang AI Tutor</span></a></li>
-                    <li class="menu-item" id="menuGames"><a onclick="switchSection('games')"><span>🎮</span> <span>Game Center</span></a></li>
-                    <li class="menu-item" id="menuDiary"><a onclick="switchSection('diary')"><span>📝</span> <span>Jurnal Belajar</span></a></li>
+                    <li class="menu-item" id="menuAitutor"><a onclick="playClickSound(); switchSection('aitutor')"><span>🎙️</span> <span>Ruang AI Tutor</span></a></li>
+                    <li class="menu-item" id="menuGames"><a onclick="playClickSound(); switchSection('games')"><span>🎮</span> <span>Game Center</span></a></li>
+                    <li class="menu-item" id="menuFlashcards"><a onclick="playClickSound(); switchSection('flashcards')"><span>🃏</span> <span>Flashcards</span></a></li>
+                    <li class="menu-item" id="menuDiary"><a onclick="playClickSound(); switchSection('diary')"><span>📝</span> <span>Jurnal Belajar</span></a></li>
                 </ul>
             </div>
 
             <div>
                 <div class="sidebar-bottom-controls">
-                    <button class="btn-refresh-app" onclick="refreshCurrentPage()">↺ REFRESH PORTAL</button>
+                    <button class="btn-refresh-app" onclick="playClickSound(); refreshCurrentPage()">↺ REFRESH PORTAL</button>
                 </div>
                 <div class="profile-card">
                     <div class="profile-left">
@@ -420,7 +460,7 @@
                             <div class="profile-badge" id="userLevelDisplay">Kelas 3 SD</div>
                         </div>
                     </div>
-                    <button class="btn-switch-user" onclick="openLoginForm()">Switch</button>
+                    <button class="btn-switch-user" onclick="playClickSound(); openLoginForm()">Switch</button>
                 </div>
             </div>
         </aside>
@@ -465,6 +505,31 @@
     </footer>
 
     <script>
+        // WEB AUDIO API FOR INTERACTIVE SOUND EFFECTS
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(freq, type, duration) {
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+        function playClickSound() { playTone(440, 'sine', 0.08); }
+        function playSuccessSound() { 
+            setTimeout(() => playTone(523.25, 'triangle', 0.1), 0);
+            setTimeout(() => playTone(659.25, 'triangle', 0.1), 100);
+            setTimeout(() => playTone(783.99, 'triangle', 0.2), 200);
+        }
+        function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
+
         const REGISTERED_PARENT_DATABASE = {
             'faarimuhammad25@gmail.com': { name: 'Muhammad Faari Akbar', categoryKey: 'sd3', classLabel: 'Kelas 3 SD (Full Access)', isDev: true },
             'michellehimmelda@gmail.com': { name: 'Michelle Himmelda Cahyadi', categoryKey: 'sd6', classLabel: 'Tutor / Admin (Full Access)', isDev: true },
@@ -473,7 +538,6 @@
             'ortu.sd6@gmail.com': { name: 'Siswa SD Kelas 6', categoryKey: 'sd6', classLabel: 'Kelas 6 SD', isDev: false }
         };
 
-        /* TAMBAHKAN ATAU UBAH WISDOM DI SINI */
         const DAILY_WISDOM_LIST = [
             { quote: "Pendidikan adalah senjata paling ampuh yang bisa kamu gunakan untuk mengubah dunia.", author: "Nelson Mandela" },
             { quote: "Akar dari pendidikan itu pahit, namun buahnya sangat manis.", author: "Aristoteles" },
@@ -482,8 +546,25 @@
             { quote: "Jangan batasi tantanganmu, tapi tantang batasmu setiap hari.", author: "Omah Les Mentor" },
             { quote: "Pendidikan bukan persiapan untuk hidup; pendidikan adalah hidup itu sendiri.", author: "John Dewey" },
             { quote: "Seorang guru yang baik dapat menginspirasi harapan, menyalakan imajinasi, dan menanamkan kecintaan belajar.", author: "Brad Henry" },
-            { quote: "Yang terpenting adalah jangan berhenti bertanya. Rasa ingin tahu memiliki alasan tersendiri untuk eksis.", author: "Albert Einstein" }
+            { quote: "Yang terpenting adalah jangan berhenti bertanya. Rasa ingin tahu memiliki alasan tersendiri untuk eksis.", author: "Albert Einstein" },
+            { quote: "Belajar tanpa berpikir adalah sia-sia, tetapi berpikir tanpa belajar adalah sangat berbahaya.", author: "Confucius" },
+            { quote: "Kesuksesan tidak datang dari apa yang kita lakukan sekali-sekali, tetapi dari apa yang kita lakukan secara konsisten.", author: "Marie Forleo" },
+            { quote: "Pendidikan adalah paspor untuk masa depan, karena hari esok adalah milik mereka yang mempersiapkannya hari ini.", author: "Malcolm X" },
+            { quote: "Jangan malu bertanya ketika kamu tidak tahu, karena rasa malu bertanya adalah awal dari ketidaktahuan.", author: "Peribahasa" },
+            { quote: "Genius adalah 1 persen inspirasi dan 99 persen keringat kerja keras.", author: "Thomas Alva Edison" }
         ];
+
+        const flashcardsDatabase = [
+            { q: "Apa ide utama di awal/akhir paragraf?", a: "Ide Pokok / Kalimat Utama" },
+            { q: "Berapa hasil dari 7 x 8 dalam perkalian dasar?", a: "56" },
+            { q: "Sebutkan 3 wujud benda di alam!", a: "Padat, Cair, Gas" },
+            { q: "Apa nama alat untuk mengukur berat benda?", a: "Timbangan (Neraca)" },
+            { q: "Apa gaya tarik pusat bumi yang membuat buah jatuh?", a: "Gaya Gravitasi" },
+            { q: "Apa ibukota negara Indonesia?", a: "Jakarta" },
+            { q: "Berapa jumlah sudut dalam sebuah segitiga?", a: "180 Derajat" }
+        ];
+        let currentFlashcardIdx = 0;
+        let isFlashcardFlipped = false;
 
         const masterSectionDatabase = {
             'tk': {
@@ -624,6 +705,7 @@
 
         function handleFormLogin(e) {
             e.preventDefault();
+            playClickSound();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
             if (REGISTERED_PARENT_DATABASE[pEmail]) {
                 const userObj = REGISTERED_PARENT_DATABASE[pEmail];
@@ -668,6 +750,7 @@
         }
 
         function devSwitchClass(catKey, classLabel) {
+            playClickSound();
             currentStudent.categoryKey = catKey;
             currentStudent.classLabel = `Full Access (${classLabel})`;
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
@@ -694,6 +777,7 @@
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni Budaya', sub: 'Berkreasi tanpa batas.' },
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
                 'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif khusus ${currentStudent.classLabel}.` },
+                'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan', sub: 'Latihan kilat rumus dan pengetahuan umum.' },
                 'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar', sub: 'Tulis target harianmu.' }
             };
 
@@ -705,7 +789,6 @@
             const area = document.getElementById('dynamicMainContentArea');
             const filterBar = document.getElementById('filterHeaderBar');
             const topBanner = document.getElementById('topBannerSection');
-            const footerSec = document.getElementById('portalFooterSection');
             clearInterval(lovInterval);
 
             area.className = '';
@@ -719,7 +802,7 @@
                 renderLovSpeakAiChat(area);
             } else {
                 topBanner.style.display = 'block';
-                if (secKey === 'dashboard' || secKey === 'profile' || secKey === 'badges' || secKey === 'games' || secKey === 'diary') {
+                if (secKey === 'dashboard' || secKey === 'profile' || secKey === 'badges' || secKey === 'games' || secKey === 'flashcards' || secKey === 'diary') {
                     filterBar.style.display = 'none';
                 } else {
                     filterBar.style.display = 'flex';
@@ -734,6 +817,8 @@
                     renderBadges(area);
                 } else if (secKey === 'games') {
                     renderGameCenterGrid(area);
+                } else if (secKey === 'flashcards') {
+                    renderFlashcardsUI(area);
                 } else if (secKey === 'diary') {
                     renderJournal(area);
                 } else {
@@ -770,7 +855,7 @@
                 <div class="insight-card-box">
                     <div class="insight-heading">💡 Ringkasan Sistem Omah Les Privat</div>
                     <div class="insight-body-text">
-                        "Halo ${currentStudent.name}, Anda masuk menggunakan akun dengan hak akses penuh. Anda dapat meninjau seluruh materi dari jenjang TK hingga SD Kelas 6 melalui menu <strong>Learning Roadmap</strong> atau menguji coba fitur interaktif di <strong>Omah Games</strong> dan <strong>Ruang AI Tutor</strong>."
+                        "Halo ${currentStudent.name}, Anda masuk menggunakan akun dengan hak akses penuh. Anda dapat meninjau seluruh materi dari jenjang TK hingga SD Kelas 6 melalui menu <strong>Learning Roadmap</strong> atau menguji coba fitur interaktif di <strong>Omah Games</strong> dan <strong>Flashcards</strong>."
                     </div>
                 </div>
             `;
@@ -790,7 +875,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="icons-group">📖 🎧 📝</div>
-                        <button class="btn-open-module" onclick="openSequenceModal('${secKey}', ${idx})">OPEN &gt;</button>
+                        <button class="btn-open-module" onclick="playClickSound(); openSequenceModal('${secKey}', ${idx})">OPEN &gt;</button>
                     </div>
                 </div>
             `).join('');
@@ -801,26 +886,29 @@
         function renderProfile(container) {
             let xpTotal = userCompletedQuizzes * 50;
             container.innerHTML = `
-                <div class="profile-main-box">
-                    <div class="profile-top-row">
-                        <div class="profile-user-left">
-                            <div class="profile-big-avatar">🎓</div>
-                            <div>
-                                <div class="profile-user-name">${currentStudent.name}</div>
-                                <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLabel}</div>
+                <div id="printAreaReport">
+                    <div class="profile-main-box">
+                        <div class="profile-top-row">
+                            <div class="profile-user-left">
+                                <div class="profile-big-avatar">🎓</div>
+                                <div>
+                                    <div class="profile-user-name">${currentStudent.name}</div>
+                                    <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLabel}</div>
+                                </div>
                             </div>
+                            <button class="btn-open-module" onclick="window.print()">🖨️ Cetak / Unduh Laporan</button>
                         </div>
-                    </div>
-                    <div class="profile-stats-card">
-                        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem;">
-                            <span>⚡ ${xpTotal} XP Total</span>
-                            <span style="color:var(--brand-amber);">Target: 200 XP ke Level 2</span>
-                        </div>
-                        <div class="profile-xp-bar-bg">
-                            <div class="profile-xp-bar-fill" style="width: ${Math.min(100, (xpTotal/200)*100)}%;"></div>
-                        </div>
-                        <div style="font-size:0.75rem; color:var(--text-sub); font-weight:700; margin-top:4px;">
-                            Email Akun: ${currentStudent.parentEmail}
+                        <div class="profile-stats-card">
+                            <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem;">
+                               <span>⚡ ${xpTotal} XP Total</span>
+                                <span style="color:var(--brand-amber);">Total Kuis Selesai: ${userCompletedQuizzes}</span>
+                            </div>
+                            <div class="profile-xp-bar-bg">
+                                <div class="profile-xp-bar-fill" style="width: ${Math.min(100, (xpTotal/200)*100)}%;"></div>
+                            </div>
+                            <div style="font-size:0.75rem; color:var(--text-sub); font-weight:700; margin-top:4px;">
+                                Email Akun Terdaftar: ${currentStudent.parentEmail}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -841,26 +929,79 @@
 
             container.innerHTML = `
                 <div class="badges-grid">
-                    <div class="badge-item-card ${isUnlocked1 ? 'unlocked' : ''}">
+                    <div class="badge-item-card ${isUnlocked1 ? 'unlocked' : ''}" ${isUnlocked1 ? `onclick="playClickSound(); openCertModal('Langkah Pertama', 'Menyelesaikan modul dan kuis pertama di portal.')"` : ''}>
                         <div class="badge-icon-wrap">🌱</div>
                         <div class="badge-title-text">Langkah Pertama</div>
                         <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600;">Selesaikan minimal 1 kuis latihan modul.</div>
-                        <div class="badge-status-tag ${isUnlocked1 ? 'unlocked' : 'locked'}">${isUnlocked1 ? 'Unlocked ✨' : 'Locked 🔒'}</div>
+                        <div class="badge-status-tag ${isUnlocked1 ? 'unlocked' : 'locked'}">${isUnlocked1 ? 'Unlocked ✨ (Klik)' : 'Locked 🔒'}</div>
                     </div>
-                    <div class="badge-item-card ${isUnlocked2 ? 'unlocked' : ''}">
+                    <div class="badge-item-card ${isUnlocked2 ? 'unlocked' : ''}" ${isUnlocked2 ? `onclick="playClickSound(); openCertModal('Bintang Kelas', 'Menyelesaikan 3 kuis latihan dengan hasil yang sangat memuaskan.')"` : ''}>
                         <div class="badge-icon-wrap">⭐</div>
                         <div class="badge-title-text">Bintang Kelas</div>
                         <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600;">Selesaikan minimal 3 kuis dengan benar.</div>
-                        <div class="badge-status-tag ${isUnlocked2 ? 'unlocked' : 'locked'}">${isUnlocked2 ? 'Unlocked ✨' : 'Locked 🔒'}</div>
+                        <div class="badge-status-tag ${isUnlocked2 ? 'unlocked' : 'locked'}">${isUnlocked2 ? 'Unlocked ✨ (Klik)' : 'Locked 🔒'}</div>
                     </div>
-                    <div class="badge-item-card ${isUnlocked3 ? 'unlocked' : ''}">
+                    <div class="badge-item-card ${isUnlocked3 ? 'unlocked' : ''}" ${isUnlocked3 ? `onclick="playClickSound(); openCertModal('Master Explorer', 'Mengumpulkan 150+ Stars dari berbagai aktivitas pembelajaran interaktif.')"` : ''}>
                         <div class="badge-icon-wrap">👑</div>
                         <div class="badge-title-text">Master Explorer</div>
                         <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600;">Kumpulkan total 150+ Stars dari aktivitas belajar.</div>
-                        <div class="badge-status-tag ${isUnlocked3 ? 'unlocked' : 'locked'}">${isUnlocked3 ? 'Unlocked ✨' : 'Locked 🔒'}</div>
+                        <div class="badge-status-tag ${isUnlocked3 ? 'unlocked' : 'locked'}">${isUnlocked3 ? 'Unlocked ✨ (Klik)' : 'Locked 🔒'}</div>
                     </div>
                 </div>
             `;
+        }
+
+        function openCertModal(badgeTitle, badgeDesc) {
+            document.getElementById('certStudentName').innerText = currentStudent.name;
+            document.getElementById('certDescText').innerText = `Atas pencapaian badge "${badgeTitle}": ${badgeDesc}`;
+            document.getElementById('certModalOverlay').classList.add('active');
+        }
+        function closeCertModal() { document.getElementById('certModalOverlay').classList.remove('active'); }
+
+        function renderFlashcardsUI(container) {
+            const fc = flashcardsDatabase[currentFlashcardIdx];
+            isFlashcardFlipped = false;
+            container.innerHTML = `
+                <div class="flashcard-wrapper animate-section">
+                    <div style="font-weight:800; color:var(--text-sub); font-size:0.9rem;">KARTU HAFALAN ${currentFlashcardIdx + 1} DARI ${flashcardsDatabase.length}</div>
+                    <div class="flashcard-box" onclick="flipFlashcard()">
+                        <div class="flashcard-instruction" id="fcInstruction">Klik kartu untuk melihat jawaban</div>
+                        <div class="flashcard-content" id="fcText">${fc.q}</div>
+                    </div>
+                    <div class="flashcard-controls">
+                        <button class="btn-flashcard" style="background:#f3f4f6; color:var(--text-main);" onclick="prevFlashcard()">← Sebelumnya</button>
+                        <button class="btn-flashcard" style="background:var(--brand-amber); color:#fff;" onclick="nextFlashcard()">Selanjutnya →</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function flipFlashcard() {
+            playClickSound();
+            const fc = flashcardsDatabase[currentFlashcardIdx];
+            const textEl = document.getElementById('fcText');
+            const insEl = document.getElementById('fcInstruction');
+            isFlashcardFlipped = !isFlashcardFlipped;
+            if (isFlashcardFlipped) {
+                insEl.innerText = "JAWABAN / PENJELASAN:";
+                textEl.innerText = fc.a;
+                textEl.style.color = '#16a34a';
+            } else {
+                insEl.innerText = "Klik kartu untuk melihat jawaban";
+                textEl.innerText = fc.q;
+                textEl.style.color = 'var(--text-main)';
+            }
+        }
+
+        function nextFlashcard() {
+            playClickSound();
+            currentFlashcardIdx = (currentFlashcardIdx + 1) % flashcardsDatabase.length;
+            renderFlashcardsUI(document.getElementById('dynamicMainContentArea'));
+        }
+        function prevFlashcard() {
+            playClickSound();
+            currentFlashcardIdx = (currentFlashcardIdx - 1 + flashcardsDatabase.length) % flashcardsDatabase.length;
+            renderFlashcardsUI(document.getElementById('dynamicMainContentArea'));
         }
 
         function renderGameCenterGrid(container) {
@@ -871,7 +1012,7 @@
                 <div class="game-level-tag-box">🎮 OMAH GAMES KELAS: <strong>${currentStudent.classLabel.toUpperCase()}</strong></div>
                 <div class="game-card-grid">
                     ${gamesList.map((g, idx) => `
-                        <div class="game-item-card" onclick="startOmahGame('${catKey}', ${idx})">
+                        <div class="game-item-card" onclick="playClickSound(); startOmahGame('${catKey}', ${idx})">
                             <div>
                                 <div class="game-icon-box" style="background:${g.bg}; color:${g.color};">${g.icon}</div>
                                 <div class="game-card-title">${g.title}</div>
@@ -909,7 +1050,7 @@
                 <div class="lov-game-wrapper animate-section">
                     <div class="lov-top-bar">
                         <div class="lov-level-dots">
-                            <div class="lov-btn-close" onclick="switchSection('games')">✕</div>
+                            <div class="lov-btn-close" onclick="playClickSound(); switchSection('games')">✕</div>
                             <span>TANTANGAN ${currentLovQuestionIdx + 1}</span>
                         </div>
                         <div class="lov-score-pill">
@@ -936,6 +1077,7 @@
             const userAns = document.getElementById('lovAnswerInput').value.trim().toLowerCase();
             if (!userAns) return;
             if (userAns === correctAns.toLowerCase()) {
+                playSuccessSound();
                 lovScore += 100;
                 userStars += 20;
                 userCompletedQuizzes++;
@@ -945,6 +1087,7 @@
                 currentLovQuestionIdx++;
                 alert('🎉 Hebat! Jawaban Benar! ⭐ +20 Stars');
             } else {
+                playErrorSound();
                 lovLives--;
                 alert(`❌ Kurang tepat! Jawaban benar: "${correctAns.toUpperCase()}".`);
             }
@@ -962,7 +1105,7 @@
 
             const c = document.getElementById('sequenceStepsContainer');
             c.innerHTML = currentActiveModule.steps.map((st, sIdx) => `
-                <div class="sequence-step-card" onclick="openInsightModal(${sIdx})">
+                <div class="sequence-step-card" onclick="playClickSound(); openInsightModal(${sIdx})">
                     <div class="sequence-step-left">
                         <div class="sequence-icon-box">${st.icon}</div>
                         <div>
@@ -987,7 +1130,7 @@
             document.getElementById('insLogic').innerText = st.logic;
             
             document.getElementById('quizQuestionText').innerText = `❓ Kuis: ${st.quiz.q}`;
-            document.getElementById('quizOptionsContainer').innerHTML = st.quiz.opts.map((opt, i) => `<button class="quiz-btn" onclick="checkQuiz(${i}, ${st.quiz.ans})">${opt}</button>`).join('');
+            document.getElementById('quizOptionsContainer').innerHTML = st.quiz.opts.map((opt, i) => `<button class="quiz-btn" onclick="playClickSound(); checkQuiz(${i}, ${st.quiz.ans})">${opt}</button>`).join('');
             document.getElementById('quizFeedbackText').innerText = '';
             document.getElementById('insightModalOverlay').classList.add('active');
         }
@@ -995,6 +1138,7 @@
         function checkQuiz(sIdx, cIdx) {
             const f = document.getElementById('quizFeedbackText');
             if (sIdx === cIdx) {
+                playSuccessSound();
                 f.style.color = '#16a34a'; f.innerText = '🎉 Benar sekali! ⭐ +15 Stars & XP Bertambah!';
                 userStars += 15;
                 userCompletedQuizzes++;
@@ -1002,6 +1146,7 @@
                 localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
                 document.getElementById('userStarDisplay').innerText = userStars;
             } else {
+                playErrorSound();
                 f.style.color = '#dc2626'; f.innerText = '❌ Belum tepat, coba lagi!';
             }
         }
@@ -1014,9 +1159,9 @@
                 <div class="journal-form-box">
                     <h3>➕ Catatan Jurnal</h3>
                     <input type="text" id="inputJournalText" class="journal-input" placeholder="Tulis rencana belajarmu...">
-                    <button class="btn-add-journal" onclick="addJournal()">Simpan 💾</button>
+                    <button class="btn-add-journal" onclick="playClickSound(); addJournal()">Simpan 💾</button>
                 </div>
-                ${j.map((x, i) => `<div class="journal-item-card"><div><strong>${x.text}</strong><br><small>${x.date}</small></div><button onclick="delJournal(${i})" style="background:#fee2e2; color:#b91c1c; border:none; padding:6px 12px; border-radius:8px; cursor:pointer;">Hapus</button></div>`).join('')}
+                ${j.map((x, i) => `<div class="journal-item-card"><div><strong>${x.text}</strong><br><small>${x.date}</small></div><button onclick="playClickSound(); delJournal(${i})" style="background:#fee2e2; color:#b91c1c; border:none; padding:6px 12px; border-radius:8px; cursor:pointer;">Hapus</button></div>`).join('')}
             `;
         }
 
@@ -1056,24 +1201,24 @@
                                 Assalamu'alaikum ${currentStudent.name}! I'm Kak Omah. Don't be afraid to make mistakes—that's how we grow. Shall we talk about your day or study material?
                             </div>
                             <div class="lovespeak-bubble-footer">
-                                <button class="lovespeak-btn-listen" onclick="alert('🔊 Memutar audio penjelasan Kak Omah...')">🔊 LISTEN</button>
+                                <button class="lovespeak-btn-listen" onclick="playClickSound(); alert('🔊 Memutar audio penjelasan Kak Omah...')">🔊 LISTEN</button>
                                 <span>${timeStr}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="lovespeak-suggestions-bar">
-                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Tolong jelaskan bagaimana proses terbentuknya fosil!')">🦖 Jelaskan Fosil</div>
-                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana cara menghitung pecahan sederhana?')">🍕 Pecahan Sederhana</div>
-                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Ceritakan bagaimana proses terjadinya hujan.')">🌧️ Terjadinya Hujan</div>
-                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Berikan tips belajar yang menyenangkan.')">✨ Tips Belajar</div>
+                        <div class="lovespeak-suggestion-chip" onclick="playClickSound(); quickSendPrompt('Tolong jelaskan bagaimana proses terbentuknya fosil!')">🦖 Jelaskan Fosil</div>
+                        <div class="lovespeak-suggestion-chip" onclick="playClickSound(); quickSendPrompt('Bagaimana cara menghitung pecahan sederhana?')">🍕 Pecahan Sederhana</div>
+                        <div class="lovespeak-suggestion-chip" onclick="playClickSound(); quickSendPrompt('Ceritakan bagaimana proses terjadinya hujan.')">🌧️ Terjadinya Hujan</div>
+                        <div class="lovespeak-suggestion-chip" onclick="playClickSound(); quickSendPrompt('Berikan tips belajar yang menyenangkan.')">✨ Tips Belajar</div>
                     </div>
 
                     <div class="lovespeak-input-bar">
                         <button class="lovespeak-input-icon-btn" title="Lampirkan File">📎</button>
                         <button class="lovespeak-input-icon-btn" title="Voice Input">🎙️</button>
                         <input type="text" id="lovUserChatInput" class="lovespeak-text-input" placeholder="Ketik pesan..." onkeypress="if(event.key==='Enter') sendLovChatMessage()">
-                        <button class="lovespeak-send-btn" onclick="sendLovChatMessage()">➤</button>
+                        <button class="lovespeak-send-btn" onclick="playClickSound(); sendLovChatMessage()">➤</button>
                     </div>
                 </div>
             `;
@@ -1126,7 +1271,7 @@
                 document.getElementById(loadingId).innerHTML = `
                     <div class="lovespeak-bubble">${reply}</div>
                     <div class="lovespeak-bubble-footer">
-                        <button class="lovespeak-btn-listen" onclick="alert('🔊 Memutar audio penjelasan Kak Omah...')">🔊 LISTEN</button>
+                        <button class="lovespeak-btn-listen" onclick="playClickSound(); alert('🔊 Memutar audio penjelasan Kak Omah...')">🔊 LISTEN</button>
                         <span>${timeReply}</span>
                     </div>
                 `;
