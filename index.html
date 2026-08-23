@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omah Les Privat - Portal Belajar Interaktif</title>
+    <title>Omah Les Privat - Portal Belajar</title>
     <link rel="icon" type="image/jpeg" href="./logo.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,7 +46,59 @@
             color: var(--text-main); display: flex; min-height: 100vh;
         }
 
-        /* OVERLAY GENERAL */
+        /* LAYAR LOGIN ALA APLIKASI MODERN (INSTAGRAM / NETFLIX STYLE) */
+        .app-login-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #2b1810 0%, #1a0f0a 100%);
+            z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 24px; text-align: center; color: white;
+        }
+
+        .login-brand-logo {
+            width: 72px; height: 72px; border-radius: 20px; border: 3px solid var(--brand-accent);
+            object-fit: cover; margin-bottom: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .login-app-title {
+            font-family: 'Fredoka', sans-serif; font-size: 2rem; color: #fef08a; margin-bottom: 4px;
+        }
+
+        .login-app-sub {
+            font-size: 0.9rem; color: #d6c7b2; margin-bottom: 36px; font-weight: 600;
+        }
+
+        .account-selector-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+            width: 100%; max-width: 680px; max-height: 440px; overflow-y: auto; padding: 10px;
+        }
+
+        .account-card {
+            background: rgba(255, 255, 255, 0.08); border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px; padding: 20px 14px; cursor: pointer; backdrop-filter: blur(10px);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+
+        .account-card:hover {
+            background: rgba(255, 255, 255, 0.18); border-color: var(--brand-accent);
+            transform: translateY(-6px) scale(1.03); box-shadow: 0 12px 30px rgba(217, 119, 6, 0.3);
+        }
+
+        .account-avatar-ring {
+            width: 68px; height: 68px; border-radius: 50%; background: var(--brand-soft-bg);
+            border: 3px solid var(--brand-accent); display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem; margin-bottom: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .account-student-name {
+            font-family: 'Fredoka', sans-serif; font-size: 1.1rem; color: #ffffff; margin-bottom: 2px;
+        }
+
+        .account-student-class {
+            font-size: 0.78rem; color: #fef08a; font-weight: 700; background: rgba(217, 119, 6, 0.3);
+            padding: 3px 10px; border-radius: 10px; border: 1px solid rgba(254, 240, 138, 0.3);
+        }
+
+        /* OVERLAY WISDOM MODAL */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(15, 10, 5, 0.65); backdrop-filter: blur(6px);
@@ -54,7 +106,6 @@
         }
         .modal-overlay.active { display: flex; }
 
-        /* POPUP 1: DAILY WISDOM CARD */
         .wisdom-card {
             background: #ffffff; border-radius: 32px; width: 100%; max-width: 440px;
             padding: 40px 32px; text-align: center; position: relative;
@@ -64,79 +115,11 @@
             width: 64px; height: 64px; background: var(--text-main); color: white;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             font-size: 2.2rem; margin: 0 auto 20px auto; font-family: 'Fredoka', sans-serif;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
-        .wisdom-tag {
-            font-size: 0.72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
-            color: var(--brand-accent); margin-bottom: 16px;
-        }
-        .wisdom-quote {
-            font-family: 'Georgia', serif; font-size: 1.25rem; line-height: 1.6;
-            color: var(--text-main); font-style: italic; margin-bottom: 18px;
-        }
-        .wisdom-author {
-            font-size: 0.85rem; font-weight: 700; color: var(--text-sub); margin-bottom: 28px;
-        }
-        .btn-wisdom-enter {
-            background: var(--text-main); color: white; border: none; width: 100%;
-            padding: 16px; border-radius: 18px; font-weight: 800; font-size: 0.9rem;
-            letter-spacing: 1px; cursor: pointer; text-transform: uppercase;
-        }
-        .btn-wisdom-enter:hover { background: var(--brand-main); }
-        .wisdom-footer-text {
-            font-size: 0.7rem; font-weight: 800; letter-spacing: 1px; color: #a1a1aa;
-            margin-top: 20px; text-transform: uppercase;
-        }
-
-        /* POPUP 2: GUIDED TOOLTIP / ROADMAP PANDUAN */
-        .guided-tooltip-card {
-            background: #ffffff; border-radius: 20px; width: 100%; max-width: 400px;
-            padding: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative;
-            border: 2px solid var(--brand-accent); text-align: left;
-        }
-        .tooltip-tag {
-            font-size: 0.7rem; font-weight: 800; color: var(--brand-accent);
-            text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;
-        }
-        .tooltip-title {
-            font-family: 'Fredoka', sans-serif; font-size: 1.2rem; color: var(--text-main); margin-bottom: 8px;
-        }
-        .tooltip-desc {
-            font-size: 0.85rem; color: var(--text-sub); line-height: 1.5; margin-bottom: 20px; font-weight: 600;
-        }
-        .tooltip-footer {
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .tooltip-dots { display: flex; gap: 6px; }
-        .dot { width: 8px; height: 8px; border-radius: 4px; background: #e2e8f0; }
-        .dot.active { width: 20px; background: var(--brand-accent); }
-        .btn-tooltip-next {
-            background: var(--brand-accent); color: white; border: none;
-            padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 0.82rem; cursor: pointer;
-        }
-
-        /* OVERLAY LOGIN 9 SISWA */
-        .login-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(139, 69, 19, 0.95) 0%, rgba(180, 83, 9, 0.95) 100%);
-            z-index: 998; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 20px; text-align: center; color: white;
-        }
-        .login-title { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; margin-bottom: 8px; }
-        .login-sub { font-size: 1rem; opacity: 0.9; margin-bottom: 30px; font-weight: 600; }
-        .student-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-            width: 100%; max-width: 650px; max-height: 400px; overflow-y: auto; padding: 10px;
-        }
-        .student-card {
-            background: rgba(255, 255, 255, 0.95); color: var(--text-main);
-            border-radius: var(--radius-main); padding: 18px 12px; cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15); border: 3px solid transparent;
-        }
-        .student-card:hover { transform: translateY(-4px); border-color: var(--brand-accent); }
-        .student-avatar { font-size: 2.8rem; margin-bottom: 6px; }
-        .student-name-lbl { font-weight: 800; font-size: 0.95rem; }
-        .student-level-lbl { font-size: 0.75rem; color: var(--text-sub); font-weight: 700; }
+        .wisdom-tag { font-size: 0.72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--brand-accent); margin-bottom: 16px; }
+        .wisdom-quote { font-family: 'Georgia', serif; font-size: 1.2rem; line-height: 1.6; color: var(--text-main); font-style: italic; margin-bottom: 18px; }
+        .wisdom-author { font-size: 0.85rem; font-weight: 700; color: var(--text-sub); margin-bottom: 28px; }
+        .btn-wisdom-enter { background: var(--text-main); color: white; border: none; width: 100%; padding: 16px; border-radius: 18px; font-weight: 800; font-size: 0.9rem; cursor: pointer; text-transform: uppercase; }
 
         /* SIDEBAR */
         .sidebar {
@@ -177,7 +160,6 @@
         .stat-lbl { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
 
         .btn-checkin { background: #f59e0b; color: white; border: none; padding: 8px 14px; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 8px; font-size: 0.78rem; }
-        .btn-checkin:hover { background: #d97706; }
 
         .section-header { font-family: 'Fredoka', sans-serif; font-size: 1.25rem; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 
@@ -193,13 +175,21 @@
             .brand-title, .brand-sub, .profile-info, .menu-item span:last-child { display: none; }
             .content-area { margin-left: 80px; padding: 16px; }
             .hero-banner { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .student-grid { grid-template-columns: repeat(2, 1fr); }
+            .account-selector-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <!-- OVERLAY 1: DAILY WISDOM MODAL (SERUPA LOVSPEAK) -->
+    <!-- LAYAR LOGIN MULTI-AKUN (APP STYLE) -->
+    <div class="app-login-screen" id="appLoginScreen">
+        <img src="./logo.jpg" alt="Logo" class="login-brand-logo" onerror="this.src='https://via.placeholder.com/72?text=OLP'">
+        <div class="login-app-title">Omah Les Privat</div>
+        <div class="login-app-sub">Pilih akunmu untuk masuk ke ruang belajar! 👇</div>
+        <div class="account-selector-grid" id="accountGridContainer"></div>
+    </div>
+
+    <!-- WISDOM MODAL POPUP -->
     <div class="modal-overlay" id="wisdomModalOverlay">
         <div class="wisdom-card">
             <div class="quote-badge">“</div>
@@ -208,41 +198,11 @@
                 "Pendidikan bukanlah persiapan untuk hidup, melainkan pendidikan itu adalah kehidupan itu sendiri."
             </div>
             <div class="wisdom-author" id="wisdomAuthorText">Ki Hajar Dewantara</div>
-            <button class="btn-wisdom-enter" onclick="closeWisdomModal()">Masuk Omah Les</button>
-            <div class="wisdom-footer-text">Belajar Jadi Asyik & Menyenangkan</div>
+            <button class="btn-wisdom-enter" onclick="closeWisdomModal()">Masuk Ke Ruang Belajar</button>
         </div>
     </div>
 
-    <!-- OVERLAY 2: GUIDED TOOLTIP / ROADMAP TUTORIAL -->
-    <div class="modal-overlay" id="guidedTooltipOverlay">
-        <div class="guided-tooltip-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                <div class="tooltip-tag" id="tooltipStepTag">Panduan 1 dari 3</div>
-                <span style="font-size: 0.75rem; color: #a1a1aa; cursor: pointer; font-weight: 700;" onclick="closeTooltipModal()">Lewati</span>
-            </div>
-            <div class="tooltip-title" id="tooltipTitleText">Selamat Datang di Portal Belajar!</div>
-            <div class="tooltip-desc" id="tooltipDescText">
-                Di sini kamu bisa memilih modul materi pelajaran TK & SD, mengumpulkan ⭐ Bintang, dan menukar maskot lucu.
-            </div>
-            <div class="tooltip-footer">
-                <div class="tooltip-dots">
-                    <div class="dot active" id="dot1"></div>
-                    <div class="dot" id="dot2"></div>
-                    <div class="dot" id="dot3"></div>
-                </div>
-                <button class="btn-tooltip-next" id="btnTooltipNext" onclick="nextTooltipStep()">Lanjut</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- OVERLAY 3: SELEKSI SISWA LOGIN -->
-    <div class="login-overlay" id="loginScreen">
-        <div class="login-title">Omah Les Privat 🏡</div>
-        <div class="login-sub">Siapa yang mau belajar hari ini? Pilih profilmu ya! 👇</div>
-        <div class="student-grid" id="studentGridContainer"></div>
-    </div>
-
-    <!-- SIDEBAR NAVIGASI -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div>
             <div class="brand-header">
@@ -258,15 +218,15 @@
                     <div class="avatar-box" id="userAvatar">🐰</div>
                     <div class="profile-info">
                         <div class="profile-name" id="userNameDisplay">Siswa</div>
-                        <div class="profile-badge" id="userLevelDisplay">Mode TK & SD</div>
+                        <div class="profile-badge" id="userLevelDisplay">Kelas</div>
                     </div>
                 </div>
-                <button class="btn-switch-user" onclick="openLoginScreen()">Ganti</button>
+                <button class="btn-switch-user" onclick="openLoginAppScreen()">Ganti</button>
             </div>
 
             <ul class="menu-list">
-                <li class="menu-item active"><a onclick="showWisdomModal()"><span>💡</span> <span>Kata Motivasi</span></a></li>
-                <li class="menu-item"><a onclick="startGuidedTour()"><span>🗺️</span> <span>Panduan Portal</span></a></li>
+                <li class="menu-item active"><a onclick="showWisdomModal()"><span>💡</span> <span>Pesan Semangat</span></a></li>
+                <li class="menu-item"><a onclick="openLoginAppScreen()"><span>👤</span> <span>Ganti Akun</span></a></li>
             </ul>
         </div>
 
@@ -277,10 +237,10 @@
         </div>
     </aside>
 
-    <!-- MAIN CONTENT AREA -->
+    <!-- MAIN CONTENT -->
     <main class="content-area">
 
-        <!-- BANNER BINTANG & ABSENSI -->
+        <!-- HERO BANNER -->
         <section class="hero-banner">
             <div class="hero-text">
                 <h1>Halo, <span id="heroWelcomeName">Siswa</span>! ✨</h1>
@@ -299,7 +259,7 @@
             </div>
         </section>
 
-        <!-- VIEW BERANDA -->
+        <!-- CATEGORIES -->
         <div>
             <section>
                 <div class="section-header"><span>🧸 Modul Belajar TK & PAUD</span></div>
@@ -319,56 +279,63 @@
     </main>
 
     <script>
-        // LIST SISWA
-        const studentsList = [
-            { id: 'student_1', name: 'Rezky', level: 'Kelas 10 SMA', defaultAvatar: '🐰' },
-            { id: 'student_2', name: 'Budi', level: 'Kelas 1 SD', defaultAvatar: '🦁' },
-            { id: 'student_3', name: 'Siti', level: 'Kelas 2 SD', defaultAvatar: '🐼' }
+        // DAFTAR AKUN SISWA DENGAN PILIHAN NAMA & KELAS
+        const studentAccounts = [
+            { id: 'siswa_1', name: 'Rezky', classLevel: 'Kelas 10 SMA', avatar: '🐰' },
+            { id: 'siswa_2', name: 'Budi', classLevel: 'Kelas 1 SD', avatar: '🦁' },
+            { id: 'siswa_3', name: 'Siti', classLevel: 'Kelas 2 SD', avatar: '🐼' },
+            { id: 'siswa_4', name: 'Ani', classLevel: 'TK B', avatar: '🦄' },
+            { id: 'siswa_5', name: 'Doni', classLevel: 'Kelas 3 SD', avatar: '🦊' },
+            { id: 'siswa_6', name: 'Eka', classLevel: 'TK A', avatar: '🐱' },
+            { id: 'siswa_7', name: 'Fikri', classLevel: 'Kelas 4 SD', avatar: '🐶' },
+            { id: 'siswa_8', name: 'Gita', classLevel: 'Kelas 5 SD', avatar: '🐸' },
+            { id: 'siswa_9', name: 'Hana', classLevel: 'PAUD', avatar: '🐥' }
         ];
 
-        let currentStudent = null;
+        let activeStudent = null;
         let stars = 0;
         let streak = 0;
-        let tooltipStep = 1;
 
-        // WISDOM MOTIVATION DATABASE
         const wisdomQuotes = [
             { quote: "Pendidikan bukanlah persiapan untuk hidup, melainkan pendidikan itu adalah kehidupan itu sendiri.", author: "Ki Hajar Dewantara" },
-            { quote: "Anak-anak hidup dan tumbuh sesuai kodratnya sendiri. Pendidik hanya dapat merawat dan menuntun tumbuhnya kodrat itu.", author: "Ki Hajar Dewantara" },
+            { quote: "Anak-anak hidup dan tumbuh sesuai kodratnya sendiri. Pendidik hanya dapat merawat dan menuntunnya.", author: "Ki Hajar Dewantara" },
             { quote: "Makin banyak ilmu yang kamu pelajari, makin besar rasa ingin tahumu terhadap dunia.", author: "Omah Les Privat" }
         ];
 
-        function renderStudentGrid() {
-            const container = document.getElementById('studentGridContainer');
+        function renderAccountGrid() {
+            const container = document.getElementById('accountGridContainer');
             container.innerHTML = '';
-            studentsList.forEach(s => {
+            studentAccounts.forEach(acc => {
                 const card = document.createElement('div');
-                card.className = 'student-card';
-                card.onclick = () => selectStudent(s);
+                card.className = 'account-card';
+                card.onclick = () => loginAsStudent(acc);
                 card.innerHTML = `
-                    <div class="student-avatar">${s.defaultAvatar}</div>
-                    <div class="student-name-lbl">${s.name}</div>
-                    <div class="student-level-lbl">${s.level}</div>
+                    <div class="account-avatar-ring">${acc.avatar}</div>
+                    <div class="account-student-name">${acc.name}</div>
+                    <div class="account-student-class">${acc.classLevel}</div>
                 `;
                 container.appendChild(card);
             });
         }
 
-        function openLoginScreen() {
-            renderStudentGrid();
-            document.getElementById('loginScreen').style.display = 'flex';
+        function openLoginAppScreen() {
+            renderAccountGrid();
+            document.getElementById('appLoginScreen').style.display = 'flex';
         }
 
-        function selectStudent(studentObj) {
-            currentStudent = studentObj;
-            document.getElementById('loginScreen').style.display = 'none';
+        function loginAsStudent(studentObj) {
+            activeStudent = studentObj;
+            localStorage.setItem('olp_app_active_student_id', studentObj.id);
+
+            document.getElementById('appLoginScreen').style.display = 'none';
             document.getElementById('userNameDisplay').innerText = studentObj.name;
-            document.getElementById('userLevelDisplay').innerText = studentObj.level;
+            document.getElementById('userLevelDisplay').innerText = studentObj.classLevel;
             document.getElementById('heroWelcomeName').innerText = studentObj.name;
+            document.getElementById('userAvatar').innerText = studentObj.avatar;
+
             showWisdomModal();
         }
 
-        // DAILY WISDOM LOGIC
         function showWisdomModal() {
             const randomItem = wisdomQuotes[Math.floor(Math.random() * wisdomQuotes.length)];
             document.getElementById('wisdomQuoteText').innerText = `"${randomItem.quote}"`;
@@ -378,52 +345,6 @@
 
         function closeWisdomModal() {
             document.getElementById('wisdomModalOverlay').classList.remove('active');
-        }
-
-        // GUIDED TOUR TOOLTIP LOGIC
-        function startGuidedTour() {
-            tooltipStep = 1;
-            updateTooltipView();
-            document.getElementById('guidedTooltipOverlay').classList.add('active');
-        }
-
-        function updateTooltipView() {
-            document.getElementById('dot1').classList.remove('active');
-            document.getElementById('dot2').classList.remove('active');
-            document.getElementById('dot3').classList.remove('active');
-
-            if (tooltipStep === 1) {
-                document.getElementById('tooltipStepTag').innerText = "Panduan 1 dari 3";
-                document.getElementById('tooltipTitleText').innerText = "Modul Belajar Terstruktur";
-                document.getElementById('tooltipDescText').innerText = "Pilih modul TK/PAUD atau SD untuk membaca ringkasan materi dan mengerjakan latihan harian.";
-                document.getElementById('dot1').classList.add('active');
-                document.getElementById('btnTooltipNext').innerText = "Lanjut";
-            } else if (tooltipStep === 2) {
-                document.getElementById('tooltipStepTag').innerText = "Panduan 2 dari 3";
-                document.getElementById('tooltipTitleText').innerText = "Absensi & Bintang";
-                document.getElementById('tooltipDescText').innerText = "Klik tombol 'Absen Harian' untuk menambah angka Streak Api (🔥) dan bonus Bintang (⭐) harianmu.";
-                document.getElementById('dot2').classList.add('active');
-                document.getElementById('btnTooltipNext').innerText = "Lanjut";
-            } else if (tooltipStep === 3) {
-                document.getElementById('tooltipStepTag').innerText = "Panduan 3 dari 3";
-                document.getElementById('tooltipTitleText').innerText = "Toko Maskot & Sertifikat";
-                document.getElementById('tooltipDescText').innerText = "Tukarkan bintangmu di Toko Bintang untuk membuka maskot baru dan cetak Sertifikat Kelulusan!";
-                document.getElementById('dot3').classList.add('active');
-                document.getElementById('btnTooltipNext').innerText = "Selesai";
-            }
-        }
-
-        function nextTooltipStep() {
-            if (tooltipStep < 3) {
-                tooltipStep++;
-                updateTooltipView();
-            } else {
-                closeTooltipModal();
-            }
-        }
-
-        function closeTooltipModal() {
-            document.getElementById('guidedTooltipOverlay').classList.remove('active');
         }
 
         function claimDailyCheckin() {
@@ -436,7 +357,14 @@
 
         function toggleTheme() { document.body.classList.toggle('dark-theme'); }
 
-        openLoginScreen();
+        // AUTO CHECK SESSION ON LOAD
+        const savedStudentId = localStorage.getItem('olp_app_active_student_id');
+        if (savedStudentId) {
+            const found = studentAccounts.find(s => s.id === savedStudentId);
+            if (found) { loginAsStudent(found); } else { openLoginAppScreen(); }
+        } else {
+            openLoginAppScreen();
+        }
     </script>
 </body>
 </html>
