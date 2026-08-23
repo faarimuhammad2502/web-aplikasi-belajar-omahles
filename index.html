@@ -26,16 +26,7 @@
             --text-light: #fcf8f5;
             --radius-main: 24px;
             --radius-sm: 16px;
-        }
-
-        body.dark-theme {
-            --bg-body: #1c1512;
-            --sidebar-bg: #140d0a;
-            --card-bg: #281e19;
-            --card-border: #3a2e26;
-            --text-main: #fcf8f5;
-            --text-sub: #c4b5a5;
-            --brand-cream: #35261e;
+            --reader-font-size: 1.05rem;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.25s, color 0.25s, transform 0.2s; }
@@ -46,7 +37,7 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* SPLIT LOGIN SCREEN DENGAN GAMBAR SAMAR */
+        /* LOGIN SCREEN WITH BLURRED BG */
         .login-page-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; z-index: 1000; background: var(--bg-body);
@@ -55,38 +46,28 @@
         .login-left-brand {
             flex: 1.2; 
             background: linear-gradient(135deg, rgba(61, 32, 18, 0.94) 0%, rgba(28, 14, 8, 0.96) 100%), 
-                        url('image_agent_tag_2548486732521474773');
-            background-size: cover;
-            background-position: center;
+                        url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover; background-position: center;
             color: #ffffff; padding: 60px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
-            position: relative; overflow: hidden;
         }
 
-        .login-left-brand::after {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18l1.5-1.5L14 18l-1.5 1.5zm24 6l1-2 1 2-1 2zm30-10l2 1-1 2-2-1zm-40 50l3 1-1 3-3-1zm55-15l2-2 2 2-2 2zm-20 30l1-3 3 1-1 3z' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
-            pointer-events: none;
-        }
-
-        .brand-badge-tag { background: rgba(217, 119, 6, 0.3); border: 1.5px solid var(--brand-amber); color: #fef08a; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 20px; z-index: 2; }
-        .brand-logo-img { width: 76px; height: 76px; border-radius: 22px; border: 3px solid var(--brand-amber); object-fit: cover; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 2; }
-        .brand-slogan-title { font-family: 'Fredoka', sans-serif; font-size: 2.8rem; line-height: 1.25; color: #ffffff; margin-bottom: 16px; font-weight: 700; z-index: 2; }
+        .brand-badge-tag { background: rgba(217, 119, 6, 0.3); border: 1.5px solid var(--brand-amber); color: #fef08a; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 20px; }
+        .brand-logo-img { width: 76px; height: 76px; border-radius: 22px; border: 3px solid var(--brand-amber); object-fit: cover; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .brand-slogan-title { font-family: 'Fredoka', sans-serif; font-size: 2.8rem; line-height: 1.25; color: #ffffff; margin-bottom: 16px; font-weight: 700; }
         .brand-slogan-title span { color: var(--brand-yellow); }
-        .brand-slogan-sub { font-size: 1.05rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 480px; z-index: 2; }
+        .brand-slogan-sub { font-size: 1.05rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 480px; }
 
-        .login-right-form { width: 480px; padding: 60px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; }
+        .login-right-form { width: 480px; padding: 60px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); }
         .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: var(--brand-brown); margin-bottom: 6px; }
         .form-sub-text { font-size: 0.92rem; color: var(--text-sub); margin-bottom: 32px; font-weight: 600; }
 
         .form-group { margin-bottom: 20px; text-align: left; }
         .form-label { display: block; font-size: 0.88rem; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
         .form-input, .form-select { width: 100%; padding: 14px 18px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.95rem; font-weight: 700; color: var(--text-main); outline: none; background: #fdfbf7; }
-        .form-input:focus, .form-select:focus { border-color: var(--brand-amber); background: #ffffff; }
 
-        .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 16px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; letter-spacing: 0.5px; }
-        .btn-submit-login:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(139, 69, 19, 0.35); }
+        .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 16px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; }
 
-        /* MAIN APP LAYOUT */
+        /* APP LAYOUT */
         .app-wrapper { display: flex; flex: 1; }
 
         .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 28px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); }
@@ -104,7 +85,7 @@
         .menu-group-label { font-size: 0.72rem; font-weight: 800; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
         .menu-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
         .menu-item a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; text-decoration: none; color: #d6c7b2; font-weight: 700; font-size: 0.92rem; border-radius: var(--radius-sm); cursor: pointer; }
-        .menu-item.active a, .menu-item a:hover { background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: #ffffff; box-shadow: 0 6px 18px rgba(139, 69, 19, 0.3); }
+        .menu-item.active a, .menu-item a:hover { background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: #ffffff; }
 
         .profile-card { background: rgba(255,255,255,0.05); border-radius: var(--radius-sm); padding: 12px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; }
         .profile-left { display: flex; align-items: center; gap: 10px; }
@@ -113,7 +94,7 @@
         .profile-badge { font-size: 0.72rem; color: var(--brand-yellow); font-weight: 700; }
         .btn-switch-user { background: var(--brand-amber); border: none; color: white; padding: 6px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 800; cursor: pointer; }
 
-        /* CONTENT AREA */
+        /* MAIN CONTENT AREA */
         .content-area { margin-left: 280px; flex: 1; padding: 36px 48px; max-width: 1300px; }
 
         .roadmap-banner { background: linear-gradient(135deg, rgba(139, 69, 19, 0.95) 0%, rgba(180, 83, 9, 0.95) 100%); color: #ffffff; border-radius: var(--radius-main); padding: 32px; text-align: center; margin-bottom: 28px; box-shadow: 0 12px 28px rgba(139, 69, 19, 0.2); }
@@ -141,27 +122,44 @@
 
         .card-footer { display: flex; align-items: center; justify-content: space-between; border-top: 2px dashed var(--card-border); padding-top: 16px; }
         .icons-group { display: flex; gap: 8px; font-size: 1.1rem; opacity: 0.8; }
-        .btn-open-module { background: var(--brand-amber); color: white; border: none; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.8rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
+        .btn-open-module { background: var(--brand-amber); color: white; border: none; padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
         .btn-open-module:hover { background: var(--brand-brown); }
 
-        .portal-footer { margin-left: 280px; background: var(--card-bg); border-top: 2px solid var(--card-border); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
-        .footer-ig-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 8px 18px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 0.82rem; box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25); }
-        .ig-svg-icon { width: 18px; height: 18px; fill: currentColor; }
+        /* LOVSPEAK FULL-PAGE READER VIEW */
+        .reader-view-container { display: none; margin-left: 280px; flex: 1; padding: 36px 48px; max-width: 1100px; position: relative; }
+        .reader-view-container.active { display: block; }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 10, 5, 0.65); backdrop-filter: blur(6px); z-index: 999; display: none; align-items: center; justify-content: center; padding: 20px; }
-        .modal-overlay.active { display: flex; }
-        .modal-card { background: var(--card-bg); border-radius: var(--radius-main); width: 100%; max-width: 540px; padding: 32px; border: 2px solid var(--brand-amber); box-shadow: 0 25px 50px rgba(0,0,0,0.25); }
-        .modal-title { font-family: 'Fredoka', sans-serif; font-size: 1.4rem; color: var(--brand-brown); margin-bottom: 12px; }
-        .modal-body { font-size: 0.92rem; line-height: 1.6; color: var(--text-main); margin-bottom: 24px; white-space: pre-line; max-height: 320px; overflow-y: auto; }
-        .btn-modal-close { background: var(--brand-brown); color: white; border: none; width: 100%; padding: 14px; border-radius: 14px; font-weight: 800; cursor: pointer; font-family: 'Fredoka', sans-serif; }
+        .reader-control-bar { display: flex; align-items: center; justify-content: space-between; background: var(--card-bg); border: 2px solid var(--card-border); padding: 14px 24px; border-radius: 20px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .btn-back-nav { background: var(--brand-cream); border: 2px solid var(--card-border); width: 42px; height: 42px; border-radius: 12px; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+        .reader-font-controls { display: flex; gap: 8px; align-items: center; }
+        .btn-font-size { background: var(--brand-cream); border: 2px solid var(--card-border); padding: 8px 14px; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 0.85rem; }
+        .btn-focus-mode { background: var(--sidebar-bg); color: #ffffff; border: none; padding: 10px 20px; border-radius: 12px; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.5px; cursor: pointer; font-family: 'Fredoka', sans-serif; }
+
+        .reader-paper-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 32px; padding: 48px 56px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); margin-bottom: 120px; position: relative; }
+        .reader-header-tag { display: inline-block; background: var(--brand-cream); color: var(--brand-brown); border: 1px solid var(--card-border); padding: 6px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: 800; margin-bottom: 16px; }
+        .reader-article-title { font-family: 'Fredoka', sans-serif; font-size: 2.8rem; color: var(--text-main); margin-bottom: 24px; line-height: 1.2; }
+        
+        .reader-article-content { font-size: var(--reader-font-size); line-height: 1.8; color: var(--text-main); font-weight: 600; white-space: pre-line; }
+        .reader-article-content h2, .reader-article-content h3 { font-family: 'Fredoka', sans-serif; color: var(--brand-brown); margin: 24px 0 12px 0; }
+        .reader-article-content blockquote { background: var(--brand-cream); border-left: 4px solid var(--brand-amber); padding: 16px 20px; border-radius: 0 14px 14px 0; margin: 20px 0; font-weight: 700; color: var(--brand-brown); }
+
+        /* FLOATING AI TUTOR WIDGET (LOVSPEAK STYLE) */
+        .floating-ai-tutor { position: fixed; bottom: 32px; left: calc(280px + 50%); transform: translateX(-50%); background: var(--sidebar-bg); border: 2px solid var(--brand-amber); color: #ffffff; padding: 12px 28px; border-radius: 50px; display: flex; align-items: center; gap: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); z-index: 200; cursor: pointer; }
+        .ai-mic-icon { width: 42px; height: 42px; background: var(--brand-amber); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .ai-text-title { font-family: 'Fredoka', sans-serif; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .ai-text-sub { font-size: 0.72rem; color: #d6c7b2; font-weight: 600; }
+
+        .portal-footer { margin-left: 280px; background: var(--card-bg); border-top: 2px solid var(--card-border); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
+        .footer-ig-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 8px 18px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 0.82rem; }
+        .ig-svg-icon { width: 18px; height: 18px; fill: currentColor; }
 
         @media (max-width: 900px) {
             .login-page-container { flex-direction: column; overflow-y: auto; }
             .login-left-brand, .login-right-form { width: 100%; padding: 30px 20px; flex: none; }
             .sidebar { width: 80px; padding: 16px 8px; }
             .brand-title, .brand-sub, .menu-group-label, .profile-info, .focus-timer-card, .menu-item span:last-child { display: none; }
-            .content-area, .portal-footer { margin-left: 80px; padding: 20px; }
-            .portal-footer { flex-direction: column; gap: 12px; text-align: center; }
+            .content-area, .reader-view-container, .portal-footer { margin-left: 80px; padding: 20px; }
+            .floating-ai-tutor { left: calc(80px + 50%); }
         }
     </style>
 </head>
@@ -233,7 +231,7 @@
 
                 <div class="menu-group-label">Main Menu</div>
                 <ul class="menu-list">
-                    <li class="menu-item active"><a onclick="alert('Kamu berada di halaman Learning Roadmap')"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
+                    <li class="menu-item active"><a onclick="closeReaderView()"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
                     <li class="menu-item"><a onclick="openLoginForm()"><span>👤</span> <span>My Profile</span></a></li>
                 </ul>
             </div>
@@ -252,12 +250,13 @@
             </div>
         </aside>
 
-        <main class="content-area">
+        <!-- DASHBOARD GRID VIEW -->
+        <main class="content-area" id="mainDashboardView">
 
             <div class="roadmap-banner">
                 <div class="banner-tag">🎓 Master Learning Path</div>
                 <div class="banner-title" id="bannerWelcomeTitle">Curriculum Roadmap</div>
-                <div class="banner-sub" id="bannerWelcomeSub">Modul materi terstruktur disesuaikan secara otomatis berdasarkan kelas dan jenjang pilihanmu.</div>
+                <div class="banner-sub">Modul materi terstruktur disesuaikan secara otomatis berdasarkan kelas dan jenjang pilihanmu.</div>
             </div>
 
             <div class="filter-header-bar">
@@ -276,6 +275,40 @@
             <div class="modules-grid" id="modulesGridContainer"></div>
 
         </main>
+
+        <!-- LOVSPEAK FULL READER VIEW -->
+        <main class="reader-view-container" id="readerPageContainer">
+            
+            <div class="reader-control-bar">
+                <button class="btn-back-nav" onclick="closeReaderView()">←</button>
+                
+                <div class="reader-font-controls">
+                    <button class="btn-font-size" onclick="adjustFontSize(-1)">A-</button>
+                    <button class="btn-font-size" onclick="adjustFontSize(1)">A+</button>
+                </div>
+
+                <button class="btn-focus-mode" onclick="alert('Focus Mode Aktif!')">⛶ FOCUS VIEW</button>
+            </div>
+
+            <div class="reader-paper-card">
+                <span class="reader-header-tag" id="readerHeaderTag">SD KELAS 3</span>
+                <h1 class="reader-article-title" id="readerTitleDisplay">Judul Modul Lengkap</h1>
+                
+                <div class="reader-article-content" id="readerContentBody">
+                    Isi modul materi lengkap...
+                </div>
+            </div>
+
+            <!-- FLOATING AI TUTOR WIDGET -->
+            <div class="floating-ai-tutor" onclick="alert('AI Tutor Omah Les siap mendampingi sesi belajar interaktif!')">
+                <div class="ai-mic-icon">🎙️</div>
+                <div>
+                    <div class="ai-text-title">Start Practicing</div>
+                    <div class="ai-text-sub">Evaluate with Omah Les AI Tutor</div>
+                </div>
+            </div>
+
+        </main>
     </div>
 
     <footer class="portal-footer">
@@ -292,68 +325,151 @@
         </div>
     </footer>
 
-    <div class="modal-overlay" id="materiModalOverlay">
-        <div class="modal-card">
-            <div class="modal-title" id="materiTitle">Judul Modul</div>
-            <div class="modal-body" id="materiBody">Isi Rangkuman...</div>
-            <button class="btn-modal-close" onclick="closeMateriModal()">Mark Complete & Earn ⭐ +5</button>
-        </div>
-    </div>
-
     <script>
+        // DATABASE MATERI LENGKAP BERSALAH PANDUAN KURIKULUM OMAH LES PRIVAT
         const databaseMateriLengkap = {
             'tk': [
-                { tierTag: 'TK / PAUD', title: 'Huruf A - Z & Vokal', desc: 'Mengenal huruf vokal A-I-U-E-O dengan contoh kata bergambar.', progress: '0/4', content: '• Huruf Vokal Utama:\n  A - I - U - E - O\n\n• Contoh Kata:\n  🍎 A = Apel\n  🐟 I = Ikan\n  🐍 U = Ular' },
-                { tierTag: 'TK / PAUD', title: 'Belajar Membaca Suku Kata', desc: 'Latihan mengeja suku kata awalan Ba-Bi-Bu-Be-Bo.', progress: '0/4', content: '• Suku Kata Awalan B:\n  BA - BI - BU - BE - BO\n\n• Gabungan Kata:\n  BA - JU = Baju 👕\n  BO - LA = Bola ⚽' },
-                { tierTag: 'TK / PAUD', title: 'Berhitung Benda & Angka 1-10', desc: 'Latihan menghitung jumlah buah dan angka dasar.', progress: '0/4', content: '• Menghitung Apel:\n  🍎 = 1 (Satu)\n  🍎 🍎 = 2 (Dua)\n  🍎 🍎 🍎 = 3 (Tiga)' },
-                { tierTag: 'TK / PAUD', title: 'Mengenal Warna & Suara Hewan', desc: 'Pengenalan warna dasar dan tiruan suara hewan.', progress: '0/4', content: '• Warna Utama: Merah, Kuning, Biru\n• Suara Hewan:\n  🐱 Kucing: Meong\n  🐕 Anjing: Guk Guk' }
-            ],
-            'sd1': [
-                { tierTag: 'SD KLS 1', title: 'Bahasa Indonesia Kls 1', desc: 'Suku kata terbuka, suku kata tertutup, dan huruf kapital.', progress: '0/4', content: '1. Suku Kata Terbuka: Ba-ju, Ku-da, Ka-ki.\n2. Suku Kata Tertutup: Tas, Bus, Jam.' },
-                { tierTag: 'SD KLS 1', title: 'Matematika Kls 1', desc: 'Penjumlahan dan pengurangan angka 1 sampai 20.', progress: '0/4', content: '• Operasi Dasar:\n  5 + 3 = 8\n  10 + 4 = 14\n  15 - 6 = 9' },
-                { tierTag: 'SD KLS 1', title: 'IPAS Kls 1', desc: 'Panca indra manusia dan fungsinya.', progress: '0/4', content: '1. Mata: Melihat\n2. Telinga: Mendengar\n3. Hidung: Membaui\n4. Lidah: Mengecap\n5. Kulit: Meraba' },
-                { tierTag: 'SD KLS 1', title: 'English Kls 1', desc: 'Greetings and Numbers 1-10.', progress: '0/4', content: '• Greetings:\n  Good Morning (Selamat Pagi)\n  Numbers: 1: One, 2: Two, 3: Three' }
-            ],
-            'sd2': [
-                { tierTag: 'SD KLS 2', title: 'Bahasa Indonesia Kls 2', desc: 'Penggunaan tanda baca titik, koma, dan huruf kapital.', progress: '0/4', content: '• Huruf Kapital digunakan pada awal kalimat dan nama orang.\nContoh: Budi pergi ke Jakarta.' },
-                { tierTag: 'SD KLS 2', title: 'Matematika Kls 2', desc: 'Konsep perkalian sebagai penjumlahan berulang.', progress: '0/4', content: '• Perkalian Dasar:\n  3 x 4 = 4 + 4 + 4 = 12\n  5 x 2 = 10' },
-                { tierTag: 'SD KLS 2', title: 'IPAS Kls 2', desc: 'Wujud benda padat, cair, dan gas.', progress: '0/4', content: '• Wujud Benda:\n  1. Padat (Batu)\n  2. Cair (Air)\n  3. Gas (Udara dalam balon)' },
-                { tierTag: 'SD KLS 2', title: 'English Kls 2', desc: 'Animals and fruits vocabulary.', progress: '0/4', content: '• Animals: Cat (Kucing), Dog (Anjing), Cow (Sapi)\n• Fruits: Apple (Apel), Banana (Pisang)' }
+                { 
+                    tierTag: 'TK / PAUD', 
+                    title: 'Huruf A - Z & Vokal', 
+                    desc: 'Mengenal huruf vokal A-I-U-E-O dengan contoh kata bergambar.', 
+                    progress: '0/4', 
+                    content: `Modul ini dirancang khusus untuk adik-adik TK/PAUD dalam mengenal alfabet dasar dan huruf vokal secara interaktif.
+
+<h2>1. Pengenalan Huruf Vokal Utama</h2>
+Huruf vokal adalah bunyi bahasa yang dihasilkan tanpa hambatan pada alat ucap.
+• <b>A</b> - Seperti pada kata 🍎 <i>Apel</i>, 🐓 <i>Ayam</i>
+• <b>I</b> - Seperti pada kata 🐟 <i>Ikan</i>, 🏠 <i>Istana</i>
+• <b>U</b> - Seperti pada kata 🐍 <i>Ular</i>, 🪙 <i>Uang</i>
+• <b>E</b> - Seperti pada kata 🐘 <i>Gajah (Emas)</i>, 🦅 <i>Elang</i>
+• <b>O</b> - Seperti pada kata 🟠 <i>Obor</i>, 🦧 <i>Orangutan</i>
+
+<h2>2. Latihan Melafalkan Vokal</h2>
+Coba tirukan bersama pembimbing:
+<blockquote>"A - I - U - E - O, Apel Ikan Ular Elang Obor!"</blockquote>
+
+<h2>3. Latihan Mandiri</h2>
+Hubungkan huruf di bawah ini dengan nama benda yang sesuai:
+1. Huruf 'A' -> [ Ayam / Ikan ]
+2. Huruf 'I' -> [ Ular / Ikan ]` 
+                },
+                { 
+                    tierTag: 'TK / PAUD', 
+                    title: 'Belajar Membaca Suku Kata', 
+                    desc: 'Latihan mengeja suku kata awalan Ba-Bi-Bu-Be-Bo.', 
+                    progress: '0/4', 
+                    content: `Setelah mengenal huruf vokal, mari belajar menggabungkan huruf konsonan 'B' dengan huruf vokal.
+
+<h2>1. Mengeja Suku Kata B</h2>
+• B + A = <b>BA</b>
+• B + I = <b>BI</b>
+• B + U = <b>BU</b>
+• B + E = <b>BE</b>
+• B + O = <b>BO</b>
+
+<h2>2. Menggabungkan Kata Sederhana</h2>
+• BA + JU = 👕 <b>Baju</b>
+• BO + LA = ⚽ <b>Bola</b>
+• BU + KU = 📚 <b>Buku</b>
+• BI + RU = 🔵 <b>Biru</b>
+
+<blockquote>Coba eja kata ini bersama: "B-A-J-U = BAJU"</blockquote>` 
+                }
             ],
             'sd3': [
-                { tierTag: 'SD KLS 3', title: 'Bahasa Indonesia Kls 3', desc: 'Menentukan gagasan utama dan ide pokok paragraf.', progress: '0/4', content: '• Ide Pokok:\n  Gagasan utama yang menjadi inti pembahasan dalam suatu paragraf.' },
-                { tierTag: 'SD KLS 3', title: 'Matematika Kls 3', desc: 'Konsep pecahan sederhana ½, ⅓, dan ¼.', progress: '0/4', content: '• Pecahan ½:\n  Satu benda utuh dibagi menjadi dua bagian sama besar.' },
-                { tierTag: 'SD KLS 3', title: 'IPAS Kls 3', desc: 'Siklus hidup hewan dan konsep metamorfosis.', progress: '0/4', content: '• Metamorfosis Kupu-Kupu:\n  Telur -> Ulat -> Kepompong -> Kupu-Kupu Dewasa.' },
-                { tierTag: 'SD KLS 3', title: 'English Kls 3', desc: 'Telling time and daily routine vocabulary.', progress: '0/4', content: '• Time: 07:00 AM (Seven o\'clock in the morning).' }
-            ],
-            'sd4': [
-                { tierTag: 'SD KLS 4', title: 'Bahasa Indonesia Kls 4', desc: 'Struktur teks prosedur dan penggunaan majas.', progress: '0/4', content: '• Teks Prosedur: Teks yang berisi langkah-langkah membuat/melakukan sesuatu.' },
-                { tierTag: 'SD KLS 4', title: 'Matematika Kls 4', desc: 'FPB, KPK, dan pengukuran luas bangun datar.', progress: '0/4', content: '• Rumus Luas:\n  Persegi = Sisi x Sisi\n  Persegi Panjang = Panjang x Lebar' },
-                { tierTag: 'SD KLS 4', title: 'IPAS Kls 4', desc: 'Proses fotosintesis dan perubahan bentuk energi.', progress: '0/4', content: '• Fotosintesis:\n  Air + Karbondioksida + Sinar Matahari -> Makanan + Oksigen' },
-                { tierTag: 'SD KLS 4', title: 'English Kls 4', desc: 'Directions and location prepositions.', progress: '0/4', content: '• Direction: Turn Right (Belok Kanan), Turn Left (Belok Kiri).' }
-            ],
-            'sd5': [
-                { tierTag: 'SD KLS 5', title: 'Bahasa Indonesia Kls 5', desc: 'Unsur surat resmi dan penulisan teks iklan.', progress: '0/4', content: '• Ciri Surat Resmi: Menggunakan kop surat, nomor surat, dan perihal.' },
-                { tierTag: 'SD KLS 5', title: 'Matematika Kls 5', desc: 'Hitungan volume kubus dan balok.', progress: '0/4', content: '• Volume Kubus = s x s x s\n• Volume Balok = p x l x t' },
-                { tierTag: 'SD KLS 5', title: 'IPAS Kls 5', desc: 'Sistem organ tubuh manusia dan saluran pernapasan.', progress: '0/4', content: '• Alur Pernapasan:\n  Hidung -> Tenggorokan -> Paru-paru (Alveolus).' },
-                { tierTag: 'SD KLS 5', title: 'English Kls 5', desc: 'Past events and simple past tense.', progress: '0/4', content: '• Past Tense: Subject + Verb 2 (I walked to school yesterday).' }
-            ],
-            'sd6': [
-                { tierTag: 'SD KLS 6', title: 'Bahasa Indonesia Kls 6', desc: 'Ciri teks eksplanasi dan struktur pidato.', progress: '0/4', content: '• Teks Eksplanasi: Menjelaskan proses terjadinya fenomena alam atau sosial.' },
-                { tierTag: 'SD KLS 6', title: 'Matematika Kls 6', desc: 'Pengolahan data rata-rata (Mean, Median, Modus).', progress: '0/4', content: '• Mean: Rata-rata data\n• Median: Nilai tengah\n• Modus: Nilai paling sering muncul' },
-                { tierTag: 'SD KLS 6', title: 'IPAS Kls 6', desc: 'Sistem tata surya dan planet-planet.', progress: '0/4', content: '• Urutan Planet:\n  Merkurius, Venus, Bumi, Mars, Yupiter, Saturnus, Uranus, Neptunus.' },
-                { tierTag: 'SD KLS 6', title: 'English Kls 6', desc: 'Degree of comparison (Tall, Taller, Tallest).', progress: '0/4', content: '• Comparison:\n  Tall (Tinggi) -> Taller (Lebih tinggi) -> Tallest (Paling tinggi).' }
+                { 
+                    tierTag: 'SD KLS 3', 
+                    title: 'Ide Pokok & Paragraf', 
+                    desc: 'Menentukan gagasan utama dan ide pokok paragraf.', 
+                    progress: '0/4', 
+                    content: `Dalam pelajaran Bahasa Indonesia Kelas 3 SD, memahami gagasan utama dalam sebuah teks bacaan adalah pondasi literasi penting.
+
+<h2>1. Apa itu Ide Pokok?</h2>
+Ide pokok (atau gagasan utama) adalah inti atau topik utama yang sedang dibahas dalam sebuah paragraf. Setiap paragraf yang baik hanya memiliki <b>satu ide pokok</b>.
+
+<h2>2. Cara Menemukan Ide Pokok</h2>
+• Bacalah seluruh paragraf dengan cermat dan seksama.
+• Cermati kalimat pertama hingga kalimat terakhir.
+• Tentukan kalimat mana yang menjadi induk utama dari paragraf tersebut.
+
+<h2>3. Contoh Teks Bacaan</h2>
+<blockquote>"Setiap pagi, Danu selalu merawat tanaman bunga di halaman rumahnya. Ia menyiram bunga mawar dan melati dengan teratur. Danu juga memberi pupuk seminggu sekali agar tanamannya tumbuh subur. Kegemaran Danu merawat tanaman membuat halamannya asri."</blockquote>
+
+<b>Analisis Ide Pokok:</b>
+Ide pokok dari teks di atas adalah <i>"Kegiatan Danu merawat tanaman di halaman rumahnya."</i>` 
+                },
+                { 
+                    tierTag: 'SD KLS 3', 
+                    title: 'Pecahan Sederhana ½, ⅓, ¼', 
+                    desc: 'Konsep pecahan dasar, pembilang, dan penyebut.', 
+                    progress: '0/4', 
+                    content: `Mari mempelajari konsep Matematika pecahan sederhana secara visual dan praktis.
+
+<h2>1. Pengertian Pecahan</h2>
+Pecahan adalah bagian dari keseluruhan yang bernilai sama. Bentuk umum pecahan disimbolkan dengan <b>a/b</b>:
+• <b>a</b> disebut <i>Pembilang</i> (bagian yang diambil).
+• <b>b</b> disebut <i>Penyebut</i> (total seluruh bagian).
+
+<h2>2. Jenis Pecahan Sederhana</h2>
+• <b>Pecahan ½ (Satu Perdua / Setengah):</b> Satu buah pizza dipotong menjadi 2 bagian sama besar. 1 potong nilainya ½.
+• <b>Pecahan ⅓ (Satu Pertiga):</b> Satu kue dipotong menjadi 3 bagian sama besar.
+• <b>Pecahan ¼ (Satu Perempat):</b> Satu kertas dibagi menjadi 4 bagian sama besar.
+
+<h2>3. Contoh Soal Latihan</h2>
+Jika Ibu memotong 1 buah semangka menjadi 4 bagian sama besar, dan Budi memakan 1 bagian, berapa nilai pecahan bagian semangka yang dimakan Budi?
+<b>Jawab:</b> 1/4 (Satu perempat).` 
+                },
+                { 
+                    tierTag: 'SD KLS 3', 
+                    title: 'Metamorfosis & Daur Hidup', 
+                    desc: 'Siklus hidup hewan sempurna dan tidak sempurna.', 
+                    progress: '0/4', 
+                    content: `Mata pelajaran IPAS Kelas 3 SD membahas tentang pertumbuhan dan siklus hidup makhluk hidup di lingkungan sekitar.
+
+<h2>1. Daur Hidup Hewan</h2>
+Daur hidup adalah seluruh tahapan pertumbuhan dan perkembangan yang dialami oleh makhluk hidup sepanjang hidupnya.
+
+<h2>2. Metamorfosis Sempurna</h2>
+Metamorfosis sempurna adalah perubahan bentuk tubuh hewan yang sangat berbeda pada setiap tahapannya. Contoh utama: <b>Kupu-Kupu</b>.
+
+<blockquote><b>Tahapan Metamorfosis Kupu-kupu:</b>
+Telur ➡️ Ulat (Larva) ➡️ Kepompong (Pupa) ➡️ Kupu-kupu Dewasa (Imago)</blockquote>
+
+<h2>3. Metamorfosis Tidak Sempurna</h2>
+Hewan yang mengalami metamorfosis tidak sempurna tidak melalui tahap kepompong. Contoh: <b>Belalang & Kecoak</b>.
+(Telur ➡️ Nimfa/Kecoak Muda ➡️ Dewasa)` 
+                }
             ],
             'sma': [
-                { tierTag: 'SMA KLS 10', title: 'Matematika SMA', desc: 'Identitas trigonometri, aturan sinus, dan cosinus.', progress: '0/4', content: '• Identitas Utama:\n  sin²(x) + cos²(x) = 1\n  tan(x) = sin(x) / cos(x)' },
-                { tierTag: 'SMA KLS 10', title: 'Fisika SMA', desc: 'Momen inersia dan dinamika rotasi benda tegar.', progress: '0/4', content: '• Momen Inersia (I):\n  I = m . r²\n  Menyatakan kelembaman benda berotasi.' },
-                { tierTag: 'SMA KLS 10', title: 'Kimia SMA', desc: 'Ikatan ion dan kovalen.', progress: '0/4', content: '• Ikatan Ion: Serah terima elektron.\n• Ikatan Kovalen: Pemakaian bersama pasangan elektron.' },
-                { tierTag: 'SMA KLS 10', title: 'English SMA', desc: 'Present perfect tense and text structure.', progress: '0/4', content: '• Present Perfect Tense:\n  Subject + Have/Has + Verb 3.' }
+                { 
+                    tierTag: 'SMA KLS 10', 
+                    title: 'Identitas Trigonometri', 
+                    desc: 'Rumus dasar trigonometri, aturan sinus, dan cosinus.', 
+                    progress: '0/4', 
+                    content: `Di jenjang SMA Kelas 10, materi trigonometri merupakan salah satu topik fundamental matematika eksakta.
+
+<h2>1. Persamaan Identitas Utama</h2>
+Identitas trigonometri menghubungkan fungsi sinus, cosinus, dan tangen:
+• sin²(x) + cos²(x) = 1
+• tan(x) = sin(x) / cos(x)
+• 1 + tan²(x) = sec²(x)
+
+<h2>2. Sudut-Sudut Istimewa</h2>
+• sin(30°) = 1/2 | cos(30°) = √3/2
+• sin(45°) = √2/2 | cos(45°) = √2/2
+• sin(60°) = √3/2 | cos(60°) = 1/2
+
+<h2>3. Penerapan Soal</h2>
+Buktikan bahwa (1 - cos²x) / sin(x) = sin(x)!
+<b>Pembuktian:</b>
+Karena sin²x + cos²x = 1, maka 1 - cos²x = sin²x.
+Sehingga sin²x / sinx = sin(x). (Terbukti)` 
+                }
             ]
         };
 
         let currentStudent = { name: 'Siswa', classLevel: 'Kelas 3 SD', categoryKey: 'sd3' };
-        let completedCount = 0;
+        let currentFontSize = 1.05;
 
         function toggleSdClassDropdown() {
             const jenjang = document.getElementById('selectJenjang').value;
@@ -401,7 +517,7 @@
 
             const list = databaseMateriLengkap[categoryKey] || databaseMateriLengkap['sd3'];
 
-            list.forEach(m => {
+            list.forEach((m, idx) => {
                 container.innerHTML += `
                     <div class="module-card">
                         <div>
@@ -416,25 +532,37 @@
                         </div>
                         <div class="card-footer">
                             <div class="icons-group">📖 🎧 📝</div>
-                            <button class="btn-open-module" onclick="openMateriModal('${m.title}', \`${m.content}\`)">OPEN &gt;</button>
+                            <button class="btn-open-module" onclick="openReaderView('${categoryKey}', ${idx})">OPEN &gt;</button>
                         </div>
                     </div>
                 `;
             });
         }
 
-        function openMateriModal(title, content) {
-            document.getElementById('materiTitle').innerText = title;
-            document.getElementById('materiBody').innerText = content;
-            document.getElementById('materiModalOverlay').classList.add('active');
+        /* FUNGSIONALITAS LOVSPEAK READER VIEW */
+        function openReaderView(categoryKey, index) {
+            const list = databaseMateriLengkap[categoryKey] || databaseMateriLengkap['sd3'];
+            const item = list[index];
+
+            document.getElementById('readerHeaderTag').innerText = item.tierTag;
+            document.getElementById('readerTitleDisplay').innerText = item.title;
+            document.getElementById('readerContentBody').innerHTML = item.content;
+
+            document.getElementById('mainDashboardView').style.display = 'none';
+            document.getElementById('readerPageContainer').classList.add('active');
+            window.scrollTo(0, 0);
         }
 
-        function closeMateriModal() {
-            document.getElementById('materiModalOverlay').classList.remove('active');
-            completedCount += 1;
-            const currentListLength = (databaseMateriLengkap[currentStudent.categoryKey] || []).length || 4;
-            let percent = Math.min(Math.round((completedCount / currentListLength) * 100), 100);
-            document.getElementById('masteryPercentDisplay').innerText = `${percent}% Completed`;
+        function closeReaderView() {
+            document.getElementById('readerPageContainer').classList.remove('active');
+            document.getElementById('mainDashboardView').style.display = 'block';
+        }
+
+        function adjustFontSize(delta) {
+            currentFontSize += delta * 0.1;
+            if (currentFontSize < 0.85) currentFontSize = 0.85;
+            if (currentFontSize > 1.4) currentFontSize = 1.4;
+            document.documentElement.style.setProperty('--reader-font-size', `${currentFontSize}rem`);
         }
 
         const savedName = localStorage.getItem('olp_form_name');
