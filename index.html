@@ -171,17 +171,45 @@
         .quiz-btn:hover { background: #fef3c7; }
         .quiz-feedback { margin-top: 10px; font-weight: 800; font-size: 0.9rem; }
 
-        /* GAME CENTER STYLES */
-        .game-level-tag-box { background: var(--brand-cream); border: 2px solid var(--brand-amber); border-radius: 16px; padding: 12px 20px; font-weight: 800; font-size: 0.9rem; color: var(--brand-brown); margin-bottom: 20px; display: inline-block; }
-        .game-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 10px; }
-        .game-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 28px 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: all 0.25s; cursor: pointer; }
-        .game-item-card:hover { transform: translateY(-6px); border-color: var(--brand-amber); box-shadow: 0 12px 24px rgba(217, 119, 6, 0.15); }
-        .game-icon-box { width: 56px; height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px; }
-        .game-card-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: var(--text-main); margin-bottom: 6px; }
-        .game-card-desc { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; line-height: 1.5; margin-bottom: 24px; }
-        .game-progress-bar-bg { width: 100%; height: 6px; background: var(--card-border); border-radius: 10px; overflow: hidden; margin-top: 12px; }
-        .game-progress-bar-fill { height: 100%; background: var(--brand-amber); border-radius: 10px; }
-        .game-card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; font-weight: 800; color: var(--text-sub); }
+        /* LOVSPEAK STYLE GAME CENTER INTERFACE */
+        .lov-game-wrapper { width: 100%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+        
+        .lov-top-bar {
+            background: #ffffff; border: 2px solid var(--card-border); border-radius: 24px;
+            padding: 16px 28px; display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+        }
+
+        .lov-level-dots { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 800; color: var(--text-sub); }
+        .lov-dot { width: 10px; height: 10px; border-radius: 50%; background: #e5e7eb; }
+        .lov-dot.active { background: #a855f7; }
+
+        .lov-score-pill { background: #fdf4ff; border: 1.5px solid #f0abfc; padding: 6px 18px; border-radius: 16px; text-align: center; }
+        .lov-score-label { font-size: 0.65rem; font-weight: 800; color: #c084fc; text-transform: uppercase; }
+        .lov-score-value { font-family: 'Fredoka', sans-serif; font-size: 1.2rem; color: #9333ea; }
+
+        .lov-timer-lives { display: flex; align-items: center; gap: 14px; }
+        .lov-timer-badge { border: 2px solid #22c55e; color: #16a34a; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.1rem; }
+        .lov-lives-hearts { font-size: 1.2rem; }
+
+        .lov-stage-card {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+            border: 2px solid #d8b4fe; border-radius: 32px; padding: 48px 32px;
+            display: flex; align-items: center; justify-content: center; gap: 30px;
+            box-shadow: 0 12px 30px rgba(168, 85, 247, 0.12);
+        }
+
+        .lov-emoji-display { font-size: 5rem; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); animation: floatEmoji 2.5s infinite ease-in-out; }
+        @keyframes floatEmoji { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        .lov-clue-box { background: #ffffff; border: 1.5px solid #f0abfc; color: #7e22ce; padding: 12px 24px; border-radius: 20px; font-weight: 700; font-size: 0.92rem; text-align: center; margin: -10px auto 10px auto; max-width: 500px; }
+
+        .lov-input-container { display: flex; flex-direction: column; gap: 16px; align-items: center; }
+        .lov-text-input { width: 100%; padding: 18px 24px; border-radius: 20px; border: 2px solid #c084fc; font-size: 1.1rem; font-weight: 700; text-align: center; outline: none; background: #ffffff; color: var(--text-main); }
+        .lov-text-input:focus { border-color: #9333ea; box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15); }
+
+        .lov-submit-btn { width: 100%; max-width: 280px; background: #e9d5ff; color: #7e22ce; border: none; padding: 16px; border-radius: 20px; font-family: 'Fredoka', sans-serif; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .lov-submit-btn.active, .lov-submit-btn:hover { background: #a855f7; color: #ffffff; box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3); }
 
         /* FORM JURNAL BELAJAR */
         .journal-form-box { background: var(--brand-cream); border: 2px solid var(--card-border); border-radius: 20px; padding: 20px; margin-bottom: 24px; }
@@ -526,125 +554,60 @@
             { quote: "Pendidikan adalah senjata paling mematikan di dunia, karena dengan pendidikan Anda dapat mengubah dunia.", author: "— Nelson Mandela" }
         ];
 
-        /* BANK KONTEN GAME CENTER ADAPTIF */
-        const adaptiveGamesDatabase = {
+        /* BANK SOAL GAME CENTER STYLE LOVSPEAK DENGAN TINGKAT KESULITAN BERADAPTASI PER JENJANG */
+        const lovspeakGameQuestions = {
             'tk': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Quest TK', desc: 'Tebak nama hewan atau buah dari gambar emoji!', promptGame: 'Tebak emoji: 🐱 = ...?', ans: 'Kucing' },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎯', title: 'Suku Kata Ceria', desc: 'Sebutkan gabungan huruf Ba, Bi, Bu, Be, Bo!', promptGame: 'B dan A dibaca apa?', ans: 'BA' },
-                { id: 'g3', bg: '#dcfce7', color: '#15803d', icon: '🔍', title: 'Odd One Out TK', desc: 'Cari benda yang beda sendiri dari kelompoknya!', promptGame: 'Manakah yang BUKAN hewan? [Ayam, Kucing, Meja]', ans: 'Meja' },
-                { id: 'g4', bg: '#e0f2fe', color: '#0369a1', icon: '📝', title: 'Suara Hewan', desc: 'Tebak suara hewan kesayanganmu!', promptGame: 'Hewan apa yang bunyinya Meong?', ans: 'Kucing' },
-                { id: 'g5', bg: '#fef3c7', color: '#b45309', icon: '⚡', title: 'Hitung Jari Cepat', desc: 'Hitung jumlah jari tangan dengan tepat!', promptGame: '3 jari + 2 jari = berapa jari?', ans: '5 Jari' },
-                { id: 'g6', bg: '#ffedd5', color: '#c2410c', icon: '🎨', title: 'Tebak Warna', desc: 'Tebak warna benda alam di sekitarmu!', promptGame: 'Warna daun pada pohon adalah...', ans: 'Hijau' }
+                { emojis: '💰 🙌', clue: 'Memberi uang kepada fakir miskin dinamakan apa?', answer: 'sedekah' },
+                { emojis: '🐱 🥛', clue: 'Minuman kesukaan hewan kucing adalah...', answer: 'susu' },
+                { emojis: '☀️ 🌻', clue: 'Tumbuhan yang selalu menghadap matahari adalah bunga...', answer: 'matahari' }
             ],
             'sd1_3': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Word Search', desc: 'Tebak susunan kata dari gabungan emoji unik.', promptGame: '🎒 + 🏫 = Tempat belajar?', ans: 'Sekolah' },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎯', title: 'Grammar Strike SD 1-3', desc: 'Temukan ejaan kata atau huruf kapital yang salah.', promptGame: 'Ejaan yang benar: [senin / Senin]?', ans: 'Senin' },
-                { id: 'g3', bg: '#dcfce7', color: '#15803d', icon: '🔍', title: 'Odd One Out SD 1-3', desc: 'Cari kata yang bukan satu kelompok pelajaran.', promptGame: 'Mana yang BUKAN pecahan? [1/2, 1/4, 100]', ans: '100' },
-                { id: 'g4', bg: '#e0f2fe', color: '#0369a1', icon: '📝', title: 'Sentence Builder SD 1-3', desc: 'Susun kata acak menjadi kalimat yang padu.', promptGame: 'Susun: [buku - Budi - membaca]', ans: 'Budi membaca buku' },
-                { id: 'g5', bg: '#fef3c7', color: '#b45309', icon: '⚡', title: 'Math Speed Rush 1-3', desc: 'Hitung penjumlahan, pengurangan & perkalian dasar.', promptGame: 'Berapa hasil dari 3 x 5?', ans: '15' },
-                { id: 'g6', bg: '#ffedd5', color: '#c2410c', icon: '⏱️', title: 'Speed Definer IPA 1-3', desc: 'Tebak kuis sains hewan dan tumbuhan!', promptGame: 'Hewan yang mengalami metamorfosis sempurna adalah...', ans: 'Kupu-kupu' }
+                { emojis: '💰 🙌', clue: 'Giving to the poor, also called sadaqah in Islam', answer: 'sadaqah' },
+                { emojis: '🎒 🏫', clue: 'Tempat menuntut ilmu bersama guru dan teman-teman', answer: 'sekolah' },
+                { emojis: '📖 ✍️', clue: 'Kegiatan membaca dan menulis di kelas', answer: 'belajar' }
             ],
             'sd4_6': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Quest Master', desc: 'Tebak istilah sains & IPS dari petunjuk emoji.', promptGame: '☀️ + 🌊 + ☁️ = Proses terjadinya apa?', ans: 'Hujan (Evaporasi)' },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎯', title: 'Grammar Strike SD 4-6', desc: 'Perbaiki kalimat ejaan EYD/PUEBI dan imbuhan.', promptGame: 'Kata dasar [tulis] + imbuhan [me-] menjadi?', ans: 'Menulis' },
-                { id: 'g3', bg: '#dcfce7', color: '#15803d', icon: '🔍', title: 'Odd One Out SD 4-6', desc: 'Cari benda/konsep yang tidak sekelompok.', promptGame: 'Mana yang BUKAN planet? [Mars, Pluto, Jupiter]', ans: 'Pluto' },
-                { id: 'g4', bg: '#e0f2fe', color: '#0369a1', icon: '📝', title: 'Sentence Builder SD 4-6', desc: 'Susun paragraf dan kalimat efektif.', promptGame: 'Struktur teks eksplanasi yang berisi sebab-akibat?', ans: 'Deretan Penjelas' },
-                { id: 'g5', bg: '#fef3c7', color: '#b45309', icon: '⚡', title: 'Math Speed Rush 4-6', desc: 'Operasi hitung campuran, pecahan & luas bangun.', promptGame: 'Luas persegi panjang p=8 cm, l=5 cm adalah...', ans: '40 cm²' },
-                { id: 'g6', bg: '#ffedd5', color: '#c2410c', icon: '⏱️', title: 'Speed Definer IPA 4-6', desc: 'Tebak definisi organ tubuh, tata surya & fisika.', promptGame: 'Organ tubuh manusia yang memompa darah adalah...', ans: 'Jantung' }
+                { emojis: '💰 🙌', clue: 'Giving to the poor, also called sadaqah or charity', answer: 'charity' },
+                { emojis: '☀️ 🌊 ☁️', clue: 'Proses penguapan air laut oleh sinar matahari', answer: 'evaporasi' },
+                { emojis: '🫀 🩺', clue: 'Organ tubuh manusia yang berfungsi memompa darah', answer: 'jantung' }
             ]
         };
 
-        /* DATABASE LENGKAP LOKAL: DIBEDAKAN SPESIFIK TK S.D. SD KELAS 1-6 */
+        let currentLovQuestionIdx = 0;
+        let lovScore = 0;
+        let lovLives = 3;
+        let lovTimer = 31;
+        let lovInterval = null;
+
+        /* DATABASE LENGKAP LOKAL MATERI ROADMAP & BADGES */
         const masterSectionDatabase = {
             'tk': {
-                'roadmap': [
-                    { tierTag: 'PAUD / TK', title: 'Mengenal Huruf Vokal A, I, U, E, O', desc: 'Mengenal bentuk huruf vokal dan benda berawalan huruf tersebut.', progress: '0/3', steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Huruf A & I', sub: 'Mengenal kata Ayam dan Ikan.', quote: '"Membaca adalah petualangan seru!"', context: 'Gambar Ayam dan Ikan di halaman buku.', logic: 'Huruf A diucapkan dengan membuka mulut lebar.', tips: 'Tirukan bunyi suara ayam jantan.', quiz: { q: 'Huruf pertama dari kata AYAM adalah?', opts: ['A. Huruf A', 'B. Huruf B', 'C. Huruf C'], ans: 0 } }] },
-                    { tierTag: 'PAUD / TK', title: 'Menghitung Jari 1 Sampai 10', desc: 'Belajar konsep angka menggunakan jari tangan.', progress: '0/3', steps: [{ icon: '🖐️', tag: 'STEP 1', title: 'Angka 1 sampai 5', sub: 'Hitung jari tangan kananmu satu per satu.', quote: '"Angka ada di sekitarmu!"', context: 'Hitung jari secara berurutan.', logic: 'Tangan kanan memiliki 5 jari.', tips: 'Gunakan lagu angka untuk menghafal.', quiz: { q: 'Berapa jumlah jari pada satu tangan kanan?', opts: ['A. 3 Jari', 'B. 5 Jari', 'C. 10 Jari'], ans: 1 } }] }
-                ],
-                'badges': [
-                    { tierTag: 'BADGE TK', title: '🔤 Lencana Bintang Huruf', desc: 'Diberikan untuk pahlawan cilik yang berhasil mengenal seluruh huruf vokal.', progress: '1/1', steps: [{ icon: '⭐', tag: 'TROFI TK', title: 'Syarat Bintang Huruf', sub: 'Eja 5 kata berawalan huruf vokal.', quote: '"Kecil-kecil hebat membaca!"', context: 'Selamat! Kamu sudah hafal huruf A, I, U, E, O.', logic: 'Membaca huruf vokal lancar.', tips: 'Terus berlatih bersama orang tua.', quiz: { q: 'Apa warna bintang keberhasilanmu?', opts: ['A. Emas', 'B. Perak', 'C. Perunggu'], ans: 0 } }] }
-                ],
-                'indo': [{ tierTag: 'TK INDO', title: 'Suku Kata Ba-Bi-Bu-Be-Bo', desc: 'Latihan menggabungkan huruf B dengan vokal.', progress: '0/2', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Suku Kata Ba dan Bi', sub: 'Membaca Ba-ju dan Bi-sa.', quote: '"Eja kata dengan percaya diri!"', context: 'B dan A dibaca BA.', logic: 'Suara B digabung A menjadi BA.', tips: 'Ulangi 3 kali.', quiz: { q: 'Huruf B dan A dibaca apa?', opts: ['A. BA', 'B. BI', 'C. BU'], ans: 0 } }] }],
-                'math': [{ tierTag: 'TK MATH', title: 'Mengenal Bentuk Lingkaran & Segitiga', desc: 'Eksplorasi bentuk geometri sederhana.', progress: '0/2', steps: [{ icon: '🔴', tag: 'STEP 1', title: 'Bentuk Lingkaran', sub: 'Mencari benda bundar seperti bola.', quote: '"Lingkaran bulat tanpa sudut."', context: 'Bola dan roda berbentuk bulat.', logic: 'Bentuk bulat dinamakan lingkaran.', tips: 'Lihat jam dinding di rumah.', quiz: { q: 'Manakah benda yang berbentuk lingkaran?', opts: ['A. Roda Sepeda', 'B. Buku Tulis', 'C. Kotak Pensil'], ans: 0 } }] }],
-                'sains': [{ tierTag: 'TK SAINS', title: 'Mengenal Hewan Peliharaan', desc: 'Dunia kucing, kelinci, dan burung.', progress: '0/2', steps: [{ icon: '🐱', tag: 'STEP 1', title: 'Kucing & Suaranya', sub: 'Meniru suara Meong.', quote: '"Sayangi hewan di sekitarmu."', context: 'Kucing bergerak dengan 4 kaki.', logic: 'Kucing adalah hewan mamalia darat.', tips: 'Berikan makan kucing dengan ramah.', quiz: { q: 'Bagaimana suara kucing?', opts: ['A. Meong', 'B. Gukguk', 'C. Mbee'], ans: 0 } }] }],
-                'seni': [{ tierTag: 'TK SENI', title: 'Mewarnai Pemandangan', desc: 'Mengenal warna merah, kuning, dan hijau.', progress: '0/2', steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Warna Daun & Langit', sub: 'Mewarnai pohon dan awan.', quote: '"Warna membuat gambar hidup."', context: 'Daun pada umumnya berwarna hijau.', logic: 'Hijau adalah warna alami tumbuhan.', tips: 'Gunakan krayon dengan rapi.', quiz: { q: 'Warna daun pada umumnya adalah?', opts: ['A. Hijau', 'B. Merah', 'C. Hitam'], ans: 0 } }] }]
+                'roadmap': [{ tierTag: 'PAUD / TK', title: 'Mengenal Huruf Vokal A, I, U, E, O', desc: 'Mengenal bentuk huruf vokal.', progress: '0/3', steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Huruf A & I', sub: 'Mengenal kata Ayam.', quote: '"Petualangan membaca!"', context: 'Gambar Ayam di buku.', logic: 'Huruf A diucapkan terbuka.', tips: 'Tirukan suara ayam.', quiz: { q: 'Huruf pertama kata AYAM?', opts: ['A', 'B', 'C'], ans: 0 } }] }],
+                'badges': [{ tierTag: 'BADGE TK', title: '🔤 Lencana Bintang Huruf', desc: 'Berhasil mengenal huruf vokal.', progress: '1/1', steps: [{ icon: '⭐', tag: 'TROFI TK', title: 'Bintang Huruf', sub: 'Eja kata vokal.', quote: '"Hafal membaca!"', context: 'Hafal A,I,U,E,O.', logic: 'Lancar vokal.', tips: 'Latihan rutin.', quiz: { q: 'Warna bintang?', opts: ['Emas', 'Perak'], ans: 0 } }] }]
             },
             'sd1': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 1', title: 'Membaca Suku Kata & Kalimat Pendek', desc: 'Membaca lancar kata sederhana dan menyusun kalimat dasar.', progress: '0/4', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Suku Kata Kata-Kata Dasar', sub: 'Membaca Budi membaca buku.', quote: '"Lancar membaca kunci dunia ilmu."', context: 'Membaca kata dua suku kata.', logic: 'B-U-D-I dibaca Budi.', tips: 'Eja perlahan bersama pendamping.', quiz: { q: 'B-U-K-U dibaca apa?', opts: ['A. Buku', 'B. Buka', 'C. Baki'], ans: 0 } }] },
-                    { tierTag: 'SD KELAS 1', title: 'Penjumlahan & Pengurangan hingga 20', desc: 'Menghitung dengan benda konkret dan garis bilangan.', progress: '0/4', steps: [{ icon: '➕', tag: 'STEP 1', title: 'Penjumlahan Dasar', sub: 'Menghitung pensil dan apel.', quote: '"Berhitung itu seru!"', context: '5 apel ditambah 3 apel.', logic: '5 + 3 = 8.', tips: 'Gunakan jari untuk membantu.', quiz: { q: 'Berapa 7 + 4?', opts: ['A. 11', 'B. 10', 'C. 12'], ans: 0 } }] }
-                ],
-                'badges': [
-                    { tierTag: 'BADGE SD 1', title: '⭐ Bintang Lancar Membaca SD 1', desc: 'Lencana kebanggaan untuk siswa kelas 1 SD yang membaca lancar tanpa mengeja.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 1', title: 'Juara Eja Cilik', sub: 'Lancar membaca 10 kalimat pendek.', quote: '"Hebat sekali membaca!"', context: 'Siswa kelas 1 berhasil membaca cerita pendek.', logic: 'Kelancaran membaca tercapai.', tips: 'Terus membaca cerita fabel.', quiz: { q: 'Berapa 5 + 5?', opts: ['A. 10', 'B. 9', 'C. 11'], ans: 0 } }] }
-                ],
-                'indo': [{ tierTag: 'SD 1 INDO', title: 'Huruf Kapital & Tanda Titik', desc: 'Menulis nama diri dan awal kalimat.', progress: '0/2', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Huruf Besar Nama Orang', sub: 'Menulis Budi dan Ani.', quote: '"Penulisan rapi dan tepat."', context: 'Nama orang diawali huruf kapital.', logic: 'Budi menggunakan huruf B besar.', tips: 'Ingat huruf depan namamu.', quiz: { q: 'Huruf pertama nama orang ditulis dengan?', opts: ['A. Huruf Kapital', 'B. Huruf Kecil', 'C. Angka'], ans: 0 } }] }],
-                'math': [{ tierTag: 'SD 1 MATH', title: 'Mengenal Bangun Datar Sederhana', desc: 'Segitiga, segi empat, dan lingkaran.', progress: '0/2', steps: [{ icon: '🟦', tag: 'STEP 1', title: 'Segi Empat & Segitiga', sub: 'Menghitung jumlah sisi.', quote: '"Bentuk ada di mana-mana."', context: 'Kotak pensil berbentuk segi empat.', logic: 'Segi empat punya 4 sisi.', tips: 'Hitung sudut meja.', quiz: { q: 'Berapa jumlah sisi segitiga?', opts: ['A. 3 Sisi', 'B. 4 Sisi', 'C. 5 Sisi'], ans: 0 } }] }],
-                'sains': [{ tierTag: 'SD 1 SAINS', title: 'Bagian Tubuh Manusia & Panca Indra', desc: 'Mengenal mata, telinga, hidung, dan lidah.', progress: '0/2', steps: [{ icon: '👁️', tag: 'STEP 1', title: 'Fungsi Mata dan Telinga', sub: 'Melihat dan mendengar.', quote: '"Syukuri tubuh pemberian Tuhan."', context: 'Mata untuk melihat kecantikan alam.', logic: 'Mata adalah indra penglihat.', tips: 'Jaga jarak saat melihat layar.', quiz: { q: 'Telinga berguna untuk?', opts: ['A. Mendengar', 'B. Melihat', 'C. Mencium'], ans: 0 } }] }],
-                'seni': [{ tierTag: 'SD 1 SENI', title: 'Menggambar Garis & Warna Dasar', desc: 'Garis lurus, lengkung, dan warna primer.', progress: '0/2', steps: [{ icon: '🖍️', tag: 'STEP 1', title: 'Garis Lengkung & Lurus', sub: 'Membuat bentuk rumah dan matahari.', quote: '"Imajinasi tanpa batas."', context: 'Mewarnai gambar rumah.', logic: 'Warna dasar: merah, kuning, biru.', tips: 'Warnai secara merata.', quiz: { q: 'Warna matahari di siang hari adalah?', opts: ['A. Kuning / Oranye', 'B. Biru', 'C. Hijau'], ans: 0 } }] }]
+                'roadmap': [{ tierTag: 'SD KELAS 1', title: 'Membaca Suku Kata & Penjumlahan 1-20', desc: 'Membaca lancar dan berhitung angka dasar.', progress: '0/4', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Suku Kata Dasar', sub: 'Membaca Budi membaca buku.', quote: '"Lancar membaca."', context: 'Budi membaca.', logic: 'B-U-D-I = Budi.', tips: 'Eja perlahan.', quiz: { q: '5 + 3 = ?', opts: ['8', '7', '9'], ans: 0 } }] }],
+                'badges': [{ tierTag: 'BADGE SD 1', title: '⭐ Bintang Lancar Membaca SD 1', desc: 'Siswa kelas 1 SD membaca lancar.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 1', title: 'Eja Cilik', sub: 'Membaca 10 kalimat.', quote: '"Hebat membaca!"', context: 'Selesai membaca.', logic: 'Kelancaran tercapai.', tips: 'Baca fabel.', quiz: { q: '4 + 4 = ?', opts: ['8', '6'], ans: 0 } }] }]
             },
             'sd2': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 2', title: 'Perkalian Sebagai Penjumlahan Berulang', desc: 'Mengenal konsep dasar perkalian $2 \\times 3 = 3 + 3$.', progress: '0/4', steps: [{ icon: '✖️', tag: 'STEP 1', title: 'Konsep Perkalian', sub: 'Mengubah penjumlahan berulang ke perkalian.', quote: '"Perkalian itu penjumlahan cepat."', context: '2 + 2 + 2 = 3 x 2 = 6.', logic: 'Hitung berapa kali angka tersebut diulang.', tips: 'Gunakan sedotan untuk kelompok angka.', quiz: { q: '4 + 4 + 4 sama dengan?', opts: ['A. 3 x 4', 'B. 4 x 4', 'C. 2 x 4'], ans: 0 } }] },
-                    { tierTag: 'SD KELAS 2', title: 'Pengukuran Panjang & Berat Dasar', desc: 'Mengenal satuan meter (m), sentimeter (cm), dan gram (g).', progress: '0/4', steps: [{ icon: '📏', tag: 'STEP 1', title: 'Mengukur Panjang Pensil', sub: 'Gunakan penggaris sentimeter.', quote: '"Ukur dengan teliti."', context: 'Ujung pensil sejajar angka 0 di penggaris.', logic: 'Panjang dihitung dari angka 0.', tips: 'Jangan mulai dari angka 1.', quiz: { q: 'Alat untuk mengukur panjang meja adalah?', opts: ['A. Penggaris / Meteran', 'B. Timbangan', 'C. Jam'], ans: 0 } }] }
-                ],
-                'badges': [
-                    { tierTag: 'BADGE SD 2', title: '📏 Jagoan Ukur & Perkalian SD 2', desc: 'Lencana bagi siswa kelas 2 SD yang paham konsep perkalian dasar dan mengukur benda.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 2', title: 'Detektif Ukur Cilik', sub: 'Paham perkalian 1-5 dan sentimeter.', quote: '"Matematika makin mudah!"', context: 'Lulus kuis perkalian penjumlahan berulang.', logic: 'Konsep dasar terkuasai.', tips: 'Latih hitung barang belanjaan.', quiz: { q: 'Berapa 3 x 2?', opts: ['A. 6', 'B. 5', 'C. 8'], ans: 0 } }] }
-                ],
-                'indo': [{ tierTag: 'SD 2 INDO', title: 'Kalimat Tanya (Apa, Siapa, Di mana)', desc: 'Menyusun kalimat tanya yang sopan.', progress: '0/2', steps: [{ icon: '❓', tag: 'STEP 1', title: 'Kata Tanya Siapa dan Di Mana', sub: 'Menanyakan orang dan tempat.', quote: '"Bertanya membuka jendela tahu."', context: 'Siapa nama gurumu? Di mana rumahmu?', logic: 'Gunakan kata tanya di awal kalimat.', tips: 'Berikan tanda tanya (?) di akhir.', quiz: { q: 'Kata tanya untuk menanyakan tempat adalah?', opts: ['A. Di mana', 'B. Siapa', 'C. Kapan'], ans: 0 } }] }],
-                'math': [{ tierTag: 'SD 2 MATH', title: 'Pembagian Sebagai Pengurangan Berulang', desc: 'Menyelesaikan konsep $6 \\div 2 = 6 - 2 - 2 - 2 = 0$.', progress: '0/3', steps: [{ icon: '➗', tag: 'STEP 1', title: 'Pengurangan Berulang', sub: 'Membagi permen ke teman.', quote: '"Berbagi secara adil."', context: '6 permen dibagi ke 3 anak.', logic: '6 - 2 - 2 - 2 = 0 (3 kali).', tips: 'Bagi sama banyak.', quiz: { q: '8 dibagi 2 sama dengan?', opts: ['A. 4', 'B. 3', 'C. 5'], ans: 0 } }] }],
-                'sains': [{ tierTag: 'SD 2 SAINS', title: 'Benda Padat, Cair, dan Gas', desc: 'Mengenal wujud benda di sekitar rumah.', progress: '0/3', steps: [{ icon: '🧊', tag: 'STEP 1', title: 'Ciri Air dan Batu', sub: 'Perubahan wujud es batu.', quote: '"Benda berubah wujud."', context: 'Air berubah bentuk mengikuti wadahnya.', logic: 'Batu benda padat, air benda cair.', tips: 'Lihat es mencair.', quiz: { q: 'Benda yang bentuknya mengikuti wadah adalah?', opts: ['A. Benda Cair', 'B. Benda Padat', 'C. Benda Keras'], ans: 0 } }] }],
-                'seni': [{ tierTag: 'SD 2 SENI', title: 'Pola Ritme Musik Sederhana', desc: 'Tepuk tangan dan nada tinggi-low.', progress: '0/2', steps: [{ icon: '🎵', tag: 'STEP 1', title: 'Ketukan Lagu Anak', sub: 'Menyanyikan lagu Balonku.', quote: '"Musik ceriakan hari."', context: 'Ikuti ketukan nada 2/4.', logic: 'Tempo cepat dan lambat.', tips: 'Tepuk tangan berirama.', quiz: { q: 'Lagu Balonku memiliki tempo yang?', opts: ['A. Gembira', 'B. Sedih', 'C. Menakutkan'], ans: 0 } }] }]
+                'roadmap': [{ tierTag: 'SD KELAS 2', title: 'Perkalian Sebagai Penjumlahan Berulang', desc: 'Konsep dasar perkalian 2 x 3 = 3 + 3.', progress: '0/4', steps: [{ icon: '✖️', tag: 'STEP 1', title: 'Penjumlahan Berulang', sub: '2 + 2 + 2 = 3 x 2.', quote: '"Hitung cepat."', context: 'Penjumlahan berulang.', logic: 'Perkalian cepat.', tips: 'Gunakan sedotan.', quiz: { q: '3 x 2 = ?', opts: ['6', '5'], ans: 0 } }] }],
+                'badges': [{ tierTag: 'BADGE SD 2', title: '📏 Jagoan Perkalian SD 2', desc: 'Paham konsep perkalian dasar.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 2', title: 'Perkalian Cilik', sub: 'Paham perkalian 1-5.', quote: '"Mudah hitung!"', context: 'Lulus perkalian.', logic: 'Konsep jelas.', tips: 'Latihan terus.', quiz: { q: '2 x 4 = ?', opts: ['8', '6'], ans: 0 } }] }]
             },
             'sd3': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 3', title: 'Ide Pokok & Kalimat Utama Paragraf', desc: 'Menemukan gagasan utama dalam cerita dan paragraf pendek.', progress: '0/5', steps: [{ icon: '🌱', tag: 'STEP 1', title: 'Menemukan Kalimat Utama', sub: 'Mengenal paragraf deduktif.', quote: '"Kalimat santun cermin kebaikan hati."', context: 'Kalimat utama berada di awal paragraf.', logic: 'Gagasan pokok didukung oleh kalimat penjelas.', tips: 'Cari kata yang sering diulang.', quiz: { q: 'Di mana letak kalimat utama paragraf deduktif?', opts: ['A. Di akhir', 'B. Di awal', 'C. Di tengah'], ans: 1 } }] },
-                    { tierTag: 'SD KELAS 3', title: 'Pecahan Dasar Sederhana ½, ⅓, ¼', desc: 'Mengenal konsep pembilang dan penyebut.', progress: '0/4', steps: [{ icon: '🍕', tag: 'STEP 1', title: 'Pecahan Pizza 1/4', sub: 'Satu benda dibagi 4 bagian sama besar.', quote: '"Pecahan itu membagi dengan adil."', context: 'Pizza dipotong 4 bagian sama rata.', logic: 'Angka atas adalah Pembilang, angka bawah Penyebut.', tips: 'Penyebut adalah total potongan.', quiz: { q: 'Pada pecahan 1/4, angka 4 disebut apa?', opts: ['A. Pembilang', 'B. Penyebut', 'C. Hasil'], ans: 1 } }] }
-                ],
-                'badges': [
-                    { tierTag: 'BADGE SD 3', title: '🍕 Detektif Pecahan Dasar SD 3', desc: 'Piala untuk siswa yang sukses membagi benda konkret dan paham pembilang-penyebut.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 3', title: 'Detektif Pecahan Emas', sub: 'Paham pecahan setengah, sepertiga, dan seperempat.', quote: '"Logika matematika makin tajam!"', context: 'Berhasil menjawab kuis pecahan tanpa keliru.', logic: 'Pembilang dan penyebut dikuasai.', tips: 'Gunakan potongan roti saat latihan.', quiz: { q: 'Pecahan 1/2 dibaca apa?', opts: ['A. Satu per dua / Setengah', 'B. Satu per tiga', 'C. Satu per empat'], ans: 0 } }] }
-                ],
-                'indo': [{ tierTag: 'SD 3 INDO', title: 'Imbuhan Me- pada Kata Dasar', desc: 'Membentuk kata kerja yang tepat.', progress: '0/3', steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Imbuhan Me- + Tulis', sub: 'Perubahan kata menjadi Menulis.', quote: '"Tata bahasa yang benar."', context: 'Kata dasar tulis menjadi menulis.', logic: 'Huruf T luluh menjadi N.', tips: 'Ucapkan kata secara jelas.', quiz: { q: 'Kata dasar tulis jika diberi imbuhan me- menjadi?', opts: ['A. Melulis', 'B. Menulis', 'C. Mengulis'], ans: 1 } }] }],
-                'math': [{ tierTag: 'SD 3 MATH', title: 'Perkalian Trik Cepat 1-10', desc: 'Menghafal perkalian dengan pola menyenangkan.', progress: '0/5', steps: [{ icon: '➕', tag: 'STEP 1', title: 'Perkalian Angka 5', sub: 'Pola akhiran angka 0 dan 5.', quote: '"Matematika penuh pola indah."', context: '5, 10, 15, 20, 25, 30.', logic: 'Perkalian 5 selalu diakhiri 0 atau 5.', tips: 'Hitung kelipatan 5.', quiz: { q: 'Berapa hasil dari 3 x 5?', opts: ['A. 12', 'B. 15', 'C. 18'], ans: 1 } }] }],
-                'sains': [{ tierTag: 'SD 3 SAINS', title: 'Metamorfosis Kupu-Kupu', desc: 'Daur hidup dari telur hingga kupu-kupu.', progress: '0/4', steps: [{ icon: '🐛', tag: 'STEP 1', title: 'Tahap Telur & Ulat', sub: 'Proses perubahan bentuk serangga.', quote: '"Proses alam yang luar biasa."', context: 'Ulat berubah menjadi kepompong.', logic: 'Metamorfosis sempurna melalui 4 tahap.', tips: 'Amati kupu-kupu di taman.', quiz: { q: 'Sebelum menjadi kepompong, ulat berubah dari apa?', opts: ['A. Telur', 'B. Kepompong', 'C. Kupu-kupu'], ans: 0 } }] }],
-                'seni': [{ tierTag: 'SD 3 SENI', title: 'Warna Primer & Sekunder', desc: 'Pencampuran cat warna.', progress: '0/3', steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Merah + Kuning', sub: 'Menghasilkan warna Oranye.', quote: '"Eksperimen warna menyenangkan."', context: 'Dua warna dasar dicampur.', logic: 'Merah dan kuning menjadi oranye.', tips: 'Coba dengan cat air.', quiz: { q: 'Campuran warna merah dan kuning menjadi warna apa?', opts: ['A. Hijau', 'B. Oranye', 'C. Ungu'], ans: 1 } }] }]
+                'roadmap': [{ tierTag: 'SD KELAS 3', title: 'Ide Pokok & Pecahan Dasar ½, ⅓, ¼', desc: 'Gagasan utama paragraf dan pecahan pizza.', progress: '0/5', steps: [{ icon: '🌱', tag: 'STEP 1', title: 'Kalimat Utama', sub: 'Paragraf deduktif.', quote: '"Bahasa santun."', context: 'Kalimat di awal.', logic: 'Gagasan utama.', tips: 'Cari kata ulang.', quiz: { q: '1/2 dibaca?', opts: ['Setengah', 'Sepertiga'], ans: 0 } }] }],
+                'badges': [{ tierTag: 'BADGE SD 3', title: '🍕 Detektif Pecahan SD 3', desc: 'Paham pembilang dan penyebut.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 3', title: 'Pecahan Emas', sub: 'Master pecahan.', quote: '"Logika tajam!"', context: 'Lulus kuis pecahan.', logic: 'Penyebut paham.', tips: 'Gunakan roti.', quiz: { q: 'Angka atas pecahan disebut?', opts: ['Pembilang', 'Penyebut'], ans: 0 } }] }]
             },
             'sd4': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 4', title: 'Gagasan Utama & Teks Deskripsi', desc: 'Memahami paragraf deskriptif dan informasi tersurat.', progress: '0/5', steps: [{ icon: '📝', tag: 'STEP 1', title: 'Ciri Teks Deskripsi', sub: 'Menggambarkan objek secara rinci.', quote: '"Menulis dengan detail panca indra."', context: 'Penggambaran keindahan pantai.', logic: 'Pembaca seolah melihat dan mendengar langsung.', tips: 'Gunakan kata sifat spesifik.', quiz: { q: 'Teks yang menggambarkan objek secara rinci dinamakan?', opts: ['A. Teks Deskripsi', 'B. Teks Narasi', 'C. Teks Puisi'], ans: 0 } }] },
-                    { tierTag: 'SD KELAS 4', title: 'Pecahan Senilai & Keliling Bangun Datar', desc: 'Membandingkan pecahan $\\frac{1}{2} = \\frac{2}{4}$ dan menghitung keliling persegi.', progress: '0/5', steps: [{ icon: '📐', tag: 'STEP 1', title: 'Keliling Persegi & Persegi Panjang', sub: 'Jumlah seluruh panjang sisi.', quote: '"Keliling adalah mengitari tepi."', context: 'Rumus Keliling Persegi = 4 x Sisi.', logic: 'Jumlahkan ke-4 sisinya.', tips: 'Ingat keliling lapangan bola.', quiz: { q: 'Keliling persegi dengan sisi 5 cm adalah?', opts: ['A. 20 cm', 'B. 25 cm', 'C. 15 cm'], ans: 0 } }] }
-                ],
-                'badges': [
-                    { tierTag: 'BADGE SD 4', title: '📐 Master Geometri Dasar SD 4', desc: 'Penghargaan untuk siswa kelas 4 SD yang mahir menghitung pecahan senilai & keliling bangun.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 4', title: 'Arsitek Cilik Geometri', sub: 'Lulus kuis pecahan dan keliling persegi.', quote: '"Hebat dalam logika bangun datar!"', context: 'Berhasil menyelesaikan latihan keliling.', logic: 'Pemahaman rumus bangun datar lancar.', tips: 'Hitung keliling buku tulismu.', quiz: { q: '1/2 senilai dengan pecahan?', opts: ['A. 2/4', 'B. 2/3', 'C. 3/5'], ans: 0 } }] }
-                ],
-                'indo': [{ tierTag: 'SD 4 INDO', title: 'Gaya Bahasa / Majas Personifikasi', desc: 'Memahami kiasan benda mati seolah hidup.', progress: '0/3', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Angin Membisikkan Cerita', sub: 'Benda mati yang bertingkah seperti manusia.', quote: '"Majas memperindah tulisan."', context: 'Nyiur melambai di tepi pantai.', logic: 'Nyiur benda mati tetapi melambai.', tips: 'Cari kata kerja manusia.', quiz: { q: 'Contoh majas personifikasi adalah?', opts: ['A. Awan menari di langit', 'B. Budi makan nasi', 'C. Mobil berwarna merah'], ans: 0 } }] }],
-                'math': [{ tierTag: 'SD 4 MATH', title: 'KPK dan FPB Sederhana', desc: 'Menentukan Kelipatan Persekutuan Terkecil.', progress: '0/4', steps: [{ icon: '🔢', tag: 'STEP 1', title: 'Kelipatan Angka 3 dan 4', sub: 'Mencari angka kelipatan yang sama.', quote: '"Kelipatan bertemu di titik sama."', context: 'Kelipatan 3: 3,6,9,12. Kelipatan 4: 4,8,12.', logic: 'KPK dari 3 dan 4 adalah 12.', tips: 'Gunakan pohon faktor.', quiz: { q: 'KPK dari 2 dan 3 adalah?', opts: ['A. 6', 'B. 5', 'C. 8'], ans: 0 } }] }],
-                'sains': [{ tierTag: 'SD 4 SAINS', title: 'Gaya dan Gerak Benda', desc: 'Gaya otot, gaya gesek, gaya gravitasi.', progress: '0/4', steps: [{ icon: '🧲', tag: 'STEP 1', title: 'Pengaruh Gaya Otot pada Bola', sub: 'Gaya dapat mengubah arah dan kecepatan.', quote: '"Gaya membuat benda bergerak."', context: 'Menendang bola yang diam menjadi bergerak.', logic: 'Dorongan/tarikan disebut Gaya.', tips: 'Lihat rem sepeda bekerja.', quiz: { q: 'Tarikan atau dorongan dinamakan?', opts: ['A. Gaya', 'B. Energi', 'C. Massa'], ans: 0 } }] }],
-                'seni': [{ tierTag: 'SD 4 SENI', title: 'Seni Tari Daerah & Alat Musik Petik', desc: 'Mengenal kebudayaan nusantara.', progress: '0/3', steps: [{ icon: '🪕', tag: 'STEP 1', title: 'Alat Musik Tradisional', sub: 'Mengenal Angklung dan Kecapi.', quote: '"Lestarikan budaya daerah."', context: 'Angklung dimainkan dengan digoyang.', logic: 'Alat musik tradisional Indonesia.', tips: 'Dengarkan lagu daerah.', quiz: { q: 'Angklung dimainkan dengan cara?', opts: ['A. Digoyangkan', 'B. Dipetik', 'C. Ditiup'], ans: 0 } }] }]
+                'roadmap': [{ tierTag: 'SD KELAS 4', title: 'Teks Deskripsi & Keliling Bangun Datar', desc: 'Menggambarkan objek dan keliling persegi.', progress: '0/5', steps: [{ icon: '📐', tag: 'STEP 1', title: 'Keliling Persegi', sub: '4 x Sisi.', quote: '"Ukur tepi."', context: 'Keliling persegi.', logic: 'Jumlahkan sisi.', tips: 'Ingat lapangan.', quiz: { q: 'Keliling persegi sisi 5cm?', opts: ['20 cm', '25 cm'], ans: 0 } }] }],
+                'badges': [{ tierTag: 'BADGE SD 4', title: '📐 Master Geometri SD 4', desc: 'Mahir keliling dan pecahan senilai.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 4', title: 'Arsitek Cilik', sub: 'Lulus geometri.', quote: '"Hebat bangun datar!"', context: 'Hitung keliling.', logic: 'Rumus lancar.', tips: 'Ukur buku.', quiz: { q: '1/2 senilai dengan?', opts: ['2/4', '3/5'], ans: 0 } }] }]
             },
             'sd5': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 5', title: 'Menganalisis Teks Narasi Sejarah', desc: 'Menemukan unsur 5W+1H (Apa, Siapa, Kapan, Di mana, Mengapa, Bagaimana).', progress: '0/5', steps: [{ icon: '📜', tag: 'STEP 1', title: 'Unsur 5W + 1H Sejarah', sub: 'Memahami peristiwa Proklamasi.', quote: '"Bangsa yang besar menghargai sejarah."', context: 'Membaca teks peristiwa Rengasdengklok.', logic: 'Gunakan kata kunci untuk menjawab pertanyaan.', tips: 'Catat tanggal dan tokoh penting.', quiz: { q: 'Unsur "Kapan" dalam teks sejarah menanyakan?', opts: ['A. Waktu peristiwa', 'B. Tempat kejadian', 'C. Nama tokoh'], ans: 0 } }] },
-                    { tierTag: 'SD KELAS 5', title: 'Operasi Pecahan Campuran & Desimal', desc: 'Penjumlahan dan pengurangan pecahan beda penyebut.', progress: '0/5', steps: [{ icon: '➗', tag: 'STEP 1', title: 'Menyamakan Penyebut dengan KPK', sub: 'Menjumlahkan 1/2 + 1/3.', quote: '"Samakan penyebut terlebih dahulu."', context: 'KPK dari 2 dan 3 adalah 6.', logic: '3/6 + 2/6 = 5/6.', tips: 'Gunakan KPK penyebut.', quiz: { q: 'Hasil dari 1/2 + 1/4 adalah?', opts: ['A. 3/4', 'B. 2/6', 'C. 2/4'], ans: 0 } }] }
-                ],
-                'badges': [
-                    { tierTag: 'BADGE SD 5', title: '🩺 Ahli Organ Tubuh & Pecahan SD 5', desc: 'Lencana bagi siswa kelas 5 SD yang menguasai sistem pencernaan manusia dan hitung pecahan.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 5', title: 'Pahlawan Sains & Matematika', sub: 'Lulus kuis organ tubuh dan desimal.', quote: '"Persiapan matang menuju ujian!"', context: 'Selesai mempelajari organ pernapasan dan pencernaan.', logic: 'Sistem tubuh manusia terkuasai.', tips: 'Jaga pola makan sehat.', quiz: { q: 'Proklamasi Indonesia dibacakan tanggal?', opts: ['A. 17 Agustus 1945', 'B. 28 Oktober 1928', 'C. 10 November 1945'], ans: 0 } }] }
-                ],
-                'indo': [{ tierTag: 'SD 5 INDO', title: 'Surat Undangan Resmi & Tidak Resmi', desc: 'Struktur kepala surat, isi, dan penutup.', progress: '0/3', steps: [{ icon: '✉️', tag: 'STEP 1', title: 'Bagian Kop Surat Resmi', sub: 'Ciri-ciri surat dari sekolah/instansi.', quote: '"Bahasa baku dalam surat resmi."', context: 'Kop surat berisi nama instansi dan alamat.', logic: 'Surat resmi menggunakan bahasa baku.', tips: 'Perhatikan nomor surat.', quiz: { q: 'Ciri utama surat resmi adalah memiliki?', opts: ['A. Kop Surat / Kepala Surat', 'B. Gambar kartun', 'C. Bahasa gaul'], ans: 0 } }] }],
-                'math': [{ tierTag: 'SD 5 MATH', title: 'Volume Kubus dan Balok', desc: 'Rumus $V = s^3$ dan $V = p \\times l \\times t$.', progress: '0/4', steps: [{ icon: '📦', tag: 'STEP 1', title: 'Menghitung Volume Balok', sub: 'Panjang x Lebar x Tinggi.', quote: '"Kapasitas isi bangun ruang."', context: 'Akuarium dengan p=10, l=5, t=4.', logic: 'Volume = 10 x 5 x 4 = 200 cm³.', tips: 'Jangan lupa satuan kubik (cm³).', quiz: { q: 'Rumus volume kubus dengan rusuk s adalah?', opts: ['A. s x s x s', 'B. 6 x s', 'C. s x s'], ans: 0 } }] }],
-                'sains': [{ tierTag: 'SD 5 SAINS', title: 'Sistem Organ Pencernaan Manusia', desc: 'Mulut, kerongkongan, lambung, usus halus.', progress: '0/4', steps: [{ icon: '🍎', tag: 'STEP 1', title: 'Proses di dalam Lambung', sub: 'Pencernaan mekanis dan kimiawi.', quote: '"Makanan diproses jadi energi."', context: 'Enzim pepsin dan asam klorida.', logic: 'Lambung mengolah makanan secara kimiawi.', tips: 'Kunyah makanan sampai halus.', quiz: { q: 'Organ tempat penyerapan saripati makanan adalah?', opts: ['A. Usus Halus', 'B. Lambung', 'C. Mulut'], ans: 0 } }] }],
-                'seni': [{ tierTag: 'SD 5 SENI', title: 'Tangga Nada Diatonis Mayor & Minor', desc: 'Lagu ceria vs lagu sedih/khidmat.', progress: '0/3', steps: [{ icon: '🎼', tag: 'STEP 1', title: 'Ciri Tangga Nada Mayor', sub: 'Bersemangat dan diawali nada Do.', quote: '"Musik membangkitkan semangat."', context: 'Lagu Maju Tak Gentar.', logic: 'Tangga nada mayor bersifat gembira.', tips: 'Nyanyikan lagu nasional.', quiz: { q: 'Lagu bertangga nada minor biasanya bersifat?', opts: ['A. Sedih / Khidmat', 'B. Riang gembira', 'C. Lucu'], ans: 0 } }] }]
+                'roadmap': [{ tierTag: 'SD KELAS 5', title: 'Teks Narasi Sejarah & Organ Pencernaan', desc: 'Unsur 5W+1H dan proses lambung manusia.', progress: '0/5', steps: [{ icon: '📜', tag: 'STEP 1', title: 'Organ Lambung', sub: 'Pencernaan kimiawi.', quote: '"Olahan makanan."', context: 'Enzim lambung.', logic: 'Proses kimiawi.', tips: 'Kunyah halus.', quiz: { q: 'Penyerapan sari makanan di?', opts: ['Usus Halus', 'Lambung'], ans: 0 } }] }],
+                'badges': [{ tierTag: 'BADGE SD 5', title: '🩺 Ahli Organ Tubuh SD 5', desc: 'Menguasai organ pencernaan manusia.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 5', title: 'Pahlawan Sains', sub: 'Lulus kuis organ.', quote: '"Siap ujian!"', context: 'Selesai organ.', logic: 'Sistem lancar.', tips: 'Makan sehat.', quiz: { q: 'Proklamasi Indonesia tahun?', opts: ['1945', '1928'], ans: 0 } }] }]
             },
             'sd6': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 6', title: 'Operasi Hitung Campuran & Pecahan', desc: 'Persiapan Ujian Sekolah tingkat SD.', progress: '0/5', steps: [{ icon: '🧮', tag: 'STEP 1', title: 'Aturan Urutan Operasi (KABATAKU)', sub: 'Kali, Bagi, Tambah, Kurang.', quote: '"Teliti dalam urutan matematika."', context: 'Operasi perkalian dikerjakan lebih dahulu daripada penjumlahan.', logic: 'Gunakan tanda kurung untuk memprioritaskan hitungan.', tips: 'Kerjakan dari sebelah kiri.', quiz: { q: 'Berapa hasil dari 10 + 2 x 5?', opts: ['A. 20', 'B. 60', 'C. 25'], ans: 0 } }] }
-                ],
-                'badges': [
-                    { tierTag: 'BADGE SD 6', title: '👑 Master Ujian Sekolah SD Kelas 6', desc: 'Penghargaan tertinggi lulusan SD.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI UTAMA SD 6', title: 'Mahkota Kelulusan SD', sub: 'Lulus seluruh modul SD Kelas 1-6 dengan nilai sempurna.', quote: '"Siap melangkah ke jenjang SMP!"', context: 'Selamat! Kamu siap menghadapi Ujian Sekolah.', logic: 'Materi SD telah dikuasai sempurna.', tips: 'Jaga kebiasaan belajar di SMP nanti.', quiz: { q: 'Berapa hasil dari 10 + 2 x 5?', opts: ['A. 20', 'B. 60', 'C. 25'], ans: 0 } }] }
-                ],
-                'indo': [{ tierTag: 'SD 6 INDO', title: 'Menganalisis Teks Eksplanasi Ilmiah', desc: 'Menemukan hubungan sebab-akibat fenomena alam.', progress: '0/4', steps: [{ icon: '📰', tag: 'STEP 1', title: 'Struktur Teks Eksplanasi', sub: 'Pernyataan umum dan deretan penjelas.', quote: '"Teks eksplanasi fakta ilmiah."', context: 'Proses terjadinya hujan dijelaskan berurutan.', logic: 'Deretan penjelas berisi hubungan sebab-akibat.', tips: 'Cari kata hubung kausalitas.', quiz: { q: 'Bagian teks eksplanasi yang berisi sebab-akibat dinamakan?', opts: ['A. Deretan Penjelas', 'B. Judul', 'C. Penutup'], ans: 0 } }] }],
-                'math': [{ tierTag: 'SD 6 MATH', title: 'Pengolahan Data: Rata-Rata (Mean)', desc: 'Menghitung statistik data nilai ujian.', progress: '0/4', steps: [{ icon: '📊', tag: 'STEP 1', title: 'Rumus Mean (Rata-rata)', sub: 'Jumlah data dibagi banyaknya data.', quote: '"Statistik membantu analisis data."', context: 'Nilai 5 siswa: 80, 90, 70, 80, 80.', logic: 'Mean = Total Nilai (400) / Jumlah Siswa (5) = 80.', tips: 'Jumlahkan seluruh data dulu.', quiz: { q: 'Berapa rata-rata dari data: 10, 20, 30?', opts: ['A. 20', 'B. 15', 'C. 25'], ans: 0 } }] }],
-                'sains': [{ tierTag: 'SD 6 SAINS', title: 'Tata Surya & Rotasi Bumi', desc: 'Mengenal planet dan akibat rotasi bumi.', progress: '0/4', steps: [{ icon: '🪐', tag: 'STEP 1', title: 'Akibat Rotasi Bumi', sub: 'Terjadinya pergantian siang dan malam.', quote: '"Bumi berputar pada porosnya."', context: 'Rotasi bumi memerlukan waktu 24 jam.', logic: 'Bagian bumi yang menghadap matahari mengalami siang.', tips: 'Ingat waktu 1 hari 1 malam.', quiz: { q: 'Peristiwa yang disebabkan rotasi bumi adalah?', opts: ['A. Terjadinya Siang dan Malam', 'B. Perubahan Musim', 'C. Gerhana Bulan'], ans: 0 } }] }],
-                'seni': [{ tierTag: 'SD 6 SENI', title: 'Syarat Poster Edukasi yang Baik', desc: 'Membuat pesan visual iklan layanan masyarakat.', progress: '0/3', steps: [{ icon: '🖼️', tag: 'STEP 1', title: 'Kalimat Persuasif Poster', sub: 'Kalimat singkat dan menggugah.', quote: '"Poster menyampaikan pesan kuat."', context: 'Poster ajakan menjaga kebersihan lingkungan.', logic: 'Bahasa poster bersifat persuasif mengajak.', tips: 'Gunakan warna mencolok.', quiz: { q: 'Bahasa yang cocok untuk poster ajakan adalah?', opts: ['A. Singkat dan mengajak', 'B. Panjang seperti cerpen', 'C. Rumit dan berbelit'], ans: 0 } }] }]
+                'roadmap': [{ tierTag: 'SD KELAS 6', title: 'Operasi Hitung Campuran & Tata Surya', desc: 'Urutan KABATAKU dan planet tata surya.', progress: '0/5', steps: [{ icon: '🧮', tag: 'STEP 1', title: 'Aturan KABATAKU', sub: 'Kali Bagi Tambah Kurang.', quote: '"Teliti urutan."', context: 'Perkalian didahulukan.', logic: 'Gunakan kurung.', tips: 'Kerjakan dari kiri.', quiz: { q: '10 + 2 x 5 = ?', opts: ['20', '60'], ans: 0 } }] }],
+                'badges': [{ tierTag: 'BADGE SD 6', title: '👑 Master Ujian SD Kelas 6', desc: 'Penghargaan lulusan tertinggi SD.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 6', title: 'Mahkota SD', sub: 'Lulus ujian sekolah.', quote: '"Siap SMP!"', context: 'Siap lulus.', logic: 'Materi dikuasai.', tips: 'Terus belajar.', quiz: { q: 'Akibat rotasi bumi?', opts: ['Siang Malam', 'Musim'], ans: 0 } }] }]
             }
         };
 
@@ -678,8 +641,8 @@
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & Eksperimen IPA', sub: 'Menjelajahi fenomena alam, hewan, dan percobaan sederhana.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni, Warna & Karakter', sub: 'Mengasah imajinasi kreatif dan pembentukan karakter terpuji.' },
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Ruang AI Tutor Omah Les', sub: 'Tanya soal sulit atau percakapan bebas kapan saja bersama AI Tutor Omah Les.' },
-                'games': { tag: '🎮 Game Center', title: 'Omah Les Game Center', sub: `Tantang dirimu dengan tantangan game khusus jenjang ${currentStudent.classLevel}!` },
-                'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar Harian', sub: 'Pantau tugas rumah dan rencana belajarmu di sini (Disimpan di LocalStorage).' }
+                'games': { tag: '🎮 LovSpeak Game Center', title: 'Emoji Quest Challenge', sub: `Tebak istilah dari petunjuk emoji interaktif khusus ${currentStudent.classLevel}!` },
+                'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar Harian', sub: 'Pantau tugas rumah dan rencana belajarmu di sini.' }
             };
 
             const h = sectionHeaders[secKey] || sectionHeaders['roadmap'];
@@ -698,7 +661,7 @@
                 renderAiTutorChatSection(area);
             } else if (secKey === 'games') {
                 filterBar.style.display = 'none';
-                renderGameCenterSection(area);
+                renderLovSpeakGameSection(area);
             } else if (secKey === 'diary') {
                 filterBar.style.display = 'none';
                 renderJournalSection(area);
@@ -732,7 +695,8 @@
             });
         }
 
-        function renderGameCenterSection(container) {
+        /* GAME CENTER TAMPILAN PERSIS LOVSPEAK */
+        function renderLovSpeakGameSection(container) {
             let catKey = currentStudent.categoryKey;
             let targetGroup = 'sd1_3';
 
@@ -744,41 +708,91 @@
                 targetGroup = 'sd1_3';
             }
 
-            const gamesList = adaptiveGamesDatabase[targetGroup];
+            const qList = lovspeakGameQuestions[targetGroup];
+            const qObj = qList[currentLovQuestionIdx % qList.length];
 
-            let html = `
-                <div class="game-level-tag-box">
-                    🎯 TINGKAT KESULITAN GAME: <strong>${currentStudent.classLevel.toUpperCase()}</strong>
-                </div>
-                <div class="game-card-grid">
-            `;
+            clearInterval(lovInterval);
+            lovTimer = 31;
 
-            gamesList.forEach(g => {
-                html += `
-                    <div class="game-item-card" onclick="playAdaptiveGameModal('${g.title}', '${escapeSingleQuotes(g.promptGame)}', '${escapeSingleQuotes(g.ans)}')">
-                        <div>
-                            <div class="game-icon-box" style="background:${g.bg}; color:${g.color};">${g.icon}</div>
-                            <div class="game-card-title">${g.title}</div>
-                            <div class="game-card-desc">${g.desc}</div>
+            container.innerHTML = `
+                <div class="lov-game-wrapper">
+                    <div class="lov-top-bar">
+                        <div class="lov-level-dots">
+                            <span style="font-size:1.1rem; cursor:pointer; margin-right:8px;" onclick="switchSection('roadmap')">✕</span>
+                            <span>LEVEL ${currentLovQuestionIdx + 1}</span>
+                            <div class="lov-dot active"></div>
+                            <div class="lov-dot"></div>
+                            <div class="lov-dot"></div>
                         </div>
-                        <div>
-                            <div class="game-card-footer">
-                                <span>REWARD: ⭐ +20 Stars</span>
-                                <span>0/20</span>
-                            </div>
-                            <div class="game-progress-bar-bg"><div class="game-progress-bar-fill" style="width:20%;"></div></div>
+
+                        <div class="lov-score-pill">
+                            <div class="lov-score-label">SCORE</div>
+                            <div class="lov-score-value" id="lovScoreVal">${lovScore}</div>
+                        </div>
+
+                        <div class="lov-timer-lives">
+                            <div class="lov-timer-badge" id="lovTimerVal">31</div>
+                            <div class="lov-lives-hearts">❤️❤️❤️</div>
                         </div>
                     </div>
-                `;
-            });
-            html += `</div>`;
-            container.innerHTML = html;
+
+                    <div class="lov-stage-card">
+                        <div class="lov-emoji-display">${qObj.emojis}</div>
+                    </div>
+
+                    <div class="lov-clue-box">
+                        💡 ${qObj.clue}
+                    </div>
+
+                    <div class="lov-input-container">
+                        <input type="text" id="lovAnswerInput" class="lov-text-input" placeholder="Type answer..." oninput="checkLovInputState()" onkeypress="handleLovKeyPress(event)">
+                        <button class="lov-submit-btn" id="lovSubmitBtn" onclick="submitLovAnswer('${qObj.answer}')">Submit Answer</button>
+                    </div>
+                </div>
+            `;
+
+            lovInterval = setInterval(() => {
+                lovTimer--;
+                const timerEl = document.getElementById('lovTimerVal');
+                if (timerEl) timerEl.innerText = lovTimer;
+                if (lovTimer <= 0) {
+                    clearInterval(lovInterval);
+                    alert('⏰ Waktu habis! Mari coba lagi!');
+                    renderLovSpeakGameSection(container);
+                }
+            }, 1000);
         }
 
-        function playAdaptiveGameModal(gameTitle, promptText, answerText) {
-            userStars += 20;
-            document.getElementById('userStarDisplay').innerText = userStars;
-            alert(`🎮 MINI GAME: ${gameTitle}\n\n❓ Tantangan: ${promptText}\n💡 Jawaban Benar: ${answerText}\n\n🎉 Selamat! Jawaban kamu tepat dan berhasil meraih ⭐ +20 Bintang!`);
+        function checkLovInputState() {
+            const val = document.getElementById('lovAnswerInput').value.trim();
+            const btn = document.getElementById('lovSubmitBtn');
+            if (val.length > 0) btn.classList.add('active'); else btn.classList.remove('active');
+        }
+
+        function handleLovKeyPress(e) {
+            if (e.key === 'Enter') {
+                const btn = document.getElementById('lovSubmitBtn');
+                if (btn) btn.click();
+            }
+        }
+
+        function submitLovAnswer(correctAns) {
+            const userAns = document.getElementById('lovAnswerInput').value.trim().toLowerCase();
+            if (!userAns) return;
+
+            clearInterval(lovInterval);
+
+            if (userAns === correctAns.toLowerCase()) {
+                lovScore += 100;
+                userStars += 20;
+                document.getElementById('userStarDisplay').innerText = userStars;
+                alert('🎉 EXCELLENT! Jawabanmu Benar!\nScore +100 | ⭐ +20 Bintang!');
+                currentLovQuestionIdx++;
+            } else {
+                alert(`❌ Belum tepat! Jawaban yang benar adalah: "${correctAns.toUpperCase()}".`);
+            }
+
+            switchSection('games');
         }
 
         function renderMyProfileSection(container) {
@@ -808,7 +822,7 @@
                 <div class="weekly-ai-insight-card">
                     <div class="insight-card-tag">🧠 WEEKLY AI INSIGHT • PERSONALIZED FOR ${currentStudent.name.toUpperCase()}</div>
                     <div class="insight-card-desc">
-                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu rajin berlatih minggu ini untuk jenjang ${currentStudent.classLevel}. Ingatlah bahwa kebiasaan belajar yang dilakukan secara konsisten meskipun sedikit akan membuahkan hasil luar biasa!"
+                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu rajin berlatih minggu ini untuk jenjang ${currentStudent.classLevel}. Terus kembangkan semangat belajarmu bersama Omah Les!"
                     </div>
                 </div>
             `;
@@ -828,7 +842,7 @@
                                 Assalamu'alaikum ${currentStudent.name}! Aku Kak Omah, AI Tutor Omah Les Privat. Kamu bisa tanya materi sekolah, soal sulit, cerita pengetahuan umum, atau latihan Bahasa Inggris denganku! Yuk cerita apa saja ke Kak Omah! 😊
                             </div>
                             <div class="chat-action-bar">
-                                <button class="btn-speak-voice" onclick="readOutLoud('Assalamu\'alaikum ${currentStudent.name}! Aku Kak Omah, AI Tutor Omah Les Privat. Kamu bisa tanya materi sekolah, soal sulit, cerita pengetahuan umum, atau latihan Bahasa Inggris denganku!')">🔊 Dengar Suara</button>
+                                <button class="btn-speak-voice" onclick="readOutLoud('Assalamu\'alaikum ${currentStudent.name}! Aku Kak Omah, AI Tutor Omah Les Privat. Kamu bisa tanya materi sekolah, soal sulit, atau cerita pengetahuan umum denganku!')">🔊 Dengar Suara</button>
                             </div>
                         </div>
                     </div>
@@ -1047,6 +1061,7 @@ Instruksi Jawaban Kak Omah:
         function escapeSingleQuotes(text) { return text.replace(/'/g, "\\'").replace(/\n/g, " "); }
         function formatMarkdown(text) { return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>'); }
 
+        /* UNTUK FUNGSI LOGIN & PEMATIAN SISTEM DULU */
         function handleFormLogin(e) {
             e.preventDefault();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
@@ -1113,6 +1128,7 @@ Instruksi Jawaban Kak Omah:
             switchSection(activeSection);
         }
 
+        // PERBAIKAN: JIKA TIDAK ADA SESI AKTIF DI STORAGE, SELALU BUKA HALAMAN LOGIN
         window.addEventListener('DOMContentLoaded', () => { 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             const savedSec = sessionStorage.getItem('omahles_active_section');
