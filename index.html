@@ -60,9 +60,9 @@
 
         .login-right-form { width: 480px; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; overflow-y: auto; }
         .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: var(--brand-brown); margin-bottom: 6px; }
-        .form-sub-text { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 20px; font-weight: 600; }
+        .form-sub-text { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 24px; font-weight: 600; }
 
-        .form-group { margin-bottom: 14px; text-align: left; }
+        .form-group { margin-bottom: 16px; text-align: left; }
         .form-label { display: block; font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
         .form-input, .form-select { width: 100%; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: #fdfbf7; }
         .form-input:focus, .form-select:focus { border-color: var(--brand-amber); background: #ffffff; }
@@ -246,42 +246,12 @@
 
         <div class="login-right-form">
             <div class="form-header-text">Login Student</div>
-            <div class="form-sub-text">Masukkan data diri & Kode Akses yang didapat dari Lynk.id</div>
+            <div class="form-sub-text">Masukkan Email Orang Tua terdaftar di Lynk.id</div>
 
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
-                    <label class="form-label">Nama Lengkap Siswa</label>
-                    <input type="text" class="form-input" id="inputStudentName" placeholder="Contoh: Agra / Rezky" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Email Orang Tua / Wali</label>
+                    <label class="form-label">Email Orang Tua / Wali Terdaftar</label>
                     <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Kode Akses / Lisensi Lynk.id</label>
-                    <input type="text" class="form-input" id="inputAccessCode" placeholder="Contoh: OLP-SD3" style="text-transform: uppercase;" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Jenjang Pendidikan</label>
-                    <select class="form-select" id="selectJenjang" onchange="toggleSdClassDropdown()" required>
-                        <option value="tk">TK / PAUD</option>
-                        <option value="sd" selected>Sekolah Dasar (SD)</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="sdClassGroup">
-                    <label class="form-label">Pilih Kelas SD</label>
-                    <select class="form-select" id="selectSdClass">
-                        <option value="sd1">Kelas 1 SD</option>
-                        <option value="sd2">Kelas 2 SD</option>
-                        <option value="sd3" selected>Kelas 3 SD</option>
-                        <option value="sd4">Kelas 4 SD</option>
-                        <option value="sd5">Kelas 5 SD</option>
-                        <option value="sd6">Kelas 6 SD</option>
-                    </select>
                 </div>
 
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
@@ -450,17 +420,15 @@
             { quote: "Ilmu itu seperti air; jika tidak mengalir, ia akan mengendap. Teruslah membaca dan berbagi pengetahuan.", author: "— Pepatah Bijak" }
         ];
 
-        // MASTER DATABASE KODE AKSES LYNK.ID KHUSUS TIAP KELAS
-        const validAccessCodes = {
-            'OLP-TK': 'tk',
-            'OLP-SD1': 'sd1',
-            'OLP-SD2': 'sd2',
-            'OLP-SD3': 'sd3',
-            'OLP-SD4': 'sd4',
-            'OLP-SD5': 'sd5',
-            'OLP-SD6': 'sd6',
-            'OLP-SMA': 'sma'
-        };
+        // =========================================================================
+        // DATABASE VERIFIKASI MANUAL EMAIL ORANG TUA (DIDAFTARKAN DARI LYNK.ID)
+        // KAK FAARI BISA TAMBAHKAN EMAIL SISWA BARU DI SINI:
+        // =========================================================================
+       const approvedDatabase = {
+    'parent.agra@gmail.com': { name: 'Agra', catKey: 'sd3', classLevel: 'Kelas 3 SD' },
+    'ibu.rezky@gmail.com': { name: 'Rezky', catKey: 'sd5', classLevel: 'Kelas 5 SD' },
+    'email.murid.baru@gmail.com': { name: 'Budi', catKey: 'sd1', classLevel: 'Kelas 1 SD' }
+};
 
         const databaseMateriLengkap = {
             'tk': [
@@ -518,69 +486,31 @@
         let userStreak = 3;
         let currentFontSize = 1.05;
 
-        function toggleSdClassDropdown() {
-            const jenjang = document.getElementById('selectJenjang').value;
-            document.getElementById('sdClassGroup').style.display = jenjang === 'sd' ? 'block' : 'none';
-        }
-
-        // LOGIKA PENDAFTARAN & PENGUNCIAN KELAS BERDASARKAN KODE AKSES LYNK.ID
+        // LOGIKA LOGIN DENGAN VERIFIKASI MANUAL DATABASE EMAIL
         function handleFormLogin(e) {
             e.preventDefault();
-            const name = document.getElementById('inputStudentName').value.trim();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
-            const accessCode = document.getElementById('inputAccessCode').value.trim().toUpperCase();
-            const jenjang = document.getElementById('selectJenjang').value;
-            const sdClass = document.getElementById('selectSdClass').value;
 
-            let catKey = 'sd3';
-            let labelClass = 'Kelas 3 SD';
-
-            if (jenjang === 'tk') { catKey = 'tk'; labelClass = 'TK / PAUD'; }
-            else if (jenjang === 'sma') { catKey = 'sma'; labelClass = 'Kelas 10 SMA'; }
-            else { catKey = sdClass; labelClass = `Kelas ${sdClass.replace('sd', '')} SD`; }
-
-            // 1. VALIDASI KODE AKSES LYNK.ID DENGAN KELAS
-            if (!validAccessCodes[accessCode]) {
-                alert(`🚫 Kode Akses Salah!\n\nKode akses "${accessCode}" tidak terdaftar di sistem. Dapatkan Kode Akses resmi setelah melakukan pembelian di Lynk.id Omah Les.`);
+            // CEK APAKAH EMAIL TERDAFTAR DI DATABASE APPROVED
+            if (!approvedDatabase[pEmail]) {
+                alert(`🚫 Akses Belum Terverifikasi!\n\nEmail (${pEmail}) belum terdaftar di sistem Omah Les.\n\nSilakan lakukan pendaftaran/pembelian terlebih dahulu via Lynk.id agar email kamu diaktifkan oleh pengajar.`);
                 return;
             }
 
-            if (validAccessCodes[accessCode] !== catKey) {
-                alert(`⚠️ Kode Akses Tidak Sesuai!\n\nKode Akses (${accessCode}) tidak berlaku untuk kelas yang kamu pilih (${labelClass}).\n\nSilakan pilih jenjang/kelas yang sesuai dengan paket pembelian kamu di Lynk.id.`);
-                return;
-            }
+            // AMBIL DATA DARI VERIFIKASI MANUAL
+            const userAccount = approvedDatabase[pEmail];
 
-            // 2. CEK DAN KUNCI EMAIL KE KELAS DI LOCALSTORAGE
-            let registeredUsers = JSON.parse(localStorage.getItem('olp_registered_accounts') || '{}');
+            currentStudent = {
+                name: userAccount.name,
+                parentEmail: pEmail,
+                classLevel: userAccount.classLevel,
+                categoryKey: userAccount.catKey
+            };
 
-            if (registeredUsers[pEmail]) {
-                const existingAccount = registeredUsers[pEmail];
-
-                if (existingAccount.categoryKey !== catKey) {
-                    alert(`🚫 Akses Ditolak!\n\nMaaf, kamu tidak bisa mengakses kelas ini. 🙏\n\nEmail (${pEmail}) sudah terdaftar khusus untuk "${existingAccount.studentName}" di ${existingAccount.classLevel}.\n\nSilakan pilih kelas terdaftar kamu untuk melanjutkan belajar!`);
-                    return;
-                } else {
-                    existingAccount.studentName = name;
-                    registeredUsers[pEmail] = existingAccount;
-                    localStorage.setItem('olp_registered_accounts', JSON.stringify(registeredUsers));
-                }
-            } else {
-                registeredUsers[pEmail] = {
-                    studentName: name,
-                    classLevel: labelClass,
-                    categoryKey: catKey,
-                    codeUsed: accessCode
-                };
-                localStorage.setItem('olp_registered_accounts', JSON.stringify(registeredUsers));
-            }
-
-            // SET AKUN AKTIF
-            currentStudent = { name: name, parentEmail: pEmail, classLevel: labelClass, categoryKey: catKey };
-
-            localStorage.setItem('olp_active_name', name);
+            localStorage.setItem('olp_active_name', userAccount.name);
             localStorage.setItem('olp_active_parentEmail', pEmail);
-            localStorage.setItem('olp_active_class', labelClass);
-            localStorage.setItem('olp_active_catKey', catKey);
+            localStorage.setItem('olp_active_class', userAccount.classLevel);
+            localStorage.setItem('olp_active_catKey', userAccount.catKey);
 
             document.getElementById('loginPage').style.display = 'none';
             showRandomDailyWisdom();
