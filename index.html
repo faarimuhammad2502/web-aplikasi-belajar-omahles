@@ -657,8 +657,8 @@
 
         function renderDashboardData() {
             document.getElementById('userNameDisplay').innerText = currentStudent.name;
-            document.getElementById('userLevelDisplay').innerText = currentStudent.classLevel;
-            document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ All-Access Mode: ${currentStudent.classLevel}` : `🔒 Paket Terdaftar: ${currentStudent.classLevel}`;
+            document.getElementById('userLevelDisplay').innerText = currentStudent.classLabel;
+            document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ All-Access Mode: ${currentStudent.classLabel}` : `🔒 Paket Terdaftar: ${currentStudent.classLabel}`;
             document.getElementById('userStarDisplay').innerText = userStars;
             const devBox = document.getElementById('devLevelSwitcherBox');
             if (currentStudent.isDev) devBox.classList.add('active'); else devBox.classList.remove('active');
@@ -666,7 +666,7 @@
 
         function devSwitchClass(catKey, classLabel) {
             currentStudent.categoryKey = catKey;
-            currentStudent.classLevel = `Full Access (${classLabel})`;
+            currentStudent.classLabel = `Full Access (${classLabel})`;
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
             renderDashboardData();
             switchSection(activeSection);
@@ -682,7 +682,7 @@
 
             const sectionHeaders = {
                 'dashboard': { tag: '📊 Overview', title: 'Portal Dashboard', sub: `Selamat datang kembali, ${currentStudent.name}!` },
-                'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Materi kelas ${currentStudent.classLevel}.` },
+                'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Materi kelas ${currentStudent.classLabel}.` },
                 'profile': { tag: '👤 Personal Space', title: 'My Profile', sub: 'Pantau perkembangan belajarmu.' },
                 'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges', sub: `Koleksi trofi berdasarkan hasil belajar.` },
                 'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia', sub: 'Melatih kemampuan literasi.' },
@@ -690,7 +690,7 @@
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & IPA', sub: 'Eksplorasi alam semesta.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni Budaya', sub: 'Berkreasi tanpa batas.' },
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
-                'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif khusus ${currentStudent.classLevel}.` },
+                'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif khusus ${currentStudent.classLabel}.` },
                 'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar', sub: 'Tulis target harianmu.' }
             };
 
@@ -805,7 +805,7 @@
                             <div class="profile-big-avatar">🎓</div>
                             <div>
                                 <div class="profile-user-name">${currentStudent.name}</div>
-                                <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLevel}</div>
+                                <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLabel}</div>
                             </div>
                         </div>
                     </div>
@@ -866,7 +866,7 @@
             const gamesList = omahGamesDatabasePerLevel[catKey] || omahGamesDatabasePerLevel['sd3'];
 
             container.innerHTML = `
-                <div class="game-level-tag-box">🎮 OMAH GAMES KELAS: <strong>${currentStudent.classLevel.toUpperCase()}</strong></div>
+                <div class="game-level-tag-box">🎮 OMAH GAMES KELAS: <strong>${currentStudent.classLabel.toUpperCase()}</strong></div>
                 <div class="game-card-grid">
                     ${gamesList.map((g, idx) => `
                         <div class="game-item-card" onclick="startOmahGame('${catKey}', ${idx})">
