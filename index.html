@@ -241,7 +241,7 @@
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
             <img src="./logo.jpg" alt="Logo Omah Les Privat" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/130?text=OLP'">
             <div class="brand-slogan-title">Jelajahi Hal Baru Bersama <span>Omah Les</span>.</div>
-            <div class="brand-slogan-sub">Sistem belajar terstruktur untuk siswa TK/PAUD, Sekolah Dasar (SD Kelas 1-6) dengan materi eksakta & literasi.</div>
+            <div class="brand-slogan-sub">Sistem belajar terstruktur untuk siswa TK/PAUD, Sekolah Dasar (SD Kelas 1-6), dengan materi eksakta & literasi.</div>
         </div>
 
         <div class="login-right-form">
@@ -506,7 +506,7 @@
             document.getElementById('sdClassGroup').style.display = jenjang === 'sd' ? 'block' : 'none';
         }
 
-        // LOGIKA LOGIN DENGAN PENGUNCIAN EMAIL ORANG TUA
+        // LOGIKA PENDAFTARAN & PENGUNCIAN KELAS PERMANEN
         function handleFormLogin(e) {
             e.preventDefault();
             const name = document.getElementById('inputStudentName').value.trim();
@@ -521,18 +521,25 @@
             else if (jenjang === 'sma') { catKey = 'sma'; labelClass = 'Kelas 10 SMA'; }
             else { catKey = sdClass; labelClass = `Kelas ${sdClass.replace('sd', '')} SD`; }
 
-            // CEK DATABASE LOKAL APAKAH EMAIL SUDAH TERDENGAR DENGAN KELAS BERBEDA
-            const registeredUsers = JSON.parse(localStorage.getItem('olp_registered_accounts') || '{}');
+            // AMBIL DATABASE AKUN TERDAFTAR DI LOCALSTORAGE
+            let registeredUsers = JSON.parse(localStorage.getItem('olp_registered_accounts') || '{}');
 
             if (registeredUsers[pEmail]) {
-                // Email sudah terdaftar sebelumnya
+                // EMAIL SUDAH TERDAFTAR SEBELUMNYA
                 const existingAccount = registeredUsers[pEmail];
+
                 if (existingAccount.categoryKey !== catKey) {
-                    alert(`⚠️ Peringatan Akses Portal!\n\nEmail orang tua (${pEmail}) sudah terdaftar khusus untuk "${existingAccount.classLevel}".\n\nSiswa tidak diperbolehkan mengganti ke kelas/jenjang lain (${labelClass}) saat login ulang.`);
+                    // JIKA SISWA MEMILIH KELAS/JENJANG BERBEDA DENGAN SAAT PENDAFTARAN
+                    alert(`🚫 Akses Ditolak!\n\nMaaf, kamu tidak bisa mengakses kelas ini. 🙏\n\nEmail (${pEmail}) sudah terdaftar khusus untuk "${existingAccount.studentName}" di ${existingAccount.classLevel}.\n\nSilakan pilih kelas yang sudah kamu daftarkan saat awal login!`);
                     return; // Batalkan Login
+                } else {
+                    // Update nama siswa jika akun cocok
+                    existingAccount.studentName = name;
+                    registeredUsers[pEmail] = existingAccount;
+                    localStorage.setItem('olp_registered_accounts', JSON.stringify(registeredUsers));
                 }
             } else {
-                // Pendaftaran akun baru
+                // PENDAFTARAN BARU: KUNCI PERMANEN EMAIL DENGAN KELAS PILIHAN
                 registeredUsers[pEmail] = {
                     studentName: name,
                     classLevel: labelClass,
@@ -541,12 +548,13 @@
                 localStorage.setItem('olp_registered_accounts', JSON.stringify(registeredUsers));
             }
 
+            // SET AKUN AKTIF
             currentStudent = { name: name, parentEmail: pEmail, classLevel: labelClass, categoryKey: catKey };
 
-            localStorage.setItem('olp_form_name', name);
-            localStorage.setItem('olp_form_parentEmail', pEmail);
-            localStorage.setItem('olp_form_class', labelClass);
-            localStorage.setItem('olp_form_catKey', catKey);
+            localStorage.setItem('olp_active_name', name);
+            localStorage.setItem('olp_active_parentEmail', pEmail);
+            localStorage.setItem('olp_active_class', labelClass);
+            localStorage.setItem('olp_active_catKey', catKey);
 
             document.getElementById('loginPage').style.display = 'none';
             showRandomDailyWisdom();
@@ -639,10 +647,10 @@
             document.documentElement.style.setProperty('--reader-font-size', `${currentFontSize}rem`);
         }
 
-        const savedName = localStorage.getItem('olp_form_name');
-        const savedPEmail = localStorage.getItem('olp_form_parentEmail');
-        const savedClass = localStorage.getItem('olp_form_class');
-        const savedCatKey = localStorage.getItem('olp_form_catKey');
+        const savedName = localStorage.getItem('olp_active_name');
+        const savedPEmail = localStorage.getItem('olp_active_parentEmail');
+        const savedClass = localStorage.getItem('olp_active_class');
+        const savedCatKey = localStorage.getItem('olp_active_catKey');
 
         if (savedName && savedClass && savedCatKey) {
             currentStudent = { name: savedName, parentEmail: savedPEmail || '', classLevel: savedClass, categoryKey: savedCatKey };
