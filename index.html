@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omah Les Privat - Portal Belajar</title>
+    <link rel="icon" type="image/jpeg" href="./logo.jpg">
+    
+    <!-- Optimize Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* TONE WARNA LOGO OMAH LES PRIVAT */
+            --brand-main: #8b4513;        /* Warm Teracotta / Cokelat Kayu Utama */
+            --brand-secondary: #a0522d;   /* Cokelat Medium */
+            --brand-accent: #d97706;      /* Amber / Warm Gold */
+            --brand-soft-bg: #fef8f0;     /* Krim Cokelat Muda */
+            
+            --bg-body: #fdfbf7;           /* Background Utama Hangat */
+            --card-bg: #ffffff;
+            --text-main: #3d2b1f;         /* Cokelat Gelap untuk Teks */
+            --text-sub: #786454;          /* Cokelat Soft untuk Deskripsi */
+            --border-soft: #f3e9dc;       /* Garis Pinggir Cream */
+            --radius-main: 22px;
+            --radius-sm: 14px;
+        }
+
+        body.dark-theme {
+            --bg-body: #1c1512;
+            --card-bg: #281e19;
+            --text-main: #fcf8f5;
+            --text-sub: #c4b5a5;
+            --border-soft: #3a2e26;
+            --brand-soft-bg: #35261e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR NAVIGATION */
+        .sidebar {
+            width: 270px;
+            background: var(--card-bg);
+            border-right: 2px solid var(--border-soft);
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed var(--border-soft);
+        }
+
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            object-fit: cover;
+            border: 2px solid var(--brand-accent);
+            background: var(--brand-soft-bg);
+        }
+
+        .brand-title {
+            font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.3rem;
+            color: var(--brand-main);
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        body.dark-theme .brand-title {
+            color: #f59e0b;
+        }
+
+        .brand-sub {
+            font-size: 0.72rem;
+            color: var(--brand-accent);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        /* CARD PROFIL SISWA */
+        .profile-card {
+            background: var(--brand-soft-bg);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .avatar-box {
+            font-size: 1.8rem;
+            background: var(--card-bg);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--brand-accent);
+        }
+
+        .profile-name {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .profile-badge {
+            font-size: 0.73rem;
+            color: var(--brand-main);
+            font-weight: 700;
+        }
+
+        body.dark-theme .profile-badge {
+            color: var(--brand-accent);
+        }
+
+        .menu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .menu-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: var(--text-sub);
+            font-weight: 700;
+            font-size: 0.92rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .menu-item.active a, .menu-item a:hover {
+            background: linear-gradient(135deg, var(--brand-main) 0%, var(--brand-secondary) 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 18px rgba(139, 69, 19, 0.25);
+        }
+
+        /* MAIN CONTENT AREA */
+        .content-area {
+            margin-left: 270px;
+            flex: 1;
+            padding: 28px 36px;
+            max-width: 1280px;
+        }
+
+        /* HERO BANNER TONE LOGO */
+        .hero-banner {
+            background: linear-gradient(135deg, #8b4513 0%, #b45309 100%);
+            color: #ffffff;
+            border-radius: var(--radius-main);
+            padding: 28px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 12px 28px rgba(139, 69, 19, 0.2);
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-text h1 {
+            font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .hero-text p {
+            font-size: 0.92rem;
+            opacity: 0.92;
+            font-weight: 600;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 12px;
+        }
+
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .stat-val {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fef08a;
+        }
+
+        .stat-lbl {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* GRID CONTENT & CATEGORY */
+        .section-header {
+            font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-soft);
+            border-radius: var(--radius-main);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--brand-accent);
+            box-shadow: 0 10px 20px rgba(217, 119, 6, 0.1);
+        }
+
+        .cat-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            background: var(--brand-soft-bg);
+            border: 1px solid var(--border-soft);
+        }
+
+        .cat-title {
+            font-weight: 800;
+            font-size: 0.98rem;
+            color: var(--text-main);
+        }
+
+        .cat-desc {
+            font-size: 0.78rem;
+            color: var(--text-sub);
+            font-weight: 600;
+        }
+
+        /* PANELS: JADWAL LES & TARGET */
+        .dashboard-columns {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+        }
+
+        .panel-box {
+            background: var(--card-bg);
+            border: 2px solid var(--border-soft);
+            border-radius: var(--radius-main);
+            padding: 22px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px dashed var(--border-soft);
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .tag-subject {
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: white;
+            background: var(--brand-main);
+        }
+
+        .btn-action-sm {
+            background: var(--brand-accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .btn-action-sm:hover {
+            opacity: 0.9;
+        }
+
+        .target-item {
+            padding: 12px 14px;
+            background: var(--brand-soft-bg);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 80px;
+                padding: 16px 8px;
+            }
+            .brand-title, .brand-sub, .profile-info, .menu-item span:last-child {
+                display: none;
+            }
+            .content-area {
+                margin-left: 80px;
+                padding: 16px;
+            }
+            .dashboard-columns {
+                grid-template-columns: 1fr;
+            }
+            .hero-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGASI -->
+    <aside class="sidebar">
+        <div>
+            <div class="brand-header">
+                <img src="./logo.jpg" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/48?text=OLP'">
+                <div>
+                    <div class="brand-title">Omah Les</div>
+                    <div class="brand-sub">PORTAL BELAJAR</div>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="avatar-box">🐰</div>
+                <div class="profile-info">
+                    <div class="profile-name">Rezky</div>
+                    <div class="profile-badge">Kelas 10 • SMA</div>
+                </div>
+            </div>
+
+            <ul class="menu-list">
+                <li class="menu-item active"><a href="#"><span>🏠</span> <span>Beranda</span></a></li>
+                <li class="menu-item"><a href="#"><span>📚</span> <span>Modul Materi</span></a></li>
+                <li class="menu-item"><a href="#"><span>📝</span> <span>Latihan Soal</span></a></li>
+                <li class="menu-item"><a href="#"><span>📅</span> <span>Jadwal Les</span></a></li>
+                <li class="menu-item"><a href="#"><span>🏆</span> <span>Papan Prestasi</span></a></li>
+            </ul>
+        </div>
+
+        <div>
+            <ul class="menu-list">
+                <li class="menu-item"><a href="#" onclick="toggleTheme()"><span>🌙</span> <span>Mode Gelap</span></a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <main class="content-area">
+
+        <!-- BANNER UTAMA HASIL HARMONI WARNA LOGO -->
+        <section class="hero-banner">
+            <div class="hero-text">
+                <h1>Semangat Belajar, Rezky! ✨</h1>
+                <p>Mari tuntaskan materi dan persiapkan sesi les privat berikutnya.</p>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-badge">
+                    <div class="stat-val">⭐ 145</div>
+                    <div class="stat-lbl">Bintang</div>
+                </div>
+                <div class="stat-badge">
+                    <div class="stat-val">🔥 5 Hari</div>
+                    <div class="stat-lbl">Absensi</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KATEGORI MATA PELAJARAN -->
+        <section>
+            <div class="section-header">
+                <span>Pilih Mata Pelajaran</span>
+            </div>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="cat-icon">📐</div>
+                    <div>
+                        <div class="cat-title">Matematika</div>
+                        <div class="cat-desc">Trigonometri & Algebra</div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">⚡</div>
+                    <div>
+                        <div class="cat-title">Fisika</div>
+                        <div class="cat-desc">Momen Inersia & Dinamika</div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">🧪</div>
+                    <div>
+                        <div class="cat-title">Kimia</div>
+                        <div class="cat-desc">Ikatan Kimia & Reaksi</div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="cat-icon">🇬🇧</div>
+                    <div>
+                        <div class="cat-title">Bahasa Inggris</div>
+                        <div class="cat-desc">Grammar & Structure</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL AGENDA LES & TARGET BELAJAR -->
+        <div class="dashboard-columns">
+            <div class="panel-box">
+                <div class="section-header">
+                    <span>📅 Agenda Les Privat</span>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-info">
+                        <span class="tag-subject">Matematika</span>
+                        <div>
+                            <div style="font-weight: 800; font-size: 0.95rem;">Latihan Trigonometri Identitas</div>
+                            <div style="font-size: 0.78rem; color: var(--text-sub); font-weight: 600;">Hari Ini • 15.30 - 17.00 WIB</div>
+                        </div>
+                    </div>
+                    <button class="btn-action-sm">Buka Materi</button>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-info">
+                        <span class="tag-subject" style="background: var(--brand-secondary);">Fisika</span>
+                        <div>
+                            <div style="font-weight: 800; font-size: 0.95rem;">Pembahasan Momen Inersia</div>
+                            <div style="font-size: 0.78rem; color: var(--text-sub); font-weight: 600;">Rabu • 15.30 - 17.00 WIB</div>
+                        </div>
+                    </div>
+                    <button class="btn-action-sm" style="background: var(--text-sub);">Persiapan</button>
+                </div>
+            </div>
+
+            <!-- PANEL TARGET PEKAN INI -->
+            <div class="panel-box">
+                <div class="section-header">
+                    <span>📌 Target Pekan Ini</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div class="target-item">
+                        ✅ Selesaikan Soal Latihan Trigonometri
+                    </div>
+                    <div class="target-item">
+                        ⏳ Review Ringkasan Rumus Momen Inersia
+                    </div>
+                    <div class="target-item">
+                        ⏳ Penyusunan Draft Research Paper
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+    </script>
+</body>
+</html>
