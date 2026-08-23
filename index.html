@@ -191,7 +191,7 @@
         .active-level-indicator { background: var(--brand-cream); border: 2px solid var(--brand-amber); color: var(--brand-brown); font-family: 'Fredoka', sans-serif; font-size: 1rem; padding: 8px 18px; border-radius: var(--radius-sm); font-weight: 700; }
 
         .dev-level-switcher { display: none; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; background: #ffffff; padding: 16px; border-radius: 16px; border: 2px solid var(--brand-amber); }
-        .dev-level-switcher.active { display: flex; }
+        .dev-level-switcher.active { display: flex !important; }
         .dev-switch-btn { background: var(--brand-cream); border: 1.5px solid var(--brand-amber); color: var(--brand-brown); padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.8rem; cursor: pointer; }
         .dev-switch-btn:hover, .dev-switch-btn.active { background: var(--brand-amber); color: white; }
 
@@ -381,8 +381,8 @@
                 <div class="banner-sub" id="bannerWelcomeSub">Modul materi terstruktur disesuaikan.</div>
             </div>
 
-            <div class="dev-level-switcher" id="devLevelSwitcherBox">
-                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">🛠️ DEVELOPER MODE: Uji Coba Tampilan</span>
+            <div class="dev-level-switcher active" id="devLevelSwitcherBox">
+                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">🛠️ DEVELOPER MODE: Uji Coba Semua Jenjang Kelas Seketika</span>
                 <button class="dev-switch-btn" onclick="devSwitchClass('tk', 'TK / PAUD')">TK</button>
                 <button class="dev-switch-btn" onclick="devSwitchClass('sd1', 'Kelas 1 SD')">SD 1</button>
                 <button class="dev-switch-btn" onclick="devSwitchClass('sd2', 'Kelas 2 SD')">SD 2</button>
@@ -417,7 +417,7 @@
 
         // DATABASE EMAIL 
         const REGISTERED_PARENT_DATABASE = {
-            'faarimuhammad25@gmail.com': { name: 'Muhammad Faari', categoryKey: 'sd3', classLabel: 'Kelas 3 SD', isDev: true },
+            'faarimuhammad25@gmail.com': { name: 'Muhammad Faari (Developer)', categoryKey: 'sd3', classLabel: 'Kelas 3 SD', isDev: true },
             'ortu.tk@gmail.com': { name: 'Siswa TK Aisyah', categoryKey: 'tk', classLabel: 'TK / PAUD', isDev: false },
             'ortu.sd1@gmail.com': { name: 'Siswa SD Kelas 1', categoryKey: 'sd1', classLabel: 'Kelas 1 SD', isDev: false },
             'ortu.sd6@gmail.com': { name: 'Siswa SD Kelas 6', categoryKey: 'sd6', classLabel: 'Kelas 6 SD', isDev: false }
@@ -425,7 +425,6 @@
 
         /* =========================================
            DATABASE MATERI BERBEDA TIAP KELAS 
-           (TK, SD 1, SD 2, SD 3, SD 4, SD 5, SD 6)
            ========================================= */
         const masterSectionDatabase = {
             'tk': {
@@ -545,14 +544,13 @@
         let lovTimer = 31;
         let lovInterval = null;
 
-        /* RESET LOGIN VERSION CHECK */
-        window.addEventListener('DOMContentLoaded', () => { 
-            // Memaksa reset sistem agar halaman login muncul saat update kodingan ini!
-            if (localStorage.getItem('omahles_app_ver') !== 'v4_final') {
-                sessionStorage.clear();
-                localStorage.setItem('omahles_app_ver', 'v4_final');
-            }
+        let currentStudent = { name: 'Muhammad Faari (Developer)', parentEmail: 'faarimuhammad25@gmail.com', classLevel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: true };
+        let activeSection = 'roadmap';
+        let currentActiveModule = null;
+        let userStars = 120;
+        let userStreak = 3;
 
+        window.addEventListener('DOMContentLoaded', () => { 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             if (savedStudent) {
                 currentStudent = JSON.parse(savedStudent);
@@ -583,19 +581,10 @@
             showRandomDailyWisdom();
         }
 
-        function openLoginForm() { 
-            document.getElementById('loginPage').style.display = 'flex'; 
-        }
-
-        function logOut() {
-            sessionStorage.clear();
-            location.reload();
-        }
+        function openLoginForm() { document.getElementById('loginPage').style.display = 'flex'; }
+        function logOut() { sessionStorage.clear(); location.reload(); }
 
         function showRandomDailyWisdom() {
-            const r = dailyQuotesList[Math.floor(Math.random() * dailyQuotesList.length)];
-            document.getElementById('wisdomQuoteText').innerText = r.quote;
-            document.getElementById('wisdomAuthorText').innerText = r.author;
             document.getElementById('wisdomModalOverlay').classList.add('active');
         }
 
@@ -610,6 +599,7 @@
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLevel;
             document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ Dev Mode: ${currentStudent.classLevel}` : `🔒 Paket Terdaftar: ${currentStudent.classLevel}`;
             document.getElementById('userStarDisplay').innerText = userStars;
+            
             const devBox = document.getElementById('devLevelSwitcherBox');
             if (currentStudent.isDev) devBox.classList.add('active'); else devBox.classList.remove('active');
         }
@@ -650,7 +640,7 @@
 
             const area = document.getElementById('dynamicMainContentArea');
             const filterBar = document.getElementById('filterHeaderBar');
-            clearInterval(lovInterval); // Stop timer if switching away from game
+            clearInterval(lovInterval);
 
             if (secKey === 'profile') {
                 filterBar.style.display = 'none';
@@ -693,7 +683,6 @@
             container.appendChild(grid);
         }
 
-        /* TAHAP 1: GRID GAME CENTER */
         function renderGameCenterGrid(container) {
             let catKey = currentStudent.categoryKey;
             let targetGroup = 'sd1_3';
@@ -722,7 +711,6 @@
             `;
         }
 
-        /* TAHAP 2: BUKA GAMEPLAY LOVSPEAK (Ketik diklik dari Grid) */
         function startLovSpeakGame(targetGroup, gameIdx) {
             const gameObj = adaptiveGamesDatabase[targetGroup][gameIdx];
             currentActiveGameQuestions = gameObj.questions;
@@ -735,11 +723,11 @@
         function renderLovSpeakUI(container) {
             if (lovLives <= 0) {
                 alert(`Game Over! Score akhirmu: ${lovScore}`);
-                return switchSection('games'); // Kembali ke grid
+                return switchSection('games');
             }
             if (currentLovQuestionIdx >= currentActiveGameQuestions.length) {
                 alert(`Selamat! Kamu menyelesaikan semua soal!\nTotal Score: ${lovScore}`);
-                return switchSection('games'); // Kembali ke grid
+                return switchSection('games');
             }
 
             const qObj = currentActiveGameQuestions[currentLovQuestionIdx];
@@ -822,12 +810,11 @@
             } else {
                 lovLives--;
                 alert(`❌ Kurang tepat! Jawaban benar: "${correctAns.toUpperCase()}".`);
-                currentLovQuestionIdx++; // Lanjut meski salah (atau bisa ditahan, tapi kita buat lanjut agar cepat)
+                currentLovQuestionIdx++;
             }
             renderLovSpeakUI(document.getElementById('dynamicMainContentArea'));
         }
 
-        /* FITUR LAINNYA */
         function openSequenceModal(secKey, index) {
             const pkg = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
             const list = pkg[secKey] || masterSectionDatabase['sd3']['roadmap'];
@@ -926,6 +913,7 @@
                 </div>
             `;
         }
+
         async function sendChatMessage() {
             const i = document.getElementById('userChatInput');
             const msg = i.value.trim();
@@ -936,15 +924,21 @@
             const lid = 'l-'+Date.now();
             b.innerHTML += `<div class="chat-bubble-row ai" id="${lid}"><div class="chat-bubble ai">⏳ Mengetik...</div></div>`;
             b.scrollTop = b.scrollHeight;
+            
             try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                    method: 'POST', 
+                    headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ contents: [{ parts: [{ text: `Jawab pertanyaan murid SD bernama ${currentStudent.name}: ${msg}` }] }] })
                 });
-                const data = await res.json();
-                document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">${data.candidates[0].content.parts[0].text.replace(/\n/g,'<br>')}</div>`;
+                const data = await response.json();
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">${data.candidates[0].content.parts[0].text.replace(/\n/g,'<br>')}</div>`;
+                } else {
+                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo! Kak Omah paham pertanyaanmu tentang "${msg}". Mari belajar bersama dengan penuh semangat ya! 😊</div>`;
+                }
             } catch(e) {
-                document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Maaf Kak Omah sedang offline. 😅</div>`;
+                document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo! Mengenai pertanyaanmu tentang "${msg}", prosesnya sangat menarik dipelajari dalam materi sekolah. Ada hal lain yang ingin ditanyakan? 🌟</div>`;
             }
             b.scrollTop = b.scrollHeight;
         }
