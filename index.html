@@ -302,7 +302,7 @@
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
                     <label class="form-label">Email Terdaftar</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="faarimuhammad25@gmail.com" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
@@ -473,17 +473,16 @@
             'ortu.sd6@gmail.com': { name: 'Siswa SD Kelas 6', categoryKey: 'sd6', classLabel: 'Kelas 6 SD', isDev: false }
         };
 
+        /* TAMBAHKAN ATAU UBAH WISDOM DI SINI */
         const DAILY_WISDOM_LIST = [
             { quote: "Pendidikan adalah senjata paling ampuh yang bisa kamu gunakan untuk mengubah dunia.", author: "Nelson Mandela" },
             { quote: "Akar dari pendidikan itu pahit, namun buahnya sangat manis.", author: "Aristoteles" },
             { quote: "Hiduplah seolah-olah kamu akan mati besok. Belajarlah seolah-olah kamu akan hidup selamanya.", author: "Mahatma Gandhi" },
             { quote: "Investasi dalam pengetahuan membayar bunga terbaik.", author: "Benjamin Franklin" },
-            { quote: "Jangan batasi tantanganmu, tapi tantang batasmu setiap hari.", author: "Omah Les Mentor" }
-            { quote: "Belajar tanpa berpikir adalah sia-sia, tetapi berpikir tanpa belajar adalah sangat berbahaya.", author: "Confucius" },
-{ quote: "Kesuksesan tidak datang dari apa yang kita lakukan sekali-sekali, tetapi dari apa yang kita lakukan secara konsisten.", author: "Marie Forleo" },
-{ quote: "Pendidikan adalah paspor untuk masa depan, karena hari esok adalah milik mereka yang mempersiapkannya hari ini.", author: "Malcolm X" },
-{ quote: "Jangan malu bertanya ketika kamu tidak tahu, karena rasa malu bertanya adalah awal dari ketidaktahuan.", author: "Peribahasa" },
-{ quote: "Genius adalah 1 persen inspirasi dan 99 persen keringat kerja keras.", author: "Thomas Alva Edison" }
+            { quote: "Jangan batasi tantanganmu, tapi tantang batasmu setiap hari.", author: "Omah Les Mentor" },
+            { quote: "Pendidikan bukan persiapan untuk hidup; pendidikan adalah hidup itu sendiri.", author: "John Dewey" },
+            { quote: "Seorang guru yang baik dapat menginspirasi harapan, menyalakan imajinasi, dan menanamkan kecintaan belajar.", author: "Brad Henry" },
+            { quote: "Yang terpenting adalah jangan berhenti bertanya. Rasa ingin tahu memiliki alasan tersendiri untuk eksis.", author: "Albert Einstein" }
         ];
 
         const masterSectionDatabase = {
@@ -559,7 +558,6 @@
             }
         };
 
-        // DATABASE OMAH GAMES UNIK SPESIFIK TIAP JENJANG (TK & SD 1 s.d. 6)
         const omahGamesDatabasePerLevel = {
             'tk': [
                 { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🐱', title: 'Tebak Hewan & Suara', desc: 'Mengenal hewan peliharaan dari emoji & cirinya.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka melompat makan wortel', answer: 'kelinci' }, { emojis: '🐮 🌾', clue: 'Penghasil susu segar bersuara moo', answer: 'sapi' }] },
@@ -714,7 +712,6 @@
             void area.offsetWidth;
             area.className = 'animate-section';
 
-            // KHUSUS AI TUTOR: SEMBUNYIKAN BANNER ATAS AGAR TAMPILAN FULL BERSIH ALA LOVSPEAK
             if (secKey === 'aitutor') {
                 topBanner.style.display = 'none';
                 filterBar.style.display = 'none';
@@ -867,7 +864,7 @@
         }
 
         function renderGameCenterGrid(container) {
-            let catKey = currentStudent.categoryKey; // 'tk', 'sd1', 'sd2', 'sd3', 'sd4', 'sd5', 'sd6'
+            let catKey = currentStudent.categoryKey;
             const gamesList = omahGamesDatabasePerLevel[catKey] || omahGamesDatabasePerLevel['sd3'];
 
             container.innerHTML = `
