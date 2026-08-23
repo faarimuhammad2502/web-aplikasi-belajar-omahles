@@ -64,8 +64,8 @@
 
         .form-group { margin-bottom: 16px; text-align: left; }
         .form-label { display: block; font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
-        .form-input, .form-select { width: 100%; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: #fdfbf7; }
-        .form-input:focus, .form-select:focus { border-color: var(--brand-amber); background: #ffffff; }
+        .form-input { width: 100%; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: #fdfbf7; }
+        .form-input:focus { border-color: var(--brand-amber); background: #ffffff; }
 
         .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 15px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; }
 
@@ -241,7 +241,7 @@
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
             <img src="./logo.jpg" alt="Logo Omah Les Privat" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/130?text=OLP'">
             <div class="brand-slogan-title">Jelajahi Hal Baru Bersama <span>Omah Les</span>.</div>
-            <div class="brand-slogan-sub">Sistem belajar terstruktur untuk siswa TK/PAUD, Sekolah Dasar (SD Kelas 1-6), dengan materi eksakta & literasi.</div>
+            <div class="brand-slogan-sub">Sistem belajar terstruktur untuk siswa TK/PAUD & Sekolah Dasar (SD Kelas 1-6) dengan materi interaktif.</div>
         </div>
 
         <div class="login-right-form">
@@ -254,7 +254,7 @@
                     <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
                 </div>
 
-                <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
+                <button type="submit" class="btn-submit-login" id="btnSubmitLogin">Enter Omah Les Portal 🚀</button>
             </form>
         </div>
     </div>
@@ -413,6 +413,11 @@
     </footer>
 
     <script>
+        // =========================================================================
+        // TEMPATKAN LINK CSV GOOGLE SHEETS KAK FAARI DI SINI:
+        // =========================================================================
+        const GOOGLE_SHEET_CSV_URL = 'PASTE_LINK_CSV_GOOGLE_SHEETS_DI_SINI';
+
         const dailyQuotesList = [
             { quote: "Barangsiapa menempuh jalan untuk menuntut ilmu, maka Allah akan mudahkan baginya jalan menuju surga.", author: "— HR. Muslim" },
             { quote: "Pendidikan adalah senjata paling mematikan di dunia, karena dengan pendidikan Anda dapat mengubah dunia.", author: "— Nelson Mandela" },
@@ -420,16 +425,7 @@
             { quote: "Ilmu itu seperti air; jika tidak mengalir, ia akan mengendap. Teruslah membaca dan berbagi pengetahuan.", author: "— Pepatah Bijak" }
         ];
 
-        // =========================================================================
-        // DATABASE VERIFIKASI MANUAL EMAIL ORANG TUA (DIDAFTARKAN DARI LYNK.ID)
-        // KAK FAARI BISA TAMBAHKAN EMAIL SISWA BARU DI SINI:
-        // =========================================================================
-       const approvedDatabase = {
-    'parent.agra@gmail.com': { name: 'Agra', catKey: 'sd3', classLevel: 'Kelas 3 SD' },
-    'ibu.rezky@gmail.com': { name: 'Rezky', catKey: 'sd5', classLevel: 'Kelas 5 SD' },
-    'email.murid.baru@gmail.com': { name: 'Budi', catKey: 'sd1', classLevel: 'Kelas 1 SD' }
-};
-
+        // MASTER DATABASE MATERI MODUL (KHUSUS TK & SD KELAS 1-6)
         const databaseMateriLengkap = {
             'tk': [
                 { tierTag: 'TK / PAUD', title: 'Huruf A - Z & Vokal', desc: 'Mengenal huruf vokal A-I-U-E-O dengan contoh kata bergambar.', progress: '0/4', content: `Modul ini dirancang khusus untuk adik-adik TK/PAUD dalam mengenal alfabet dasar dan huruf vokal.\n\n<h2>1. Pengenalan Huruf Vokal</h2>\n• A - Apel 🍎\n• I - Ikan 🐟\n• U - Ular 🐍\n• E - Elang 🦅\n• O - Obor 🟠` },
@@ -472,12 +468,6 @@
                 { tierTag: 'SD KLS 6', title: 'Matematika - Pengolahan Data', desc: 'Rata-rata (Mean), Nilai Tengah (Median), Modus.', progress: '0/4', content: '• Mean: Rata-rata data\n• Median: Nilai tengah\n• Modus: Nilai paling sering' },
                 { tierTag: 'SD KLS 6', title: 'IPAS - Tata Surya', desc: 'Mengenal planet-planet dan sistem tata surya.', progress: '0/4', content: '• Planet: Merkurius, Venus, Bumi, Mars, Yupiter, Saturnus, Uranus, Neptunus.' },
                 { tierTag: 'SD KLS 6', title: 'English - Degree of Comparison', desc: 'Perbandingan sifat benda (Tall, Taller, Tallest).', progress: '0/4', content: '• Tall (Tinggi) -> Taller (Lebih tinggi) -> Tallest (Paling tinggi).' }
-            ],
-            'sma': [
-                { tierTag: 'SMA KLS 10', title: 'Matematika - Identitas Trigonometri', desc: 'Rumus dasar trigonometri, aturan sinus, dan cosinus.', progress: '0/4', content: '• sin²(x) + cos²(x) = 1\n• tan(x) = sin(x) / cos(x)' },
-                { tierTag: 'SMA KLS 10', title: 'Fisika - Momen Inersia', desc: 'Dinamika rotasi dan Momen Inersia benda tegar.', progress: '0/4', content: '• Momen Inersia (I) = m . r²' },
-                { tierTag: 'SMA KLS 10', title: 'Kimia - Ikatan Kimia', desc: 'Ikatan Ion, Kovalen, dan Kovalen Koordinasi.', progress: '0/4', content: '• Ikatan Ion: Serah terima elektron.\n• Ikatan Kovalen: Pemakaian bersama.' },
-                { tierTag: 'SMA KLS 10', title: 'English - Present Perfect Tense', desc: 'Penggunaan Present Perfect dan struktur teks.', progress: '0/4', content: '• Present Perfect Tense: Subject + Have/Has + Verb 3.' }
             ]
         };
 
@@ -486,19 +476,56 @@
         let userStreak = 3;
         let currentFontSize = 1.05;
 
-        // LOGIKA LOGIN DENGAN VERIFIKASI MANUAL DATABASE EMAIL
-        function handleFormLogin(e) {
+        // FUNGSI FETCH & PARSE DATA DARI GOOGLE SHEETS REAL-TIME
+        async function fetchApprovedStudentsFromSheets() {
+            if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.includes('PASTE_LINK')) {
+                return null;
+            }
+
+            try {
+                const response = await fetch(GOOGLE_SHEET_CSV_URL);
+                const csvData = await response.text();
+                const rows = csvData.split('\n');
+                
+                const db = {};
+                for (let i = 1; i < rows.length; i++) {
+                    const cols = rows[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
+                    if (cols.length >= 4 && cols[0]) {
+                        const email = cols[0].toLowerCase();
+                        db[email] = {
+                            name: cols[1],
+                            catKey: cols[2],
+                            classLevel: cols[3]
+                        };
+                    }
+                }
+                return db;
+            } catch (err) {
+                console.error("Gagal mengambil data dari Google Sheets:", err);
+                return null;
+            }
+        }
+
+        // LOGIKA LOGIN OTOMATIS BERDASARKAN GOOGLE SHEETS
+        async function handleFormLogin(e) {
             e.preventDefault();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
+            const btn = document.getElementById('btnSubmitLogin');
 
-            // CEK APAKAH EMAIL TERDAFTAR DI DATABASE APPROVED
-            if (!approvedDatabase[pEmail]) {
-                alert(`🚫 Akses Belum Terverifikasi!\n\nEmail (${pEmail}) belum terdaftar di sistem Omah Les.\n\nSilakan lakukan pendaftaran/pembelian terlebih dahulu via Lynk.id agar email kamu diaktifkan oleh pengajar.`);
+            btn.innerText = "Memeriksa Data... ⏳";
+            btn.disabled = true;
+
+            const liveDatabase = await fetchApprovedStudentsFromSheets();
+
+            btn.innerText = "Enter Omah Les Portal 🚀";
+            btn.disabled = false;
+
+            if (!liveDatabase || !liveDatabase[pEmail]) {
+                alert(`🚫 Akses Belum Terverifikasi!\n\nEmail (${pEmail}) belum terdaftar di sistem Omah Les.\n\nSilakan lakukan pendaftaran/pembelian terlebih dahulu via Lynk.id agar email kamu terdaftar.`);
                 return;
             }
 
-            // AMBIL DATA DARI VERIFIKASI MANUAL
-            const userAccount = approvedDatabase[pEmail];
+            const userAccount = liveDatabase[pEmail];
 
             currentStudent = {
                 name: userAccount.name,
@@ -533,7 +560,7 @@
         function renderDashboardData() {
             document.getElementById('userNameDisplay').innerText = currentStudent.name;
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLevel;
-            document.getElementById('userAvatar').innerText = currentStudent.categoryKey === 'tk' ? '🐥' : (currentStudent.categoryKey === 'sma' ? '🐰' : '🎒');
+            document.getElementById('userAvatar').innerText = currentStudent.categoryKey === 'tk' ? '🐥' : '🎒';
             document.getElementById('bannerWelcomeTitle').innerText = `Halo, ${currentStudent.name}! 👋`;
             document.getElementById('activeLevelText').innerText = `🔒 Modul Terkunci: ${currentStudent.classLevel}`;
 
