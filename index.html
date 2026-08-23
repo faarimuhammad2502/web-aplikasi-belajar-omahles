@@ -119,6 +119,13 @@
         .quiz-btn:hover { background: #fef3c7; }
         .quiz-feedback { margin-top: 10px; font-weight: 800; font-size: 0.9rem; }
 
+        /* DASHBOARD STYLES */
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 28px; }
+        .dash-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 24px; display: flex; align-items: center; gap: 18px; }
+        .dash-icon-box { width: 56px; height: 56px; border-radius: 18px; background: var(--brand-cream); border: 1.5px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+        .dash-info-title { font-size: 0.75rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; margin-bottom: 4px; }
+        .dash-info-val { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); }
+
         /* GAME CENTER STYLES */
         .game-level-tag-box { background: var(--brand-cream); border: 2px solid var(--brand-amber); border-radius: 16px; padding: 12px 20px; font-weight: 800; font-size: 0.9rem; color: var(--brand-brown); margin-bottom: 20px; display: inline-block; }
         .game-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 10px; }
@@ -270,11 +277,11 @@
         </div>
         <div class="login-right-form">
             <div class="form-header-text">Login Student</div>
-            <div class="form-sub-text">Masukkan Email Orang Tua terdaftar di Lynk.id</div>
+            <div class="form-sub-text">Masukkan Email Orang Tua / Tutor terdaftar</div>
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
-                    <label class="form-label">Email Orang Tua / Wali Terdaftar</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
+                    <label class="form-label">Email Terdaftar</label>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="faarimuhammad25@gmail.com" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
@@ -358,7 +365,8 @@
 
                 <div class="menu-group-label">MAIN MENU</div>
                 <ul class="menu-list">
-                    <li class="menu-item active" id="menuRoadmap"><a onclick="switchSection('roadmap')"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
+                    <li class="menu-item active" id="menuDashboard"><a onclick="switchSection('dashboard')"><span>📊</span> <span>Dashboard</span></a></li>
+                    <li class="menu-item" id="menuRoadmap"><a onclick="switchSection('roadmap')"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
                     <li class="menu-item" id="menuProfile"><a onclick="switchSection('profile')"><span>👤</span> <span>My Profile</span></a></li>
                     <li class="menu-item" id="menuBadges"><a onclick="switchSection('badges')"><span>🏆</span> <span>Prestasi & Badges</span></a></li>
                 </ul>
@@ -405,7 +413,7 @@
             </div>
 
             <div class="dev-level-switcher active" id="devLevelSwitcherBox">
-                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">🛠️ DEVELOPER MODE: Uji Coba Semua Jenjang Kelas Seketika</span>
+                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">🛠️ ALL-ACCESS MODE (Akses Penuh Semua Jenjang & Konten):</span>
                 <button class="dev-switch-btn" onclick="devSwitchClass('tk', 'TK / PAUD')">TK</button>
                 <button class="dev-switch-btn" onclick="devSwitchClass('sd1', 'Kelas 1 SD')">SD 1</button>
                 <button class="dev-switch-btn" onclick="devSwitchClass('sd2', 'Kelas 2 SD')">SD 2</button>
@@ -438,12 +446,23 @@
     <script>
         const GEMINI_API_KEY = 'AQ.Ab8RN6J9Kqvk_WiQKgS4qaOzLTci00Zs19dZFpxg9v6Frq4ByQ';
 
+        // DATABASE AKUN: MUHAMMAD FAARI AKBAR & MICHELLE HIMMELDA CAHYADI
         const REGISTERED_PARENT_DATABASE = {
-            'faarimuhammad25@gmail.com': { name: 'Muhammad Faari (Developer)', categoryKey: 'sd3', classLabel: 'Kelas 3 SD', isDev: true },
+            'faarimuhammad25@gmail.com': { name: 'Muhammad Faari Akbar', categoryKey: 'sd3', classLabel: 'Kelas 3 SD (Full Access)', isDev: true },
+            'michellehimmelda@gmail.com': { name: 'Michelle Himmelda Cahyadi', categoryKey: 'sd6', classLabel: 'Tutor / Admin (Full Access)', isDev: true },
             'ortu.tk@gmail.com': { name: 'Siswa TK Aisyah', categoryKey: 'tk', classLabel: 'TK / PAUD', isDev: false },
             'ortu.sd1@gmail.com': { name: 'Siswa SD Kelas 1', categoryKey: 'sd1', classLabel: 'Kelas 1 SD', isDev: false },
             'ortu.sd6@gmail.com': { name: 'Siswa SD Kelas 6', categoryKey: 'sd6', classLabel: 'Kelas 6 SD', isDev: false }
         };
+
+        // DAFTAR WISDOM BERBEDA-BEDA TIAP DIAKSES
+        const DAILY_WISDOM_LIST = [
+            { quote: "Pendidikan adalah senjata paling ampuh yang bisa kamu gunakan untuk mengubah dunia.", author: "Nelson Mandela" },
+            { quote: "Akar dari pendidikan itu pahit, namun buahnya sangat manis.", author: "Aristoteles" },
+            { quote: "Hiduplah seolah-olah kamu akan mati besok. Belajarlah seolah-olah kamu akan hidup selamanya.", author: "Mahatma Gandhi" },
+            { quote: "Investasi dalam pengetahuan membayar bunga terbaik.", author: "Benjamin Franklin" },
+            { quote: "Jangan batasi tantanganmu, tapi tantang batasmu setiap hari.", author: "Omah Les Mentor" }
+        ];
 
         const masterSectionDatabase = {
             'tk': {
@@ -518,7 +537,6 @@
             }
         };
 
-        // KOLEKSI GAME YANG DITAMBAHKAN JAUH LEBIH BANYAK DAN LENGKAP
         const adaptiveGamesDatabase = {
             'tk': [
                 { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Tebak Hewan', desc: 'Tebak hewan dari emoji.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka wortel', answer: 'kelinci' }, { emojis: '🐮 🌾', clue: 'Penghasil susu segar bersuara moo', answer: 'sapi' }] },
@@ -544,8 +562,8 @@
         let lovTimer = 31;
         let lovInterval = null;
 
-        let currentStudent = { name: 'Muhammad Faari (Developer)', parentEmail: 'faarimuhammad25@gmail.com', classLabel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: true };
-        let activeSection = 'roadmap';
+        let currentStudent = { name: 'Muhammad Faari Akbar', parentEmail: 'faarimuhammad25@gmail.com', classLabel: 'Kelas 3 SD (Full Access)', categoryKey: 'sd3', isDev: true };
+        let activeSection = 'dashboard';
         let currentActiveModule = null;
         let userStars = parseInt(localStorage.getItem('omahles_user_stars') || '120');
         let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
@@ -554,7 +572,7 @@
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             if (savedStudent) {
                 currentStudent = JSON.parse(savedStudent);
-                activeSection = sessionStorage.getItem('omahles_active_section') || 'roadmap';
+                activeSection = sessionStorage.getItem('omahles_active_section') || 'dashboard';
                 document.getElementById('loginPage').style.display = 'none';
                 renderDashboardData();
                 switchSection(activeSection);
@@ -587,6 +605,10 @@
         }
 
         function showRandomDailyWisdom() {
+            // Pilih wisdom secara acak berbeda-beda setiap diakses
+            const randomWisdom = DAILY_WISDOM_LIST[Math.floor(Math.random() * DAILY_WISDOM_LIST.length)];
+            document.getElementById('wisdomQuoteText').innerText = `"${randomWisdom.quote}"`;
+            document.getElementById('wisdomAuthorText').innerText = `— ${randomWisdom.author}`;
             document.getElementById('wisdomModalOverlay').classList.add('active');
         }
 
@@ -599,7 +621,7 @@
         function renderDashboardData() {
             document.getElementById('userNameDisplay').innerText = currentStudent.name;
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLevel;
-            document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ Dev Mode: ${currentStudent.classLevel}` : `🔒 Paket Terdaftar: ${currentStudent.classLevel}`;
+            document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ All-Access Mode: ${currentStudent.classLevel}` : `🔒 Paket Terdaftar: ${currentStudent.classLevel}`;
             document.getElementById('userStarDisplay').innerText = userStars;
             const devBox = document.getElementById('devLevelSwitcherBox');
             if (currentStudent.isDev) devBox.classList.add('active'); else devBox.classList.remove('active');
@@ -607,7 +629,7 @@
 
         function devSwitchClass(catKey, classLabel) {
             currentStudent.categoryKey = catKey;
-            currentStudent.classLevel = `Dev Access (${classLabel})`;
+            currentStudent.classLevel = `Full Access (${classLabel})`;
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
             renderDashboardData();
             switchSection(activeSection);
@@ -622,6 +644,7 @@
             if (activeMenu) activeMenu.classList.add('active');
 
             const sectionHeaders = {
+                'dashboard': { tag: '📊 Overview', title: 'Portal Dashboard', sub: `Selamat datang kembali, ${currentStudent.name}!` },
                 'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Materi kelas ${currentStudent.classLevel}.` },
                 'profile': { tag: '👤 Personal Space', title: 'My Profile', sub: 'Pantau perkembangan belajarmu.' },
                 'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges', sub: `Koleksi trofi berdasarkan hasil belajar.` },
@@ -634,7 +657,7 @@
                 'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar', sub: 'Tulis target harianmu.' }
             };
 
-            const h = sectionHeaders[secKey] || sectionHeaders['roadmap'];
+            const h = sectionHeaders[secKey] || sectionHeaders['dashboard'];
             document.getElementById('bannerTagText').innerText = h.tag;
             document.getElementById('bannerWelcomeTitle').innerText = h.title;
             document.getElementById('bannerWelcomeSub').innerText = h.sub;
@@ -643,12 +666,14 @@
             const filterBar = document.getElementById('filterHeaderBar');
             clearInterval(lovInterval);
 
-            // MENERAPKAN ANIMASI TRANSISI ALUS ALA LOVSPEAK SETIAP PINDAH SECTION
             area.className = '';
             void area.offsetWidth;
             area.className = 'animate-section';
 
-            if (secKey === 'profile') {
+            if (secKey === 'dashboard') {
+                filterBar.style.display = 'none';
+                renderDashboardMain(area);
+            } else if (secKey === 'profile') {
                 filterBar.style.display = 'none';
                 renderProfile(area);
             } else if (secKey === 'badges') {
@@ -667,6 +692,40 @@
                 filterBar.style.display = 'flex';
                 renderModules(area, secKey);
             }
+        }
+
+        function renderDashboardMain(container) {
+            container.innerHTML = `
+                <div class="dashboard-grid">
+                    <div class="dash-card">
+                        <div class="dash-icon-box">⭐</div>
+                        <div>
+                            <div class="dash-info-title">Total Stars</div>
+                            <div class="dash-info-val">${userStars}</div>
+                        </div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-icon-box">🎯</div>
+                        <div>
+                            <div class="dash-info-title">Kuis Selesai</div>
+                            <div class="dash-info-val">${userCompletedQuizzes}</div>
+                        </div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-icon-box">🔥</div>
+                        <div>
+                            <div class="dash-info-title">Streak Belajar</div>
+                            <div class="dash-info-val">3 Hari</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="insight-card-box">
+                    <div class="insight-heading">💡 Ringkasan Sistem Omah Les Privat</div>
+                    <div class="insight-body-text">
+                        "Halo ${currentStudent.name}, Anda masuk menggunakan akun dengan hak akses penuh. Anda dapat meninjau seluruh materi dari jenjang TK hingga SD Kelas 6 melalui menu <strong>Learning Roadmap</strong> atau menguji coba fitur interaktif di <strong>Game Center</strong> dan <strong>Ruang AI Tutor</strong>."
+                    </div>
+                </div>
+            `;
         }
 
         function renderModules(container, secKey) {
@@ -713,15 +772,15 @@
                             <div class="profile-xp-bar-fill" style="width: ${Math.min(100, (xpTotal/200)*100)}%;"></div>
                         </div>
                         <div style="font-size:0.75rem; color:var(--text-sub); font-weight:700; margin-top:4px;">
-                            Akun Wali: ${currentStudent.parentEmail}
+                            Email Akun: ${currentStudent.parentEmail}
                         </div>
                     </div>
                 </div>
 
                 <div class="insight-card-box">
-                    <div class="insight-heading">💡 Weekly AI Insight • Personalized for ${currentStudent.name}</div>
+                    <div class="insight-heading">💡 AI Insight • Personalized for ${currentStudent.name}</div>
                     <div class="insight-body-text">
-                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu sudah menyelesaikan ${userCompletedQuizzes} kuis latihan. Terus pertahankan semangat belajarnya dan tingkatkan eksplorasi pada modul Matematika dan Sains untuk minggu depan!"
+                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu sudah menyelesaikan ${userCompletedQuizzes} kuis latihan. Terus pertahankan semangat mengajarnya/belajarnya!"
                     </div>
                 </div>
             `;
@@ -933,7 +992,7 @@
 
         function renderAiChat(container) {
             container.innerHTML = `
-                <div class="ai-chat-wrapper">
+                <div class="ai-chat-wrapper animate-section">
                     <div class="ai-chat-header"><div class="ai-chat-title">🎙️ Kak Omah (AI)</div></div>
                     <div class="ai-chat-messages-area" id="chatMessagesBox">
                         <div class="chat-bubble-row ai"><div class="chat-bubble ai">Halo ${currentStudent.name}! Ada pertanyaan materi pelajaran atau sains yang ingin kamu tanyakan hari ini? 😊</div></div>
@@ -955,7 +1014,7 @@
             i.value = ''; b.scrollTop = b.scrollHeight;
             
             const lid = 'l-'+Date.now();
-            b.innerHTML += `<div class="chat-bubble-row ai" id="${lid}"><div class="chat-bubble ai">⏳ Kak Omah sedang menjelaskan...</div></div>`;
+            b.innerHTML += `<div class="chat-bubble-row ai" id="${lid}"><div class="chat-bubble ai">⏳ Kak Omah sedang berpikir...</div></div>`;
             b.scrollTop = b.scrollHeight;
             
             try {
@@ -966,20 +1025,23 @@
                     body: JSON.stringify({ 
                         contents: [{ 
                             parts: [{ 
-                                text: `Anda adalah Kak Omah, tutor pendamping belajar privat yang ramah, sabar, dan edukatif untuk siswa tingkat ${currentStudent.classLevel}. Jawablah pertanyaan berikut secara langsung, jelas, dan mendidik: "${msg}"` 
+                                text: `Anda adalah Kak Omah, tutor pendamping belajar privat yang cerdas, ramah, dan edukatif untuk tingkat ${currentStudent.classLevel}. Jawablah pertanyaan berikut secara akurat, mendidik, dan alami: "${msg}"` 
                             }] 
                         }] 
                     })
                 });
                 const data = await res.json();
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                
+                if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
                     const replyText = data.candidates[0].content.parts[0].text;
                     document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">${replyText.replace(/\n/g,'<br>')}</div>`;
+                } else if (data.error) {
+                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">⚠️ Error dari API Gemini: ${data.error.message}</div>`;
                 } else {
-                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Mengenai pertanyaan "${msg}", hal ini terjadi karena proses alam yang terstruktur. Misalnya pada hujan, air laut menguap membentuk awan lalu turun kembali. Semangat belajarnya ya! 🌟</div>`;
+                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Maaf ya, Kak Omah sedang mengalami kendala memproses jawaban. Silakan coba tanyakan kembali!</div>`;
                 }
             } catch(e) {
-                document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Pertanyaan hebat tentang "${msg}". Mari kita eksplorasi bersama modul belajar Omah Les! ✨</div>`;
+                document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">⚠️ Koneksi internet bermasalah atau gagal menghubungi server Gemini.</div>`;
             }
             b.scrollTop = b.scrollHeight;
         }
