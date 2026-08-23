@@ -63,8 +63,8 @@
 
         .form-group { margin-bottom: 16px; text-align: left; }
         .form-label { display: block; font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
-        .form-input { width: 100%; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: #fdfbf7; }
-        .form-input:focus { border-color: var(--brand-amber); background: #ffffff; }
+        .form-input, .form-select { width: 100%; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: #fdfbf7; }
+        .form-input:focus, .form-select:focus { border-color: var(--brand-amber); background: #ffffff; }
 
         .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 15px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; }
 
@@ -106,7 +106,7 @@
             text-transform: uppercase; box-shadow: 0 8px 20px rgba(45, 30, 24, 0.25);
         }
 
-        /* LOVSPEAK STYLE MODAL: TRAINING SEQUENCE POP-UP */
+        /* MODAL STEPS & KUIS */
         .sequence-modal-card {
             background: #ffffff; width: 100%; max-width: 540px; border-radius: 32px;
             padding: 0; overflow: hidden; position: relative;
@@ -141,7 +141,6 @@
         .btn-modal-close { flex: 1; background: var(--brand-cream); border: 2px solid var(--card-border); color: var(--brand-brown); padding: 12px; border-radius: 14px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
         .btn-modal-action { flex: 1.5; background: var(--brand-amber); border: none; color: white; padding: 12px; border-radius: 14px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
 
-        /* LOVSPEAK STYLE MODAL: THEMATIC INSIGHT & KUIS INTERAKTIF */
         .insight-modal-card {
             background: #ffffff; width: 100%; max-width: 640px; border-radius: 32px;
             padding: 36px 40px; overflow-y: auto; max-height: 85vh; position: relative;
@@ -165,7 +164,6 @@
         .pro-tips-title { font-size: 0.78rem; font-weight: 800; color: #166534; text-transform: uppercase; margin-bottom: 6px; }
         .pro-tips-desc { font-size: 0.85rem; color: #15803d; font-weight: 600; line-height: 1.5; }
 
-        /* KUIS INTERAKTIF DI DALAM MODAL */
         .quiz-box { background: #fffbeb; border: 2px solid #fde68a; border-radius: 20px; padding: 20px; margin-top: 20px; }
         .quiz-question { font-weight: 800; font-size: 1rem; color: #92400e; margin-bottom: 12px; }
         .quiz-options { display: flex; flex-direction: column; gap: 8px; }
@@ -246,7 +244,7 @@
         .btn-open-module { background: var(--brand-amber); color: white; border: none; padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
         .btn-open-module:hover { background: var(--brand-brown); }
 
-        /* LOVSPEAK STYLE MY PROFILE SECTION */
+        /* PROFILE & AI TUTOR CHAT SECTION */
         .profile-container-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 32px; padding: 32px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
         .profile-header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 20px; }
         .profile-user-left { display: flex; align-items: center; gap: 20px; }
@@ -266,7 +264,6 @@
         .insight-card-tag { font-size: 0.75rem; font-weight: 800; color: #b45309; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
         .insight-card-desc { font-size: 0.92rem; color: #78350f; font-weight: 600; line-height: 1.7; font-style: italic; }
 
-        /* REAL AI TUTOR CHAT SECTION */
         .ai-chat-wrapper { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 32px; overflow: hidden; display: flex; flex-direction: column; height: 70vh; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         .ai-chat-header { background: var(--sidebar-bg); color: #ffffff; padding: 18px 28px; display: flex; align-items: center; justify-content: space-between; }
         .ai-chat-title { font-family: 'Fredoka', sans-serif; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
@@ -315,12 +312,25 @@
 
         <div class="login-right-form">
             <div class="form-header-text">Login Student</div>
-            <div class="form-sub-text">Masukkan Email Orang Tua terdaftar di Lynk.id</div>
+            <div class="form-sub-text">Masukkan Email & Paket Pembelian di Lynk.id</div>
 
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
-                    <label class="form-label">Email Orang Tua / Wali Terdaftar</label>
+                    <label class="form-label">Email Orang Tua Terdaftar</label>
                     <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Pilih Paket Jenjang Kelas (Demo/Pembelian)</label>
+                    <select class="form-select" id="selectPackageLevel">
+                        <option value="tk">Paket TK / PAUD (Mengenal Huruf & Angka)</option>
+                        <option value="sd1">Paket SD Kelas 1 (Membaca & Berhitung Dasar)</option>
+                        <option value="sd2">Paket SD Kelas 2 (Penjumlahan & Kalimat Sederhana)</option>
+                        <option value="sd3" selected>Paket SD Kelas 3 (Pecahan Dasar & Ide Pokok)</option>
+                        <option value="sd4">Paket SD Kelas 4 (Pecahan Senilai & IPA Alam)</option>
+                        <option value="sd5">Paket SD Kelas 5 (Kecepatan & Organ Tubuh)</option>
+                        <option value="sd6">Paket SD Kelas 6 (Ujian Sekolah & Bangun Ruang)</option>
+                    </select>
                 </div>
 
                 <button type="submit" class="btn-submit-login" id="btnSubmitLogin">Enter Omah Les Portal 🚀</button>
@@ -339,7 +349,7 @@
         </div>
     </div>
 
-    <!-- POP-UP MODAL 1: TRAINING SEQUENCE (LOVSPEAK STYLE) -->
+    <!-- POP-UP MODAL STEPS -->
     <div class="modal-overlay" id="sequenceModalOverlay">
         <div class="sequence-modal-card">
             <div class="sequence-header">
@@ -348,9 +358,7 @@
                 <div class="sequence-title" id="seqHeaderTitle">Judul Modul Sequence</div>
                 <div class="sequence-sub" id="seqHeaderSub">Pilih langkah di bawah ini untuk memulai sesi belajar interaktif.</div>
             </div>
-
             <div class="sequence-body" id="sequenceStepsContainer"></div>
-
             <div class="sequence-footer">
                 <button class="btn-modal-close" onclick="closeSequenceModal()">TUTUP</button>
                 <button class="btn-modal-action" onclick="alert('Selamat! Semua modul diselesaikan dengan sempurna! ⭐ +15')">SELESAIKAN SEMUA STEP</button>
@@ -358,33 +366,26 @@
         </div>
     </div>
 
-    <!-- POP-UP MODAL 2: THEMATIC INSIGHT & KUIS INTERAKTIF -->
+    <!-- POP-UP MODAL KUIS -->
     <div class="modal-overlay" id="insightModalOverlay">
         <div class="insight-modal-card">
             <button class="btn-close-modal" style="color:var(--text-main); background:var(--brand-cream);" onclick="closeInsightModal()">✕</button>
-            
             <span class="insight-tag" id="insTag">THEMATIC INSIGHT</span>
             <h1 class="insight-title" id="insTitle">Judul Sub-Materi Step</h1>
-
             <div class="quote-box-insight" id="insQuote">"Quote inspiratif belajar untuk memberikan pemahaman mendalam anak."</div>
-
             <div class="insight-section-title">💡 CONTEXT INSIGHT</div>
             <div class="insight-text-body" id="insContext">Penjelasan konteks materi...</div>
-
             <div class="insight-section-title">📌 STRUCTURAL LOGICAL REASONING</div>
             <div class="insight-text-body" id="insLogic">Logika dasar materi yang dipelajari...</div>
-
             <div class="pro-tips-card">
                 <div class="pro-tips-title">⭐ PRO TIPS OMAH LES</div>
                 <div class="pro-tips-desc" id="insTips">Tips praktis mengingat dan menerapkan pelajaran dalam kehidupan harian.</div>
             </div>
-
             <div class="quiz-box" id="quizBoxContainer">
                 <div class="quiz-question" id="quizQuestionText">❓ Pertanyaan Kuis: ...</div>
                 <div class="quiz-options" id="quizOptionsContainer"></div>
                 <div class="quiz-feedback" id="quizFeedbackText"></div>
             </div>
-
             <button class="btn-enter-wisdom" style="margin-top:20px;" onclick="closeInsightModal()">SELESAI & KEMBALI</button>
         </div>
     </div>
@@ -468,7 +469,7 @@
             </div>
 
             <div class="dev-level-switcher" id="devLevelSwitcherBox">
-                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">🛠️ DEVELOPER MODE: Pilih Jenjang Mana Saja Kapan Saja</span>
+                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">🛠️ DEVELOPER MODE: Uji Coba Ganti Jenjang Kapan Saja</span>
                 <button class="dev-switch-btn" onclick="devSwitchClass('tk', 'TK / PAUD')">TK / PAUD</button>
                 <button class="dev-switch-btn" onclick="devSwitchClass('sd1', 'Kelas 1 SD')">Kelas 1 SD</button>
                 <button class="dev-switch-btn" onclick="devSwitchClass('sd2', 'Kelas 2 SD')">Kelas 2 SD</button>
@@ -508,7 +509,6 @@
     </footer>
 
     <script>
-        // GEMINI API KEY SUDAH TERPASANG REAL-TIME
         const GEMINI_API_KEY = 'AQ.Ab8RN6J9Kqvk_WiQKgS4qaOzLTci00Zs19dZFpxg9v6Frq4ByQ';
 
         const DEV_MASTER_ACCOUNTS = {
@@ -521,56 +521,51 @@
             { quote: "Pendidikan adalah senjata paling mematikan di dunia, karena dengan pendidikan Anda dapat mengubah dunia.", author: "— Nelson Mandela" }
         ];
 
-        /* DATABASE MATERI LENGKAP UTUH */
+        /* DATABASE MATERI TERPISAH LENGKAP PER JENJANG KELAS */
         const masterSectionDatabase = {
-            'roadmap': [
-                {
-                    tierTag: 'TIER A1 • SD KLS 3', title: 'Ide Pokok & Kalimat Utama', desc: 'Menemukan gagasan utama dalam cerita dan paragraf pendek.', progress: '0/5',
-                    steps: [
-                        { icon: '🌱', tag: 'STEP 1', title: 'Unit Context: Menyapa & Santun', sub: 'Membangun adab membaca dan berinteraksi.', quote: '"Kalimat santun adalah cermin kebaikan hati."', context: 'Saat membaca cerita, perhatikan bagaimana tokoh saling menyapa dengan sopan.', logic: 'Kalimat utama biasanya terletak di awal (deduktif) atau akhir (induktif) paragraf.', tips: 'Cari kata yang sering diulang-ulang dalam paragraf tersebut.', quiz: { q: 'Di mana biasanya letak kalimat utama pada paragraf deduktif?', opts: ['A. Di akhir paragraf', 'B. Di awal paragraf', 'C. Di tengah paragraf'], ans: 1 } },
-                        { icon: '✍️', tag: 'STEP 2', title: 'Latihan Ejaan & Tanda Baca', sub: 'Menggunakan huruf kapital dan titik dengan tepat.', quote: '"Tanda baca yang tepat membuat tulisan mudah dipahami."', context: 'Penggunaan huruf besar untuk awal kalimat, nama orang, dan tempat.', logic: 'Setiap akhir kalimat berita diakhiri dengan tanda titik (.)', tips: 'Selalu periksa kembali tulisanmu setelah selesai menulis.', quiz: { q: 'Manakah penulisan nama orang yang benar menggunakan huruf kapital?', opts: ['A. budi santoso', 'B. Budi Santoso', 'C. bUdI sAnToSo'], ans: 1 } }
-                    ]
-                },
-                {
-                    tierTag: 'TIER A1 • SD KLS 3', title: 'Pecahan Dasar ½, ⅓, ¼', desc: 'Mengenal konsep pembilang dan penyebut pada benda konkret.', progress: '0/4',
-                    steps: [
-                        { icon: '🍕', tag: 'STEP 1', title: 'Unit Context: Membagi Makanan Sama Rata', sub: 'Penerapan pecahan dalam kehidupan harian.', quote: '"Berbagi makanan dengan adil adalah perbuatan terpuji."', context: 'Satu buah pizza dipotong menjadi 2 bagian sama besar.', logic: 'Pecahan terdiri dari Pembilang (Atas) dan Penyebut (Bawah).', tips: 'Penyebut adalah total seluruh potongan sama besar.', quiz: { q: 'Pada pecahan 1/4, angka 4 disebut sebagai apa?', opts: ['A. Pembilang', 'B. Penyebut', 'C. Penjumlah'], ans: 1 } }
-                    ]
-                }
-            ],
-            'badges': [
-                {
-                    tierTag: 'PRESTASI', title: '🥇 Lencana Bintang Membaca', desc: 'Selesaikan 5 modul membaca untuk membuka trofi emas.', progress: '4/5',
-                    steps: [{ icon: '🏆', tag: 'PENCAPAIAN', title: 'Syarat Membuka Lencana', sub: 'Baca 5 cerita anak dan jawab pertanyaannya.', quote: '"Setiap halaman cerita menambah poin pengetahuanmu."', context: 'Lencana ini menandakan kamu telah aktif membaca setiap hari.', logic: 'Selesaikan seluruh step di modul membaca untuk klaim bintang ekstra.', tips: 'Luangkan waktu 10 menit setiap malam untuk membaca.', quiz: { q: 'Berapa modul membaca yang harus diselesaikan untuk lencana emas?', opts: ['A. 3 Modul', 'B. 5 Modul', 'C. 10 Modul'], ans: 1 } }]
-                }
-            ],
-            'indo': [
-                {
-                    tierTag: 'BAHASA INDO', title: 'Suku Kata Awalan & Akhiran', desc: 'Latihan mengeja dan membentuk kata-kata baru.', progress: '0/3',
-                    steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Mengenal Imbuhan Me-', sub: 'Perubahan kata dasar menjadi kata kerja.', quote: '"Kata kerja menunjukkan aksi dan kegiatan kita."', context: 'Kata dasar "baca" diberi imbuhan Me- menjadi "Membaca".', logic: 'Imbuhan Me- jika bertemu huruf B berubah menjadi Mem-.', tips: 'Ucapkan kata secara berulang untuk melatih ejaan.', quiz: { q: 'Kata dasar "tulis" jika ditambah imbuhan me- menjadi apa?', opts: ['A. Melulis', 'B. Menulis', 'C. Mengulis'], ans: 1 } }]
-                }
-            ],
-            'math': [
-                {
-                    tierTag: 'MATEMATIKA', title: 'Perkalian Trik Cepat 1-10', desc: 'Memahami perkalian sebagai penjumlahan berulang.', progress: '0/5',
-                    steps: [{ icon: '➕', tag: 'STEP 1', title: 'Konsep Penjumlahan Berulang', sub: 'Mengubah 3 x 4 menjadi penjumlahan.', quote: '"Matematika itu pola yang teratur dan menyenangkan."', context: '3 x 4 artinya 4 + 4 + 4 = 12.', logic: 'Angka depan jumlah kelompok, angka belakang isinya.', tips: 'Gunakan jari tangan atau batu kecil saat latihan.', quiz: { q: 'Berapa hasil dari 3 x 5?', opts: ['A. 12', 'B. 15', 'C. 18'], ans: 1 } }]
-                }
-            ],
-            'sains': [
-                {
-                    tierTag: 'SAINS & IPA', title: 'Metamorfosis Kupu-Kupu', desc: 'Daur hidup dari telur hingga menjadi kupu-kupu cantik.', progress: '0/4',
-                    steps: [{ icon: '🐛', tag: 'STEP 1', title: 'Tahap Telur & Ulat', sub: 'Fase awal siklus hidup serangga.', quote: '"Alam mengajarkan kita tentang proses pertumbuhan."', context: 'Kupu-kupu menetas dari telur menjadi ulat.', logic: 'Metamorfosis sempurna mengalami fase kepompong.', tips: 'Amati tanaman hias di rumahmu.', quiz: { q: 'Sebelum menjadi kepompong, ulat berubah dari apa?', opts: ['A. Telur', 'B. Kepompong', 'C. Kupu-kupu dewasa'], ans: 0 } }]
-                }
-            ],
-            'seni': [
-                {
-                    tierTag: 'SENI & KARAKTER', title: 'Kombinasi Warna Dasar', desc: 'Mengenal warna primer dan sekunder.', progress: '0/3',
-                    steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Pencampuran Warna Primer', sub: 'Eksperimen warna merah, kuning, dan biru.', quote: '"Dunia penuh dengan keindahan warna-warni."', context: 'Campuran warna merah dan kuning menghasilkan oranye.', logic: 'Warna sekunder diciptakan dari gabungan dua warna primer.', tips: 'Gunakan cat air untuk mencoba langsung.', quiz: { q: 'Warna apa yang dihasilkan dari campuran merah dan kuning?', opts: ['A. Hijau', 'B. Oranye', 'C. Ungu'], ans: 1 } }]
-                }
-            ]
+            'tk': {
+                'roadmap': [
+                    { tierTag: 'PAUD / TK', title: 'Mengenal Huruf Vokal (A, I, U, E, O)', desc: 'Eksplorasi bentuk dan bunyi huruf vokal dasar.', progress: '0/3', steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Huruf A & I', sub: 'Mengenal kata Ayam dan Ikan.', quote: '"Belajar membaca dimulai dari huruf vokal."', context: 'Gambar Ayam dan Ikan.', logic: 'Huruf A diawali dengan mulut terbuka.', tips: 'Tirukan bunyi suara hewan.', quiz: { q: 'Huruf depan dari kata AYAM adalah?', opts: ['A. Huruf A', 'B. Huruf B', 'C. Huruf C'], ans: 0 } }] },
+                    { tierTag: 'PAUD / TK', title: 'Menghitung Jari 1 sampai 10', desc: 'Belajar konsep angka dengan benda konkret.', progress: '0/3', steps: [{ icon: '🖐️', tag: 'STEP 1', title: 'Angka 1 hingga 5', sub: 'Hitung jumlah jari tangan kananmu.', quote: '"Angka ada di sekitar kita setiap hari."', context: 'Hitung jari satu per satu secara berurutan.', logic: 'Satu tangan memiliki 5 jari.', tips: 'Gunakan lagu anak untuk mengingat angka.', quiz: { q: 'Berapa jumlah jari pada satu tangan kanan?', opts: ['A. 3 Jari', 'B. 5 Jari', 'C. 10 Jari'], ans: 1 } }] }
+                ],
+                'indo': [{ tierTag: 'TK INDO', title: 'Mengeja Suku Kata Ba-Bi-Bu-Be-Bo', desc: 'Latihan gabungan huruf konsonan dan vokal.', progress: '0/2', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Suku Kata Ba & Bi', sub: 'Membaca kata Ba-ju dan Bi-sa.', quote: '"Eja kata perlahan dan jelas."', context: 'Latihan menggabungkan B dan A menjadi BA.', logic: 'Huruf B bertemu A dibaca BA.', tips: 'Ulangi 3 kali.', quiz: { q: 'Gabungan huruf B dan A dibaca apa?', opts: ['A. BA', 'B. BI', 'C. BU'], ans: 0 } }] }],
+                'math': [{ tierTag: 'TK MATH', title: 'Mengenal Bentuk Lingkaran & Segitiga', desc: 'Belajar geometri dasar visual.', progress: '0/2', steps: [{ icon: '🔴', tag: 'STEP 1', title: 'Bentuk Lingkaran', sub: 'Mencari benda bundar seperti roda dan bola.', quote: '"Lingkaran tidak memiliki sudut."', context: 'Roda sepeda berbentuk lingkaran.', logic: 'Bentuk bulat sempurna dinamakan lingkaran.', tips: 'Lihat jam dinding di rumahmu.', quiz: { q: 'Benda apakah yang berbentuk lingkaran?', opts: ['A. Roda Sepeda', 'B. Kotak Pensil', 'C. Buku Tulis'], ans: 0 } }] }],
+                'sains': [{ tierTag: 'TK SAINS', title: 'Mengenal Nama-Nama Hewan Peliharaan', desc: 'Dunia kucing, kelinci, dan burung.', progress: '0/2', steps: [{ icon: '🐱', tag: 'STEP 1', title: 'Hewan Kucing & Suaranya', sub: 'Suara Meong dan makanan kesukaannya.', quote: '"Sayangi hewan ciptaan Tuhan."', context: 'Kucing suka makan ikan.', logic: 'Kucing bergerak dengan 4 kaki.', tips: 'Tirukan suara kucing.', quiz: { q: 'Bagaimana suara kucing?', opts: ['A. Meong', 'B. Gukguk', 'C. Mbee'], ans: 0 } }] }],
+                'seni': [{ tierTag: 'TK SENI', title: 'Mewarnai Gambar Pemandangan', desc: 'Mengenal warna merah, kuning, hijau.', progress: '0/2', steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Warna Daun & Langit', sub: 'Daun berwarna hijau dan langit biru.', quote: '"Warna membuat dunia indah."', context: 'Pohon memiliki daun berwarna hijau.', logic: 'Pilih warna alami untuk pemandangan.', tips: 'Gunakan krayon dengan rapi.', quiz: { q: 'Warna apakah daun pada umumnya?', opts: ['A. Hijau', 'B. Merah', 'C. Hitam'], ans: 0 } }] }]
+            },
+            'sd1': {
+                'roadmap': [
+                    { tierTag: 'SD KELAS 1', title: 'Membaca Kalimat Sederhana', desc: 'Menyusun 3-4 kata menjadi kalimat berita.', progress: '0/4', steps: [{ icon: '📘', tag: 'STEP 1', title: 'Membaca Teks Budi Belajar', sub: 'Latihan pemahaman isi kalimat.', quote: '"Lancar membaca membuka pengetahuan."', context: 'Budi membaca buku di perpustakaan sekolah.', logic: 'Kalimat diawali huruf besar dan diakhiri titik.', tips: 'Baca kata per kata.', quiz: { q: 'Di mana Budi membaca buku?', opts: ['A. Di perpustakaan', 'B. Di pasar', 'C. Di jalan'], ans: 0 } }] },
+                    { tierTag: 'SD KELAS 1', title: 'Penjumlahan Hasil sampai 20', desc: 'Hitung penjumlahan dengan bantuan garis bilangan.', progress: '0/4', steps: [{ icon: '🔢', tag: 'STEP 1', title: 'Penjumlahan 8 + 5', sub: 'Hitung maju dari angka 8.', quote: '"Hitung maju membuat penjumlahan mudah."', context: 'Mulai dari 8, lalu simpan 5 di jari tangan.', logic: '8 ditambah 5 sama dengan 13.', tips: 'Gunakan jari untuk menghitung sisa.', quiz: { q: 'Berapa hasil dari 8 + 5?', opts: ['A. 12', 'B. 13', 'C. 14'], ans: 1 } }] }
+                ],
+                'indo': [{ tierTag: 'SD 1 INDO', title: 'Huruf Kapital Nama Orang & Hari', desc: 'Aturan penulisan ejaan yang benar.', progress: '0/3', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Penulisan Hari Senin', sub: 'Awal kata nama hari menggunakan huruf kapital.', quote: '"Penulisan rapi sesuai aturan ejaan."', context: 'Hari Senin adalah awal minggu sekolah.', logic: 'Nama hari selalu diawali huruf besar.', tips: 'Periksa tulisanmu kembali.', quiz: { q: 'Penulisan nama hari yang benar adalah?', opts: ['A. senin', 'B. Senin', 'C. sENIN'], ans: 1 } }] }],
+                'math': [{ tierTag: 'SD 1 MATH', title: 'Pengurangan Angka 1-20', desc: 'Konsep mengambil atau mengurangi benda.', progress: '0/3', steps: [{ icon: '➖', tag: 'STEP 1', title: 'Pengurangan 15 - 4', sub: 'Menghitung mundur dari angka 15.', quote: '"Pengurangan adalah kebalikan penjumlahan."', context: 'Ada 15 apel, dimakan 4 apel.', logic: 'Sisa apel adalah 11 buah.', tips: 'Hitung mundur 4 langkah dari 15.', quiz: { q: 'Berapa 15 dikurangi 4?', opts: ['A. 11', 'B. 12', 'C. 10'], ans: 0 } }] }],
+                'sains': [{ tierTag: 'SD 1 SAINS', title: 'Bagian Tubuh Manusia & Fungsinya', desc: 'Mata untuk melihat, telinga untuk mendengar.', progress: '0/3', steps: [{ icon: '👀', tag: 'STEP 1', title: 'Indra Penglihatan & Pendengaran', sub: 'Mata dan Telinga kita.', quote: '"Syukuri tubuh sehat ciptaan Tuhan."', context: 'Mata digunakan untuk membaca buku.', logic: 'Manusia memiliki 2 mata dan 2 telinga.', tips: 'Jaga jarak mata saat membaca.', quiz: { q: 'Anggota tubuh mana yang digunakan untuk mendengar?', opts: ['A. Telinga', 'B. Mata', 'C. Hidung'], ans: 0 } }] }],
+                'seni': [{ tierTag: 'SD 1 SENI', title: 'Bernyanyi Lagu Nasional Sederhana', desc: 'Mengenal tempo dan nada lagu anak.', progress: '0/2', steps: [{ icon: '🎵', tag: 'STEP 1', title: 'Lagu Pelangi-Pelangi', sub: 'Menyanyikan lagu dengan irama ceria.', quote: '"Bernyanyi melatih kepekaan nada."', context: 'Lagu diciptakan oleh A.T. Mahmud.', logic: 'Pelangi memiliki warna-warni indah.', tips: 'Ikuti ketukan irama lagu.', quiz: { q: 'Siapa pencipta lagu Pelangi-Pelangi?', opts: ['A. A.T. Mahmud', 'B. Ibu Sud', 'C. Pak Dal'], ans: 0 } }] }]
+            },
+            'sd3': {
+                'roadmap': [
+                    { tierTag: 'SD KELAS 3', title: 'Ide Pokok & Kalimat Utama', desc: 'Menemukan gagasan utama dalam cerita dan paragraf pendek.', progress: '0/5', steps: [{ icon: '🌱', tag: 'STEP 1', title: 'Unit Context: Menyapa & Santun', sub: 'Membangun adab membaca dan berinteraksi.', quote: '"Kalimat santun adalah cermin kebaikan hati."', context: 'Saat membaca cerita, perhatikan bagaimana tokoh saling menyapa dengan sopan.', logic: 'Kalimat utama biasanya terletak di awal (deduktif) atau akhir (induktif) paragraf.', tips: 'Cari kata yang sering diulang-ulang dalam paragraf tersebut.', quiz: { q: 'Di mana biasanya letak kalimat utama pada paragraf deduktif?', opts: ['A. Di akhir paragraf', 'B. Di awal paragraf', 'C. Di tengah paragraf'], ans: 1 } }] },
+                    { tierTag: 'SD KELAS 3', title: 'Pecahan Dasar ½, ⅓, ¼', desc: 'Mengenal konsep pembilang dan penyebut pada benda konkret.', progress: '0/4', steps: [{ icon: '🍕', tag: 'STEP 1', title: 'Unit Context: Membagi Makanan Sama Rata', sub: 'Penerapan pecahan dalam kehidupan harian.', quote: '"Berbagi makanan dengan adil adalah perbuatan terpuji."', context: 'Satu buah pizza dipotong menjadi 2 bagian sama besar.', logic: 'Pecahan terdiri dari Pembilang (Atas) dan Penyebut (Bawah).', tips: 'Penyebut adalah total seluruh potongan sama besar.', quiz: { q: 'Pada pecahan 1/4, angka 4 disebut sebagai apa?', opts: ['A. Pembilang', 'B. Penyebut', 'C. Penjumlah'], ans: 1 } }] }
+                ],
+                'indo': [{ tierTag: 'SD 3 INDO', title: 'Suku Kata Awalan & Akhiran', desc: 'Latihan mengeja dan membentuk kata-kata baru.', progress: '0/3', steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Mengenal Imbuhan Me-', sub: 'Perubahan kata dasar menjadi kata kerja.', quote: '"Kata kerja menunjukkan aksi dan kegiatan kita."', context: 'Kata dasar "baca" diberi imbuhan Me- menjadi "Membaca".', logic: 'Imbuhan Me- jika bertemu huruf B berubah menjadi Mem-.', tips: 'Ucapkan kata secara berulang untuk melatih ejaan.', quiz: { q: 'Kata dasar "tulis" jika ditambah imbuhan me- menjadi apa?', opts: ['A. Melulis', 'B. Menulis', 'C. Mengulis'], ans: 1 } }] }],
+                'math': [{ tierTag: 'SD 3 MATH', title: 'Perkalian Trik Cepat 1-10', desc: 'Memahami perkalian sebagai penjumlahan berulang.', progress: '0/5', steps: [{ icon: '➕', tag: 'STEP 1', title: 'Konsep Penjumlahan Berulang', sub: 'Mengubah 3 x 4 menjadi penjumlahan.', quote: '"Matematika itu pola yang teratur dan menyenangkan."', context: '3 x 4 artinya 4 + 4 + 4 = 12.', logic: 'Angka depan jumlah kelompok, angka belakang isinya.', tips: 'Gunakan jari tangan atau batu kecil saat latihan.', quiz: { q: 'Berapa hasil dari 3 x 5?', opts: ['A. 12', 'B. 15', 'C. 18'], ans: 1 } }] }],
+                'sains': [{ tierTag: 'SD 3 SAINS', title: 'Metamorfosis Kupu-Kupu', desc: 'Daur hidup dari telur hingga menjadi kupu-kupu cantik.', progress: '0/4', steps: [{ icon: '🐛', tag: 'STEP 1', title: 'Tahap Telur & Ulat', sub: 'Fase awal siklus hidup serangga.', quote: '"Alam mengajarkan kita tentang proses pertumbuhan."', context: 'Kupu-kupu menetas dari telur menjadi ulat.', logic: 'Metamorfosis sempurna mengalami fase kepompong.', tips: 'Amati tanaman hias di rumahmu.', quiz: { q: 'Sebelum menjadi kepompong, ulat berubah dari apa?', opts: ['A. Telur', 'B. Kepompong', 'C. Kupu-kupu dewasa'], ans: 0 } }] }],
+                'seni': [{ tierTag: 'SD 3 SENI', title: 'Kombinasi Warna Dasar', desc: 'Mengenal warna primer dan sekunder.', progress: '0/3', steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Pencampuran Warna Primer', sub: 'Eksperimen warna merah, kuning, dan biru.', quote: '"Dunia penuh dengan keindahan warna-warni."', context: 'Campuran warna merah dan kuning menghasilkan oranye.', logic: 'Warna sekunder diciptakan dari gabungan dua warna primer.', tips: 'Gunakan cat air untuk mencoba langsung.', quiz: { q: 'Warna apa yang dihasilkan dari campuran merah dan kuning?', opts: ['A. Hijau', 'B. Oranye', 'C. Ungu'], ans: 1 } }] }]
+            },
+            'sd6': {
+                'roadmap': [
+                    { tierTag: 'SD KELAS 6', title: 'Operasi Hitung Campuran Bulat & Pecahan', desc: 'Persiapan Ujian Sekolah tingkat SD.', progress: '0/5', steps: [{ icon: '🧮', tag: 'STEP 1', title: 'Aturan Urutan Operasi (KABATAKU)', sub: 'Kali, Bagi, Tambah, Kurang.', quote: '"Teliti dalam urutan matematika."', context: 'Operasi perkalian dan pembagian dikerjakan lebih dahulu daripada penjumlahan.', logic: 'Gunakan tanda kurung untuk memprioritaskan hitungan.', tips: 'Kerjakan dari sebelah kiri.', quiz: { q: 'Berapa hasil dari 10 + 2 x 5?', opts: ['A. 20', 'B. 60', 'C. 25'], ans: 0 } }] },
+                    { tierTag: 'SD KELAS 6', title: 'Volume & Luas Permukaan Bangun Ruang', desc: 'Kubus, Balok, Tabung, dan Kerucut.', progress: '0/5', steps: [{ icon: '📦', tag: 'STEP 1', title: 'Volume Balok (p x l x t)', sub: 'Menghitung kapasitas isi ruangan balok.', quote: '"Volume menggambarkan kapasitas tiga dimensi."', context: 'Panjang = 10 cm, Lebar = 5 cm, Tinggi = 4 cm.', logic: 'V = p x l x t = 10 x 5 x 4 = 200 cm³.', tips: 'Selalu sertakan satuan kubik (cm³).', quiz: { q: 'Berapa volume balok p=5, l=2, t=3?', opts: ['A. 30 cm³', 'B. 10 cm³', 'C. 25 cm³'], ans: 0 } }] }
+                ],
+                'indo': [{ tierTag: 'SD 6 INDO', title: 'Menganalisis Teks Eksplanasi Ilmiah', desc: 'Menemukan sebab-akibat fenomena alam.', progress: '0/4', steps: [{ icon: '📰', tag: 'STEP 1', title: 'Struktur Teks Eksplanasi', sub: 'Pernyataan umum dan deretan penjelas.', quote: '"Teks eksplanasi menyajikan fakta ilmiah."', context: 'Proses terjadinya hujan dijelaskan secara berurutan.', logic: 'Bagian deretan penjelas berisi hubungan sebab-akibat.', tips: 'Cari kata hubung kausalitas.', quiz: { q: 'Bagian teks eksplanasi yang berisi sebab-akibat adalah?', opts: ['A. Deretan Penjelas', 'B. Judul', 'C. Penutup'], ans: 0 } }] }],
+                'math': [{ tierTag: 'SD 6 MATH', title: 'Pengolahan Data: Rata-Rata (Mean)', desc: 'Menghitung statistik data nilai siswa.', progress: '0/4', steps: [{ icon: '📊', tag: 'STEP 1', title: 'Rumus Mean (Rata-rata)', sub: 'Jumlah seluruh data dibagi banyaknya data.', quote: '"Data statistik membantu membuat keputusan tepat."', context: 'Nilai ujian 5 siswa: 80, 90, 70, 80, 80.', logic: 'Mean = Total Nilai (400) / Jumlah Siswa (5) = 80.', tips: 'Jumlahkan seluruh angka dulu.', quiz: { q: 'Berapa rata-rata dari data: 10, 20, 30?', opts: ['A. 20', 'B. 15', 'C. 25'], ans: 0 } }] }],
+                'sains': [{ tierTag: 'SD 6 SAINS', title: 'Sistem Tata Surya & Rotasi Bumi', desc: 'Mengenal planet dan akibat rotasi bumi.', progress: '0/4', steps: [{ icon: '🪐', tag: 'STEP 1', title: 'Akibat Rotasi Bumi', sub: 'Terjadinya siang dan malam.', quote: '"Bumi berputar pada porosnya tanpa henti."', context: 'Rotasi bumi memerlukan waktu 24 jam.', logic: 'Bagian bumi yang menghadap matahari mengalami siang.', tips: 'Ingat waktu 1 hari 1 malam.', quiz: { q: 'Peristiwa yang disebabkan oleh rotasi bumi adalah?', opts: ['A. Terjadinya Siang dan Malam', 'B. Perubahan Musim', 'C. Gerhana Bulan'], ans: 0 } }] }],
+                'seni': [{ tierTag: 'SD 6 SENI', title: 'Mengenal Reklame & Poster Edukasi', desc: 'Membuat pesan visual yang menarik.', progress: '0/3', steps: [{ icon: '🖼️', tag: 'STEP 1', title: 'Syarat Poster yang Baik', sub: 'Singkat, jelas, dan gambar mencolok.', quote: '"Poster menyampaikan pesan dengan visual kuat."', context: 'Poster ajakan menjaga kebersihan sekolah.', logic: 'Bahasa poster harus bersifat persuasif.', tips: 'Gunakan font yang mudah dibaca dari jauh.', quiz: { q: 'Manakah bahasa yang cocok untuk poster ajakan?', opts: ['A. Singkat dan mengajak', 'B. Panjang seperti cerpen', 'C. Rumit dan berbelit'], ans: 0 } }] }]
+            }
         };
 
-        let currentStudent = { name: 'Muhammad Faari (Developer)', parentEmail: 'faarimuhammad25@gmail.com', classLevel: 'Master Access', isDev: true };
+        let currentStudent = { name: 'Muhammad Faari (Developer)', parentEmail: 'faarimuhammad25@gmail.com', classLevel: 'Master Access', categoryKey: 'sd3', isDev: true };
         let activeSection = 'roadmap';
         let currentActiveModule = null;
         let userStars = 120;
@@ -584,10 +579,10 @@
             if (activeMenu) activeMenu.classList.add('active');
 
             const sectionHeaders = {
-                'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: 'Modul materi terstruktur disesuaikan otomatis dengan kelas siswa.' },
+                'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Modul materi terstruktur disesuaikan otomatis dengan jenjang ${currentStudent.classLevel}.` },
                 'profile': { tag: '👤 Personal Space', title: 'My Profile & Analytics', sub: 'Pantau perkembangan XP, statistik, dan akun belajar milikmu.' },
                 'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges Siswa', sub: 'Kumpulkan ⭐ Bintang dan buka piala kebanggaan belajarmu!' },
-                'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia Interaktif', sub: 'Melatih kemampuan membaca, menyusun kalimat, dan puisi.' },
+                'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia Interaktif', sub: 'Melatih kemampuan membaca, menyusun kalimat, dan ejaan.' },
                 'math': { tag: '🧮 Logika & Angka', title: 'Matematika Dasar & Logika', sub: 'Metode belajar angka yang gampang, seru, dan menyenangkan.' },
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & Eksperimen IPA', sub: 'Menjelajahi fenomena alam, hewan, dan percobaan sederhana.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni, Warna & Karakter', sub: 'Mengasah imajinasi kreatif dan pembentukan karakter terpuji.' },
@@ -618,11 +613,16 @@
             }
         }
 
+        /* AMBIL DATABASE SPESIFIK BERDASARKAN PAKET JENJANG SANG SISWA */
         function renderSectionModules(container, secKey) {
             container.innerHTML = `<div class="modules-grid" id="modulesGridContainer"></div>`;
             const grid = document.getElementById('modulesGridContainer');
-            const list = masterSectionDatabase[secKey] || masterSectionDatabase['roadmap'];
+            
+            // Ambil database berdasarkan jenjang kelas siswa
+            const packageData = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
+            const list = packageData[secKey] || masterSectionDatabase['sd3'][secKey] || masterSectionDatabase['sd3']['roadmap'];
 
+            grid.innerHTML = '';
             list.forEach((m, idx) => {
                 grid.innerHTML += `
                     <div class="module-card">
@@ -647,7 +647,7 @@
                             <div class="profile-big-avatar">🎓</div>
                             <div>
                                 <div class="profile-user-name">${currentStudent.name}</div>
-                                <div class="profile-user-level">🌱 LV 1 • Novice Learner</div>
+                                <div class="profile-user-level">🌱 LV 1 • Novice Learner (${currentStudent.classLevel})</div>
                             </div>
                         </div>
                         <div class="xp-progress-bar-container">
@@ -666,7 +666,7 @@
                 <div class="weekly-ai-insight-card">
                     <div class="insight-card-tag">🧠 WEEKLY AI INSIGHT • PERSONALIZED FOR ${currentStudent.name.toUpperCase()}</div>
                     <div class="insight-card-desc">
-                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu rajin berlatih minggu ini. Ingatlah bahwa kebiasaan belajar yang dilakukan secara konsisten meskipun sedikit akan membuahkan hasil luar biasa. Terus tingkatkan semangat belajarmu!"
+                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu rajin berlatih minggu ini untuk jenjang ${currentStudent.classLevel}. Ingatlah bahwa kebiasaan belajar yang dilakukan secara konsisten meskipun sedikit akan membuahkan hasil luar biasa!"
                     </div>
                 </div>
             `;
@@ -683,7 +683,7 @@
                     <div class="ai-chat-messages-area" id="chatMessagesBox">
                         <div class="chat-bubble-row ai">
                             <div class="chat-bubble ai">
-                                Assalamu'alaikum ${currentStudent.name}! Aku Kak Omah, AI Tutor Omah Les Privat. Ada materi sekolah atau soal yang ingin kamu tanyakan hari ini? Yuk cerita ke Kak Omah! 😊
+                                Assalamu'alaikum ${currentStudent.name}! Aku Kak Omah, AI Tutor Omah Les Privat untuk ${currentStudent.classLevel}. Ada materi sekolah atau soal yang ingin kamu tanyakan hari ini? Yuk cerita ke Kak Omah! 😊
                             </div>
                             <div class="chat-action-bar">
                                 <button class="btn-speak-voice" onclick="readOutLoud('Assalamu\'alaikum ${currentStudent.name}! Aku Kak Omah, AI Tutor Omah Les Privat. Ada materi sekolah atau soal yang ingin kamu tanyakan hari ini?')">🔊 Dengar Suara</button>
@@ -701,8 +701,7 @@
 
         function renderJournalSection(container) {
             let savedJournals = JSON.parse(localStorage.getItem('omahles_student_journals')) || [
-                { text: 'Mengerjakan 2 modul matematika dengan baik.', date: '2026-08-23' },
-                { text: 'Menghafalkan kosakata baru bahasa Indonesia.', date: '2026-08-22' }
+                { text: 'Mengerjakan 2 modul materi dengan baik.', date: '2026-08-23' }
             ];
 
             let html = `
@@ -750,7 +749,8 @@
         }
 
         function openSequenceModal(secKey, index) {
-            const list = masterSectionDatabase[secKey] || masterSectionDatabase['roadmap'];
+            const packageData = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
+            const list = packageData[secKey] || masterSectionDatabase['sd3'][secKey] || masterSectionDatabase['sd3']['roadmap'];
             currentActiveModule = list[index];
 
             document.getElementById('seqHeaderTag').innerText = currentActiveModule.tierTag;
@@ -894,11 +894,17 @@
         function handleFormLogin(e) {
             e.preventDefault();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
+            const pkgKey = document.getElementById('selectPackageLevel').value;
+
+            const pkgLabels = {
+                'tk': 'TK / PAUD', 'sd1': 'Kelas 1 SD', 'sd2': 'Kelas 2 SD',
+                'sd3': 'Kelas 3 SD', 'sd4': 'Kelas 4 SD', 'sd5': 'Kelas 5 SD', 'sd6': 'Kelas 6 SD'
+            };
 
             if (DEV_MASTER_ACCOUNTS[pEmail]) {
-                currentStudent = { name: DEV_MASTER_ACCOUNTS[pEmail], parentEmail: pEmail, classLevel: 'Master Access', isDev: true };
+                currentStudent = { name: DEV_MASTER_ACCOUNTS[pEmail], parentEmail: pEmail, classLevel: `Dev Access (${pkgLabels[pkgKey]})`, categoryKey: pkgKey, isDev: true };
             } else {
-                currentStudent = { name: 'Siswa OmahLes', parentEmail: pEmail, classLevel: 'Kelas 3 SD', isDev: false };
+                currentStudent = { name: 'Siswa OmahLes', parentEmail: pEmail, classLevel: pkgLabels[pkgKey], categoryKey: pkgKey, isDev: false };
             }
 
             document.getElementById('loginPage').style.display = 'none';
@@ -933,8 +939,10 @@
         }
 
         function devSwitchClass(catKey, classLabel) {
+            currentStudent.categoryKey = catKey;
             currentStudent.classLevel = `Dev Access (${classLabel})`;
             renderDashboardData();
+            switchSection(activeSection);
         }
 
         window.addEventListener('DOMContentLoaded', () => { openLoginForm(); });
