@@ -106,6 +106,79 @@
             text-transform: uppercase; box-shadow: 0 8px 20px rgba(45, 30, 24, 0.25);
         }
 
+        /* LOVSPEAK STYLE MODAL: TRAINING SEQUENCE POP-UP */
+        .sequence-modal-card {
+            background: #ffffff; width: 100%; max-width: 540px; border-radius: 32px;
+            padding: 0; overflow: hidden; position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.35); border: 2px solid var(--card-border);
+            animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sequence-header {
+            background: linear-gradient(135deg, var(--brand-amber) 0%, var(--brand-terracotta) 100%);
+            color: white; padding: 28px 32px; position: relative;
+        }
+
+        .sequence-header-tag { font-size: 0.72rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.9; }
+        .sequence-title { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; margin: 4px 0 6px 0; }
+        .sequence-sub { font-size: 0.85rem; opacity: 0.92; font-weight: 600; }
+        .btn-close-modal { position: absolute; top: 24px; right: 24px; background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: 800; font-size: 1rem; }
+
+        .sequence-body { padding: 24px 32px; max-height: 400px; overflow-y: auto; }
+        .sequence-step-card {
+            background: var(--bg-body); border: 2px solid var(--card-border); border-radius: 18px;
+            padding: 16px 20px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .sequence-step-card:hover { border-color: var(--brand-amber); transform: translateX(4px); background: #ffffff; }
+        .sequence-step-left { display: flex; align-items: center; gap: 14px; }
+        .sequence-icon-box { width: 40px; height: 40px; border-radius: 12px; background: var(--brand-cream); border: 1.5px solid var(--card-border); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .sequence-step-title { font-family: 'Fredoka', sans-serif; font-size: 0.95rem; color: var(--text-main); }
+        .sequence-step-sub { font-size: 0.75rem; color: var(--text-sub); font-weight: 600; }
+        .sequence-play-btn { width: 32px; height: 32px; border-radius: 50%; background: var(--brand-amber); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; }
+
+        .sequence-footer { padding: 18px 32px; border-top: 2px dashed var(--card-border); display: flex; gap: 12px; }
+        .btn-modal-close { flex: 1; background: var(--brand-cream); border: 2px solid var(--card-border); color: var(--brand-brown); padding: 12px; border-radius: 14px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
+        .btn-modal-action { flex: 1.5; background: var(--brand-amber); border: none; color: white; padding: 12px; border-radius: 14px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
+
+        /* LOVSPEAK STYLE MODAL: THEMATIC INSIGHT & KUIS INTERAKTIF */
+        .insight-modal-card {
+            background: #ffffff; width: 100%; max-width: 640px; border-radius: 32px;
+            padding: 36px 40px; overflow-y: auto; max-height: 85vh; position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.35); border: 2px solid var(--card-border);
+            animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .insight-tag { display: inline-block; background: var(--brand-cream); color: var(--brand-brown); border: 1.5px solid var(--card-border); padding: 4px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
+        .insight-title { font-family: 'Fredoka', sans-serif; font-size: 2rem; color: var(--text-main); margin-bottom: 20px; }
+
+        .quote-box-insight {
+            background: var(--brand-cream); border-left: 4px solid var(--brand-amber);
+            padding: 16px 20px; border-radius: 0 16px 16px 0; margin-bottom: 24px;
+            font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--brand-brown);
+        }
+
+        .insight-section-title { font-size: 0.82rem; font-weight: 800; color: var(--brand-amber); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .insight-text-body { font-size: 0.92rem; color: var(--text-main); line-height: 1.7; font-weight: 600; margin-bottom: 24px; }
+
+        .pro-tips-card { background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 18px; padding: 16px 20px; margin-bottom: 24px; }
+        .pro-tips-title { font-size: 0.78rem; font-weight: 800; color: #166534; text-transform: uppercase; margin-bottom: 6px; }
+        .pro-tips-desc { font-size: 0.85rem; color: #15803d; font-weight: 600; line-height: 1.5; }
+
+        /* KUIS INTERAKTIF DI DALAM MODAL */
+        .quiz-box { background: #fffbeb; border: 2px solid #fde68a; border-radius: 20px; padding: 20px; margin-top: 20px; }
+        .quiz-question { font-weight: 800; font-size: 1rem; color: #92400e; margin-bottom: 12px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-btn { background: #ffffff; border: 1.5px solid #fcd34d; padding: 10px 14px; border-radius: 12px; font-weight: 700; font-size: 0.88rem; color: #78350f; text-align: left; cursor: pointer; }
+        .quiz-btn:hover { background: #fef3c7; }
+        .quiz-feedback { margin-top: 10px; font-weight: 800; font-size: 0.9rem; }
+
+        /* FORM JURNAL BELAJAR */
+        .journal-form-box { background: var(--brand-cream); border: 2px solid var(--card-border); border-radius: 20px; padding: 20px; margin-bottom: 24px; }
+        .journal-input { width: 100%; padding: 10px 14px; border-radius: 12px; border: 1.5px solid var(--card-border); margin-bottom: 12px; font-weight: 600; font-size: 0.9rem; outline: none; }
+        .btn-add-journal { background: var(--brand-amber); color: white; border: none; padding: 10px 20px; border-radius: 12px; font-weight: 800; cursor: pointer; font-family: 'Fredoka', sans-serif; }
+        .journal-item-card { background: #ffffff; border: 1.5px solid var(--card-border); border-radius: 16px; padding: 14px 18px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+
         /* APP LAYOUT */
         .app-wrapper { display: flex; flex: 1; }
 
@@ -141,6 +214,39 @@
         /* MAIN CONTENT AREA */
         .content-area { margin-left: 280px; flex: 1; padding: 36px 48px; max-width: 1300px; }
 
+        .roadmap-banner { background: linear-gradient(135deg, rgba(139, 69, 19, 0.95) 0%, rgba(180, 83, 9, 0.95) 100%); color: #ffffff; border-radius: var(--radius-main); padding: 32px; text-align: center; margin-bottom: 28px; box-shadow: 0 12px 28px rgba(139, 69, 19, 0.2); }
+        .banner-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25); color: #fef08a; padding: 6px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
+        .banner-title { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: #ffffff; margin-bottom: 8px; }
+        .banner-sub { font-size: 0.95rem; opacity: 0.92; font-weight: 600; max-width: 620px; margin: 0 auto; }
+
+        .filter-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+        .mastery-badge-box { display: flex; align-items: center; gap: 12px; background: var(--card-bg); padding: 12px 20px; border-radius: var(--radius-sm); border: 2px solid var(--card-border); }
+        .mastery-val { font-family: 'Fredoka', sans-serif; font-size: 1.3rem; color: var(--brand-amber); }
+        .mastery-lbl { font-size: 0.72rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; }
+
+        .active-level-indicator { background: var(--brand-cream); border: 2px solid var(--brand-amber); color: var(--brand-brown); font-family: 'Fredoka', sans-serif; font-size: 1rem; padding: 8px 18px; border-radius: var(--radius-sm); font-weight: 700; }
+
+        .dev-level-switcher { display: none; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; background: #ffffff; padding: 16px; border-radius: 16px; border: 2px solid var(--brand-amber); }
+        .dev-level-switcher.active { display: flex; }
+        .dev-switch-btn { background: var(--brand-cream); border: 1.5px solid var(--brand-amber); color: var(--brand-brown); padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.8rem; cursor: pointer; }
+        .dev-switch-btn:hover, .dev-switch-btn.active { background: var(--brand-amber); color: white; }
+
+        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .module-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        .module-card:hover { border-color: var(--brand-amber); transform: translateY(-4px); box-shadow: 0 10px 20px rgba(217, 119, 6, 0.12); }
+        
+        .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .tier-badge { background: var(--brand-cream); color: var(--brand-brown); border: 1px solid var(--card-border); font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 10px; }
+        .progress-count { font-size: 0.78rem; color: var(--text-sub); font-weight: 800; }
+
+        .card-body h3 { font-family: 'Fredoka', sans-serif; font-size: 1.25rem; color: var(--text-main); margin-bottom: 6px; }
+        .card-body p { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+
+        .card-footer { display: flex; align-items: center; justify-content: space-between; border-top: 2px dashed var(--card-border); padding-top: 16px; }
+        .icons-group { display: flex; gap: 8px; font-size: 1.1rem; opacity: 0.8; }
+        .btn-open-module { background: var(--brand-amber); color: white; border: none; padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
+        .btn-open-module:hover { background: var(--brand-brown); }
+
         /* LOVSPEAK STYLE MY PROFILE SECTION */
         .profile-container-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 32px; padding: 32px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
         .profile-header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 20px; }
@@ -161,8 +267,8 @@
         .insight-card-tag { font-size: 0.75rem; font-weight: 800; color: #b45309; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
         .insight-card-desc { font-size: 0.92rem; color: #78350f; font-weight: 600; line-height: 1.7; font-style: italic; }
 
-        /* LOVSPEAK STYLE REAL AI TUTOR CHAT SECTION */
-        .ai-chat-wrapper { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 32px; overflow: hidden; display: flex; flex-direction: column; height: 75vh; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        /* REAL AI TUTOR CHAT SECTION */
+        .ai-chat-wrapper { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 32px; overflow: hidden; display: flex; flex-direction: column; height: 70vh; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         .ai-chat-header { background: var(--sidebar-bg); color: #ffffff; padding: 18px 28px; display: flex; align-items: center; justify-content: space-between; }
         .ai-chat-title { font-family: 'Fredoka', sans-serif; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
         .ai-status-online { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; display: inline-block; }
@@ -228,6 +334,58 @@
             <div class="wisdom-author" id="wisdomAuthorText">— HR. Muslim</div>
 
             <button class="btn-enter-wisdom" onclick="closeWisdomModal()">ENTER OMAH LES PORTAL</button>
+        </div>
+    </div>
+
+    <!-- POP-UP MODAL 1: TRAINING SEQUENCE (LOVSPEAK STYLE) -->
+    <div class="modal-overlay" id="sequenceModalOverlay">
+        <div class="sequence-modal-card">
+            <div class="sequence-header">
+                <button class="btn-close-modal" onclick="closeSequenceModal()">✕</button>
+                <div class="sequence-header-tag" id="seqHeaderTag">STAGE 1 • SIKLUS BELAJAR</div>
+                <div class="sequence-title" id="seqHeaderTitle">Judul Modul Sequence</div>
+                <div class="sequence-sub" id="seqHeaderSub">Pilih langkah di bawah ini untuk memulai sesi belajar interaktif.</div>
+            </div>
+
+            <div class="sequence-body" id="sequenceStepsContainer"></div>
+
+            <div class="sequence-footer">
+                <button class="btn-modal-close" onclick="closeSequenceModal()">TUTUP</button>
+                <button class="btn-modal-action" onclick="alert('Selamat! Semua modul diselesaikan dengan sempurna! ⭐ +15')">SELESAIKAN SEMUA STEP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POP-UP MODAL 2: THEMATIC INSIGHT & KUIS INTERAKTIF -->
+    <div class="modal-overlay" id="insightModalOverlay">
+        <div class="insight-modal-card">
+            <button class="btn-close-modal" style="color:var(--text-main); background:var(--brand-cream);" onclick="closeInsightModal()">✕</button>
+            
+            <span class="insight-tag" id="insTag">THEMATIC INSIGHT</span>
+            <h1 class="insight-title" id="insTitle">Judul Sub-Materi Step</h1>
+
+            <div class="quote-box-insight" id="insQuote">
+                "Quote inspiratif belajar untuk memberikan pemahaman mendalam anak."
+            </div>
+
+            <div class="insight-section-title">💡 CONTEXT INSIGHT</div>
+            <div class="insight-text-body" id="insContext">Penjelasan konteks materi...</div>
+
+            <div class="insight-section-title">📌 STRUCTURAL LOGICAL REASONING</div>
+            <div class="insight-text-body" id="insLogic">Logika dasar materi yang dipelajari...</div>
+
+            <div class="pro-tips-card">
+                <div class="pro-tips-title">⭐ PRO TIPS OMAH LES</div>
+                <div class="pro-tips-desc" id="insTips">Tips praktis mengingat dan menerapkan pelajaran dalam kehidupan harian.</div>
+            </div>
+
+            <div class="quiz-box" id="quizBoxContainer">
+                <div class="quiz-question" id="quizQuestionText">❓ Pertanyaan Kuis: ...</div>
+                <div class="quiz-options" id="quizOptionsContainer"></div>
+                <div class="quiz-feedback" id="quizFeedbackText"></div>
+            </div>
+
+            <button class="btn-enter-wisdom" style="margin-top:20px;" onclick="closeInsightModal()">SELESAI & KEMBALI</button>
         </div>
     </div>
 
@@ -303,7 +461,42 @@
 
         <!-- MAIN DASHBOARD CONTENT -->
         <main class="content-area" id="mainDashboardView">
-            <div id="dynamicMainContentArea"></div>
+
+            <div class="roadmap-banner" id="tourRoadmapBanner">
+                <div class="banner-tag" id="bannerTagText">🎓 Master Path</div>
+                <div class="banner-title" id="bannerWelcomeTitle">Curriculum Roadmap</div>
+                <div class="banner-sub" id="bannerWelcomeSub">Modul materi terstruktur disesuaikan secara otomatis berdasarkan kelas dan jenjang pilihanmu.</div>
+            </div>
+
+            <div class="dev-level-switcher" id="devLevelSwitcherBox">
+                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">🛠️ DEVELOPER MODE: Pilih Jenjang Mana Saja Kapan Saja</span>
+                <button class="dev-switch-btn" onclick="devSwitchClass('tk', 'TK / PAUD')">TK / PAUD</button>
+                <button class="dev-switch-btn" onclick="devSwitchClass('sd1', 'Kelas 1 SD')">Kelas 1 SD</button>
+                <button class="dev-switch-btn" onclick="devSwitchClass('sd2', 'Kelas 2 SD')">Kelas 2 SD</button>
+                <button class="dev-switch-btn" onclick="devSwitchClass('sd3', 'Kelas 3 SD')">Kelas 3 SD</button>
+                <button class="dev-switch-btn" onclick="devSwitchClass('sd4', 'Kelas 4 SD')">Kelas 4 SD</button>
+                <button class="dev-switch-btn" onclick="devSwitchClass('sd5', 'Kelas 5 SD')">Kelas 5 SD</button>
+                <button class="dev-switch-btn" onclick="devSwitchClass('sd6', 'Kelas 6 SD')">Kelas 6 SD</button>
+            </div>
+
+            <div class="filter-header-bar" id="filterHeaderBar">
+                <div class="mastery-badge-box">
+                    <div>
+                        <div class="mastery-lbl">Mastery Level</div>
+                        <div class="mastery-val" id="masteryPercentDisplay">0% Completed</div>
+                    </div>
+                </div>
+
+                <div class="active-level-indicator" id="activeLevelText">
+                    🔒 Modul Terkunci: Kelas 3 SD
+                </div>
+            </div>
+
+            <!-- CONTAINER KONTEN DINAMIS -->
+            <div id="dynamicMainContentArea">
+                <div class="modules-grid" id="modulesGridContainer"></div>
+            </div>
+
         </main>
     </div>
 
@@ -318,7 +511,7 @@
     </footer>
 
     <script>
-        // MASUKKAN API KEY GEMINI KAMU DI SINI (GRATIS DARI GOOGLE AI STUDIO)
+        // MASUKKAN API KEY GEMINI KAMU DI SINI
         const GEMINI_API_KEY = '';
 
         const DEV_MASTER_ACCOUNTS = {
@@ -331,28 +524,124 @@
             { quote: "Pendidikan adalah senjata paling mematikan di dunia, karena dengan pendidikan Anda dapat mengubah dunia.", author: "— Nelson Mandela" }
         ];
 
+        /* DATABASE MATERI LENGKAP */
+        const masterSectionDatabase = {
+            'roadmap': [
+                {
+                    tierTag: 'TIER A1 • SD KLS 3', title: 'Ide Pokok & Kalimat Utama', desc: 'Menemukan gagasan utama dalam cerita dan paragraf pendek.', progress: '0/5',
+                    steps: [
+                        { icon: '🌱', tag: 'STEP 1', title: 'Unit Context: Menyapa & Santun', sub: 'Membangun adab membaca dan berinteraksi.', quote: '"Kalimat santun adalah cermin kebaikan hati."', context: 'Saat membaca cerita, perhatikan bagaimana tokoh saling menyapa dengan sopan.', logic: 'Kalimat utama biasanya terletak di awal (deduktif) atau akhir (induktif) paragraf.', tips: 'Cari kata yang sering diulang-ulang dalam paragraf tersebut.', quiz: { q: 'Di mana biasanya letak kalimat utama pada paragraf deduktif?', opts: ['A. Di akhir paragraf', 'B. Di awal paragraf', 'C. Di tengah paragraf'], ans: 1 } },
+                        { icon: '✍️', tag: 'STEP 2', title: 'Latihan Ejaan & Tanda Baca', sub: 'Menggunakan huruf kapital dan titik dengan tepat.', quote: '"Tanda baca yang tepat membuat tulisan mudah dipahami."', context: 'Penggunaan huruf besar untuk awal kalimat, nama orang, dan tempat.', logic: 'Setiap akhir kalimat berita diakhiri dengan tanda titik (.)', tips: 'Selalu periksa kembali tulisanmu setelah selesai menulis.', quiz: { q: 'Manakah penulisan nama orang yang benar menggunakan huruf kapital?', opts: ['A. budi santoso', 'B. Budi Santoso', 'C. bUdI sAnToSo'], ans: 1 } }
+                    ]
+                },
+                {
+                    tierTag: 'TIER A1 • SD KLS 3', title: 'Pecahan Dasar ½, ⅓, ¼', desc: 'Mengenal konsep pembilang dan penyebut pada benda konkret.', progress: '0/4',
+                    steps: [
+                        { icon: '🍕', tag: 'STEP 1', title: 'Unit Context: Membagi Makanan Sama Rata', sub: 'Penerapan pecahan dalam kehidupan harian.', quote: '"Berbagi makanan dengan adil adalah perbuatan terpuji."', context: 'Satu buah pizza dipotong menjadi 2 bagian sama besar.', logic: 'Pecahan terdiri dari Pembilang (Atas) dan Penyebut (Bawah).', tips: 'Penyebut adalah total seluruh potongan sama besar.', quiz: { q: 'Pada pecahan 1/4, angka 4 disebut sebagai apa?', opts: ['A. Pembilang', 'B. Penyebut', 'C. Penjumlah'], ans: 1 } }
+                    ]
+                }
+            ],
+            'badges': [
+                {
+                    tierTag: 'PRESTASI', title: '🥇 Lencana Bintang Membaca', desc: 'Selesaikan 5 modul membaca untuk membuka trofi emas.', progress: '4/5',
+                    steps: [{ icon: '🏆', tag: 'PENCAPAIAN', title: 'Syarat Membuka Lencana', sub: 'Baca 5 cerita anak dan jawab pertanyaannya.', quote: '"Setiap halaman cerita menambah poin pengetahuanmu."', context: 'Lencana ini menandakan kamu telah aktif membaca setiap hari.', logic: 'Selesaikan seluruh step di modul membaca untuk klaim bintang ekstra.', tips: 'Luangkan waktu 10 menit setiap malam untuk membaca.', quiz: { q: 'Berapa modul membaca yang harus diselesaikan untuk lencana emas?', opts: ['A. 3 Modul', 'B. 5 Modul', 'C. 10 Modul'], ans: 1 } }]
+                }
+            ],
+            'indo': [
+                {
+                    tierTag: 'BAHASA INDO', title: 'Suku Kata Awalan & Akhiran', desc: 'Latihan mengeja dan membentuk kata-kata baru.', progress: '0/3',
+                    steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Mengenal Imbuhan Me-', sub: 'Perubahan kata dasar menjadi kata kerja.', quote: '"Kata kerja menunjukkan aksi dan kegiatan kita."', context: 'Kata dasar "baca" diberi imbuhan Me- menjadi "Membaca".', logic: 'Imbuhan Me- jika bertemu huruf B berubah menjadi Mem-.', tips: 'Ucapkan kata secara berulang untuk melatih ejaan.', quiz: { q: 'Kata dasar "tulis" jika ditambah imbuhan me- menjadi apa?', opts: ['A. Melulis', 'B. Menulis', 'C. Mengulis'], ans: 1 } }]
+                }
+            ],
+            'math': [
+                {
+                    tierTag: 'MATEMATIKA', title: 'Perkalian Trik Cepat 1-10', desc: 'Memahami perkalian sebagai penjumlahan berulang.', progress: '0/5',
+                    steps: [{ icon: '➕', tag: 'STEP 1', title: 'Konsep Penjumlahan Berulang', sub: 'Mengubah 3 x 4 menjadi penjumlahan.', quote: '"Matematika itu pola yang teratur dan menyenangkan."', context: '3 x 4 artinya 4 + 4 + 4 = 12.', logic: 'Angka depan jumlah kelompok, angka belakang isinya.', tips: 'Gunakan jari tangan atau batu kecil saat latihan.', quiz: { q: 'Berapa hasil dari 3 x 5?', opts: ['A. 12', 'B. 15', 'C. 18'], ans: 1 } }]
+                }
+            ],
+            'sains': [
+                {
+                    tierTag: 'SAINS & IPA', title: 'Metamorfosis Kupu-Kupu', desc: 'Daur hidup dari telur hingga menjadi kupu-kupu cantik.', progress: '0/4',
+                    steps: [{ icon: '🐛', tag: 'STEP 1', title: 'Tahap Telur & Ulat', sub: 'Fase awal siklus hidup serangga.', quote: '"Alam mengajarkan kita tentang proses pertumbuhan."', context: 'Kupu-kupu menetas dari telur menjadi ulat.', logic: 'Metamorfosis sempurna mengalami fase kepompong.', tips: 'Amati tanaman hias di rumahmu.', quiz: { q: 'Sebelum menjadi kepompong, ulat berubah dari apa?', opts: ['A. Telur', 'B. Kepompong', 'C. Kupu-kupu dewasa'], ans: 0 } }]
+                }
+            ],
+            'seni': [
+                {
+                    tierTag: 'SENI & KARAKTER', title: 'Kombinasi Warna Dasar', desc: 'Mengenal warna primer dan sekunder.', progress: '0/3',
+                    steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Pencampuran Warna Primer', sub: 'Eksperimen warna merah, kuning, dan biru.', quote: '"Dunia penuh dengan keindahan warna-warni."', context: 'Campuran warna merah dan kuning menghasilkan oranye.', logic: 'Warna sekunder diciptakan dari gabungan dua warna primer.', tips: 'Gunakan cat air untuk mencoba langsung.', quiz: { q: 'Warna apa yang dihasilkan dari campuran merah dan kuning?', opts: ['A. Hijau', 'B. Oranye', 'C. Ungu'], ans: 1 } }]
+                }
+            ]
+        };
+
         let currentStudent = { name: 'Michelle Himmelda C', parentEmail: 'michellehimmelda@gmail.com', classLevel: 'Tutor & Founder', isDev: true };
+        let activeSection = 'roadmap';
+        let currentActiveModule = null;
         let userStars = 120;
         let userStreak = 3;
-        let chatHistory = [];
 
         function switchSection(secKey) {
+            activeSection = secKey;
+
             document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
             const activeMenu = document.getElementById(`menu${secKey.charAt(0).toUpperCase() + secKey.slice(1)}`);
             if (activeMenu) activeMenu.classList.add('active');
 
+            const sectionHeaders = {
+                'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: 'Modul materi terstruktur disesuaikan otomatis dengan kelas siswa.' },
+                'profile': { tag: '👤 Personal Space', title: 'My Profile & Analytics', sub: 'Pantau perkembangan XP, statistik, dan akun belajar milikmu.' },
+                'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges Siswa', sub: 'Kumpulkan ⭐ Bintang dan buka piala kebanggaan belajarmu!' },
+                'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia Interaktif', sub: 'Melatih kemampuan membaca, menyusun kalimat, dan puisi.' },
+                'math': { tag: '🧮 Logika & Angka', title: 'Matematika Dasar & Logika', sub: 'Metode belajar angka yang gampang, seru, dan menyenangkan.' },
+                'sains': { tag: '🔬 Dunia IPA', title: 'Sains & Eksperimen IPA', sub: 'Menjelajahi fenomena alam, hewan, dan percobaan sederhana.' },
+                'seni': { tag: '🎨 Kreativitas', title: 'Seni, Warna & Karakter', sub: 'Mengasah imajinasi kreatif dan pembentukan karakter terpuji.' },
+                'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Ruang AI Tutor Omah Les', sub: 'Tanya soal sulit kapan saja bersama AI Tutor Omah Les.' },
+                'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar Harian', sub: 'Pantau tugas rumah dan rencana belajarmu di sini (Disimpan di LocalStorage).' }
+            };
+
+            const h = sectionHeaders[secKey] || sectionHeaders['roadmap'];
+            document.getElementById('bannerTagText').innerText = h.tag;
+            document.getElementById('bannerWelcomeTitle').innerText = h.title;
+            document.getElementById('bannerWelcomeSub').innerText = h.sub;
+
             const area = document.getElementById('dynamicMainContentArea');
+            const filterBar = document.getElementById('filterHeaderBar');
 
             if (secKey === 'profile') {
+                filterBar.style.display = 'none';
                 renderMyProfileSection(area);
             } else if (secKey === 'aitutor') {
+                filterBar.style.display = 'none';
                 renderAiTutorChatSection(area);
+            } else if (secKey === 'diary') {
+                filterBar.style.display = 'none';
+                renderJournalSection(area);
             } else {
-                area.innerHTML = `<div class="roadmap-banner"><div class="banner-title">${secKey.toUpperCase()} SECTION</div><div class="banner-sub">Pilih modul materi belajar interaktif Omah Les Privat.</div></div>`;
+                filterBar.style.display = 'flex';
+                renderSectionModules(area, secKey);
             }
         }
 
-        /* RENDER SECTION MY PROFILE (LOVSPEAK STYLE) */
+        function renderSectionModules(container, secKey) {
+            container.innerHTML = `<div class="modules-grid" id="modulesGridContainer"></div>`;
+            const grid = document.getElementById('modulesGridContainer');
+            const list = masterSectionDatabase[secKey] || masterSectionDatabase['roadmap'];
+
+            list.forEach((m, idx) => {
+                grid.innerHTML += `
+                    <div class="module-card">
+                        <div>
+                            <div class="card-top"><span class="tier-badge">${m.tierTag}</span><span class="progress-count">${m.progress}</span></div>
+                            <div class="card-body"><h3>${m.title}</h3><p>${m.desc}</p></div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="icons-group">📖 🎧 📝</div>
+                            <button class="btn-open-module" onclick="openSequenceModal('${secKey}', ${idx})">OPEN &gt;</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
         function renderMyProfileSection(container) {
             container.innerHTML = `
                 <div class="profile-container-card">
@@ -380,13 +669,12 @@
                 <div class="weekly-ai-insight-card">
                     <div class="insight-card-tag">🧠 WEEKLY AI INSIGHT • PERSONALIZED FOR ${currentStudent.name.toUpperCase()}</div>
                     <div class="insight-card-desc">
-                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu rajin berlatih minggu ini. Ingatlah bahwa kebiasaan belajar yang dilakukan secara konsisten meskipun sedikit akan membuahkan hasil luar biasa, sebagaimana hadis riwayat Bukhari dan Muslim. Terus tingkatkan semangat belajarmu!"
+                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu rajin berlatih minggu ini. Ingatlah bahwa kebiasaan belajar yang dilakukan secara konsisten meskipun sedikit akan membuahkan hasil luar biasa. Terus tingkatkan semangat belajarmu!"
                     </div>
                 </div>
             `;
         }
 
-        /* RENDER SECTION REAL AI TUTOR CHAT (LOVSPEAK STYLE) */
         function renderAiTutorChatSection(container) {
             container.innerHTML = `
                 <div class="ai-chat-wrapper">
@@ -409,9 +697,128 @@
             `;
         }
 
+        function renderJournalSection(container) {
+            let savedJournals = JSON.parse(localStorage.getItem('omahles_student_journals')) || [
+                { text: 'Mengerjakan 2 modul matematika dengan baik.', date: '2026-08-23' },
+                { text: 'Menghafalkan kosakata baru bahasa Indonesia.', date: '2026-08-22' }
+            ];
+
+            let html = `
+                <div class="journal-form-box">
+                    <h3 style="font-family:'Fredoka', sans-serif; color:var(--brand-brown); margin-bottom:10px;">➕ Tambah Catatan Jurnal Baru</h3>
+                    <input type="text" id="inputJournalText" class="journal-input" placeholder="Tulis target atau kegiatan belajarmu hari ini...">
+                    <button class="btn-add-journal" onclick="addNewJournalEntry()">Simpan ke Jurnal 💾</button>
+                </div>
+                <div id="journalListContainer">
+            `;
+
+            savedJournals.forEach((j, jIdx) => {
+                html += `
+                    <div class="journal-item-card">
+                        <div>
+                            <div style="font-weight:800; font-size:0.95rem; color:var(--text-main);">${j.text}</div>
+                            <div style="font-size:0.75rem; color:var(--text-sub); margin-top:4px;">📅 ${j.date}</div>
+                        </div>
+                        <button onclick="deleteJournalEntry(${jIdx})" style="background:#fee2e2; color:#b91c1c; border:none; padding:6px 12px; border-radius:8px; font-weight:800; cursor:pointer;">Hapus</button>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function addNewJournalEntry() {
+            const txt = document.getElementById('inputJournalText').value.trim();
+            if (!txt) { alert('Tulis catatan terlebih dahulu!'); return; }
+
+            let savedJournals = JSON.parse(localStorage.getItem('omahles_student_journals')) || [];
+            const todayStr = new Date().toISOString().split('T')[0];
+            savedJournals.unshift({ text: txt, date: todayStr });
+
+            localStorage.setItem('omahles_student_journals', JSON.stringify(savedJournals));
+            switchSection('diary');
+        }
+
+        function deleteJournalEntry(idx) {
+            let savedJournals = JSON.parse(localStorage.getItem('omahles_student_journals')) || [];
+            savedJournals.splice(idx, 1);
+            localStorage.setItem('omahles_student_journals', JSON.stringify(savedJournals));
+            switchSection('diary');
+        }
+
+        function openSequenceModal(secKey, index) {
+            const list = masterSectionDatabase[secKey] || masterSectionDatabase['roadmap'];
+            currentActiveModule = list[index];
+
+            document.getElementById('seqHeaderTag').innerText = currentActiveModule.tierTag;
+            document.getElementById('seqHeaderTitle').innerText = currentActiveModule.title;
+            document.getElementById('seqHeaderSub').innerText = currentActiveModule.desc;
+
+            const stepsContainer = document.getElementById('sequenceStepsContainer');
+            stepsContainer.innerHTML = '';
+
+            currentActiveModule.steps.forEach((st, sIdx) => {
+                stepsContainer.innerHTML += `
+                    <div class="sequence-step-card" onclick="openInsightModal(${sIdx})">
+                        <div class="sequence-step-left">
+                            <div class="sequence-icon-box">${st.icon}</div>
+                            <div>
+                                <div class="sequence-step-title">${st.tag} • ${st.title}</div>
+                                <div class="sequence-step-sub">${st.sub}</div>
+                            </div>
+                        </div>
+                        <div class="sequence-play-btn">▶</div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('sequenceModalOverlay').classList.add('active');
+        }
+
+        function closeSequenceModal() { document.getElementById('sequenceModalOverlay').classList.remove('active'); }
+
+        function openInsightModal(stepIndex) {
+            if (!currentActiveModule || !currentActiveModule.steps[stepIndex]) return;
+            const st = currentActiveModule.steps[stepIndex];
+
+            document.getElementById('insTag').innerText = `${currentActiveModule.tierTag} • ${st.tag}`;
+            document.getElementById('insTitle').innerText = st.title;
+            document.getElementById('insQuote').innerText = st.quote;
+            document.getElementById('insContext').innerText = st.context;
+            document.getElementById('insLogic').innerText = st.logic;
+            document.getElementById('insTips').innerText = st.tips;
+
+            const qBox = st.quiz;
+            document.getElementById('quizQuestionText').innerText = `❓ Kuis: ${qBox.q}`;
+            const optsContainer = document.getElementById('quizOptionsContainer');
+            optsContainer.innerHTML = '';
+            document.getElementById('quizFeedbackText').innerText = '';
+
+            qBox.opts.forEach((opt, oIdx) => {
+                optsContainer.innerHTML += `<button class="quiz-btn" onclick="checkQuizAnswer(${oIdx}, ${qBox.ans})">${opt}</button>`;
+            });
+
+            document.getElementById('insightModalOverlay').classList.add('active');
+        }
+
+        function checkQuizAnswer(selectedIdx, correctIdx) {
+            const feedback = document.getElementById('quizFeedbackText');
+            if (selectedIdx === correctIdx) {
+                feedback.style.color = '#16a34a';
+                feedback.innerText = '🎉 Benar sekali! Kamu mendapatkan ⭐ +15 Bintang!';
+                userStars += 15;
+                document.getElementById('userStarDisplay').innerText = userStars;
+            } else {
+                feedback.style.color = '#dc2626';
+                feedback.innerText = '❌ Belum tepat, ayo coba pilih opsi yang lain!';
+            }
+        }
+
+        function closeInsightModal() { document.getElementById('insightModalOverlay').classList.remove('active'); }
+
         function handleKeyPress(e) { if (e.key === 'Enter') sendChatMessage(); }
 
-        /* ENGINE PEMBALASAN AI DENGAN GEMINI API REAL / FALLBACK SIMULASI CERDAS */
         async function sendChatMessage() {
             const inputEl = document.getElementById('userChatInput');
             const msg = inputEl.value.trim();
@@ -443,7 +850,6 @@
                     replyText = `Wah ${currentStudent.name}, Kak Omah paham pertanyaanmu tentang: "${msg}". Pembahasan ini sangat bagus! Mari kita pelajari bersama modul di portal Omah Les ya! ⭐`;
                 }
             } else {
-                // FALLBACK AI SIMULASI RAMAH
                 await new Promise(r => setTimeout(r, 1000));
                 replyText = `Halo ${currentStudent.name}! Pertanyaanmu tentang "${msg}" bagus sekali. Sebagai AI Tutor Omah Les, Kak Omah sarankan kamu selalu rajin membaca dan berlatih soal ya! Ada yang ingin ditanyakan lagi? 😊`;
             }
@@ -452,10 +858,51 @@
             box.scrollTop = box.scrollHeight;
         }
 
-        function handleFormLogin(e) { e.preventDefault(); document.getElementById('loginPage').style.display = 'none'; showRandomDailyWisdom(); }
-        function showRandomDailyWisdom() { document.getElementById('wisdomModalOverlay').classList.add('active'); }
-        function closeWisdomModal() { document.getElementById('wisdomModalOverlay').classList.remove('active'); switchSection('profile'); }
+        function handleFormLogin(e) {
+            e.preventDefault();
+            const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
+
+            if (DEV_MASTER_ACCOUNTS[pEmail]) {
+                currentStudent = { name: DEV_MASTER_ACCOUNTS[pEmail], parentEmail: pEmail, classLevel: 'Master Access', isDev: true };
+            } else {
+                currentStudent = { name: 'Siswa OmahLes', parentEmail: pEmail, classLevel: 'Kelas 3 SD', isDev: false };
+            }
+
+            document.getElementById('loginPage').style.display = 'none';
+            showRandomDailyWisdom();
+        }
+
+        function showRandomDailyWisdom() {
+            const randomObj = dailyQuotesList[Math.floor(Math.random() * dailyQuotesList.length)];
+            document.getElementById('wisdomQuoteText').innerText = randomObj.quote;
+            document.getElementById('wisdomAuthorText').innerText = randomObj.author;
+            document.getElementById('wisdomModalOverlay').classList.add('active');
+        }
+
+        function closeWisdomModal() {
+            document.getElementById('wisdomModalOverlay').classList.remove('active');
+            renderDashboardData();
+            switchSection('roadmap');
+        }
+
         function openLoginForm() { document.getElementById('loginPage').style.display = 'flex'; }
+
+        function renderDashboardData() {
+            document.getElementById('userNameDisplay').innerText = currentStudent.name;
+            document.getElementById('userLevelDisplay').innerText = currentStudent.classLevel;
+            document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ Dev Mode: ${currentStudent.classLevel}` : `🔒 Modul Terkunci: ${currentStudent.classLevel}`;
+
+            document.getElementById('userStarDisplay').innerText = userStars;
+            document.getElementById('userStreakDisplay').innerText = userStreak;
+
+            const devBox = document.getElementById('devLevelSwitcherBox');
+            if (currentStudent.isDev) devBox.classList.add('active'); else devBox.classList.remove('active');
+        }
+
+        function devSwitchClass(catKey, classLabel) {
+            currentStudent.classLevel = `Dev Access (${classLabel})`;
+            renderDashboardData();
+        }
 
         window.addEventListener('DOMContentLoaded', () => { openLoginForm(); });
     </script>
