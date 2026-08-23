@@ -3,171 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omah Les Privat - Portal Belajar</title>
+    <title>Omah Les Privat - AI & Interactive Learning Platform</title>
     <link rel="icon" type="image/jpeg" href="./logo.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --brand-main: #8b4513;        
-            --brand-secondary: #a0522d;   
-            --brand-accent: #d97706;      
-            --brand-soft-bg: #fef8f0;     
-            --bg-body: #fdfbf7;           
+            --bg-body: #0f172a;
+            --sidebar-bg: #1e293b;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --brand-primary: #ec4899;
+            --brand-primary-hover: #db2777;
+            --brand-accent: #f43f5e;
+            --badge-bg: rgba(236, 72, 153, 0.15);
+            --radius-main: 18px;
+            --radius-sm: 12px;
+        }
+
+        body.light-theme {
+            --bg-body: #f8fafc;
+            --sidebar-bg: #ffffff;
             --card-bg: #ffffff;
-            --text-main: #2d1e18;         
-            --text-sub: #6e5849;          
-            --border-soft: #ebdccb;       
-            --radius-main: 22px;
-            --radius-sm: 14px;
+            --card-border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-sub: #64748b;
+            --badge-bg: #fce7f3;
         }
 
-        body.dark-theme {
-            --bg-body: #18120e;
-            --card-bg: #261c16;
-            --text-main: #fcf8f5;
-            --text-sub: #c4b5a5;
-            --border-soft: #382a20;
-            --brand-soft-bg: #302018;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.2s, color 0.2s; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.25s, color 0.25s, transform 0.2s; }
-
-        body {
-            background-color: var(--bg-body);
-            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18l1.5-1.5L14 18l-1.5 1.5zm24 6l1-2 1 2-1 2zm30-10l2 1-1 2-2-1zm-40 50l3 1-1 3-3-1zm55-15l2-2 2 2-2 2zm-20 30l1-3 3 1-1 3z' fill='%23d97706' fill-opacity='0.08'/%3E%3C/svg%3E");
-            color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
-        }
+        body { background-color: var(--bg-body); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
 
         /* SPLIT LOGIN FORM */
         .login-page-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; z-index: 1000; background: #ffffff;
+            display: flex; z-index: 1000; background: var(--bg-body);
         }
 
         .login-left-brand {
-            flex: 1.2; background: linear-gradient(135deg, #3d2012 0%, #1c0e08 100%);
-            color: #ffffff; padding: 50px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+            flex: 1.2; background: linear-gradient(135deg, #831843 0%, #0f172a 100%);
+            color: #ffffff; padding: 60px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
         }
 
-        .brand-badge-tag { background: rgba(217, 119, 6, 0.25); border: 1px solid var(--brand-accent); color: #fef08a; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 20px; }
-        .brand-logo-img { width: 72px; height: 72px; border-radius: 20px; border: 3px solid var(--brand-accent); object-fit: cover; margin-bottom: 18px; }
-        .brand-slogan-title { font-family: 'Fredoka', sans-serif; font-size: 2.5rem; line-height: 1.25; color: #ffffff; margin-bottom: 14px; }
-        .brand-slogan-title span { color: #f59e0b; }
-        .brand-slogan-sub { font-size: 1rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 480px; margin-bottom: 24px; }
-        
-        .brand-illustration-card { width: 100%; max-width: 420px; border-radius: 20px; overflow: hidden; border: 2px solid rgba(255,255,255,0.15); }
-        .brand-illustration-card img { width: 100%; height: auto; display: block; }
+        .brand-badge-tag { background: var(--badge-bg); border: 1px solid var(--brand-primary); color: #fbcfe8; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 20px; }
+        .brand-logo-img { width: 72px; height: 72px; border-radius: 20px; border: 3px solid var(--brand-primary); object-fit: cover; margin-bottom: 18px; }
+        .brand-slogan-title { font-size: 2.8rem; line-height: 1.2; color: #ffffff; margin-bottom: 14px; font-weight: 800; }
+        .brand-slogan-title span { color: var(--brand-primary); }
+        .brand-slogan-sub { font-size: 1.05rem; color: #cbd5e1; line-height: 1.6; font-weight: 600; max-width: 480px; }
 
-        .login-right-form { width: 480px; padding: 50px 44px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); }
-        .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2rem; color: var(--brand-main); margin-bottom: 6px; }
+        .login-right-form { width: 480px; padding: 60px; display: flex; flex-direction: column; justify-content: center; background: var(--sidebar-bg); border-left: 1px solid var(--card-border); }
+        .form-header-text { font-size: 2rem; color: var(--text-main); margin-bottom: 6px; font-weight: 800; }
         .form-sub-text { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 28px; font-weight: 600; }
 
-        .form-group { margin-bottom: 18px; text-align: left; }
-        .form-label { display: block; font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
-        .form-input, .form-select { width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid var(--border-soft); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: #fdfbf7; }
-        .form-input:focus, .form-select:focus { border-color: var(--brand-accent); background: #ffffff; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-label { display: block; font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
+        .form-input, .form-select { width: 100%; padding: 14px 16px; border-radius: 12px; border: 1.5px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: var(--bg-body); }
+        .form-input:focus, .form-select:focus { border-color: var(--brand-primary); }
 
-        .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-main) 0%, var(--brand-secondary) 100%); color: white; border: none; padding: 15px; border-radius: 14px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; }
+        .btn-submit-login { width: 100%; background: var(--brand-primary); color: white; border: none; padding: 16px; border-radius: 14px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3); margin-top: 10px; }
+        .btn-submit-login:hover { background: var(--brand-primary-hover); }
 
-        /* DASHBOARD LAYOUT */
+        /* MAIN LAYOUT (LOVSPEAK STYLE) */
         .app-wrapper { display: flex; flex: 1; }
-        .sidebar { width: 270px; background: var(--card-bg); border-right: 2px solid var(--border-soft); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; }
-        .brand-header { display: flex; align-items: center; gap: 12px; padding-bottom: 18px; border-bottom: 2px dashed var(--border-soft); }
-        .brand-logo { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; border: 2px solid var(--brand-accent); }
-        .brand-title { font-family: 'Fredoka', sans-serif; font-size: 1.25rem; color: var(--brand-main); font-weight: 700; }
-        .brand-sub { font-size: 0.7rem; color: var(--brand-accent); font-weight: 800; }
 
-        .profile-card { background: var(--brand-soft-bg); border-radius: var(--radius-sm); padding: 12px; margin: 16px 0; display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--border-soft); }
-        .profile-left { display: flex; align-items: center; gap: 10px; }
-        .avatar-box { font-size: 1.8rem; background: var(--card-bg); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--brand-accent); }
-        .profile-name { font-weight: 800; font-size: 0.9rem; }
-        .profile-badge { font-size: 0.72rem; color: var(--brand-main); font-weight: 700; }
-        .btn-switch-user { background: var(--brand-accent); color: white; border: none; padding: 6px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 800; cursor: pointer; }
-
-        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-        .menu-item a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; text-decoration: none; color: var(--text-sub); font-weight: 700; font-size: 0.92rem; border-radius: var(--radius-sm); cursor: pointer; }
-        .menu-item.active a, .menu-item a:hover { background: linear-gradient(135deg, var(--brand-main) 0%, var(--brand-secondary) 100%); color: #ffffff; }
-
-        .content-area { margin-left: 270px; flex: 1; padding: 28px 36px; max-width: 1280px; }
-
-        .hero-banner { background: linear-gradient(135deg, rgba(139, 69, 19, 0.95) 0%, rgba(180, 83, 9, 0.95) 100%); color: #ffffff; border-radius: var(--radius-main); padding: 28px 32px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
-        .hero-text h1 { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; margin-bottom: 6px; }
-        .hero-text p { font-size: 0.92rem; opacity: 0.92; font-weight: 600; }
-        .hero-stats { display: flex; gap: 12px; }
-        .stat-badge { background: rgba(255, 255, 255, 0.15); padding: 10px 18px; border-radius: var(--radius-sm); text-align: center; border: 1px solid rgba(255, 255, 255, 0.25); }
-        .stat-val { font-size: 1.2rem; font-weight: 800; color: #fef08a; }
-        .stat-lbl { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
-        .btn-checkin { background: #f59e0b; color: white; border: none; padding: 8px 14px; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 8px; font-size: 0.78rem; }
-
-        /* SEARCH BAR & HEADER */
-        .hub-header-wrapper { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
-        .section-header { font-family: 'Fredoka', sans-serif; font-size: 1.3rem; margin: 0; }
+        .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 1px solid var(--card-border); padding: 28px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; }
         
-        .search-box-container { position: relative; width: 100%; max-width: 320px; }
-        .search-input { width: 100%; padding: 10px 16px 10px 40px; border-radius: 12px; border: 2px solid var(--border-soft); font-size: 0.88rem; font-weight: 700; outline: none; background: var(--card-bg); color: var(--text-main); }
-        .search-input:focus { border-color: var(--brand-accent); }
-        .search-icon-inside { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 1rem; opacity: 0.5; }
+        .brand-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+        .brand-logo { width: 42px; height: 42px; border-radius: 12px; object-fit: cover; border: 2px solid var(--brand-primary); }
+        .brand-title { font-size: 1.3rem; color: var(--text-main); font-weight: 800; line-height: 1.1; }
+        .brand-sub { font-size: 0.7rem; color: var(--brand-primary); font-weight: 800; letter-spacing: 1px; }
 
-        /* HUB CONTENT */
-        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px; }
-        .hub-card { background: var(--card-bg); border: 2px solid var(--border-soft); border-radius: var(--radius-main); padding: 20px; text-align: left; cursor: pointer; position: relative; }
-        .hub-card:hover { transform: translateY(-4px); border-color: var(--brand-accent); }
-        .hub-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--brand-soft-bg); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 12px; border: 1px solid var(--border-soft); }
-        .hub-title { font-weight: 800; font-size: 0.98rem; color: var(--text-main); margin-bottom: 4px; }
-        .hub-desc { font-size: 0.78rem; color: var(--text-sub); font-weight: 600; line-height: 1.4; }
+        /* FOCUS TIMER LOVSPEAK WIDGET */
+        .focus-timer-card { background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+        .timer-icon { font-size: 1.5rem; }
+        .timer-label { font-size: 0.7rem; font-weight: 800; color: var(--brand-primary); text-transform: uppercase; }
+        .timer-clock { font-size: 1.1rem; font-weight: 800; color: var(--text-main); }
 
-        /* FOOTER LOVSPEAK STYLE WITH INSTAGRAM LOGO */
-        .portal-footer { margin-left: 270px; background: var(--card-bg); border-top: 2px solid var(--border-soft); padding: 20px 36px; display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
-        .footer-left { display: flex; align-items: center; gap: 12px; }
-        .footer-ig-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 8px 18px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 0.82rem; box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25); }
-        .footer-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(220, 39, 67, 0.35); }
+        .menu-group-label { font-size: 0.7rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+        .menu-item a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; text-decoration: none; color: var(--text-sub); font-weight: 700; font-size: 0.9rem; border-radius: var(--radius-sm); cursor: pointer; }
+        .menu-item.active a, .menu-item a:hover { background: var(--brand-primary); color: #ffffff; }
+
+        .profile-card { background: var(--bg-body); border-radius: var(--radius-sm); padding: 12px; border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between; }
+        .profile-left { display: flex; align-items: center; gap: 10px; }
+        .avatar-box { font-size: 1.5rem; background: var(--sidebar-bg); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--brand-primary); }
+        .profile-name { font-weight: 800; font-size: 0.88rem; color: var(--text-main); }
+        .profile-badge { font-size: 0.7rem; color: var(--brand-primary); font-weight: 700; }
+        .btn-switch-user { background: transparent; border: 1px solid var(--card-border); color: var(--text-sub); padding: 4px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; cursor: pointer; }
+
+        /* CONTENT AREA */
+        .content-area { margin-left: 280px; flex: 1; padding: 36px 48px; max-width: 1300px; }
+
+        /* ROADMAP BANNER & MASTERY BAR (LOVSPEAK STYLE) */
+        .roadmap-banner { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-main); padding: 32px; text-align: center; margin-bottom: 28px; position: relative; }
+        .banner-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--badge-bg); color: var(--brand-primary); padding: 6px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
+        .banner-title { font-size: 2rem; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
+        .banner-sub { font-size: 0.92rem; color: var(--text-sub); font-weight: 600; max-width: 600px; margin: 0 auto 20px auto; }
+
+        /* FILTER TABS & MASTERY BADGE */
+        .filter-header-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+        .mastery-badge-box { display: flex; align-items: center; gap: 12px; background: var(--card-bg); padding: 10px 18px; border-radius: var(--radius-sm); border: 1px solid var(--card-border); }
+        .mastery-val { font-size: 1.1rem; font-weight: 800; color: var(--brand-primary); }
+        .mastery-lbl { font-size: 0.72rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; }
+
+        .filter-tabs { display: flex; gap: 8px; background: var(--card-bg); padding: 6px; border-radius: var(--radius-sm); border: 1px solid var(--card-border); }
+        .tab-btn { background: transparent; border: none; padding: 8px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 800; color: var(--text-sub); cursor: pointer; }
+        .tab-btn.active { background: var(--brand-primary); color: white; }
+
+        /* MODULES GRID (LOVSPEAK CARDS) */
+        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .module-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-main); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        .module-card:hover { border-color: var(--brand-primary); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); }
+        
+        .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .tier-badge { background: var(--badge-bg); color: var(--brand-primary); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 8px; }
+        .progress-count { font-size: 0.75rem; color: var(--text-sub); font-weight: 800; }
+
+        .card-body h3 { font-size: 1.15rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
+        .card-body p { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+
+        .card-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px border-dashed var(--card-border); padding-top: 16px; }
+        .icons-group { display: flex; gap: 8px; font-size: 1rem; opacity: 0.7; }
+        .btn-open-module { background: transparent; color: var(--brand-primary); border: none; font-weight: 800; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+        .btn-open-module:hover { color: var(--brand-primary-hover); }
+
+        /* FOOTER LOVSPEAK STYLE WITH INSTAGRAM LINK */
+        .portal-footer { margin-left: 280px; background: var(--sidebar-bg); border-top: 1px solid var(--card-border); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
+        .footer-ig-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 8px 18px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 0.82rem; }
         .ig-svg-icon { width: 18px; height: 18px; fill: currentColor; }
 
         /* MODALS */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 10, 5, 0.65); backdrop-filter: blur(6px); z-index: 999; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); z-index: 999; display: none; align-items: center; justify-content: center; padding: 20px; }
         .modal-overlay.active { display: flex; }
-        .modal-card { background: var(--card-bg); border-radius: 28px; width: 100%; max-width: 520px; padding: 30px; border: 2px solid var(--brand-accent); }
-        .modal-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: var(--brand-main); margin-bottom: 12px; }
-        .modal-body { font-size: 0.92rem; line-height: 1.6; color: var(--text-main); margin-bottom: 20px; white-space: pre-line; max-height: 320px; overflow-y: auto; }
-        .btn-modal-close { background: var(--brand-main); color: white; border: none; width: 100%; padding: 14px; border-radius: 14px; font-weight: 800; cursor: pointer; }
+        .modal-card { background: var(--sidebar-bg); border-radius: var(--radius-main); width: 100%; max-width: 560px; padding: 32px; border: 1px solid var(--brand-primary); }
+        .modal-title { font-size: 1.4rem; color: var(--text-main); font-weight: 800; margin-bottom: 12px; }
+        .modal-body { font-size: 0.92rem; line-height: 1.6; color: var(--text-sub); margin-bottom: 24px; white-space: pre-line; max-height: 320px; overflow-y: auto; }
+        .btn-modal-close { background: var(--brand-primary); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: 800; cursor: pointer; }
 
         @media (max-width: 900px) {
             .login-page-container { flex-direction: column; overflow-y: auto; }
             .login-left-brand, .login-right-form { width: 100%; padding: 30px 20px; flex: none; }
             .sidebar { width: 80px; padding: 16px 8px; }
-            .brand-title, .brand-sub, .profile-info, .menu-item span:last-child { display: none; }
+            .brand-title, .brand-sub, .menu-group-label, .profile-info, .focus-timer-card, .menu-item span:last-child { display: none; }
             .content-area, .portal-footer { margin-left: 80px; padding: 20px; }
             .portal-footer { flex-direction: column; gap: 12px; text-align: center; }
-            .search-box-container { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- LOGIN FORM WITH JENJANG & CLASS SELECTOR -->
+    <!-- SPLIT LOGIN SCREEN -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
-            <div class="brand-badge-tag">Omah Les Privat</div>
+            <div class="brand-badge-tag">Omah Les Privat Platform</div>
             <img src="./logo.jpg" alt="Logo" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/72?text=OLP'">
-            <div class="brand-slogan-title">Jelajahi Hal Baru Bersama <span>Omah Les</span>.</div>
-            <div class="brand-slogan-sub">Ruang belajar interaktif untuk adik-adik TK/PAUD, Sekolah Dasar (SD Kelas 1-6), hingga SMA dengan materi terstruktur & menyenangkan.</div>
-            <div class="brand-illustration-card">
-                <img src="https://img.magnific.com/premium-vector/three-diverse-children-sit-desk-with-books-tablet-looking-tablet-screen_150234-166616.jpg?semt=ais_hybrid&w=740&q=80" alt="Belajar Bersama">
-            </div>
+            <div class="brand-slogan-title">Master Your Skills with <span>Omah Les</span>.</div>
+            <div class="brand-slogan-sub">Sistem belajar terstruktur untuk siswa TK/PAUD, Sekolah Dasar (SD Kelas 1-6), hingga SMA dengan materi eksakta & literasi.</div>
         </div>
 
         <div class="login-right-form">
-            <div class="form-header-text">Masuk Portal Belajar</div>
-            <div class="form-sub-text">Isi nama & pilih jenjang kelasmu untuk mulai!</div>
+            <div class="form-header-text">Login Student</div>
+            <div class="form-sub-text">Masukkan nama & pilih level belajar untuk memulai.</div>
 
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
-                    <label class="form-label">Nama Siswa</label>
-                    <input type="text" class="form-input" id="inputStudentName" placeholder="Masukkan nama siswa..." required>
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" class="form-input" id="inputStudentName" placeholder="Contoh: Agra / Rezky" required>
                 </div>
 
                 <div class="form-group">
@@ -191,113 +198,93 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn-submit-login">Masuk Ke Portal Belajar 🚀</button>
+                <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
         </div>
     </div>
 
-    <!-- DASHBOARD APP -->
+    <!-- MAIN APP WRAPPER -->
     <div class="app-wrapper">
+        <!-- SIDEBAR LOVSPEAK STYLE -->
         <aside class="sidebar">
             <div>
                 <div class="brand-header">
-                    <img src="./logo.jpg" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/44?text=OLP'">
+                    <img src="./logo.jpg" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/42?text=OLP'">
                     <div>
-                        <div class="brand-title">Omah Les</div>
-                        <div class="brand-sub">LEARNING HUB</div>
+                        <div class="brand-title">OmahLes</div>
+                        <div class="brand-sub">AI PARTNER</div>
                     </div>
                 </div>
 
+                <!-- FOCUS TIMER WIDGET -->
+                <div class="focus-timer-card">
+                    <div class="timer-icon">⏱️</div>
+                    <div>
+                        <div class="timer-label">Focus Timer</div>
+                        <div class="timer-clock" id="timerClockDisplay">25:00</div>
+                    </div>
+                </div>
+
+                <div class="menu-group-label">Main Menu</div>
+                <ul class="menu-list">
+                    <li class="menu-item active" id="menu-roadmap"><a onclick="navTo('roadmap')"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
+                    <li class="menu-item" id="menu-practice"><a onclick="navTo('practice')"><span>📖</span> <span>Practice & Missions</span></a></li>
+                    <li class="menu-item" id="menu-profile"><a onclick="openLoginForm()"><span>👤</span> <span>My Profile</span></a></li>
+                </ul>
+            </div>
+
+            <div>
                 <div class="profile-card">
                     <div class="profile-left">
                         <div class="avatar-box" id="userAvatar">🎒</div>
                         <div class="profile-info">
-                            <div class="profile-name" id="userNameDisplay">Siswa</div>
-                            <div class="profile-badge" id="userLevelDisplay">Kelas</div>
+                            <div class="profile-name" id="userNameDisplay">Agra</div>
+                            <div class="profile-badge" id="userLevelDisplay">Kelas 3 SD</div>
                         </div>
                     </div>
-                    <button class="btn-switch-user" onclick="openLoginForm()">Ganti</button>
+                    <button class="btn-switch-user" onclick="openLoginForm()">Switch</button>
                 </div>
-
-                <ul class="menu-list">
-                    <li class="menu-item active" id="menu-dash"><a onclick="navTo('dashboard')"><span>🏠</span> <span>Dashboard</span></a></li>
-                    <li class="menu-item" id="menu-roadmap"><a onclick="navTo('roadmap')"><span>🗺️</span> <span>Roadmap Belajar</span></a></li>
-                    <li class="menu-item" id="menu-wisdom"><a onclick="navTo('wisdom')"><span>💡</span> <span>Pesan Semangat</span></a></li>
-                    <li class="menu-item"><a onclick="openLoginForm()"><span>👤</span> <span>Ganti Siswa</span></a></li>
-                </ul>
-            </div>
-
-            <div>
-                <ul class="menu-list">
-                    <li class="menu-item"><a onclick="toggleTheme()"><span>🌙</span> <span>Mode Gelap</span></a></li>
-                </ul>
             </div>
         </aside>
 
+        <!-- MAIN CONTENT AREA -->
         <main class="content-area">
-            <section class="hero-banner">
-                <div class="hero-text">
-                    <h1>Selamat Datang, <span id="heroWelcomeName">Siswa</span>! 👋</h1>
-                    <p>Siap melanjutkan belajar hari ini? Tuntaskan materi & kumpulkan bintangmu!</p>
-                    <button class="btn-checkin" onclick="claimDailyCheckin()">✔️ Absen & Klaim Bonus Harian</button>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-badge">
-                        <div class="stat-val" id="starCountDisplay">⭐ 0</div>
-                        <div class="stat-lbl">Bintang</div>
-                    </div>
-                    <div class="stat-badge">
-                        <div class="stat-val" id="streakCountDisplay">🔥 0 Hari</div>
-                        <div class="stat-lbl">Absensi</div>
-                    </div>
-                </div>
-            </section>
 
-            <div id="view-dashboard">
-                <section>
-                    <div class="hub-header-wrapper">
-                        <span class="section-header" id="hubHeaderTitle">Learning Hub</span>
-                        
-                        <!-- FITUR PENCARIAN MATERI / SEARCH BAR -->
-                        <div class="search-box-container">
-                            <span class="search-icon-inside">🔍</span>
-                            <input type="text" class="search-input" id="searchModuleInput" oninput="filterModules()" placeholder="Cari modul pelajaran...">
-                        </div>
-                    </div>
-
-                    <div class="hub-grid" id="hubGridContainer"></div>
-                </section>
+            <!-- ROADMAP BANNER -->
+            <div class="roadmap-banner">
+                <div class="banner-tag">🎓 Master Learning Path</div>
+                <div class="banner-title">Curriculum Roadmap</div>
+                <div class="banner-sub">Pilih modul materi terstruktur dari level TK, SD Kelas 1-6, sampai SMA untuk membangun kemampuan secara bertahap.</div>
             </div>
 
-            <div id="view-roadmap" style="display: none;">
-                <section>
-                    <div class="section-header" style="margin-bottom: 18px;"><span>🗺️ Roadmap Alur Belajar Omah Les Privat</span></div>
-                    <div class="hub-grid">
-                        <div class="hub-card" onclick="openMateriModal('🧸 Modul TK/PAUD', '• Mengenal Huruf A-Z & Vokal\n• Mengeja Suku Kata Ba-Bi-Bu\n• Berhitung Benda & Angka 1-10\n• Mengenal Warna & Suara Hewan')">
-                            <div class="hub-icon">🧸</div>
-                            <div class="hub-title">TK / PAUD</div>
-                            <div class="hub-desc">Pondasi dasar calistung & motorik.</div>
-                        </div>
-                        <div class="hub-card" onclick="openMateriModal('🎒 Modul SD Kelas 1 - 6', '• Bahasa Indonesia (Membaca, Tata Bahasa, Paragraf)\n• Matematika (Penjumlahan, Perkalian, Pecahan, FPB/KPK, Geometri)\n• IPAS (Panca Indra, Daur Hidup, Tata Surya, Sistem Organ)\n• Bahasa Inggris (Vocabulary, Grammar, Conversations)')">
-                            <div class="hub-icon">🎒</div>
-                            <div class="hub-title">Sekolah Dasar (SD 1 - 6)</div>
-                            <div class="hub-desc">Kurikulum lengkap B. Indo, MTK, IPAS, B. Inggris.</div>
-                        </div>
-                        <div class="hub-card" onclick="openMateriModal('🎓 Modul SMA Kelas 10', '• Matematika (Trigonometri & Identitas)\n• Fisika (Momen Inersia & Dinamika Rotasi)\n• Kimia (Ikatan Kimia & Reaksi)\n• English Structure & Grammar')">
-                            <div class="hub-icon">🎓</div>
-                            <div class="hub-title">SMA (Les Privat)</div>
-                            <div class="hub-desc">Pendalaman materi eksakta & persiapan ujian.</div>
-                        </div>
+            <!-- FILTER & MASTERY BAR -->
+            <div class="filter-header-bar">
+                <div class="mastery-badge-box">
+                    <div>
+                        <div class="mastery-lbl">Mastery Level</div>
+                        <div class="mastery-val" id="masteryPercentDisplay">0% Completed</div>
                     </div>
-                </section>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="tab-btn active" onclick="filterByTier('ALL')">ALL</button>
+                    <button class="tab-btn" onclick="filterByTier('TK')">TK / PAUD</button>
+                    <button class="tab-btn" onclick="filterByTier('SD-13')">SD KLS 1-3</button>
+                    <button class="tab-btn" onclick="filterByTier('SD-46')">SD KLS 4-6</button>
+                    <button class="tab-btn" onclick="filterByTier('SMA')">SMA KLS 10</button>
+                </div>
             </div>
+
+            <!-- MODULES GRID (LOVSPEAK CARDS) -->
+            <div class="modules-grid" id="modulesGridContainer"></div>
+
         </main>
     </div>
 
-    <!-- FOOTER DENGAN LOGO INSTAGRAM SVG RESMI -->
+    <!-- FOOTER WITH INSTAGRAM -->
     <footer class="portal-footer">
-        <div class="footer-left">
-            <span>© 2026 Omah Les Privat • Bimbingan Belajar Interaktif</span>
+        <div>
+            <span>© 2026 Omah Les Privat Platform • Learning System</span>
         </div>
         <div>
             <a href="https://instagram.com/omahlesprivat" target="_blank" class="footer-ig-btn">
@@ -314,94 +301,32 @@
         <div class="modal-card">
             <div class="modal-title" id="materiTitle">Judul Modul</div>
             <div class="modal-body" id="materiBody">Isi Rangkuman...</div>
-            <button class="btn-modal-close" onclick="closeMateriModal()">Selesai & Dapatkan ⭐ +5</button>
+            <button class="btn-modal-close" onclick="closeMateriModal()">Mark Complete & Earn ⭐ +5</button>
         </div>
     </div>
 
     <script>
-        const dbMateri = {
-            'tk': {
-                title: "🧸 Learning Hub TK & PAUD",
-                modules: [
-                    { icon: '🔤', title: 'Huruf A - Z', desc: 'Vokal & Konsonan Gambar', content: '• Huruf Vokal Utama:\n  A - I - U - E - O\n\n• Contoh Kata:\n  🍎 A = Apel\n  🐟 I = Ikan\n  🐍 U = Ular' },
-                    { icon: '📖', title: 'Belajar Membaca', desc: 'Suku Kata Ba-Bi-Bu', content: '• Suku Kata Awalan B:\n  BA - BI - BU - BE - BO\n\n• Gabungan Kata:\n  BA - JU = Baju 👕\n  BO - LA = Bola ⚽' },
-                    { icon: '🔢', title: 'Berhitung Benda', desc: 'Menghitung Buah & Angka 1-10', content: '• Menghitung Apel:\n  🍎 = 1\n  🍎 🍎 = 2\n  🍎 🍎 🍎 = 3' },
-                    { icon: '🎨', title: 'Mengenal Warna', desc: 'Merah, Kuning, Biru', content: '• Warna Dasar:\n  🔴 Merah | 🟡 Kuning | 🔵 Biru' }
-                ]
-            },
-            'sd1': {
-                title: "🎒 Learning Hub SD Kelas 1",
-                modules: [
-                    { icon: '🇮🇩', title: 'B. Indonesia Kls 1', desc: 'Suku Kata Terbuka & Tertutup', content: '1. Suku Kata Terbuka: Ba-ju, Ku-da, Ka-ki.\n2. Suku Kata Tertutup: Tas, Bus, Jam.' },
-                    { icon: '📐', title: 'Matematika Kls 1', desc: 'Penjumlahan & Pengurangan 1-20', content: '• Penjumlahan:\n  5 + 3 = 8\n  10 + 4 = 14\n  15 - 6 = 9' },
-                    { icon: '🔬', title: 'IPAS Kls 1', desc: 'Panca Indra & Fungsinya', content: '1. Mata: Melihat\n2. Telinga: Mendengar\n3. Hidung: Membaui\n4. Lidah: Mengecap\n5. Kulit: Meraba' },
-                    { icon: '🇬🇧', title: 'English Kls 1', desc: 'Greetings & Numbers 1-10', content: '• Greetings:\n  Good Morning (Selamat Pagi)\n  Numbers: 1: One, 2: Two, 3: Three' }
-                ]
-            },
-            'sd2': {
-                title: "🎒 Learning Hub SD Kelas 2",
-                modules: [
-                    { icon: '🇮🇩', title: 'B. Indonesia Kls 2', desc: 'Tanda Baca & Huruf Kapital', content: '• Huruf Kapital digunakan untuk awal kalimat dan nama orang.\nContoh: Budi pergi ke Jakarta.' },
-                    { icon: '📐', title: 'Matematika Kls 2', desc: 'Perkalian Dasar & Pengurangan', content: '• Konsep Perkalian:\n  3 x 4 = 4 + 4 + 4 = 12\n  5 x 2 = 10' },
-                    { icon: '🔬', title: 'IPAS Kls 2', desc: 'Wujud Benda (Padat, Cair, Gas)', content: '• Wujud Benda:\n  1. Padat (Batu)\n  2. Cair (Air)\n  3. Gas (Udara dalam balon)' },
-                    { icon: '🇬🇧', title: 'English Kls 2', desc: 'Animals & Fruits Vocabulary', content: '• Animals: Cat (Kucing), Dog (Anjing), Cow (Sapi)\n• Fruits: Apple (Apel), Banana (Pisang)' }
-                ]
-            },
-            'sd3': {
-                title: "🎒 Learning Hub SD Kelas 3",
-                modules: [
-                    { icon: '🇮🇩', title: 'B. Indonesia Kls 3', desc: 'Paragraf & Gagasan Utama', content: '• Ide Pokok:\n  Gagasan utama yang menjadi inti pembahasan dalam suatu paragraf.' },
-                    { icon: '📐', title: 'Matematika Kls 3', desc: 'Pecahan Sederhana ½ ⅓ ¼', content: '• Pecahan ½:\n  Satu benda utuh dibagi menjadi dua bagian sama besar.' },
-                    { icon: '🔬', title: 'IPAS Kls 3', desc: 'Metamorfosis & Daur Hidup', content: '• Metamorfosis Kupu-Kupu:\n  Telur -> Ulat -> Kepompong -> Kupu-Kupu Dewasa.' },
-                    { icon: '🇬🇧', title: 'English Kls 3', desc: 'Telling Time & Daily Routine', content: '• Time: 07:00 AM (Seven o\'clock in the morning).' }
-                ]
-            },
-            'sd4': {
-                title: "🎒 Learning Hub SD Kelas 4",
-                modules: [
-                    { icon: '🇮🇩', title: 'B. Indonesia Kls 4', desc: 'Teks Prosedur & Majas', content: '• Teks Prosedur: Teks yang berisi langkah-langkah membuat/melakukan sesuatu.' },
-                    { icon: '📐', title: 'Matematika Kls 4', desc: 'FPB, KPK & Luas Bangun Datar', content: '• Rumus Luas:\n  Persegi = Sisi x Sisi\n  Persegi Panjang = Panjang x Lebar' },
-                    { icon: '🔬', title: 'IPAS Kls 4', desc: 'Fotosintesis & Perubahan Energi', content: '• Fotosintesis:\n  Air + Karbondioksida + Sinar Matahari -> Makanan + Oksigen' },
-                    { icon: '🇬🇧', title: 'English Kls 4', desc: 'Directions & Locations', content: '• Direction: Turn Right (Belok Kanan), Turn Left (Belok Kiri).' }
-                ]
-            },
-            'sd5': {
-                title: "🎒 Learning Hub SD Kelas 5",
-                modules: [
-                    { icon: '🇮🇩', title: 'B. Indonesia Kls 5', desc: 'Surat Resmi & Teks Iklan', content: '• Ciri Surat Resmi: Menggunakan kop surat, nomor surat, dan perihal.' },
-                    { icon: '📐', title: 'Matematika Kls 5', desc: 'Volume Kubus & Balok', content: '• Volume Kubus = s x s x s\n• Volume Balok = p x l x t' },
-                    { icon: '🔬', title: 'IPAS Kls 5', desc: 'Sistem Organ Manusia & Pernapasan', content: '• Alur Pernapasan:\n  Hidung -> Tenggorokan -> Paru-paru (Alveolus).' },
-                    { icon: '🇬🇧', title: 'English Kls 5', desc: 'Past Events & Simple Past Tense', content: '• Past Tense: Subject + Verb 2 (I walked to school yesterday).' }
-                ]
-            },
-            'sd6': {
-                title: "🎒 Learning Hub SD Kelas 6",
-                modules: [
-                    { icon: '🇮🇩', title: 'B. Indonesia Kls 6', desc: 'Teks Eksplanasi & Pidato', content: '• Teks Eksplanasi: Menjelaskan proses terjadinya fenomena alam atau sosial.' },
-                    { icon: '📐', title: 'Matematika Kls 6', desc: 'Pengolahan Data (Mean, Median, Modus)', content: '• Mean: Rata-rata data\n• Median: Nilai tengah\n• Modus: Nilai paling sering muncul' },
-                    { icon: '🔬', title: 'IPAS Kls 6', desc: 'Tata Surya & Pendataan Bumi', content: '• Urutan Planet:\n  Merkurius, Venus, Bumi, Mars, Yupiter, Saturnus, Uranus, Neptunus.' },
-                    { icon: '🇬🇧', title: 'English Kls 6', desc: 'Degree of Comparison', content: '• Comparison:\n  Tall (Tinggi) -> Taller (Lebih tinggi) -> Tallest (Paling tinggi).' }
-                ]
-            },
-            'sma': {
-                title: "🎓 Learning Hub SMA Kelas 10",
-                modules: [
-                    { icon: '📐', title: 'Matematika SMA', desc: 'Trigonometri & Identitas', content: '• Identitas Utama:\n  sin²(x) + cos²(x) = 1\n  tan(x) = sin(x) / cos(x)' },
-                    { icon: '⚡', title: 'Fisika SMA', desc: 'Momen Inersia & Rotasi', content: '• Momen Inersia (I):\n  I = m . r²\n  Menyatakan kelembaman benda berotasi.' },
-                    { icon: '🧪', title: 'Kimia SMA', desc: 'Ikatan Kimia & Reaksi', content: '• Ikatan Ion & Kovalen.' },
-                    { icon: '🇬🇧', title: 'English SMA', desc: 'Grammar & Text Structure', content: '• Present Perfect & Narrative Structures.' }
-                ]
-            }
-        };
+        const allModulesList = [
+            { tierTag: 'TK / PAUD', group: 'TK', title: 'Huruf A - Z & Vokal', desc: 'Mengenal huruf vokal A-I-U-E-O dengan contoh kata bergambar.', progress: '0/5', content: '• Huruf Vokal Utama:\n  A - I - U - E - O\n\n• Contoh Kata:\n  🍎 A = Apel\n  🐟 I = Ikan\n  🐍 U = Ular' },
+            { tierTag: 'TK / PAUD', group: 'TK', title: 'Belajar Membaca Suku Kata', desc: 'Latihan mengeja suku kata awalan Ba-Bi-Bu-Be-Bo.', progress: '0/5', content: '• Suku Kata Awalan B:\n  BA - BI - BU - BE - BO\n\n• Gabungan Kata:\n  BA - JU = Baju 👕\n  BO - LA = Bola ⚽' },
+            { tierTag: 'SD KLS 1', group: 'SD-13', title: 'Bahasa Indonesia Kls 1', desc: 'Suku kata terbuka, suku kata tertutup, dan huruf kapital.', progress: '0/5', content: '1. Suku Kata Terbuka: Ba-ju, Ku-da, Ka-ki.\n2. Suku Kata Tertutup: Tas, Bus, Jam.' },
+            { tierTag: 'SD KLS 1', group: 'SD-13', title: 'Matematika Kls 1', desc: 'Penjumlahan dan pengurangan angka 1 sampai 20.', progress: '0/5', content: '• Operasi Dasar:\n  5 + 3 = 8\n  10 + 4 = 14\n  15 - 6 = 9' },
+            { tierTag: 'SD KLS 2', group: 'SD-13', title: 'Matematika Kls 2', desc: 'Konsep perkalian sebagai penjumlahan berulang.', progress: '0/5', content: '• Perkalian Dasar:\n  3 x 4 = 4 + 4 + 4 = 12\n  5 x 2 = 10' },
+            { tierTag: 'SD KLS 3', group: 'SD-13', title: 'IPAS Kls 3', desc: 'Siklus hidup hewan dan konsep metamorfosis.', progress: '0/5', content: '• Metamorfosis Kupu-Kupu:\n  Telur -> Ulat -> Kepompong -> Kupu-Kupu Dewasa.' },
+            { tierTag: 'SD KLS 4', group: 'SD-46', title: 'Matematika Kls 4', desc: 'FPB, KPK, dan pengukuran luas bangun datar.', progress: '0/5', content: '• Rumus Luas:\n  Persegi = Sisi x Sisi\n  Persegi Panjang = Panjang x Lebar' },
+            { tierTag: 'SD KLS 5', group: 'SD-46', title: 'IPAS Kls 5', desc: 'Sistem organ tubuh manusia dan alur pernapasan.', progress: '0/5', content: '• Alur Pernapasan:\n  Hidung -> Tenggorokan -> Paru-paru (Alveolus).' },
+            { tierTag: 'SD KLS 6', group: 'SD-46', title: 'Matematika Kls 6', desc: 'Pengolahan data nilai rata-rata (Mean, Median, Modus).', progress: '0/5', content: '• Pengolahan Data:\n  Mean: Rata-rata\n  Median: Nilai Tengah\n  Modus: Paling sering muncul' },
+            { tierTag: 'SMA KLS 10', group: 'SMA', title: 'Matematika SMA', desc: 'Identitas trigonometri, aturan sinus, dan cosinus.', progress: '0/5', content: '• Identitas Utama:\n  sin²(x) + cos²(x) = 1\n  tan(x) = sin(x) / cos(x)' },
+            { tierTag: 'SMA KLS 10', group: 'SMA', title: 'Fisika SMA', desc: 'Momen inersia dan dinamika rotasi benda tegar.', progress: '0/5', content: '• Momen Inersia (I):\n  I = m . r²\n  Menyatakan kelembaman benda berotasi.' }
+        ];
 
         let currentStudent = { name: 'Siswa', classLevel: 'Kelas 3 SD', categoryKey: 'sd3' };
-        let stars = 0; let streak = 0;
-        let currentModulesData = [];
+        let activeFilter = 'ALL';
+        let completedCount = 0;
 
         function toggleSdClassDropdown() {
             const jenjang = document.getElementById('selectJenjang').value;
-            const sdGroup = document.getElementById('sdClassGroup');
-            sdGroup.style.display = jenjang === 'sd' ? 'block' : 'none';
+            document.getElementById('sdClassGroup').style.display = jenjang === 'sd' ? 'block' : 'none';
         }
 
         function handleFormLogin(e) {
@@ -429,63 +354,50 @@
 
         function openLoginForm() { document.getElementById('loginPage').style.display = 'flex'; }
 
-        function navTo(viewName) {
-            document.getElementById('menu-dash').classList.remove('active');
-            document.getElementById('menu-roadmap').classList.remove('active');
-            document.getElementById('menu-wisdom').classList.remove('active');
-
-            if (viewName === 'dashboard') {
-                document.getElementById('view-dashboard').style.display = 'block';
-                document.getElementById('view-roadmap').style.display = 'none';
-                document.getElementById('menu-dash').classList.add('active');
-            } else if (viewName === 'roadmap') {
-                document.getElementById('view-dashboard').style.display = 'none';
-                document.getElementById('view-roadmap').style.display = 'block';
-                document.getElementById('menu-roadmap').classList.add('active');
-            } else if (viewName === 'wisdom') {
-                document.getElementById('menu-wisdom').classList.add('active');
-                openMateriModal('💡 Pesan Semangat Hari Ini', '"Pendidikan bukanlah persiapan untuk hidup, melainkan pendidikan itu adalah kehidupan itu sendiri."\n\n— Ki Hajar Dewantara');
-            }
-        }
-
         function renderDashboardData() {
             document.getElementById('userNameDisplay').innerText = currentStudent.name;
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLevel;
-            document.getElementById('heroWelcomeName').innerText = currentStudent.name;
             document.getElementById('userAvatar').innerText = currentStudent.categoryKey === 'tk' ? '🐥' : (currentStudent.categoryKey === 'sma' ? '🐰' : '🎒');
 
-            const data = dbMateri[currentStudent.categoryKey] || dbMateri['sd3'];
-            document.getElementById('hubHeaderTitle').innerText = data.title;
-
-            currentModulesData = data.modules;
-            renderModulesGrid(currentModulesData);
+            renderModules(activeFilter);
         }
 
-        function renderModulesGrid(list) {
-            const hubContainer = document.getElementById('hubGridContainer');
-            hubContainer.innerHTML = '';
-            if (list.length === 0) {
-                hubContainer.innerHTML = '<div style="font-size:0.9rem; color:var(--text-sub); font-weight:700;">Modul tidak ditemukan...</div>';
-                return;
+        function filterByTier(filterGroup) {
+            activeFilter = filterGroup;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderModules(filterGroup);
+        }
+
+        function renderModules(filterGroup) {
+            const container = document.getElementById('modulesGridContainer');
+            container.innerHTML = '';
+
+            let filtered = allModulesList;
+            if (filterGroup !== 'ALL') {
+                filtered = allModulesList.filter(m => m.group === filterGroup);
             }
-            list.forEach(m => {
-                hubContainer.innerHTML += `
-                    <div class="hub-card" onclick="openMateriModal('${m.title}', \`${m.content}\`)">
-                        <div class="hub-icon">${m.icon}</div>
-                        <div class="hub-title">${m.title}</div>
-                        <div class="hub-desc">${m.desc}</div>
+
+            filtered.forEach(m => {
+                container.innerHTML += `
+                    <div class="module-card">
+                        <div>
+                            <div class="card-top">
+                                <span class="tier-badge">${m.tierTag}</span>
+                                <span class="progress-count">${m.progress}</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>${m.title}</h3>
+                                <p>${m.desc}</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="icons-group">📖 🎧 📝</div>
+                            <button class="btn-open-module" onclick="openMateriModal('${m.title}', \`${m.content}\`)">OPEN &gt;</button>
+                        </div>
                     </div>
                 `;
             });
-        }
-
-        // FITUR FILTER SEARCH BAR REAL-TIME
-        function filterModules() {
-            const query = document.getElementById('searchModuleInput').value.toLowerCase().trim();
-            const filtered = currentModulesData.filter(m => 
-                m.title.toLowerCase().includes(query) || m.desc.toLowerCase().includes(query)
-            );
-            renderModulesGrid(filtered);
         }
 
         function openMateriModal(title, content) {
@@ -496,18 +408,10 @@
 
         function closeMateriModal() {
             document.getElementById('materiModalOverlay').classList.remove('active');
-            stars += 5;
-            document.getElementById('starCountDisplay').innerText = `⭐ ${stars}`;
+            completedCount += 1;
+            let percent = Math.min(Math.round((completedCount / allModulesList.length) * 100), 100);
+            document.getElementById('masteryPercentDisplay').innerText = `${percent}% Completed`;
         }
-
-        function claimDailyCheckin() {
-            stars += 10; streak += 1;
-            document.getElementById('starCountDisplay').innerText = `⭐ ${stars}`;
-            document.getElementById('streakCountDisplay').innerText = `🔥 ${streak} Hari`;
-            alert("Absen Berhasil! Bonus +10 ⭐ Bintang!");
-        }
-
-        function toggleTheme() { document.body.classList.toggle('dark-theme'); }
 
         const savedName = localStorage.getItem('olp_form_name');
         const savedClass = localStorage.getItem('olp_form_class');
