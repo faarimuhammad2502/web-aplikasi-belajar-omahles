@@ -45,7 +45,6 @@
 
         .login-left-brand {
             flex: 1.2; 
-            /* GAMBAR BACKGROUND SAMAR DI SELURUH AREA COKELAT */
             background: linear-gradient(135deg, rgba(45, 22, 12, 0.90) 0%, rgba(20, 10, 5, 0.94) 100%), 
                         url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
@@ -56,7 +55,6 @@
 
         .brand-badge-tag { background: rgba(217, 119, 6, 0.35); border: 1.5px solid var(--brand-amber); color: #fef08a; padding: 6px 18px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 24px; z-index: 2; }
         
-        /* LOGO OMAH LES DIPERBESAR (130px) & POSISI PRESISI */
         .brand-logo-img { 
             width: 130px; 
             height: 130px; 
@@ -180,14 +178,11 @@
 </head>
 <body>
 
-    <!-- SPLIT LOGIN SCREEN DENGAN LOGO 130PX & FULL BACKGROUND SAMAR -->
+    <!-- SPLIT LOGIN SCREEN -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
-            
-            <!-- LOGO UKURAN BESAR (130px x 130px) -->
             <img src="./logo.jpg" alt="Logo Omah Les Privat" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/130?text=OLP'">
-            
             <div class="brand-slogan-title">Jelajahi Hal Baru Bersama <span>Omah Les</span>.</div>
             <div class="brand-slogan-sub">Sistem belajar terstruktur untuk siswa TK/PAUD, Sekolah Dasar (SD Kelas 1-6), hingga SMA dengan materi eksakta & literasi.</div>
         </div>
@@ -343,6 +338,7 @@
     </footer>
 
     <script>
+        // DATABASE MATERI LENGKAP UNTUK SEMUA JENJANG (TK & SD KELAS 1-6 & SMA)
         const databaseMateriLengkap = {
             'tk': [
                 { 
@@ -353,7 +349,6 @@
                     content: `Modul ini dirancang khusus untuk adik-adik TK/PAUD dalam mengenal alfabet dasar dan huruf vokal secara interaktif.
 
 <h2>1. Pengenalan Huruf Vokal Utama</h2>
-Huruf vokal adalah bunyi bahasa yang dihasilkan tanpa hambatan pada alat ucap.
 • <b>A</b> - Seperti pada kata 🍎 <i>Apel</i>, 🐓 <i>Ayam</i>
 • <b>I</b> - Seperti pada kata 🐟 <i>Ikan</i>, 🏠 <i>Istana</i>
 • <b>U</b> - Seperti pada kata 🐍 <i>Ular</i>, 🪙 <i>Uang</i>
@@ -361,14 +356,65 @@ Huruf vokal adalah bunyi bahasa yang dihasilkan tanpa hambatan pada alat ucap.
 • <b>O</b> - Seperti pada kata 🟠 <i>Obor</i>, 🦧 <i>Orangutan</i>
 
 <h2>2. Latihan Melafalkan Vokal</h2>
-Coba tirukan bersama pembimbing:
 <blockquote>"A - I - U - E - O, Apel Ikan Ular Elang Obor!"</blockquote>` 
+                },
+                { 
+                    tierTag: 'TK / PAUD', 
+                    title: 'Belajar Membaca Suku Kata', 
+                    desc: 'Latihan mengeja suku kata awalan Ba-Bi-Bu-Be-Bo.', 
+                    progress: '0/4', 
+                    content: `Mari menggabungkan huruf konsonan 'B' dengan huruf vokal.
+
+<h2>1. Mengeja Suku Kata B</h2>
+• B + A = <b>BA</b> | B + I = <b>BI</b> | B + U = <b>BU</b> | B + E = <b>BE</b> | B + O = <b>BO</b>
+
+<h2>2. Menggabungkan Kata Sederhana</h2>
+• BA + JU = 👕 <b>Baju</b>
+• BO + LA = ⚽ <b>Bola</b>
+• BU + KU = 📚 <b>Buku</b>` 
+                },
+                {
+                    tierTag: 'TK / PAUD',
+                    title: 'Berhitung Benda & Angka 1-10',
+                    desc: 'Latihan menghitung jumlah buah dan mengenal angka dasar.',
+                    progress: '0/4',
+                    content: `Menghitung jumlah benda di sekitar kita!
+
+<h2>1. Mengenal Angka Dasar</h2>
+• 1 = Satu 🍎
+• 2 = Dua 🍎🍎
+• 3 = Tiga 🍎🍎🍎
+• 4 = Empat 🍎🍎🍎🍎
+• 5 = Lima 🍎🍎🍎🍎🍎`
+                },
+                {
+                    tierTag: 'TK / PAUD',
+                    title: 'Mengenal Warna & Suara Hewan',
+                    desc: 'Pengenalan warna utama dan tiruan suara hewan lucu.',
+                    progress: '0/4',
+                    content: `Ayo tebak suara hewan di bawah ini:
+• 🐱 Kucing: <i>Meong... Meong...</i>
+• 🐕 Anjing: <i>Guk... Guk...</i>
+• 🐮 Sapi: <i>Mooo...</i>
+• 🐥 Ayam: <i>Petok... Petok...</i>`
                 }
+            ],
+            'sd1': [
+                { tierTag: 'SD KLS 1', title: 'Bahasa Indonesia Kls 1', desc: 'Suku kata terbuka, suku kata tertutup, dan huruf kapital.', progress: '0/4', content: `1. Suku Kata Terbuka: Ba-ju, Ku-da, Ka-ki.\n2. Suku Kata Tertutup: Tas, Bus, Jam.\n3. Penggunaan Huruf Kapital di awal kalimat.` },
+                { tierTag: 'SD KLS 1', title: 'Matematika Kls 1', desc: 'Penjumlahan dan pengurangan angka 1 sampai 20.', progress: '0/4', content: `• Operasi Dasar:\n  5 + 3 = 8\n  10 + 4 = 14\n  15 - 6 = 9` },
+                { tierTag: 'SD KLS 1', title: 'IPAS Kls 1', desc: 'Panca indra manusia dan fungsinya.', progress: '0/4', content: `1. Mata: Melihat\n2. Telinga: Mendengar\n3. Hidung: Membaui\n4. Lidah: Mengecap\n5. Kulit: Meraba` },
+                { tierTag: 'SD KLS 1', title: 'English Kls 1', desc: 'Greetings and Numbers 1-10.', progress: '0/4', content: `• Greetings:\n  Good Morning (Selamat Pagi)\n  Good Afternoon (Selamat Siang)\n• Numbers: 1: One, 2: Two, 3: Three` }
+            ],
+            'sd2': [
+                { tierTag: 'SD KLS 2', title: 'Bahasa Indonesia Kls 2', desc: 'Penggunaan tanda baca titik, koma, dan huruf kapital.', progress: '0/4', content: `• Huruf Kapital digunakan pada awal kalimat dan nama orang.\nContoh: Budi pergi ke Jakarta.` },
+                { tierTag: 'SD KLS 2', title: 'Matematika Kls 2', desc: 'Konsep perkalian sebagai penjumlahan berulang.', progress: '0/4', content: `• Perkalian Dasar:\n  3 x 4 = 4 + 4 + 4 = 12\n  5 x 2 = 10` },
+                { tierTag: 'SD KLS 2', title: 'IPAS Kls 2', desc: 'Wujud benda padat, cair, dan gas.', progress: '0/4', content: `• Wujud Benda:\n  1. Padat (Batu, Meja)\n  2. Cair (Air, Minyak)\n  3. Gas (Udara dalam balon)` },
+                { tierTag: 'SD KLS 2', title: 'English Kls 2', desc: 'Animals and fruits vocabulary.', progress: '0/4', content: `• Animals: Cat (Kucing), Dog (Anjing), Cow (Sapi)\n• Fruits: Apple (Apel), Banana (Pisang)` }
             ],
             'sd3': [
                 { 
                     tierTag: 'SD KLS 3', 
-                    title: 'Ide Pokok & Paragraf', 
+                    title: 'Bahasa Indonesia - Ide Pokok', 
                     desc: 'Menentukan gagasan utama dan ide pokok paragraf.', 
                     progress: '0/4', 
                     content: `Dalam pelajaran Bahasa Indonesia Kelas 3 SD, memahami gagasan utama dalam sebuah teks bacaan adalah pondasi literasi penting.
@@ -379,15 +425,12 @@ Ide pokok (atau gagasan utama) adalah inti atau topik utama yang sedang dibahas 
 <h2>2. Cara Menemukan Ide Pokok</h2>
 • Bacalah seluruh paragraf dengan cermat dan seksama.
 • Cermati kalimat pertama hingga kalimat terakhir.
-• Tentukan kalimat mana yang menjadi induk utama dari paragraf tersebut.
-
-<h2>3. Contoh Teks Bacaan</h2>
-<blockquote>"Setiap pagi, Danu selalu merawat tanaman bunga di halaman rumahnya. Ia menyiram bunga mawar dan melati dengan teratur. Danu juga memberi pupuk seminggu sekali agar tanamannya tumbuh subur."</blockquote>` 
+• Tentukan kalimat mana yang menjadi induk utama dari paragraf tersebut.` 
                 },
                 { 
                     tierTag: 'SD KLS 3', 
-                    title: 'Pecahan Sederhana ½, ⅓, ¼', 
-                    desc: 'Konsep pecahan dasar, pembilang, dan penyebut.', 
+                    title: 'Matematika - Pecahan Sederhana', 
+                    desc: 'Konsep pecahan dasar ½, ⅓, ¼, pembilang, dan penyebut.', 
                     progress: '0/4', 
                     content: `Mari mempelajari konsep Matematika pecahan sederhana secara visual dan praktis.
 
@@ -400,12 +443,32 @@ Pecahan adalah bagian dari keseluruhan yang bernilai sama. Bentuk umum pecahan d
 • <b>Pecahan ½:</b> Satu buah pizza dipotong menjadi 2 bagian sama besar.
 • <b>Pecahan ⅓:</b> Satu kue dipotong menjadi 3 bagian sama besar.
 • <b>Pecahan ¼:</b> Satu kertas dibagi menjadi 4 bagian sama besar.` 
+                },
+                {
+                    tierTag: 'SD KLS 3',
+                    title: 'IPAS - Daur Hidup Hewan',
+                    desc: 'Metamorfosis sempurna dan tidak sempurna.',
+                    progress: '0/4',
+                    content: `Membahas tentang daur hidup makhluk hidup di sekitar kita.
+
+<h2>1. Metamorfosis Sempurna</h2>
+Contoh: Kupu-kupu (Telur ➡️ Ulat ➡️ Kepompong ➡️ Kupu-kupu).
+
+<h2>2. Metamorfosis Tidak Sempurna</h2>
+Contoh: Belalang dan Kecoak (Telur ➡️ Nimfa ➡️ Dewasa).`
+                },
+                {
+                    tierTag: 'SD KLS 3',
+                    title: 'English - Time & Daily Routine',
+                    desc: 'Mengenal jam dan kosakata kegiatan sehari-hari.',
+                    progress: '0/4',
+                    content: `• Telling Time:\n  07:00 = Seven o'clock\n  08:30 = Half past eight\n• Daily Activities:\n  Wake up (Bangun), Eat breakfast (Sarapan), Go to school (Pergi sekolah).`
                 }
             ],
             'sd4': [
                 {
                     tierTag: 'SD KLS 4',
-                    title: 'Matematika Kls 4 - FPB & KPK',
+                    title: 'Matematika - FPB & KPK',
                     desc: 'Faktor Persekutuan Terbesar dan Kelipatan Persekutuan Terkecil.',
                     progress: '0/4',
                     content: `Modul Matematika Kurikulum Merdeka Kelas 4 SD untuk menghitung FPB dan KPK.
@@ -418,12 +481,45 @@ Pecahan adalah bagian dari keseluruhan yang bernilai sama. Bentuk umum pecahan d
 Gunakan pohon faktor untuk menentukan faktorisasi prima:
 • FPB: Pilih faktor prima yang sama dengan pangkat terkecil.
 • KPK: Pilih semua faktor prima dengan pangkat terbesar.`
+                },
+                {
+                    tierTag: 'SD KLS 4',
+                    title: 'Bahasa Indonesia - Teks Prosedur',
+                    desc: 'Struktur teks petunjuk dan panduan melakukan sesuatu.',
+                    progress: '0/4',
+                    content: `Teks prosedur memberikan instruksi langkah demi langkah agar pembaca dapat mempraktikkan sesuatu dengan benar.`
+                },
+                {
+                    tierTag: 'SD KLS 4',
+                    title: 'IPAS - Fotosintesis Tumbuhan',
+                    desc: 'Proses tumbuhan membuat makanan sendiri menggunakan sinar matahari.',
+                    progress: '0/4',
+                    content: `Rumus Fotosintesis:\nAir + Karbondioksida + Cahaya Matahari ➡️ Glukosa + Oksigen.`
+                },
+                {
+                    tierTag: 'SD KLS 4',
+                    title: 'English - Directions & Prepositions',
+                    desc: 'Menunjukkan arah dan lokasi tempat umum.',
+                    progress: '0/4',
+                    content: `• Directions:\n  Turn right (Belok kanan)\n  Turn left (Belok kiri)\n  Go straight (Jalan lurus)`
                 }
+            ],
+            'sd5': [
+                { tierTag: 'SD KLS 5', title: 'Bahasa Indonesia - Surat Resmi', desc: 'Unsur surat resmi dan penulisan teks iklan.', progress: '0/4', content: '• Ciri Surat Resmi: Menggunakan kop surat, nomor surat, dan perihal.' },
+                { tierTag: 'SD KLS 5', title: 'Matematika - Volume Bangun Ruang', desc: 'Hitungan volume kubus dan balok.', progress: '0/4', content: '• Volume Kubus = s x s x s\n• Volume Balok = p x l x t' },
+                { tierTag: 'SD KLS 5', title: 'IPAS - Organ Pernapasan', desc: 'Sistem organ tubuh manusia dan saluran pernapasan.', progress: '0/4', content: '• Alur Pernapasan:\n  Hidung -> Tenggorokan -> Paru-paru (Alveolus).' },
+                { tierTag: 'SD KLS 5', title: 'English - Past Events', desc: 'Simple past tense and regular verbs.', progress: '0/4', content: '• Past Tense: Subject + Verb 2 (I walked to school yesterday).' }
+            ],
+            'sd6': [
+                { tierTag: 'SD KLS 6', title: 'Bahasa Indonesia - Teks Eksplanasi', desc: 'Ciri teks eksplanasi dan struktur pidato.', progress: '0/4', content: '• Teks Eksplanasi: Menjelaskan proses terjadinya fenomena alam atau sosial.' },
+                { tierTag: 'SD KLS 6', title: 'Matematika - Pengolahan Data', desc: 'Rata-rata (Mean), Nilai Tengah (Median), Modus.', progress: '0/4', content: '• Mean: Rata-rata data\n• Median: Nilai tengah\n• Modus: Nilai paling sering muncul' },
+                { tierTag: 'SD KLS 6', title: 'IPAS - Tata Surya', desc: 'Mengenal planet-planet dan sistem tata surya.', progress: '0/4', content: '• Urutan Planet:\n  Merkurius, Venus, Bumi, Mars, Yupiter, Saturnus, Uranus, Neptunus.' },
+                { tierTag: 'SD KLS 6', title: 'English - Degree of Comparison', desc: 'Perbandingan sifat benda (Tall, Taller, Tallest).', progress: '0/4', content: '• Comparison:\n  Tall (Tinggi) -> Taller (Lebih tinggi) -> Tallest (Paling tinggi).' }
             ],
             'sma': [
                 { 
                     tierTag: 'SMA KLS 10', 
-                    title: 'Identitas Trigonometri', 
+                    title: 'Matematika - Identitas Trigonometri', 
                     desc: 'Rumus dasar trigonometri, aturan sinus, dan cosinus.', 
                     progress: '0/4', 
                     content: `Di jenjang SMA Kelas 10, materi trigonometri merupakan salah satu topik fundamental matematika eksakta.
@@ -431,6 +527,27 @@ Gunakan pohon faktor untuk menentukan faktorisasi prima:
 <h2>1. Persamaan Identitas Utama</h2>
 • sin²(x) + cos²(x) = 1
 • tan(x) = sin(x) / cos(x)` 
+                },
+                {
+                    tierTag: 'SMA KLS 10',
+                    title: 'Fisika - Momen Inersia',
+                    desc: 'Dinamika rotasi dan Momen Inersia benda tegar.',
+                    progress: '0/4',
+                    content: `• Momen Inersia (I):\n  I = m . r²\n  Menyatakan kelembaman benda berotasi.`
+                },
+                {
+                    tierTag: 'SMA KLS 10',
+                    title: 'Kimia - Ikatan Kimia',
+                    desc: 'Ikatan Ion, Kovalen, dan Kovalen Koordinasi.',
+                    progress: '0/4',
+                    content: `• Ikatan Ion: Serah terima elektron.\n• Ikatan Kovalen: Pemakaian bersama pasangan elektron.`
+                },
+                {
+                    tierTag: 'SMA KLS 10',
+                    title: 'English - Present Perfect Tense',
+                    desc: 'Penggunaan Present Perfect dan struktur teks.',
+                    progress: '0/4',
+                    content: `• Present Perfect Tense:\n  Subject + Have/Has + Verb 3.`
                 }
             ]
         };
