@@ -172,7 +172,8 @@
         .quiz-feedback { margin-top: 10px; font-weight: 800; font-size: 0.9rem; }
 
         /* GAME CENTER STYLES */
-        .game-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 20px; }
+        .game-level-tag-box { background: var(--brand-cream); border: 2px solid var(--brand-amber); border-radius: 16px; padding: 12px 20px; font-weight: 800; font-size: 0.9rem; color: var(--brand-brown); margin-bottom: 20px; display: inline-block; }
+        .game-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 10px; }
         .game-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 28px 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: all 0.25s; cursor: pointer; }
         .game-item-card:hover { transform: translateY(-6px); border-color: var(--brand-amber); box-shadow: 0 12px 24px rgba(217, 119, 6, 0.15); }
         .game-icon-box { width: 56px; height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px; }
@@ -507,10 +508,9 @@
     </footer>
 
     <script>
-        // GEMINI API KEY REST ENDPOINT
         const GEMINI_API_KEY = 'AQ.Ab8RN6J9Kqvk_WiQKgS4qaOzLTci00Zs19dZFpxg9v6Frq4ByQ';
 
-        // DATABASE EMAIL ORANG TUA TERDAFTAR (SISTEM PAKET OTOMATIS)
+        // DATABASE EMAIL ORANG TUA TERDAFTAR
         const REGISTERED_PARENT_DATABASE = {
             'faarimuhammad25@gmail.com': { name: 'Muhammad Faari (Developer)', categoryKey: 'sd3', classLabel: 'Kelas 3 SD', isDev: true },
             'michellehimmelda@gmail.com': { name: 'Michelle Himmelda Cahyadi', categoryKey: 'sd6', classLabel: 'Kelas 6 SD', isDev: true },
@@ -526,7 +526,34 @@
             { quote: "Pendidikan adalah senjata paling mematikan di dunia, karena dengan pendidikan Anda dapat mengubah dunia.", author: "— Nelson Mandela" }
         ];
 
-        /* MATERI LENGKAP LOKAL UNTUK SELURUH JENJANG */
+        /* BANK KONTEN GAME CENTER TERSEDUAIKAN DENGAN JENJANG (TK & SD KELAS 1-6) */
+        const adaptiveGamesDatabase = {
+            'tk': [
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Quest TK', desc: 'Tebak nama hewan atau buah dari gambar emoji!', promptGame: 'Tebak emoji: 🐱 = ...?', ans: 'Kucing' },
+                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎯', title: 'Suku Kata Ceria', desc: 'Sebutkan gabungan huruf Ba, Bi, Bu, Be, Bo!', promptGame: 'B dan A dibaca apa?', ans: 'BA' },
+                { id: 'g3', bg: '#dcfce7', color: '#15803d', icon: '🔍', title: 'Odd One Out TK', desc: 'Cari benda yang beda sendiri dari kelompoknya!', promptGame: 'Manakah yang BUKAN hewan? [Ayam, Kucing, Meja]', ans: 'Meja' },
+                { id: 'g4', bg: '#e0f2fe', color: '#0369a1', icon: '📝', title: 'Suara Hewan', desc: 'Tebak suara hewan kesayanganmu!', promptGame: 'Hewan apa yang bunyinya Meong?', ans: 'Kucing' },
+                { id: 'g5', bg: '#fef3c7', color: '#b45309', icon: '⚡', title: 'Hitung Jari Cepat', desc: 'Hitung jumlah jari tangan dengan tepat!', promptGame: '3 jari + 2 jari = berapa jari?', ans: '5 Jari' },
+                { id: 'g6', bg: '#ffedd5', color: '#c2410c', icon: '🎨', title: 'Tebak Warna', desc: 'Tebak warna benda alam di sekitarmu!', promptGame: 'Warna daun pada pohon adalah...', ans: 'Hijau' }
+            ],
+            'sd1_3': [
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Word Search', desc: 'Tebak susunan kata dari gabungan emoji unik.', promptGame: '🎒 + 🏫 = Tempat belajar?', ans: 'Sekolah' },
+                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎯', title: 'Grammar Strike SD 1-3', desc: 'Temukan ejaan kata atau huruf kapital yang salah.', promptGame: 'Ejaan yang benar: [senin / Senin]?', ans: 'Senin' },
+                { id: 'g3', bg: '#dcfce7', color: '#15803d', icon: '🔍', title: 'Odd One Out SD 1-3', desc: 'Cari kata yang bukan satu kelompok pelajaran.', promptGame: 'Mana yang BUKAN pecahan? [1/2, 1/4, 100]', ans: '100' },
+                { id: 'g4', bg: '#e0f2fe', color: '#0369a1', icon: '📝', title: 'Sentence Builder SD 1-3', desc: 'Susun kata acak menjadi kalimat yang padu.', promptGame: 'Susun: [buku - Budi - membaca]', ans: 'Budi membaca buku' },
+                { id: 'g5', bg: '#fef3c7', color: '#b45309', icon: '⚡', title: 'Math Speed Rush 1-3', desc: 'Hitung penjumlahan, pengurangan & perkalian dasar.', promptGame: 'Berapa hasil dari 3 x 5?', ans: '15' },
+                { id: 'g6', bg: '#ffedd5', color: '#c2410c', icon: '⏱️', title: 'Speed Definer IPA 1-3', desc: 'Tebak kuis sains hewan dan tumbuhan!', promptGame: 'Hewan yang mengalami metamorfosis sempurna adalah...', ans: 'Kupu-kupu' }
+            ],
+            'sd4_6': [
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Quest Master', desc: 'Tebak istilah sains & IPS dari petunjuk emoji.', promptGame: '☀️ + 🌊 + ☁️ = Proses terjadinya apa?', ans: 'Hujan (Evaporasi)' },
+                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎯', title: 'Grammar Strike SD 4-6', desc: 'Perbaiki kalimat ejaan EYD/PUEBI dan imbuhan.', promptGame: 'Kata dasar [tulis] + imbuhan [me-] menjadi?', ans: 'Menulis' },
+                { id: 'g3', bg: '#dcfce7', color: '#15803d', icon: '🔍', title: 'Odd One Out SD 4-6', desc: 'Cari benda/konsep yang tidak sekelompok.', promptGame: 'Mana yang BUKAN planet? [Mars, Pluto, Jupiter]', ans: 'Pluto' },
+                { id: 'g4', bg: '#e0f2fe', color: '#0369a1', icon: '📝', title: 'Sentence Builder SD 4-6', desc: 'Susun paragraf dan kalimat efektif.', promptGame: 'Struktur teks eksplanasi yang berisi sebab-akibat?', ans: 'Deretan Penjelas' },
+                { id: 'g5', bg: '#fef3c7', color: '#b45309', icon: '⚡', title: 'Math Speed Rush 4-6', desc: 'Operasi hitung campuran, pecahan & luas bangun.', promptGame: 'Luas persegi panjang p=8 cm, l=5 cm adalah...', ans: '40 cm²' },
+                { id: 'g6', bg: '#ffedd5', color: '#c2410c', icon: '⏱️', title: 'Speed Definer IPA 4-6', desc: 'Tebak definisi organ tubuh, tata surya & fisika.', promptGame: 'Organ tubuh manusia yang memompa darah adalah...', ans: 'Jantung' }
+            ]
+        };
+
         const masterSectionDatabase = {
             'tk': {
                 'roadmap': [
@@ -575,7 +602,6 @@
         let userStreak = 3;
 
         function refreshPortalOnly() {
-            // SIMPAN DATA SESI SAAT INI SUPAYA REFRESH TIDAK TERLEMPAR KE LOGIN
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
             sessionStorage.setItem('omahles_active_section', activeSection);
             sessionStorage.setItem('omahles_user_stars', userStars);
@@ -599,7 +625,7 @@
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & Eksperimen IPA', sub: 'Menjelajahi fenomena alam, hewan, dan percobaan sederhana.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni, Warna & Karakter', sub: 'Mengasah imajinasi kreatif dan pembentukan karakter terpuji.' },
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Ruang AI Tutor Omah Les', sub: 'Tanya soal sulit atau percakapan bebas kapan saja bersama AI Tutor Omah Les.' },
-                'games': { tag: '🎮 Game Center', title: 'Omah Les Game Center', sub: 'Tantang dirimu dan kumpulkan ⭐ Bintang di setiap mini games edukatif!' },
+                'games': { tag: '🎮 Game Center', title: 'Omah Les Game Center', sub: `Tantang dirimu dengan tantangan game khusus jenjang ${currentStudent.classLevel}!` },
                 'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar Harian', sub: 'Pantau tugas rumah dan rencana belajarmu di sini (Disimpan di LocalStorage).' }
             };
 
@@ -653,20 +679,31 @@
             });
         }
 
+        /* GAME CENTER ADAPTIF BERDASARKAN JENJANG (TK, SD KELAS 1-3, SD KELAS 4-6) */
         function renderGameCenterSection(container) {
-            const gamesList = [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Quest', desc: 'Tebak kata/istilah pelajaran dari susunan emoji.', progress: '0/20' },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎯', title: 'Grammar Strike', desc: 'Spot and fix errors dalam kalimat ejaan.', progress: '0/20' },
-                { id: 'g3', bg: '#dcfce7', color: '#15803d', icon: '🔍', title: 'Odd One Out', desc: 'Temukan kata yang tidak sekelompok.', progress: '0/20' },
-                { id: 'g4', bg: '#e0f2fe', color: '#0369a1', icon: '📝', title: 'Sentence Builder', desc: 'Susun kata acak menjadi kalimat yang benar.', progress: '0/20' },
-                { id: 'g5', bg: '#fef3c7', color: '#b45309', icon: '⚡', title: 'Math Speed Rush', desc: 'Tebak hasil hitungan matematika cepat berpacu waktu.', progress: '0/20' },
-                { id: 'g6', bg: '#ffedd5', color: '#c2410c', icon: '⏱️', title: 'Speed Definer', desc: 'Tebak arti kata atau istilah sains dengan cepat.', progress: '0/20' }
-            ];
+            let catKey = currentStudent.categoryKey;
+            let targetGroup = 'sd1_3';
 
-            let html = `<div class="game-card-grid">`;
+            if (catKey === 'tk') {
+                targetGroup = 'tk';
+            } else if (['sd4', 'sd5', 'sd6'].includes(catKey)) {
+                targetGroup = 'sd4_6';
+            } else {
+                targetGroup = 'sd1_3';
+            }
+
+            const gamesList = adaptiveGamesDatabase[targetGroup];
+
+            let html = `
+                <div class="game-level-tag-box">
+                    🎯 TINGKAT KESULITAN GAME: <strong>${currentStudent.classLevel.toUpperCase()}</strong>
+                </div>
+                <div class="game-card-grid">
+            `;
+
             gamesList.forEach(g => {
                 html += `
-                    <div class="game-item-card" onclick="playGameModal('${g.title}')">
+                    <div class="game-item-card" onclick="playAdaptiveGameModal('${g.title}', '${escapeSingleQuotes(g.promptGame)}', '${escapeSingleQuotes(g.ans)}')">
                         <div>
                             <div class="game-icon-box" style="background:${g.bg}; color:${g.color};">${g.icon}</div>
                             <div class="game-card-title">${g.title}</div>
@@ -675,9 +712,9 @@
                         <div>
                             <div class="game-card-footer">
                                 <span>REWARD: ⭐ +20 Stars</span>
-                                <span>${g.progress}</span>
+                                <span>0/20</span>
                             </div>
-                            <div class="game-progress-bar-bg"><div class="game-progress-bar-fill" style="width:15%;"></div></div>
+                            <div class="game-progress-bar-bg"><div class="game-progress-bar-fill" style="width:20%;"></div></div>
                         </div>
                     </div>
                 `;
@@ -686,10 +723,10 @@
             container.innerHTML = html;
         }
 
-        function playGameModal(gameTitle) {
+        function playAdaptiveGameModal(gameTitle, promptText, answerText) {
             userStars += 20;
             document.getElementById('userStarDisplay').innerText = userStars;
-            alert(`🎮 Sesi game "${gameTitle}" dimulai!\n\nSelamat! Kamu berhasil menjawab tantangan dan mendapatkan ⭐ +20 Bintang!`);
+            alert(`🎮 MINI GAME: ${gameTitle}\n\n❓ Tantangan: ${promptText}\n💡 Jawaban Benar: ${answerText}\n\n🎉 Selamat! Jawaban kamu tepat dan berhasil meraih ⭐ +20 Bintang!`);
         }
 
         function renderMyProfileSection(container) {
@@ -874,7 +911,6 @@
 
         function handleKeyPress(e) { if (e.key === 'Enter') sendChatMessage(); }
 
-        /* KAK OMAH AI BEBAS MENJAWAB PERTANYAAN APA SAJA (PEMBENTUKAN HUJAN, MATEMATIKA, DLL) */
         async function sendChatMessage() {
             const inputEl = document.getElementById('userChatInput');
             const msg = inputEl.value.trim();
@@ -913,7 +949,6 @@ Instruksi Jawaban Kak Omah:
 4. Akhiri dengan 1 pertanyaan ringan/kuis interaktif agar anak antusias belajar lagi.`;
 
             try {
-                // ENDPOINT REST GEMINI API RESMI
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -960,7 +995,6 @@ Instruksi Jawaban Kak Omah:
         function escapeSingleQuotes(text) { return text.replace(/'/g, "\\'").replace(/\n/g, " "); }
         function formatMarkdown(text) { return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>'); }
 
-        /* LOGGING IN VIA PARENT EMAIL (MATCHES REGISTERED PACKAGE) */
         function handleFormLogin(e) {
             e.preventDefault();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
@@ -1027,7 +1061,6 @@ Instruksi Jawaban Kak Omah:
             switchSection(activeSection);
         }
 
-        // AUTO RESTORE SESSION REFRESH
         window.addEventListener('DOMContentLoaded', () => { 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             const savedSec = sessionStorage.getItem('omahles_active_section');
