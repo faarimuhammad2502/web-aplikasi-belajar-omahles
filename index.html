@@ -37,7 +37,7 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* SPLIT LOGIN SCREEN */
+        /* SPLIT LOGIN SCREEN DENGAN FULL SAMAR BACKGROUND */
         .login-page-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; z-index: 1000; background: var(--bg-body);
@@ -45,59 +45,34 @@
 
         .login-left-brand {
             flex: 1.2; 
-            background: linear-gradient(135deg, rgba(45, 22, 12, 0.96) 0%, rgba(20, 10, 5, 0.98) 100%);
-            color: #ffffff; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+            /* GAMBAR BACKGROUND SAMAR DI SELURUH AREA COKELAT */
+            background: linear-gradient(135deg, rgba(45, 22, 12, 0.90) 0%, rgba(20, 10, 5, 0.94) 100%), 
+                        url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff; padding: 60px 70px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
             position: relative; overflow-y: auto;
         }
 
-        .brand-badge-tag { background: rgba(217, 119, 6, 0.3); border: 1.5px solid var(--brand-amber); color: #fef08a; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 20px; }
+        .brand-badge-tag { background: rgba(217, 119, 6, 0.35); border: 1.5px solid var(--brand-amber); color: #fef08a; padding: 6px 18px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 24px; z-index: 2; }
         
-        /* LOGO DIPERBESAR (110px x 110px) */
+        /* LOGO OMAH LES DIPERBESAR (130px) & POSISI PRESISI */
         .brand-logo-img { 
-            width: 110px; 
-            height: 110px; 
-            border-radius: 28px; 
+            width: 130px; 
+            height: 130px; 
+            border-radius: 32px; 
             border: 4px solid var(--brand-yellow); 
             object-fit: cover; 
-            margin-bottom: 20px; 
-            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.35); 
+            margin-bottom: 24px; 
+            box-shadow: 0 14px 35px rgba(245, 158, 11, 0.4); 
+            z-index: 2;
         }
 
-        .brand-slogan-title { font-family: 'Fredoka', sans-serif; font-size: 2.6rem; line-height: 1.25; color: #ffffff; margin-bottom: 14px; font-weight: 700; }
+        .brand-slogan-title { font-family: 'Fredoka', sans-serif; font-size: 2.8rem; line-height: 1.25; color: #ffffff; margin-bottom: 16px; font-weight: 700; z-index: 2; }
         .brand-slogan-title span { color: var(--brand-yellow); }
-        .brand-slogan-sub { font-size: 0.95rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 480px; margin-bottom: 24px; }
+        .brand-slogan-sub { font-size: 1rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 500px; z-index: 2; }
 
-        /* KARTU GAMBAR ILUSTRASI DENGAN EFEK SAMAR */
-        .login-illustration-box {
-            width: 100%;
-            max-width: 460px;
-            height: 180px;
-            border-radius: 24px;
-            border: 2px solid rgba(245, 158, 11, 0.3);
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-
-        .login-illustration-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.35; /* DIBUAT SAMAR */
-            filter: contrast(1.1) brightness(0.9);
-        }
-
-        .login-illustration-overlay {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%;
-            padding: 14px 20px;
-            background: linear-gradient(to top, rgba(20, 10, 5, 0.9), transparent);
-            color: #fef08a;
-            font-size: 0.82rem;
-            font-weight: 700;
-        }
-
-        .login-right-form { width: 480px; padding: 60px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); }
+        .login-right-form { width: 480px; padding: 60px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; }
         .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: var(--brand-brown); margin-bottom: 6px; }
         .form-sub-text { font-size: 0.92rem; color: var(--text-sub); margin-bottom: 32px; font-weight: 600; }
 
@@ -205,24 +180,16 @@
 </head>
 <body>
 
-    <!-- SPLIT LOGIN SCREEN DENGAN LOGO BESAR & KARTU GAMBAR -->
+    <!-- SPLIT LOGIN SCREEN DENGAN LOGO 130PX & FULL BACKGROUND SAMAR -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
             
-            <!-- LOGO UKURAN BESAR -->
-            <img src="./logo.jpg" alt="Logo Omah Les Privat" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/110?text=OLP'">
+            <!-- LOGO UKURAN BESAR (130px x 130px) -->
+            <img src="./logo.jpg" alt="Logo Omah Les Privat" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/130?text=OLP'">
             
             <div class="brand-slogan-title">Jelajahi Hal Baru Bersama <span>Omah Les</span>.</div>
             <div class="brand-slogan-sub">Sistem belajar terstruktur untuk siswa TK/PAUD, Sekolah Dasar (SD Kelas 1-6), hingga SMA dengan materi eksakta & literasi.</div>
-            
-            <!-- KARTU GAMBAR DENGAN TAMPILAN SAMAR -->
-            <div class="login-illustration-box">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80" alt="Anak Belajar Interaktif">
-                <div class="login-illustration-overlay">
-                    ✨ Ruang Belajar Ramah & Interaktif
-                </div>
-            </div>
         </div>
 
         <div class="login-right-form">
