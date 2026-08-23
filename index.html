@@ -74,7 +74,6 @@
         .modal-card { background: #ffffff; width: 100%; max-width: 480px; border-radius: 32px; padding: 48px 40px 36px 40px; text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 2px solid var(--card-border); animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.92) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
-        /* TRANSISI ANIMASI SECTION */
         @keyframes lovspeakTransition {
             0% { opacity: 0; transform: translateY(16px) scale(0.99); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -103,7 +102,7 @@
         .sequence-step-sub { font-size: 0.75rem; color: var(--text-sub); font-weight: 600; }
         .sequence-play-btn { width: 32px; height: 32px; border-radius: 50%; background: var(--brand-amber); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; }
 
-        /* INSIGHT KUIS MODAL */
+        /* INSIGHT MODAL */
         .insight-modal-card { background: #ffffff; width: 100%; max-width: 640px; border-radius: 32px; padding: 36px 40px; overflow-y: auto; max-height: 85vh; border: 2px solid var(--card-border); animation: modalFadeIn 0.3s; position: relative;}
         .insight-tag { display: inline-block; background: var(--brand-cream); color: var(--brand-brown); border: 1.5px solid var(--card-border); padding: 4px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 800; margin-bottom: 12px; }
         .insight-title { font-family: 'Fredoka', sans-serif; font-size: 2rem; color: var(--text-main); margin-bottom: 20px; }
@@ -240,20 +239,40 @@
         .badge-status-tag.unlocked { background: #dcfce7; color: #16a34a; }
         .badge-status-tag.locked { background: #f3f4f6; color: #9ca3af; }
 
-        /* AI CHAT */
-        .ai-chat-wrapper { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 32px; overflow: hidden; display: flex; flex-direction: column; height: 70vh; }
-        .ai-chat-header { background: var(--sidebar-bg); color: #ffffff; padding: 18px 28px; display: flex; align-items: center; justify-content: space-between; }
-        .ai-chat-title { font-family: 'Fredoka', sans-serif; font-size: 1.3rem; }
-        .ai-chat-messages-area { flex: 1; padding: 28px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; background: #fdfbf7; }
-        .chat-bubble-row { display: flex; flex-direction: column; max-width: 80%; }
-        .chat-bubble-row.ai { align-self: flex-start; }
-        .chat-bubble-row.user { align-self: flex-end; }
-        .chat-bubble { padding: 16px 20px; border-radius: 20px; font-size: 0.92rem; font-weight: 600; line-height: 1.6; }
-        .chat-bubble.ai { background: #ffffff; border: 2px solid var(--card-border); border-bottom-left-radius: 4px; }
-        .chat-bubble.user { background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: #ffffff; border-bottom-right-radius: 4px; }
-        .ai-chat-input-container { padding: 18px 28px; background: #ffffff; border-top: 2px solid var(--card-border); display: flex; gap: 12px; }
-        .ai-chat-input-field { flex: 1; padding: 14px 20px; border-radius: 16px; border: 2px solid var(--card-border); outline: none; }
-        .btn-send-chat { background: var(--brand-amber); color: white; border: none; padding: 14px 24px; border-radius: 16px; font-weight: 800; cursor: pointer; }
+        /* STYLE LOVSPEAK UNTUK RUANG AI TUTOR */
+        .lovespeak-chat-container { display: flex; flex-direction: column; height: calc(100vh - 120px); width: 100%; background: #ffffff; border-radius: 24px; border: 2px solid var(--card-border); overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .lovespeak-top-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; border-bottom: 2px solid var(--card-border); background: #ffffff; }
+        .lovespeak-profile-info { display: flex; align-items: center; gap: 12px; }
+        .lovespeak-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3); }
+        .lovespeak-name { font-family: 'Fredoka', sans-serif; font-size: 1.1rem; color: var(--text-main); font-weight: 700; margin-bottom: 2px; }
+        .lovespeak-status { font-size: 0.7rem; color: #16a34a; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .lovespeak-badge-mode { background: #fffbeb; border: 1.5px solid #fde68a; color: #b45309; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.78rem; text-transform: uppercase; }
+
+        .lovespeak-messages-area { flex: 1; padding: 32px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; background: #fdfbf7; }
+        
+        /* Bubble Chat Model LovSpeak */
+        .lovespeak-bubble-row { display: flex; flex-direction: column; width: 100%; max-width: 85%; }
+        .lovespeak-bubble-row.ai { align-self: flex-start; }
+        .lovespeak-bubble-row.user { align-self: flex-end; align-items: flex-end; }
+        
+        .lovespeak-bubble { background: #ffffff; border: 2px solid var(--card-border); border-radius: 20px; padding: 20px 24px; font-size: 0.95rem; color: var(--text-main); line-height: 1.6; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .lovespeak-bubble-row.user .lovespeak-bubble { background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: #ffffff; border: none; }
+        
+        .lovespeak-bubble-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 0.72rem; color: var(--text-sub); font-weight: 700; }
+        .lovespeak-btn-listen { background: var(--brand-cream); border: 1px solid var(--card-border); color: var(--brand-brown); padding: 4px 12px; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 0.7rem; display: flex; align-items: center; gap: 4px; }
+        .lovespeak-btn-listen:hover { background: var(--brand-amber); color: white; }
+
+        /* Quick Suggestions Pills */
+        .lovespeak-suggestions-bar { display: flex; gap: 10px; padding: 12px 28px; background: #ffffff; border-top: 1px solid var(--card-border); overflow-x: auto; white-space: nowrap; }
+        .lovespeak-suggestion-chip { background: var(--brand-cream); border: 1.5px solid var(--card-border); color: var(--brand-brown); padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; cursor: pointer; transition: all 0.2s; }
+        .lovespeak-suggestion-chip:hover { background: var(--brand-amber); color: white; border-color: var(--brand-amber); }
+
+        /* Chat Input Bar ala LovSpeak */
+        .lovespeak-input-bar { display: flex; align-items: center; gap: 12px; padding: 16px 28px; background: #ffffff; border-top: 2px solid var(--card-border); }
+        .lovespeak-input-icon-btn { background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-sub); padding: 4px; }
+        .lovespeak-text-input { flex: 1; border: none; outline: none; font-size: 0.95rem; font-weight: 600; color: var(--text-main); background: transparent; }
+        .lovespeak-send-btn { width: 38px; height: 38px; border-radius: 50%; background: #f3e8ff; border: none; color: #9333ea; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 800; transition: all 0.2s; }
+        .lovespeak-send-btn:hover { background: #9333ea; color: white; }
 
         .journal-form-box { background: var(--brand-cream); border: 2px solid var(--card-border); border-radius: 20px; padding: 20px; margin-bottom: 24px; }
         .journal-input { width: 100%; padding: 10px 14px; border-radius: 12px; border: 1.5px solid var(--card-border); margin-bottom: 12px; font-weight: 600; outline: none; }
@@ -270,6 +289,7 @@
             .login-page-container { flex-direction: column; }
             .login-left-brand { padding: 40px 20px; min-height: 40vh; }
             .login-right-form { width: 100%; padding: 30px 20px; }
+            .lovespeak-chat-container { height: 75vh; }
         }
     </style>
 </head>
@@ -413,8 +433,8 @@
         </aside>
 
         <!-- MAIN DASHBOARD CONTENT -->
-        <main class="content-area">
-            <div class="roadmap-banner">
+        <main class="content-area" id="mainContentAreaContainer">
+            <div class="roadmap-banner" id="topBannerSection">
                 <div class="banner-tag" id="bannerTagText">🎓 Master Path</div>
                 <div class="banner-title" id="bannerWelcomeTitle">Curriculum Roadmap</div>
                 <div class="banner-sub" id="bannerWelcomeSub">Modul materi terstruktur disesuaikan.</div>
@@ -447,7 +467,7 @@
         </main>
     </div>
 
-    <footer class="portal-footer">
+    <footer class="portal-footer" id="portalFooterSection">
         <div><span>© 2026 Omah Les Privat Platform • Learning System</span></div>
     </footer>
 
@@ -655,7 +675,7 @@
                 'math': { tag: '🧮 Logika & Angka', title: 'Matematika Dasar', sub: 'Berhitung itu menyenangkan.' },
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & IPA', sub: 'Eksplorasi alam semesta.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni Budaya', sub: 'Berkreasi tanpa batas.' },
-                'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Ruang AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
+                'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
                 'games': { tag: '🎮 Game Center', title: 'LovSpeak Games', sub: `Tantangan khusus ${currentStudent.classLevel}.` },
                 'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar', sub: 'Tulis target harianmu.' }
             };
@@ -667,33 +687,42 @@
 
             const area = document.getElementById('dynamicMainContentArea');
             const filterBar = document.getElementById('filterHeaderBar');
+            const topBanner = document.getElementById('topBannerSection');
+            const footerSec = document.getElementById('portalFooterSection');
             clearInterval(lovInterval);
 
             area.className = '';
             void area.offsetWidth;
             area.className = 'animate-section';
 
-            if (secKey === 'dashboard') {
+            // KHUSUS AI TUTOR: SEMBUNYIKAN BANNER ATAS AGAR TAMPILAN FULL BERSIH ALA LOVSPEAK
+            if (secKey === 'aitutor') {
+                topBanner.style.display = 'none';
                 filterBar.style.display = 'none';
-                renderDashboardMain(area);
-            } else if (secKey === 'profile') {
-                filterBar.style.display = 'none';
-                renderProfile(area);
-            } else if (secKey === 'badges') {
-                filterBar.style.display = 'none';
-                renderBadges(area);
-            } else if (secKey === 'aitutor') {
-                filterBar.style.display = 'none';
-                renderAiChatDirect(area);
-            } else if (secKey === 'games') {
-                filterBar.style.display = 'none';
-                renderGameCenterGrid(area);
-            } else if (secKey === 'diary') {
-                filterBar.style.display = 'none';
-                renderJournal(area);
+                document.getElementById('devLevelSwitcherBox').style.display = 'none';
+                renderLovSpeakAiChat(area);
             } else {
-                filterBar.style.display = 'flex';
-                renderModules(area, secKey);
+                topBanner.style.display = 'block';
+                if (secKey === 'dashboard' || secKey === 'profile' || secKey === 'badges' || secKey === 'games' || secKey === 'diary') {
+                    filterBar.style.display = 'none';
+                } else {
+                    filterBar.style.display = 'flex';
+                }
+                renderDashboardData();
+
+                if (secKey === 'dashboard') {
+                    renderDashboardMain(area);
+                } else if (secKey === 'profile') {
+                    renderProfile(area);
+                } else if (secKey === 'badges') {
+                    renderBadges(area);
+                } else if (secKey === 'games') {
+                    renderGameCenterGrid(area);
+                } else if (secKey === 'diary') {
+                    renderJournal(area);
+                } else {
+                    renderModules(area, secKey);
+                }
             }
         }
 
@@ -762,7 +791,7 @@
                             <div class="profile-big-avatar">🎓</div>
                             <div>
                                 <div class="profile-user-name">${currentStudent.name}</div>
-                                <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLabel}</div>
+                                <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLevel}</div>
                             </div>
                         </div>
                     </div>
@@ -993,51 +1022,104 @@
             renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
-        // RUANG AI TUTOR LANGSUNG CHAT TANPA PILIH JENJANG
-        function renderAiChatDirect(container) {
+        // TAMPILAN UTUH RUANG AI TUTOR PERSIS GAYA LOVSPEAK
+        function renderLovSpeakAiChat(container) {
+            const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             container.innerHTML = `
-                <div class="ai-chat-wrapper animate-section">
-                    <div class="ai-chat-header"><div class="ai-chat-title">🎙️ Ruang Chat Kak Omah (AI Tutor)</div></div>
-                    <div class="ai-chat-messages-area" id="chatMessagesBox">
-                        <div class="chat-bubble-row ai"><div class="chat-bubble ai">Halo ${currentStudent.name}! Ada pertanyaan seputar materi pelajaran, sains, atau PR yang ingin kita bahas hari ini? 😊</div></div>
+                <div class="lovespeak-chat-container animate-section">
+                    <div class="lovespeak-top-header">
+                        <div class="lovespeak-profile-info">
+                            <div class="lovespeak-avatar">👑</div>
+                            <div>
+                                <div class="lovespeak-name">Kak Omah AI Tutor</div>
+                                <div class="lovespeak-status">● ONLINE, ALWAYS</div>
+                            </div>
+                        </div>
+                        <div class="lovespeak-badge-mode">Omah Les AI Assistant</div>
                     </div>
-                    <div class="ai-chat-input-container">
-                        <input type="text" id="userChatInput" class="ai-chat-input-field" placeholder="Ketik pertanyaan atau topik di sini..." onkeypress="if(event.key==='Enter') sendChatMessageDirect()">
-                        <button class="btn-send-chat" onclick="sendChatMessageDirect()">KIRIM</button>
+
+                    <div class="lovespeak-messages-area" id="lovChatMessagesBox">
+                        <div class="lovespeak-bubble-row ai">
+                            <div class="lovespeak-bubble">
+                                Assalamu'alaikum ${currentStudent.name}! I'm Kak Omah. Don't be afraid to make mistakes—that's how we grow. Shall we talk about your day or study material?
+                            </div>
+                            <div class="lovespeak-bubble-footer">
+                                <button class="lovespeak-btn-listen" onclick="alert('🔊 Memutar audio penjelasan Kak Omah...')">🔊 LISTEN</button>
+                                <span>${timeStr}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lovespeak-suggestions-bar">
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Tolong jelaskan bagaimana proses terbentuknya fosil!')">🦖 Jelaskan Fosil</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana cara menghitung pecahan sederhana?')">🍕 Pecahan Sederhana</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Ceritakan bagaimana proses terjadinya hujan.')">🌧️ Terjadinya Hujan</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Berikan tips belajar yang menyenangkan.')">✨ Tips Belajar</div>
+                    </div>
+
+                    <div class="lovespeak-input-bar">
+                        <button class="lovespeak-input-icon-btn" title="Lampirkan File">📎</button>
+                        <button class="lovespeak-input-icon-btn" title="Voice Input">🎙️</button>
+                        <input type="text" id="lovUserChatInput" class="lovespeak-text-input" placeholder="Ketik pesan..." onkeypress="if(event.key==='Enter') sendLovChatMessage()">
+                        <button class="lovespeak-send-btn" onclick="sendLovChatMessage()">➤</button>
                     </div>
                 </div>
             `;
+            document.getElementById('lovUserChatInput').focus();
         }
 
-        function sendChatMessageDirect() {
-            const i = document.getElementById('userChatInput');
-            const msg = i.value.trim();
+        function quickSendPrompt(txt) {
+            document.getElementById('lovUserChatInput').value = txt;
+            sendLovChatMessage();
+        }
+
+        function sendLovChatMessage() {
+            const input = document.getElementById('lovUserChatInput');
+            const msg = input.value.trim();
             if(!msg) return;
-            const b = document.getElementById('chatMessagesBox');
-            b.innerHTML += `<div class="chat-bubble-row user"><div class="chat-bubble user">${msg.replace(/</g,"&lt;")}</div></div>`;
-            i.value = ''; b.scrollTop = b.scrollHeight;
-            
-            const lid = 'l-'+Date.now();
-            b.innerHTML += `<div class="chat-bubble-row ai" id="${lid}"><div class="chat-bubble ai">⏳ Kak Omah sedang menjelaskan...</div></div>`;
-            b.scrollTop = b.scrollHeight;
-            
+            const box = document.getElementById('lovChatMessagesBox');
+            const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            box.innerHTML += `
+                <div class="lovespeak-bubble-row user">
+                    <div class="lovespeak-bubble">${msg.replace(/</g,"&lt;")}</div>
+                    <div class="lovespeak-bubble-footer"><span>${timeStr}</span></div>
+                </div>
+            `;
+            input.value = ''; box.scrollTop = box.scrollHeight;
+
+            const loadingId = 'load-' + Date.now();
+            box.innerHTML += `
+                <div class="lovespeak-bubble-row ai" id="${loadingId}">
+                    <div class="lovespeak-bubble">⏳ Kak Omah sedang mengetik jawaban...</div>
+                </div>
+            `;
+            box.scrollTop = box.scrollHeight;
+
             setTimeout(() => {
                 let lower = msg.toLowerCase();
-                let reply = `Halo ${currentStudent.name}! Pertanyaan hebat mengenai "${msg}". Di Omah Les Privat, setiap konsep ilmu pengetahuan dan rumus dipelajari secara bertahap agar mudah dipahami. Ada bagian spesifik yang ingin kita bedah bersama? ✨`;
+                let reply = `Halo ${currentStudent.name}! Topik mengenai "${msg}" sangat menarik untuk dibahas. Di Omah Les Privat, kita bisa mendalami materi ini secara bertahap agar kamu semakin paham dan percaya diri. Ada bagian khusus yang ingin kita kulik bersama? ✨`;
 
                 if (lower.includes('fosil') || lower.includes('fosil terbentuk')) {
                     reply = `Fosil adalah sisa-sisa makhluk hidup masa lampau (tumbuhan, hewan, atau manusia) yang telah membatu karena tertimbun lapisan sedimen bumi dalam waktu jutaan tahun! Prosesnya dimulai saat makhluk hidup mati, terkubur lumpur/pasir sebelum membusuk, lalu mineral meresap menggantikan jaringan organiknya. 🦖✨`;
-                } else if (lower.includes('bumi') || lower.includes('bumi terbentuk')) {
-                    reply = `Bumi terbentuk sekitar 4,5 miliar tahun lalu dari awan debu dan gas kosmik (nebula) yang berputar akibat gaya gravitasi. Seiring berjalannya waktu, material berat berkumpul di inti bumi sementara bagian luar mendingin membentuk kerak bumi dan samudera purba! 🌍🔥`;
+                } else if (lower.includes('pecahan')) {
+                    reply = `Pecahan sederhana seperti 1/2 atau 1/4 adalah cara adil untuk membagi sebuah benda utuh (seperti pizza atau kue) menjadi bagian-bagian yang sama besar! Angka di atas (pembilang) adalah bagian yang diambil, dan angka di bawah (penyebut) adalah total bagian seluruhnya. 🍕🧮`;
                 } else if (lower.includes('hujan') || lower.includes('siklus air')) {
                     reply = `Hujan terjadi melalui siklus air (hidrologi): Panas matahari menguapkan air laut menjadi uap air (evaporasi), uap naik dan mendingin membentuk awan (kondensasi), lalu saat awan sudah berat, titik-titik air jatuh kembali ke bumi sebagai hujan (presipitasi)! 🌧️☀️`;
-                } else if (lower.includes('matematika') || lower.includes('hitung') || lower.includes('pecahan')) {
-                    reply = `Matematika itu seru! Kuncinya adalah memahami konsep dasar dan melatih pola hitungnya secara rutin. Ada rumus atau soal hitung tertentu yang ingin Kak Omah bantu selesaikan? 🧮💡`;
+                } else if (lower.includes('tips') || lower.includes('belajar')) {
+                    reply = `Tips belajar seru bersama Kak Omah: 1. Buat jadwal rutin setiap hari, 2. Gunakan teknik mencatat warna-warni, 3. Jangan takut bertanya jika ada yang belum dipahami, dan 4. Berikan jeda istirahat agar otak tetap segar! Semangat ya! 🌟🚀`;
                 }
 
-                document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">${reply}</div>`;
-                b.scrollTop = b.scrollHeight;
-            }, 800);
+                const timeReply = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                document.getElementById(loadingId).innerHTML = `
+                    <div class="lovespeak-bubble">${reply}</div>
+                    <div class="lovespeak-bubble-footer">
+                        <button class="lovespeak-btn-listen" onclick="alert('🔊 Memutar audio penjelasan Kak Omah...')">🔊 LISTEN</button>
+                        <span>${timeReply}</span>
+                    </div>
+                `;
+                box.scrollTop = box.scrollHeight;
+            }, 900);
         }
     </script>
 </body>
