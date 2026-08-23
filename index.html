@@ -60,9 +60,9 @@
 
         .login-right-form { width: 480px; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; overflow-y: auto; }
         .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: var(--brand-brown); margin-bottom: 6px; }
-        .form-sub-text { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 24px; font-weight: 600; }
+        .form-sub-text { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 20px; font-weight: 600; }
 
-        .form-group { margin-bottom: 16px; text-align: left; }
+        .form-group { margin-bottom: 14px; text-align: left; }
         .form-label { display: block; font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
         .form-input, .form-select { width: 100%; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: #fdfbf7; }
         .form-input:focus, .form-select:focus { border-color: var(--brand-amber); background: #ffffff; }
@@ -246,7 +246,7 @@
 
         <div class="login-right-form">
             <div class="form-header-text">Login Student</div>
-            <div class="form-sub-text">Masukkan nama, email orang tua, & pilih level belajar.</div>
+            <div class="form-sub-text">Masukkan data diri & Kode Akses yang didapat dari Lynk.id</div>
 
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
@@ -257,6 +257,11 @@
                 <div class="form-group">
                     <label class="form-label">Email Orang Tua / Wali</label>
                     <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Kode Akses / Lisensi Lynk.id</label>
+                    <input type="text" class="form-input" id="inputAccessCode" placeholder="Contoh: OLP-SD3" style="text-transform: uppercase;" required>
                 </div>
 
                 <div class="form-group">
@@ -445,6 +450,18 @@
             { quote: "Ilmu itu seperti air; jika tidak mengalir, ia akan mengendap. Teruslah membaca dan berbagi pengetahuan.", author: "— Pepatah Bijak" }
         ];
 
+        // MASTER DATABASE KODE AKSES LYNK.ID KHUSUS TIAP KELAS
+        const validAccessCodes = {
+            'OLP-TK': 'tk',
+            'OLP-SD1': 'sd1',
+            'OLP-SD2': 'sd2',
+            'OLP-SD3': 'sd3',
+            'OLP-SD4': 'sd4',
+            'OLP-SD5': 'sd5',
+            'OLP-SD6': 'sd6',
+            'OLP-SMA': 'sma'
+        };
+
         const databaseMateriLengkap = {
             'tk': [
                 { tierTag: 'TK / PAUD', title: 'Huruf A - Z & Vokal', desc: 'Mengenal huruf vokal A-I-U-E-O dengan contoh kata bergambar.', progress: '0/4', content: `Modul ini dirancang khusus untuk adik-adik TK/PAUD dalam mengenal alfabet dasar dan huruf vokal.\n\n<h2>1. Pengenalan Huruf Vokal</h2>\n• A - Apel 🍎\n• I - Ikan 🐟\n• U - Ular 🐍\n• E - Elang 🦅\n• O - Obor 🟠` },
@@ -506,11 +523,12 @@
             document.getElementById('sdClassGroup').style.display = jenjang === 'sd' ? 'block' : 'none';
         }
 
-        // LOGIKA PENDAFTARAN & PENGUNCIAN KELAS PERMANEN
+        // LOGIKA PENDAFTARAN & PENGUNCIAN KELAS BERDASARKAN KODE AKSES LYNK.ID
         function handleFormLogin(e) {
             e.preventDefault();
             const name = document.getElementById('inputStudentName').value.trim();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
+            const accessCode = document.getElementById('inputAccessCode').value.trim().toUpperCase();
             const jenjang = document.getElementById('selectJenjang').value;
             const sdClass = document.getElementById('selectSdClass').value;
 
@@ -521,29 +539,37 @@
             else if (jenjang === 'sma') { catKey = 'sma'; labelClass = 'Kelas 10 SMA'; }
             else { catKey = sdClass; labelClass = `Kelas ${sdClass.replace('sd', '')} SD`; }
 
-            // AMBIL DATABASE AKUN TERDAFTAR DI LOCALSTORAGE
+            // 1. VALIDASI KODE AKSES LYNK.ID DENGAN KELAS
+            if (!validAccessCodes[accessCode]) {
+                alert(`🚫 Kode Akses Salah!\n\nKode akses "${accessCode}" tidak terdaftar di sistem. Dapatkan Kode Akses resmi setelah melakukan pembelian di Lynk.id Omah Les.`);
+                return;
+            }
+
+            if (validAccessCodes[accessCode] !== catKey) {
+                alert(`⚠️ Kode Akses Tidak Sesuai!\n\nKode Akses (${accessCode}) tidak berlaku untuk kelas yang kamu pilih (${labelClass}).\n\nSilakan pilih jenjang/kelas yang sesuai dengan paket pembelian kamu di Lynk.id.`);
+                return;
+            }
+
+            // 2. CEK DAN KUNCI EMAIL KE KELAS DI LOCALSTORAGE
             let registeredUsers = JSON.parse(localStorage.getItem('olp_registered_accounts') || '{}');
 
             if (registeredUsers[pEmail]) {
-                // EMAIL SUDAH TERDAFTAR SEBELUMNYA
                 const existingAccount = registeredUsers[pEmail];
 
                 if (existingAccount.categoryKey !== catKey) {
-                    // JIKA SISWA MEMILIH KELAS/JENJANG BERBEDA DENGAN SAAT PENDAFTARAN
-                    alert(`🚫 Akses Ditolak!\n\nMaaf, kamu tidak bisa mengakses kelas ini. 🙏\n\nEmail (${pEmail}) sudah terdaftar khusus untuk "${existingAccount.studentName}" di ${existingAccount.classLevel}.\n\nSilakan pilih kelas yang sudah kamu daftarkan saat awal login!`);
-                    return; // Batalkan Login
+                    alert(`🚫 Akses Ditolak!\n\nMaaf, kamu tidak bisa mengakses kelas ini. 🙏\n\nEmail (${pEmail}) sudah terdaftar khusus untuk "${existingAccount.studentName}" di ${existingAccount.classLevel}.\n\nSilakan pilih kelas terdaftar kamu untuk melanjutkan belajar!`);
+                    return;
                 } else {
-                    // Update nama siswa jika akun cocok
                     existingAccount.studentName = name;
                     registeredUsers[pEmail] = existingAccount;
                     localStorage.setItem('olp_registered_accounts', JSON.stringify(registeredUsers));
                 }
             } else {
-                // PENDAFTARAN BARU: KUNCI PERMANEN EMAIL DENGAN KELAS PILIHAN
                 registeredUsers[pEmail] = {
                     studentName: name,
                     classLevel: labelClass,
-                    categoryKey: catKey
+                    categoryKey: catKey,
+                    codeUsed: accessCode
                 };
                 localStorage.setItem('olp_registered_accounts', JSON.stringify(registeredUsers));
             }
