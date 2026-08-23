@@ -555,16 +555,11 @@
         window.addEventListener('DOMContentLoaded', () => { 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             if (savedStudent) {
-                currentStudent = JSON.parse(savedStudent);
-                activeSection = sessionStorage.getItem('omahles_active_section') || 'roadmap';
-                userStars = parseInt(sessionStorage.getItem('omahles_user_stars') || '120');
-
-                document.getElementById('loginPage').style.display = 'none';
-                renderDashboardData();
-                switchSection(activeSection);
-            } else {
-                openLoginForm();
+                // Jika ingin selalu ke halaman login saat link diklik, baris di bawah ini kita abaikan agar selalu kembali ke login page:
+                // sessionStorage.clear(); 
             }
+            // SESUAI PERMINTAAN: Saat link di-klik/fresh load, wajib langsung ke halaman login.
+            openLoginForm();
         });
 
         function handleFormLogin(e) {
@@ -650,9 +645,8 @@
             const filterBar = document.getElementById('filterHeaderBar');
             clearInterval(lovInterval);
 
-            // Terapkan animasi transisi pada konten utama
             area.className = '';
-            void area.offsetWidth; // Trigger reflow
+            void area.offsetWidth;
             area.className = 'animate-section';
 
             if (secKey === 'profile') {
@@ -888,8 +882,7 @@
                         <div class="profile-big-avatar">🎓</div>
                         <div>
                             <div class="profile-user-name">${currentStudent.name}</div>
-                            <div class="profile-user-level" style="margin-top:4px;">🌱 LV 1 • Status: ${currentStudent.classLevel}</div>
-                            <div style="font-size:0.85rem; color:var(--text-sub); margin-top:8px;">Email Wali: <strong>${currentStudent.parentEmail}</strong></div>
+                            <div class="profile-user-level">🌱 LV 1 • (${currentStudent.classLevel})</div>
                         </div>
                     </div>
                 </div>
@@ -928,7 +921,7 @@
                 <div class="ai-chat-wrapper">
                     <div class="ai-chat-header"><div class="ai-chat-title">🎙️ Kak Omah (AI) <span class="ai-status-online"></span></div></div>
                     <div class="ai-chat-messages-area" id="chatMessagesBox">
-                        <div class="chat-bubble-row ai"><div class="chat-bubble ai">Halo ${currentStudent.name}! Ada pertanyaan materi pelajaran atau sains yang ingin kamu tanyakan hari ini? 😊</div></div>
+                        <div class="chat-bubble-row ai"><div class="chat-bubble ai">Halo ${currentStudent.name}! Tanya apa saja yuk!</div></div>
                     </div>
                     <div class="ai-chat-input-container">
                         <input type="text" id="userChatInput" class="ai-chat-input-field" placeholder="Ketik pesan..." onkeypress="if(event.key==='Enter') sendChatMessage()">
@@ -947,31 +940,31 @@
             i.value = ''; b.scrollTop = b.scrollHeight;
             
             const lid = 'l-'+Date.now();
-            b.innerHTML += `<div class="chat-bubble-row ai" id="${lid}"><div class="chat-bubble ai">⏳ Kak Omah sedang menjelaskan...</div></div>`;
+            b.innerHTML += `<div class="chat-bubble-row ai" id="${lid}"><div class="chat-bubble ai">⏳ Kak Omah sedang mengetik jawaban...</div></div>`;
             b.scrollTop = b.scrollHeight;
             
             try {
-                const response = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-                const res = await fetch(response, {
+                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+                const res = await fetch(apiEndpoint, {
                     method: 'POST', 
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ 
                         contents: [{ 
                             parts: [{ 
-                                text: `Bertindaklah sebagai Kak Omah, tutor pendamping belajar yang ramah dan sabar untuk siswa berjenjang ${currentStudent.classLevel}. Jawab pertanyaan berikut secara mendidik, runtut, dan interaktif: "${msg}"` 
+                                text: `Berperanlah sebagai Kak Omah, guru les privat yang ramah dan suportif untuk siswa tingkat ${currentStudent.classLevel}. Berikan penjelasan edukatif yang ringkas, mudah dipahami, dan ramah anak untuk pertanyaan berikut: "${msg}"` 
                             }] 
                         }] 
                     })
                 });
                 const data = await res.json();
                 if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    const aiReply = data.candidates[0].content.parts[0].text;
-                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">${aiReply.replace(/\n/g,'<br>')}</div>`;
+                    const replyText = data.candidates[0].content.parts[0].text;
+                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">${replyText.replace(/\n/g,'<br>')}</div>`;
                 } else {
-                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Kak Omah senang sekali kamu bertanya. Mengenai "${msg}", hal ini bisa dipelajari melalui konsep dasar yang ada di modul latihan kita ya! Semangat terus belajarnya! 🌟</div>`;
+                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Kak Omah mengerti pertanyaanmu mengenai "${msg}". Hal ini sangat seru dipelajari bersama materi sekolah! 🌟</div>`;
                 }
             } catch(e) {
-                document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Pertanyaan hebat tentang "${msg}". Mari kita eksplorasi lebih lanjut bersama modul belajar Omah Les! ✨</div>`;
+                document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Pertanyaan yang sangat menarik tentang "${msg}". Yuk eksplorasi lebih lanjut bersama modul belajar kita! ✨</div>`;
             }
             b.scrollTop = b.scrollHeight;
         }
