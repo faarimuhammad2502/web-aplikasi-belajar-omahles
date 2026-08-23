@@ -513,12 +513,16 @@
             { quote: "Pendidikan adalah senjata paling mematikan di dunia, karena dengan pendidikan Anda dapat mengubah dunia.", author: "— Nelson Mandela" }
         ];
 
-        /* MATERI LENGKAP LOKAL UNTUK DUA JENJANG UTAMA (TK & SD1-SD6) */
+        /* MATERI LENGKAP LOKAL UNTUK SELURUH JENJANG (TERMASUK BADGES SPESIFIK PER JENJANG) */
         const masterSectionDatabase = {
             'tk': {
                 'roadmap': [
                     { tierTag: 'PAUD / TK', title: 'Mengenal Huruf Vokal A, I, U, E, O', desc: 'Mengenal bentuk huruf vokal dan benda berawalan huruf tersebut.', progress: '0/3', steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Huruf A & I', sub: 'Mengenal kata Ayam dan Ikan.', quote: '"Membaca adalah petualangan seru!"', context: 'Gambar Ayam dan Ikan di halaman buku.', logic: 'Huruf A diucapkan dengan membuka mulut lebar.', tips: 'Tirukan bunyi suara ayam jantan.', quiz: { q: 'Huruf pertama dari kata AYAM adalah?', opts: ['A. Huruf A', 'B. Huruf B', 'C. Huruf C'], ans: 0 } }] },
                     { tierTag: 'PAUD / TK', title: 'Menghitung Jari 1 Sampai 10', desc: 'Belajar konsep angka menggunakan jari tangan.', progress: '0/3', steps: [{ icon: '🖐️', tag: 'STEP 1', title: 'Angka 1 sampai 5', sub: 'Hitung jari tangan kananmu satu per satu.', quote: '"Angka ada di sekitarmu!"', context: 'Hitung jari secara berurutan.', logic: 'Tangan kanan memiliki 5 jari.', tips: 'Gunakan lagu angka untuk menghafal.', quiz: { q: 'Berapa jumlah jari pada satu tangan kanan?', opts: ['A. 3 Jari', 'B. 5 Jari', 'C. 10 Jari'], ans: 1 } }] }
+                ],
+                'badges': [
+                    { tierTag: 'BADGE TK', title: '🔤 Lencana Bintang Huruf', desc: 'Diberikan untuk pahlawan cilik yang berhasil mengenal seluruh huruf vokal.', progress: '1/1', steps: [{ icon: '⭐', tag: 'TROFI TK', title: 'Syarat Bintang Huruf', sub: 'Eja 5 kata berawalan huruf vokal.', quote: '"Kecil-kecil hebat membaca!"', context: 'Selamat! Kamu sudah hafal huruf A, I, U, E, O.', logic: 'Membaca huruf vokal lancar.', tips: 'Terus berlatih bersama orang tua.', quiz: { q: 'Apa warna bintang keberhasilanmu?', opts: ['A. Emas', 'B. Perak', 'C. Perunggu'], ans: 0 } }] },
+                    { tierTag: 'BADGE TK', title: '🎨 Pahlawan Mewarnai', desc: 'Selesaikan 3 sesi mewarnai pemandangan dengan rapi.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI TK', title: 'Syarat Pahlawan Mewarnai', sub: 'Warnai gambar tanpa keluar garis.', quote: '"Kreativitas si kecil luar biasa!"', context: 'Selesai mewarnai dengan kombinasi warna indah.', logic: 'Motorik halus berkembang pesat.', tips: 'Pilih warna kesukaanmu.', quiz: { q: 'Mewarnai daun menggunakan warna apa?', opts: ['A. Hijau', 'B. Hitam', 'C. Putih'], ans: 0 } }] }
                 ],
                 'indo': [{ tierTag: 'TK INDO', title: 'Suku Kata Ba-Bi-Bu-Be-Bo', desc: 'Latihan menggabungkan huruf B dengan vokal.', progress: '0/2', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Suku Kata Ba dan Bi', sub: 'Membaca Ba-ju dan Bi-sa.', quote: '"Eja kata dengan percaya diri!"', context: 'B dan A dibaca BA.', logic: 'Suara B digabung A menjadi BA.', tips: 'Ulangi 3 kali.', quiz: { q: 'Huruf B dan A dibaca apa?', opts: ['A. BA', 'B. BI', 'C. BU'], ans: 0 } }] }],
                 'math': [{ tierTag: 'TK MATH', title: 'Mengenal Bentuk Lingkaran & Segitiga', desc: 'Eksplorasi bentuk geometri sederhana.', progress: '0/2', steps: [{ icon: '🔴', tag: 'STEP 1', title: 'Bentuk Lingkaran', sub: 'Mencari benda bundar seperti bola.', quote: '"Lingkaran bulat tanpa sudut."', context: 'Bola dan roda berbentuk bulat.', logic: 'Bentuk bulat dinamakan lingkaran.', tips: 'Lihat jam dinding di rumah.', quiz: { q: 'Manakah benda yang berbentuk lingkaran?', opts: ['A. Roda Sepeda', 'B. Buku Tulis', 'C. Kotak Pensil'], ans: 0 } }] }],
@@ -530,6 +534,9 @@
                     { tierTag: 'SD KELAS 1', title: 'Membaca Kalimat Sederhana', desc: 'Menyusun kata menjadi kalimat berita pendek.', progress: '0/4', steps: [{ icon: '📘', tag: 'STEP 1', title: 'Membaca Teks Budi', sub: 'Latihan pemahaman teks.', quote: '"Membaca lancar membuat pintar!"', context: 'Budi membaca buku di sekolah.', logic: 'Kalimat diawali huruf kapital dan diakhiri titik.', tips: 'Baca kata per kata.', quiz: { q: 'Di mana Budi membaca buku?', opts: ['A. Di sekolah', 'B. Di pasar', 'C. Di jalan'], ans: 0 } }] },
                     { tierTag: 'SD KELAS 1', title: 'Penjumlahan Angka Sampai 20', desc: 'Hitung penjumlahan dengan bantuan garis bilangan.', progress: '0/4', steps: [{ icon: '🔢', tag: 'STEP 1', title: 'Penjumlahan 8 + 5', sub: 'Menghitung maju dari angka 8.', quote: '"Matematika itu gampang!"', context: 'Hitung maju 5 langkah setelah 8.', logic: '8 ditambah 5 sama dengan 13.', tips: 'Simpan angka 8 di kepala.', quiz: { q: 'Berapa hasil 8 + 5?', opts: ['A. 12', 'B. 13', 'C. 14'], ans: 1 } }] }
                 ],
+                'badges': [
+                    { tierTag: 'BADGE SD 1', title: '🥇 Juara Membaca Lancar', desc: 'Buka trofi emas setelah membaca 5 cerita pendek tanpa terbata-bata.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 1', title: 'Lencana Kelancaran Membaca', sub: 'Kuasai ejaan huruf kapital dan titik.', quote: '"Langkah awal menjadi juara!"', context: 'Membaca cerita pendek dengan lafal jernih.', logic: 'Tanda baca dipahami dengan baik.', tips: 'Terus tingkatkan semangat membaca.', quiz: { q: 'Di mana Budi bersekolah?', opts: ['A. Di Sekolah Dasar', 'B. Di Pasar', 'C. Di Taman'], ans: 0 } }] }
+                ],
                 'indo': [{ tierTag: 'SD 1 INDO', title: 'Huruf Kapital Nama Hari & Orang', desc: 'Aturan penulisan ejaan sederhana.', progress: '0/3', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Menulis Hari Senin', sub: 'Huruf besar pada awal nama hari.', quote: '"Tulisan rapi sesuai ejaan."', context: 'Hari Senin diawali huruf S besar.', logic: 'Nama hari wajib memakai huruf kapital.', tips: 'Periksa kembali huruf depanmu.', quiz: { q: 'Penulisan nama hari yang benar adalah?', opts: ['A. senin', 'B. Senin', 'C. sENIN'], ans: 1 } }] }],
                 'math': [{ tierTag: 'SD 1 MATH', title: 'Pengurangan Angka 1-20', desc: 'Konsep mengambil benda dari kelompok.', progress: '0/3', steps: [{ icon: '➖', tag: 'STEP 1', title: 'Pengurangan 15 - 4', sub: 'Hitung mundur 4 langkah.', quote: '"Pengurangan adalah sisa benda."', context: 'Ada 15 apel, dimakan 4 apel.', logic: 'Sisa apel adalah 11 buah.', tips: 'Hitung mundur dari 15.', quiz: { q: 'Berapa 15 dikurangi 4?', opts: ['A. 11', 'B. 12', 'C. 10'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 1 SAINS', title: 'Anggota Tubuh Manusia', desc: 'Fungsi mata, telinga, dan tangan.', progress: '0/3', steps: [{ icon: '👀', tag: 'STEP 1', title: 'Fungsi Telinga', sub: 'Mendengar bunyi dan musik.', quote: '"Syukuri anggota tubuhmu."', context: 'Telinga untuk mendengar penjelasan guru.', logic: 'Manusia memiliki 2 telinga.', tips: 'Jaga kebersihan telingamu.', quiz: { q: 'Anggota tubuh untuk mendengar adalah?', opts: ['A. Telinga', 'B. Mata', 'C. Hidung'], ans: 0 } }] }],
@@ -538,6 +545,9 @@
             'sd2': {
                 'roadmap': [
                     { tierTag: 'SD KELAS 2', title: 'Perkalian Dasar Konsep Penjumlahan', desc: 'Memahami bahwa 3 x 4 adalah 4 + 4 + 4.', progress: '0/4', steps: [{ icon: '✖️', tag: 'STEP 1', title: 'Konsep Perkalian 2 & 3', sub: 'Hitung cepat perkalian berulang.', quote: '"Perkalian adalah penjumlahan berulang."', context: 'Ada 3 piring, setiap piring berisi 4 kue.', logic: '3 x 4 = 4 + 4 + 4 = 12.', tips: 'Jumlahkan isinya secara berurutan.', quiz: { q: 'Berapa hasil dari 3 x 4?', opts: ['A. 10', 'B. 12', 'C. 14'], ans: 1 } }] }
+                ],
+                'badges': [
+                    { tierTag: 'BADGE SD 2', title: '⏰ Master Penjaga Waktu', desc: 'Trofi khusus siswa yang mahir membaca jam analog dan digital.', progress: '1/1', steps: [{ icon: '🕒', tag: 'TROFI SD 2', title: 'Lencana Jam & Waktu', sub: 'Disiplin membaca jam sekolah dan belajar.', quote: '"Waktu adalah tabungan masa depan."', context: 'Bisa membedakan jarum panjang dan pendek.', logic: 'Disiplin waktu terbentuk.', tips: 'Selalu melihat jam saat aktivitas.', quiz: { q: 'Jarum pendek menunjukkan apa?', opts: ['A. Jam', 'B. Menit', 'C. Detik'], ans: 0 } }] }
                 ],
                 'indo': [{ tierTag: 'SD 2 INDO', title: 'Puisi Anak & Deklamasi', desc: 'Membaca puisi dengan ekspresi dan intonasi tepat.', progress: '0/3', steps: [{ icon: '📜', tag: 'STEP 1', title: 'Membaca Puisi Taman Bunga', sub: 'Latihan mimik wajah ceria.', quote: '"Ekspresi menghidupkan puisi."', context: 'Puisi tentang keindahan bunga di taman.', logic: 'Intonasi disesuaikan dengan isi bait.', tips: 'Ucapkan kata dengan jelas.', quiz: { q: 'Bagaimana ekspresi saat membaca puisi gembira?', opts: ['A. Sedih', 'B. Ceria & Tersenyum', 'C. Marah'], ans: 1 } }] }],
                 'math': [{ tierTag: 'SD 2 MATH', title: 'Membaca Jam Analog & Digital', desc: 'Mengenal jarum panjang dan jarum pendek.', progress: '0/3', steps: [{ icon: '🕒', tag: 'STEP 1', title: 'Jam Tepat (Pukul 07.00)', sub: 'Jarum pendek di angka 7, jarum panjang di angka 12.', quote: '"Disiplin waktu adalah kunci sukses."', context: 'Pukul 07.00 adalah waktu masuk sekolah.', logic: 'Jarum pendek menunjukkan jam, jarum panjang menunjukkan menit.', tips: 'Lihat angka yang ditunjuk jarum pendek.', quiz: { q: 'Jika jarum pendek di angka 8 dan jarum panjang di angka 12, jam berapa itu?', opts: ['A. Pukul 08.00', 'B. Pukul 12.00', 'C. Pukul 06.00'], ans: 0 } }] }],
@@ -549,6 +559,10 @@
                     { tierTag: 'SD KELAS 3', title: 'Ide Pokok & Kalimat Utama', desc: 'Menemukan gagasan utama dalam cerita dan paragraf pendek.', progress: '0/5', steps: [{ icon: '🌱', tag: 'STEP 1', title: 'Menemukan Kalimat Utama', sub: 'Mengenal paragraf deduktif.', quote: '"Kalimat santun cermin kebaikan hati."', context: 'Kalimat utama berada di awal paragraf.', logic: 'Gagasan pokok didukung oleh kalimat penjelas.', tips: 'Cari kata yang sering diulang.', quiz: { q: 'Di mana letak kalimat utama paragraf deduktif?', opts: ['A. Di akhir', 'B. Di awal', 'C. Di tengah'], ans: 1 } }] },
                     { tierTag: 'SD KELAS 3', title: 'Pecahan Dasar Sederhana ½, ⅓, ¼', desc: 'Mengenal konsep pembilang dan penyebut.', progress: '0/4', steps: [{ icon: '🍕', tag: 'STEP 1', title: 'Pecahan Pizza 1/4', sub: 'Satu benda dibagi 4 bagian sama besar.', quote: '"Pecahan itu membagi dengan adil."', context: 'Pizza dipotong 4 bagian sama rata.', logic: 'Angka atas adalah Pembilang, angka bawah Penyebut.', tips: 'Penyebut adalah total potongan.', quiz: { q: 'Pada pecahan 1/4, angka 4 disebut apa?', opts: ['A. Pembilang', 'B. Penyebut', 'C. Hasil'], ans: 1 } }] }
                 ],
+                'badges': [
+                    { tierTag: 'BADGE SD 3', title: '🍕 Detektif Pecahan Dasar', desc: 'Piala untuk siswa yang sukses membagi benda konkret dan paham pembilang-penyebut.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 3', title: 'Detektif Pecahan Emas', sub: 'Paham pecahan setengah, sepertiga, dan seperempat.', quote: '"Logika matematika makin tajam!"', context: 'Berhasil menjawab kuis pecahan tanpa keliru.', logic: 'Pembilang dan penyebut dikuasai.', tips: 'Gunakan potongan roti saat latihan.', quiz: { q: 'Pecahan 1/2 dibaca apa?', opts: ['A. Satu per dua / Setengah', 'B. Satu per tiga', 'C. Satu per empat'], ans: 0 } }] },
+                    { tierTag: 'BADGE SD 3', title: '🐛 Pengamat Metamorfosis', desc: 'Diberikan atas pemahaman daur hidup hewan dan alam.', progress: '1/1', steps: [{ icon: '⭐', tag: 'TROFI SD 3', title: 'Lencana IPA Sains', sub: 'Kuasai daur hidup kupu-kupu.', quote: '"Mencintai ilmu alam sekitar."', context: 'Menjelaskan fase telur hingga kupu-kupu.', logic: 'Sains dasar dipahami.', tips: 'Amati alam sekitar.', quiz: { q: 'Hewan apa yang mengalami metamorfosis sempurna?', opts: ['A. Kupu-kupu', 'B. Ayam', 'C. Kucing'], ans: 0 } }] }
+                ],
                 'indo': [{ tierTag: 'SD 3 INDO', title: 'Imbuhan Me- pada Kata Dasar', desc: 'Membentuk kata kerja yang tepat.', progress: '0/3', steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Imbuhan Me- + Tulis', sub: 'Perubahan kata menjadi Menulis.', quote: '"Tata bahasa yang benar."', context: 'Kata dasar tulis menjadi menulis.', logic: 'Huruf T luluh menjadi N.', tips: 'Ucapkan kata secara jelas.', quiz: { q: 'Kata dasar tulis jika diberi imbuhan me- menjadi?', opts: ['A. Melulis', 'B. Menulis', 'C. Mengulis'], ans: 1 } }] }],
                 'math': [{ tierTag: 'SD 3 MATH', title: 'Perkalian Trik Cepat 1-10', desc: 'Menghafal perkalian dengan pola menyenangkan.', progress: '0/5', steps: [{ icon: '➕', tag: 'STEP 1', title: 'Perkalian Angka 5', sub: 'Pola akhiran angka 0 dan 5.', quote: '"Matematika penuh pola indah."', context: '5, 10, 15, 20, 25, 30.', logic: 'Perkalian 5 selalu diakhiri 0 atau 5.', tips: 'Hitung kelipatan 5.', quiz: { q: 'Berapa hasil dari 3 x 5?', opts: ['A. 12', 'B. 15', 'C. 18'], ans: 1 } }] }],
                 'sains': [{ tierTag: 'SD 3 SAINS', title: 'Metamorfosis Kupu-Kupu', desc: 'Daur hidup dari telur hingga kupu-kupu.', progress: '0/4', steps: [{ icon: '🐛', tag: 'STEP 1', title: 'Tahap Telur & Ulat', sub: 'Proses perubahan bentuk serangga.', quote: '"Proses alam yang luar biasa."', context: 'Ulat berubah menjadi kepompong.', logic: 'Metamorfosis sempurna melalui 4 tahap.', tips: 'Amati kupu-kupu di taman.', quiz: { q: 'Sebelum menjadi kepompong, ulat berubah dari apa?', opts: ['A. Telur', 'B. Kepompong', 'C. Kupu-kupu'], ans: 0 } }] }],
@@ -557,6 +571,9 @@
             'sd4': {
                 'roadmap': [
                     { tierTag: 'SD KELAS 4', title: 'Pecahan Senilai & Bentuk Desimal', desc: 'Mengubah pecahan biasa menjadi pecahan desimal.', progress: '0/5', steps: [{ icon: '🔢', tag: 'STEP 1', title: 'Konsep 1/2 = 0,5', sub: 'Mengubah per sepuluh menjadi desimal.', quote: '"Pecahan dan desimal itu bernilai sama."', context: '1/2 sama nilainya dengan 5/10 atau 0,5.', logic: 'Penyebut diubah menjadi 10, 100, atau 1000.', tips: 'Gunakan pembagian kurung.', quiz: { q: 'Pecahan 1/2 jika diubah ke desimal menjadi berapa?', opts: ['A. 0,2', 'B. 0,5', 'C. 0,25'], ans: 1 } }] }
+                ],
+                'badges': [
+                    { tierTag: 'BADGE SD 4', title: '📐 Ahli Geometri Persegi', desc: 'Penghargaan untuk siswa yang mahir menghitung keliling dan luas bangun datar.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 4', title: 'Piala Master Geometri', sub: 'Kuasai rumus luas p x l dan keliling.', quote: '"Cerdas menghitung luas ruang!"', context: 'Berhasil menghitung luas tanpa salah rumus.', logic: 'Rumus bangun datar dikuasai.', tips: 'Selalu sertakan cm².', quiz: { q: 'Rumus luas persegi panjang adalah?', opts: ['A. p x l', 'B. s x s', 'C. p + l'], ans: 0 } }] }
                 ],
                 'indo': [{ tierTag: 'SD 4 INDO', title: 'Teks Petunjuk & Unsur Cerita', desc: 'Menganalisis tokoh, watak, dan amanat cerita rakyat.', progress: '0/4', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Unsur Intrinsik Cerita', sub: 'Menentukan watak protagonis dan antagonis.', quote: '"Pesan kebaikan dari cerita rakyat."', context: 'Tokoh baik dinamakan protagonis.', logic: 'Amanat adalah pesan moral dari penulis.', tips: 'Catat sifat tokoh saat membaca.', quiz: { q: 'Tokoh yang berwatak baik dalam cerita disebut apa?', opts: ['A. Protagonis', 'B. Antagonis', 'C. Figuran'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 4 MATH', title: 'Keliling & Luas Persegi / Persegi Panjang', desc: 'Rumus K = 2 x (p + l) dan L = p x l.', progress: '0/4', steps: [{ icon: '📐', tag: 'STEP 1', title: 'Luas Persegi Panjang', sub: 'Perhitungan p x l.', quote: '"Rumus sederhana bangun datar."', context: 'Panjang = 10 cm, Lebar = 5 cm.', logic: 'Luas = 10 x 5 = 50 cm².', tips: 'Jangan lupa satuan cm².', quiz: { q: 'Berapa luas persegi panjang dengan p=8 cm dan l=4 cm?', opts: ['A. 32 cm²', 'B. 24 cm²', 'C. 12 cm²'], ans: 0 } }] }],
@@ -567,6 +584,9 @@
                 'roadmap': [
                     { tierTag: 'SD KELAS 5', title: 'Kecepatan, Jarak, dan Waktu (KJW)', desc: 'Rumus Jarak = Kecepatan x Waktu.', progress: '0/5', steps: [{ icon: '🚗', tag: 'STEP 1', title: 'Rumus J = K x W', sub: 'Menghitung jarak tempuh kendaraan.', quote: '"Matematika fisika sederhana."', context: 'Mobil melaju 60 km/jam selama 2 jam.', logic: 'Jarak = 60 x 2 = 120 km.', tips: 'Gunakan segitiga rumus Jokowi.', quiz: { q: 'Berapa jarak jika Kecepatan=50 km/jam dan Waktu=3 jam?', opts: ['A. 150 km', 'B. 100 km', 'C. 200 km'], ans: 0 } }] }
                 ],
+                'badges': [
+                    { tierTag: 'BADGE SD 5', title: '🏎️ Kapten Kecepatan & Waktu', desc: 'Trofi emas bagi siswa yang menguasai perhitungan jarak, kecepatan, dan waktu.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI SD 5', title: 'Lencana Kapten KJW', sub: 'Sukses menyelesaikan soal kecepatan fisik.', quote: '"Kecerdasan matematika tingkat lanjut!"', context: 'Menghitung rumus KJW dengan akurat.', logic: 'Perhitungan fisika dasar dikuasai.', tips: 'Gunakan segitiga bantuan rumus.', quiz: { q: 'Rumus mencari Jarak adalah?', opts: ['A. Kecepatan x Waktu', 'B. Kecepatan / Waktu', 'C. Waktu / Kecepatan'], ans: 0 } }] }
+                ],
                 'indo': [{ tierTag: 'SD 5 INDO', title: 'Teks Narasi Sejarah & Pidato', desc: 'Menyusun teks pidato dengan kalimat efektif.', progress: '0/4', steps: [{ icon: '🎤', tag: 'STEP 1', title: 'Struktur Pidato Pembukaan', sub: 'Salam pembuka dan ucapan syukur.', quote: '"Berbicara di depan umum dengan percaya diri."', context: 'Salam hormat kepada bapak ibu guru dan teman.', logic: 'Pidato terdiri dari Pembukaan, Isi, dan Penutup.', tips: 'Tatap mata pendengar.', quiz: { q: 'Bagian pidato yang berisi ucapan syukur adalah?', opts: ['A. Pembukaan', 'B. Isi Pidato', 'C. Penutup'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 5 MATH', title: 'Penyumlahan & Pengurangan Pecahan Beda Penyebut', desc: 'Menyamakan penyebut dengan KPK.', progress: '0/5', steps: [{ icon: '➕', tag: 'STEP 1', title: '1/2 + 1/3 dengan KPK', sub: 'Mencari KPK dari 2 dan 3 yaitu 6.', quote: '"KPK kunci pecahan beda penyebut."', context: '1/2 menjadi 3/6, dan 1/3 menjadi 2/6.', logic: '3/6 + 2/6 = 5/6.', tips: 'Samakan penyebut dulu.', quiz: { q: 'Berapa hasil dari 1/2 + 1/3?', opts: ['A. 2/5', 'B. 5/6', 'C. 3/6'], ans: 1 } }] }],
                 'sains': [{ tierTag: 'SD 5 SAINS', title: 'Organ Pernapasan & Peredaran Darah', desc: 'Fungsi paru-paru dan jantung manusia.', progress: '0/5', steps: [{ icon: '🫀', tag: 'STEP 1', title: 'Fungsi Jantung Manusia', sub: 'Memompa darah ke seluruh tubuh.', quote: '"Jaga kesehatan organ tubuhmu."', context: 'Jantung berdetak memompa darah berisi oksigen.', logic: 'Jantung terdiri dari 4 ruangan.', tips: 'Olahraga teratur menyehatkan jantung.', quiz: { q: 'Organ tubuh yang berfungsi memompa darah adalah?', opts: ['A. Paru-paru', 'B. Jantung', 'C. Lambung'], ans: 1 } }] }],
@@ -576,6 +596,9 @@
                 'roadmap': [
                     { tierTag: 'SD KELAS 6', title: 'Operasi Hitung Campuran & Pecahan', desc: 'Persiapan Ujian Sekolah tingkat SD.', progress: '0/5', steps: [{ icon: '🧮', tag: 'STEP 1', title: 'Aturan Urutan Operasi (KABATAKU)', sub: 'Kali, Bagi, Tambah, Kurang.', quote: '"Teliti dalam urutan matematika."', context: 'Operasi perkalian dikerjakan lebih dahulu daripada penjumlahan.', logic: 'Gunakan tanda kurung untuk memprioritaskan hitungan.', tips: 'Kerjakan dari sebelah kiri.', quiz: { q: 'Berapa hasil dari 10 + 2 x 5?', opts: ['A. 20', 'B. 60', 'C. 25'], ans: 0 } }] },
                     { tierTag: 'SD KELAS 6', title: 'Volume Bangun Ruang Balok & Tabung', desc: 'Kapasitas isi bangun tiga dimensi.', progress: '0/5', steps: [{ icon: '📦', tag: 'STEP 1', title: 'Volume Balok (p x l x t)', sub: 'Menghitung kapasitas ruangan balok.', quote: '"Volume tiga dimensi."', context: 'Panjang = 10 cm, Lebar = 5 cm, Tinggi = 4 cm.', logic: 'V = 10 x 5 x 4 = 200 cm³.', tips: 'Gunakan satuan cm³.', quiz: { q: 'Berapa volume balok p=5, l=2, t=3?', opts: ['A. 30 cm³', 'B. 10 cm³', 'C. 25 cm³'], ans: 0 } }] }
+                ],
+                'badges': [
+                    { tierTag: 'BADGE SD 6', title: '👑 Master Ujian Sekolah SD', desc: 'Penghargaan tertinggi lulusan SD yang menguasai seluruh materi Ujian Sekolah.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI UTAMA SD 6', title: 'Mahkota Kelulusan SD', sub: 'Lulus seluruh modul SD Kelas 1-6 dengan nilai sempurna.', quote: '"Siap melangkah ke jenjang SMP!"', context: 'Selamat! Kamu siap menghadapi Ujian Sekolah.', logic: 'Materi SD telah dikuasai sempurna.', tips: 'Jaga kebiasaan belajar di SMP nanti.', quiz: { q: 'Berapa hasil dari 10 + 2 x 5?', opts: ['A. 20', 'B. 60', 'C. 25'], ans: 0 } }] }
                 ],
                 'indo': [{ tierTag: 'SD 6 INDO', title: 'Menganalisis Teks Eksplanasi Ilmiah', desc: 'Menemukan hubungan sebab-akibat fenomena alam.', progress: '0/4', steps: [{ icon: '📰', tag: 'STEP 1', title: 'Struktur Teks Eksplanasi', sub: 'Pernyataan umum dan deretan penjelas.', quote: '"Teks eksplanasi fakta ilmiah."', context: 'Proses terjadinya hujan dijelaskan berurutan.', logic: 'Deretan penjelas berisi hubungan sebab-akibat.', tips: 'Cari kata hubung kausalitas.', quiz: { q: 'Bagian teks eksplanasi yang berisi sebab-akibat dinamakan?', opts: ['A. Deretan Penjelas', 'B. Judul', 'C. Penutup'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 6 MATH', title: 'Pengolahan Data: Rata-Rata (Mean)', desc: 'Menghitung statistik data nilai ujian.', progress: '0/4', steps: [{ icon: '📊', tag: 'STEP 1', title: 'Rumus Mean (Rata-rata)', sub: 'Jumlah data dibagi banyaknya data.', quote: '"Statistik membantu analisis data."', context: 'Nilai 5 siswa: 80, 90, 70, 80, 80.', logic: 'Mean = Total Nilai (400) / Jumlah Siswa (5) = 80.', tips: 'Jumlahkan seluruh data dulu.', quiz: { q: 'Berapa rata-rata dari data: 10, 20, 30?', opts: ['A. 20', 'B. 15', 'C. 25'], ans: 0 } }] }],
@@ -600,7 +623,7 @@
             const sectionHeaders = {
                 'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Modul materi terstruktur disesuaikan otomatis dengan jenjang ${currentStudent.classLevel}.` },
                 'profile': { tag: '👤 Personal Space', title: 'My Profile & Analytics', sub: 'Pantau perkembangan XP, statistik, dan akun belajar milikmu.' },
-                'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges Siswa', sub: 'Kumpulkan ⭐ Bintang dan buka piala kebanggaan belajarmu!' },
+                'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges Siswa', sub: `Trofi kebanggaan khusus untuk jenjang ${currentStudent.classLevel}.` },
                 'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia Interaktif', sub: 'Melatih kemampuan membaca, menyusun kalimat, dan ejaan.' },
                 'math': { tag: '🧮 Logika & Angka', title: 'Matematika Dasar & Logika', sub: 'Metode belajar angka yang gampang, seru, dan menyenangkan.' },
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & Eksperimen IPA', sub: 'Menjelajahi fenomena alam, hewan, dan percobaan sederhana.' },
@@ -632,12 +655,12 @@
             }
         }
 
-        /* AMBIL DATABASE SPESIFIK BERDASARKAN PAKET JENJANG SANG SISWA */
+        /* AMBIL DATABASE SPESIFIK BERDASARKAN PAKET JENJANG SANG SISWA (TERMASUK BADGES) */
         function renderSectionModules(container, secKey) {
             container.innerHTML = `<div class="modules-grid" id="modulesGridContainer"></div>`;
             const grid = document.getElementById('modulesGridContainer');
             
-            // Ambil database paket jenjang kelas siswa
+            // Ambil data spesifik jenjang siswa
             const packageData = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
             const list = packageData[secKey] || masterSectionDatabase['sd3'][secKey] || masterSectionDatabase['sd3']['roadmap'];
 
@@ -840,32 +863,80 @@
 
         function handleKeyPress(e) { if (e.key === 'Enter') sendChatMessage(); }
 
-        /* KAK OMAH AI BEBAS MENJAWAB PERTANYAAN APA SAJA (ENDPOINT V1 RESMI) */
-        async function sendChatMessage() {
-            const inputEl = document.getElementById('userChatInput');
-            const msg = inputEl.value.trim();
-            if (!msg) return;
+       /* KAK OMAH AI BEBAS MENJAWAB PERTANYAAN APA SAJA (VERSI FIX GEMINI API) */
+async function sendChatMessage() {
+    const inputEl = document.getElementById('userChatInput');
+    const msg = inputEl.value.trim();
+    if (!msg) return;
 
-            const box = document.getElementById('chatMessagesBox');
-            box.innerHTML += `
-                <div class="chat-bubble-row user">
-                    <div class="chat-bubble user">${escapeHtml(msg)}</div>
-                </div>
-            `;
-            inputEl.value = '';
-            box.scrollTop = box.scrollHeight;
+    const box = document.getElementById('chatMessagesBox');
+    box.innerHTML += `
+        <div class="chat-bubble-row user">
+            <div class="chat-bubble user">${escapeHtml(msg)}</div>
+        </div>
+    `;
+    inputEl.value = '';
+    box.scrollTop = box.scrollHeight;
 
-            userStars += 5;
-            document.getElementById('userStarDisplay').innerText = userStars;
+    userStars += 5;
+    document.getElementById('userStarDisplay').innerText = userStars;
 
-            const loadingId = 'loading-' + Date.now();
-            box.innerHTML += `
-                <div class="chat-bubble-row ai" id="${loadingId}">
-                    <div class="chat-bubble ai">Kak Omah sedang berpikir dan mengetik... ⏳</div>
-                </div>
-            `;
-            box.scrollTop = box.scrollHeight;
+    const loadingId = 'loading-' + Date.now();
+    box.innerHTML += `
+        <div class="chat-bubble-row ai" id="${loadingId}">
+            <div class="chat-bubble ai">Kak Omah sedang berpikir dan mengetik... ⏳</div>
+        </div>
+    `;
+    box.scrollTop = box.scrollHeight;
 
+    let replyText = "";
+
+    // Prompt sistem agar Kak Omah menjawab cerdas dan detail
+    const promptText = `Kamu adalah Kak Omah, AI Tutor yang sangat ramah, sabar, cerdas, dan interaktif dari Omah Les Privat.
+Siswa yang bertanya bernama: ${currentStudent.name} (Jenjang: ${currentStudent.classLevel}).
+Pertanyaan siswa: "${msg}"
+
+Instruksi Jawaban:
+1. Jawab pertanyaan siswa secara LANGSUNG, JELAS, LENGKAP, dan EDUKATIF sesuai usia anak sekolah.
+2. Jelaskan konsepnya secara menarik (gunakan contoh kehidupan sehari-hari jika relevan).
+3. Gunakan bahasa Indonesia yang santun, hangat, dan mudah dipahami.
+4. Akhiri dengan 1 pertanyaan ringan/kuis interaktif agar anak antusias belajar lagi.`;
+
+    try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{ text: promptText }]
+                }]
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
+            replyText = data.candidates[0].content.parts[0].text;
+        } else if (data.error) {
+            console.error("Gemini API Error Detail:", data.error);
+            replyText = `Halo ${currentStudent.name}! Saat ini koneksi API Kak Omah sedang dikonfigurasi. (Error: ${data.error.message || 'API Key Invalid'}). Pastikan API Key Gemini yang valid sudah dimasukkan ya!`;
+        } else {
+            replyText = `Halo ${currentStudent.name}! Kak Omah paham pertanyaanmu tentang "${msg}". Mari kita bahas bersama ya!`;
+        }
+    } catch (err) {
+        console.error("Fetch Error:", err);
+        replyText = `Halo ${currentStudent.name}! Terjadi kendala jaringan saat menghubungkan ke Kak Omah. Coba kirim ulang pesanmu ya! 😊`;
+    }
+
+    const aiRow = document.getElementById(loadingId);
+    aiRow.innerHTML = `
+        <div class="chat-bubble ai">${formatMarkdown(replyText)}</div>
+        <div class="chat-action-bar">
+            <button class="btn-speak-voice" onclick="readOutLoud('${escapeSingleQuotes(replyText)}')">🔊 Dengar Suara</button>
+        </div>
+    `;
+    box.scrollTop = box.scrollHeight;
+}
             let replyText = "";
 
             try {
@@ -939,7 +1010,6 @@
                     isDev: userObj.isDev 
                 };
             } else {
-                // Default jika email orang tua baru/belum terdaftar secara manual
                 currentStudent = { 
                     name: 'Siswa OmahLes', 
                     parentEmail: pEmail, 
