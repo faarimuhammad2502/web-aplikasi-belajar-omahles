@@ -241,7 +241,7 @@
 </head>
 <body>
 
-    <!-- SPLIT LOGIN SCREEN (SELALU MUNCUL SAAT PERTAMA KALI) -->
+    <!-- SPLIT LOGIN SCREEN -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
@@ -351,7 +351,7 @@
                 <div class="banner-sub">Modul materi terstruktur disesuaikan secara otomatis berdasarkan kelas dan jenjang pilihanmu.</div>
             </div>
 
-            <!-- TIMBOL KHUSUS DEVELOPER KAK FAARI UNTUK GANTI JENJANG INSTAN -->
+            <!-- TOMBOL KHUSUS DEVELOPER UNTUK GANTI JENJANG INSTAN -->
             <div class="dev-level-switcher" id="devLevelSwitcherBox">
                 <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">🛠️ DEVELOPER MODE: Pilih Jenjang Mana Saja Kapan Saja</span>
                 <button class="dev-switch-btn" onclick="devSwitchClass('tk', 'TK / PAUD')">TK / PAUD</button>
@@ -434,8 +434,11 @@
         // LINK CSV GOOGLE SHEETS
         const GOOGLE_SHEET_CSV_URL = 'PASTE_LINK_CSV_GOOGLE_SHEETS_DI_SINI';
 
-        // EMAIL DEVELOPER MASTER ACCESS KAK FAARI (Dapat Akses Semua Jenjang + Switcher)
-        const DEV_MASTER_EMAIL = 'faarimuhammad25@gmail.com';
+        // DAFTAR EMAIL DEVELOPER MASTER ACCESS (Kak Faari bisa tambahkan email pengembang lain di sini)
+        const DEV_MASTER_EMAILS = [
+            'faarimuhammad25@gmail.com',
+            'developer2.omahles@gmail.com'
+        ];
 
         const dailyQuotesList = [
             { quote: "Barangsiapa menempuh jalan untuk menuntut ilmu, maka Allah akan mudahkan baginya jalan menuju surga.", author: "— HR. Muslim" },
@@ -531,8 +534,8 @@
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
             const btn = document.getElementById('btnSubmitLogin');
 
-            // JIKA EMAIL DEVELOPER KAK FAARI: BERIKAN MASTER ACCESS
-            if (pEmail === DEV_MASTER_EMAIL) {
+            // CEK APAKAH EMAIL TERMASUK DALAM DAFTAR DEVELOPER
+            if (DEV_MASTER_EMAILS.includes(pEmail)) {
                 currentStudent = {
                     name: 'Muhammad Faari (Developer)',
                     parentEmail: pEmail,
