@@ -37,7 +37,7 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* LOGIN SCREEN WITH BLURRED BG */
+        /* SPLIT LOGIN SCREEN */
         .login-page-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; z-index: 1000; background: var(--bg-body);
@@ -45,17 +45,57 @@
 
         .login-left-brand {
             flex: 1.2; 
-            background: linear-gradient(135deg, rgba(61, 32, 18, 0.94) 0%, rgba(28, 14, 8, 0.96) 100%), 
-                        url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80');
-            background-size: cover; background-position: center;
-            color: #ffffff; padding: 60px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+            background: linear-gradient(135deg, rgba(45, 22, 12, 0.96) 0%, rgba(20, 10, 5, 0.98) 100%);
+            color: #ffffff; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+            position: relative; overflow-y: auto;
         }
 
         .brand-badge-tag { background: rgba(217, 119, 6, 0.3); border: 1.5px solid var(--brand-amber); color: #fef08a; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 20px; }
-        .brand-logo-img { width: 76px; height: 76px; border-radius: 22px; border: 3px solid var(--brand-amber); object-fit: cover; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
-        .brand-slogan-title { font-family: 'Fredoka', sans-serif; font-size: 2.8rem; line-height: 1.25; color: #ffffff; margin-bottom: 16px; font-weight: 700; }
+        
+        /* LOGO DIPERBESAR (110px x 110px) */
+        .brand-logo-img { 
+            width: 110px; 
+            height: 110px; 
+            border-radius: 28px; 
+            border: 4px solid var(--brand-yellow); 
+            object-fit: cover; 
+            margin-bottom: 20px; 
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.35); 
+        }
+
+        .brand-slogan-title { font-family: 'Fredoka', sans-serif; font-size: 2.6rem; line-height: 1.25; color: #ffffff; margin-bottom: 14px; font-weight: 700; }
         .brand-slogan-title span { color: var(--brand-yellow); }
-        .brand-slogan-sub { font-size: 1.05rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 480px; }
+        .brand-slogan-sub { font-size: 0.95rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 480px; margin-bottom: 24px; }
+
+        /* KARTU GAMBAR ILUSTRASI DENGAN EFEK SAMAR */
+        .login-illustration-box {
+            width: 100%;
+            max-width: 460px;
+            height: 180px;
+            border-radius: 24px;
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .login-illustration-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35; /* DIBUAT SAMAR */
+            filter: contrast(1.1) brightness(0.9);
+        }
+
+        .login-illustration-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(to top, rgba(20, 10, 5, 0.9), transparent);
+            color: #fef08a;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
 
         .login-right-form { width: 480px; padding: 60px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); }
         .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: var(--brand-brown); margin-bottom: 6px; }
@@ -143,7 +183,7 @@
         .reader-article-content h2, .reader-article-content h3 { font-family: 'Fredoka', sans-serif; color: var(--brand-brown); margin: 24px 0 12px 0; }
         .reader-article-content blockquote { background: var(--brand-cream); border-left: 4px solid var(--brand-amber); padding: 16px 20px; border-radius: 0 14px 14px 0; margin: 20px 0; font-weight: 700; color: var(--brand-brown); }
 
-        /* FLOATING AI TUTOR WIDGET (LOVSPEAK STYLE) */
+        /* FLOATING AI TUTOR WIDGET */
         .floating-ai-tutor { position: fixed; bottom: 32px; left: calc(280px + 50%); transform: translateX(-50%); background: var(--sidebar-bg); border: 2px solid var(--brand-amber); color: #ffffff; padding: 12px 28px; border-radius: 50px; display: flex; align-items: center; gap: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); z-index: 200; cursor: pointer; }
         .ai-mic-icon { width: 42px; height: 42px; background: var(--brand-amber); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
         .ai-text-title { font-family: 'Fredoka', sans-serif; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -165,13 +205,24 @@
 </head>
 <body>
 
-    <!-- SPLIT LOGIN SCREEN -->
+    <!-- SPLIT LOGIN SCREEN DENGAN LOGO BESAR & KARTU GAMBAR -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
-            <img src="./logo.jpg" alt="Logo" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/76?text=OLP'">
+            
+            <!-- LOGO UKURAN BESAR -->
+            <img src="./logo.jpg" alt="Logo Omah Les Privat" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/110?text=OLP'">
+            
             <div class="brand-slogan-title">Jelajahi Hal Baru Bersama <span>Omah Les</span>.</div>
             <div class="brand-slogan-sub">Sistem belajar terstruktur untuk siswa TK/PAUD, Sekolah Dasar (SD Kelas 1-6), hingga SMA dengan materi eksakta & literasi.</div>
+            
+            <!-- KARTU GAMBAR DENGAN TAMPILAN SAMAR -->
+            <div class="login-illustration-box">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80" alt="Anak Belajar Interaktif">
+                <div class="login-illustration-overlay">
+                    ✨ Ruang Belajar Ramah & Interaktif
+                </div>
+            </div>
         </div>
 
         <div class="login-right-form">
@@ -299,7 +350,6 @@
                 </div>
             </div>
 
-            <!-- FLOATING AI TUTOR WIDGET -->
             <div class="floating-ai-tutor" onclick="alert('AI Tutor Omah Les siap mendampingi sesi belajar interaktif!')">
                 <div class="ai-mic-icon">🎙️</div>
                 <div>
@@ -326,7 +376,6 @@
     </footer>
 
     <script>
-        // DATABASE MATERI LENGKAP BERSALAH PANDUAN KURIKULUM OMAH LES PRIVAT
         const databaseMateriLengkap = {
             'tk': [
                 { 
@@ -346,34 +395,7 @@ Huruf vokal adalah bunyi bahasa yang dihasilkan tanpa hambatan pada alat ucap.
 
 <h2>2. Latihan Melafalkan Vokal</h2>
 Coba tirukan bersama pembimbing:
-<blockquote>"A - I - U - E - O, Apel Ikan Ular Elang Obor!"</blockquote>
-
-<h2>3. Latihan Mandiri</h2>
-Hubungkan huruf di bawah ini dengan nama benda yang sesuai:
-1. Huruf 'A' -> [ Ayam / Ikan ]
-2. Huruf 'I' -> [ Ular / Ikan ]` 
-                },
-                { 
-                    tierTag: 'TK / PAUD', 
-                    title: 'Belajar Membaca Suku Kata', 
-                    desc: 'Latihan mengeja suku kata awalan Ba-Bi-Bu-Be-Bo.', 
-                    progress: '0/4', 
-                    content: `Setelah mengenal huruf vokal, mari belajar menggabungkan huruf konsonan 'B' dengan huruf vokal.
-
-<h2>1. Mengeja Suku Kata B</h2>
-• B + A = <b>BA</b>
-• B + I = <b>BI</b>
-• B + U = <b>BU</b>
-• B + E = <b>BE</b>
-• B + O = <b>BO</b>
-
-<h2>2. Menggabungkan Kata Sederhana</h2>
-• BA + JU = 👕 <b>Baju</b>
-• BO + LA = ⚽ <b>Bola</b>
-• BU + KU = 📚 <b>Buku</b>
-• BI + RU = 🔵 <b>Biru</b>
-
-<blockquote>Coba eja kata ini bersama: "B-A-J-U = BAJU"</blockquote>` 
+<blockquote>"A - I - U - E - O, Apel Ikan Ular Elang Obor!"</blockquote>` 
                 }
             ],
             'sd3': [
@@ -393,10 +415,7 @@ Ide pokok (atau gagasan utama) adalah inti atau topik utama yang sedang dibahas 
 • Tentukan kalimat mana yang menjadi induk utama dari paragraf tersebut.
 
 <h2>3. Contoh Teks Bacaan</h2>
-<blockquote>"Setiap pagi, Danu selalu merawat tanaman bunga di halaman rumahnya. Ia menyiram bunga mawar dan melati dengan teratur. Danu juga memberi pupuk seminggu sekali agar tanamannya tumbuh subur. Kegemaran Danu merawat tanaman membuat halamannya asri."</blockquote>
-
-<b>Analisis Ide Pokok:</b>
-Ide pokok dari teks di atas adalah <i>"Kegiatan Danu merawat tanaman di halaman rumahnya."</i>` 
+<blockquote>"Setiap pagi, Danu selalu merawat tanaman bunga di halaman rumahnya. Ia menyiram bunga mawar dan melati dengan teratur. Danu juga memberi pupuk seminggu sekali agar tanamannya tumbuh subur."</blockquote>` 
                 },
                 { 
                     tierTag: 'SD KLS 3', 
@@ -407,37 +426,31 @@ Ide pokok dari teks di atas adalah <i>"Kegiatan Danu merawat tanaman di halaman 
 
 <h2>1. Pengertian Pecahan</h2>
 Pecahan adalah bagian dari keseluruhan yang bernilai sama. Bentuk umum pecahan disimbolkan dengan <b>a/b</b>:
-• <b>a</b> disebut <i>Pembilang</i> (bagian yang diambil).
-• <b>b</b> disebut <i>Penyebut</i> (total seluruh bagian).
+• <b>a</b> disebut <i>Pembilang</i>.
+• <b>b</b> disebut <i>Penyebut</i>.
 
 <h2>2. Jenis Pecahan Sederhana</h2>
-• <b>Pecahan ½ (Satu Perdua / Setengah):</b> Satu buah pizza dipotong menjadi 2 bagian sama besar. 1 potong nilainya ½.
-• <b>Pecahan ⅓ (Satu Pertiga):</b> Satu kue dipotong menjadi 3 bagian sama besar.
-• <b>Pecahan ¼ (Satu Perempat):</b> Satu kertas dibagi menjadi 4 bagian sama besar.
+• <b>Pecahan ½:</b> Satu buah pizza dipotong menjadi 2 bagian sama besar.
+• <b>Pecahan ⅓:</b> Satu kue dipotong menjadi 3 bagian sama besar.
+• <b>Pecahan ¼:</b> Satu kertas dibagi menjadi 4 bagian sama besar.` 
+                }
+            ],
+            'sd4': [
+                {
+                    tierTag: 'SD KLS 4',
+                    title: 'Matematika Kls 4 - FPB & KPK',
+                    desc: 'Faktor Persekutuan Terbesar dan Kelipatan Persekutuan Terkecil.',
+                    progress: '0/4',
+                    content: `Modul Matematika Kurikulum Merdeka Kelas 4 SD untuk menghitung FPB dan KPK.
 
-<h2>3. Contoh Soal Latihan</h2>
-Jika Ibu memotong 1 buah semangka menjadi 4 bagian sama besar, dan Budi memakan 1 bagian, berapa nilai pecahan bagian semangka yang dimakan Budi?
-<b>Jawab:</b> 1/4 (Satu perempat).` 
-                },
-                { 
-                    tierTag: 'SD KLS 3', 
-                    title: 'Metamorfosis & Daur Hidup', 
-                    desc: 'Siklus hidup hewan sempurna dan tidak sempurna.', 
-                    progress: '0/4', 
-                    content: `Mata pelajaran IPAS Kelas 3 SD membahas tentang pertumbuhan dan siklus hidup makhluk hidup di lingkungan sekitar.
+<h2>1. Pengertian Faktor & Kelipatan</h2>
+• <b>Faktor</b> adalah bilangan yang dapat membagi habis suatu bilangan.
+• <b>Kelipatan</b> adalah hasil perkalian bilangan tersebut dengan bilangan asli.
 
-<h2>1. Daur Hidup Hewan</h2>
-Daur hidup adalah seluruh tahapan pertumbuhan dan perkembangan yang dialami oleh makhluk hidup sepanjang hidupnya.
-
-<h2>2. Metamorfosis Sempurna</h2>
-Metamorfosis sempurna adalah perubahan bentuk tubuh hewan yang sangat berbeda pada setiap tahapannya. Contoh utama: <b>Kupu-Kupu</b>.
-
-<blockquote><b>Tahapan Metamorfosis Kupu-kupu:</b>
-Telur ➡️ Ulat (Larva) ➡️ Kepompong (Pupa) ➡️ Kupu-kupu Dewasa (Imago)</blockquote>
-
-<h2>3. Metamorfosis Tidak Sempurna</h2>
-Hewan yang mengalami metamorfosis tidak sempurna tidak melalui tahap kepompong. Contoh: <b>Belalang & Kecoak</b>.
-(Telur ➡️ Nimfa/Kecoak Muda ➡️ Dewasa)` 
+<h2>2. Cara Menentukan FPB & KPK</h2>
+Gunakan pohon faktor untuk menentukan faktorisasi prima:
+• FPB: Pilih faktor prima yang sama dengan pangkat terkecil.
+• KPK: Pilih semua faktor prima dengan pangkat terbesar.`
                 }
             ],
             'sma': [
@@ -449,21 +462,8 @@ Hewan yang mengalami metamorfosis tidak sempurna tidak melalui tahap kepompong. 
                     content: `Di jenjang SMA Kelas 10, materi trigonometri merupakan salah satu topik fundamental matematika eksakta.
 
 <h2>1. Persamaan Identitas Utama</h2>
-Identitas trigonometri menghubungkan fungsi sinus, cosinus, dan tangen:
 • sin²(x) + cos²(x) = 1
-• tan(x) = sin(x) / cos(x)
-• 1 + tan²(x) = sec²(x)
-
-<h2>2. Sudut-Sudut Istimewa</h2>
-• sin(30°) = 1/2 | cos(30°) = √3/2
-• sin(45°) = √2/2 | cos(45°) = √2/2
-• sin(60°) = √3/2 | cos(60°) = 1/2
-
-<h2>3. Penerapan Soal</h2>
-Buktikan bahwa (1 - cos²x) / sin(x) = sin(x)!
-<b>Pembuktian:</b>
-Karena sin²x + cos²x = 1, maka 1 - cos²x = sin²x.
-Sehingga sin²x / sinx = sin(x). (Terbukti)` 
+• tan(x) = sin(x) / cos(x)` 
                 }
             ]
         };
@@ -539,7 +539,6 @@ Sehingga sin²x / sinx = sin(x). (Terbukti)`
             });
         }
 
-        /* FUNGSIONALITAS LOVSPEAK READER VIEW */
         function openReaderView(categoryKey, index) {
             const list = databaseMateriLengkap[categoryKey] || databaseMateriLengkap['sd3'];
             const item = list[index];
