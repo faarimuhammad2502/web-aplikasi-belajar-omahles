@@ -74,14 +74,11 @@
         .modal-card { background: #ffffff; width: 100%; max-width: 480px; border-radius: 32px; padding: 48px 40px 36px 40px; text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 2px solid var(--card-border); animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.92) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
-        /* ANIMASI TRANSISI SECTION */
         @keyframes sectionTransition {
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-section {
-            animation: sectionTransition 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        .animate-section { animation: sectionTransition 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
         .wisdom-quote-icon { width: 64px; height: 64px; background: var(--sidebar-bg); color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-family: 'Playfair Display', serif; margin: 0 auto 24px auto; }
         .wisdom-tag-title { font-size: 0.75rem; font-weight: 800; color: var(--brand-amber); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
@@ -119,7 +116,7 @@
         .quiz-btn:hover { background: #fef3c7; }
         .quiz-feedback { margin-top: 10px; font-weight: 800; font-size: 0.9rem; }
 
-        /* GAME CENTER & LOVSPEAK GAMEPLAY STYLES */
+        /* GAME CENTER STYLES */
         .game-level-tag-box { background: var(--brand-cream); border: 2px solid var(--brand-amber); border-radius: 16px; padding: 12px 20px; font-weight: 800; font-size: 0.9rem; color: var(--brand-brown); margin-bottom: 20px; display: inline-block; }
         .game-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 10px; }
         .game-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 28px 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: all 0.25s; cursor: pointer; }
@@ -128,18 +125,14 @@
         .game-card-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: var(--text-main); margin-bottom: 6px; }
         .game-card-desc { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; line-height: 1.5; margin-bottom: 24px; }
 
-        /* LovSpeak Modal / Gameplay UI */
+        /* GAMEPLAY UI */
         .lov-game-wrapper { width: 100%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; animation: modalFadeIn 0.3s; }
         .lov-top-bar { background: #ffffff; border: 2px solid var(--card-border); border-radius: 24px; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; }
         .lov-level-dots { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 800; color: var(--text-sub); }
         .lov-btn-close { cursor: pointer; font-size: 1.2rem; background: var(--card-border); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px;}
-        .lov-dot { width: 12px; height: 12px; border-radius: 50%; background: #e5e7eb; }
-        .lov-dot.active { background: #a855f7; }
-        
         .lov-score-pill { background: #fdf4ff; border: 1.5px solid #f0abfc; padding: 6px 18px; border-radius: 16px; text-align: center; }
         .lov-score-label { font-size: 0.65rem; font-weight: 800; color: #c084fc; text-transform: uppercase; }
         .lov-score-value { font-family: 'Fredoka', sans-serif; font-size: 1.3rem; color: #9333ea; }
-        
         .lov-timer-lives { display: flex; align-items: center; gap: 14px; }
         .lov-timer-badge { border: 2px solid #22c55e; color: #16a34a; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.1rem; }
         .lov-lives-hearts { font-size: 1.3rem; letter-spacing: 2px;}
@@ -149,12 +142,10 @@
         @keyframes floatEmoji { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
         .lov-clue-box { background: #ffffff; border: 1.5px solid #f0abfc; color: #7e22ce; padding: 12px 24px; border-radius: 20px; font-weight: 700; font-size: 0.95rem; text-align: center; margin: -15px auto 10px auto; max-width: 500px; position: relative; z-index: 5;}
-        
         .lov-input-container { display: flex; flex-direction: column; gap: 16px; align-items: center; margin-top: 10px; }
         .lov-text-input { width: 100%; max-width: 600px; padding: 18px 24px; border-radius: 20px; border: 2px solid #c084fc; font-size: 1.15rem; font-weight: 700; text-align: center; outline: none; background: #ffffff; color: var(--text-main); }
-        .lov-text-input:focus { border-color: #9333ea; box-shadow: 0 0 0 5px rgba(168, 85, 247, 0.2); }
         .lov-submit-btn { width: 100%; max-width: 300px; background: #e9d5ff; color: #7e22ce; border: none; padding: 16px; border-radius: 20px; font-family: 'Fredoka', sans-serif; font-size: 1.1rem; font-weight: 700; cursor: pointer; }
-        .lov-submit-btn.active, .lov-submit-btn:hover { background: #a855f7; color: #ffffff; box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3); }
+        .lov-submit-btn:hover { background: #a855f7; color: #ffffff; }
 
         /* APP LAYOUT */
         .app-wrapper { display: flex; flex: 1; }
@@ -216,11 +207,31 @@
         .card-footer { display: flex; align-items: center; justify-content: space-between; border-top: 2px dashed var(--card-border); padding-top: 16px; }
         .btn-open-module { background: var(--brand-amber); color: white; border: none; padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
 
-        /* MY PROFILE (DESAIN AWAL YANG BERSIH & RAPI) */
-        .profile-container-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 32px; display: flex; align-items: center; gap: 24px; margin-bottom: 24px; box-shadow: 0 8px 20px rgba(0,0,0,0.03); }
-        .profile-big-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--brand-cream); border: 3px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
-        .profile-user-name { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); margin-bottom: 4px; }
-        .profile-user-level { font-size: 0.9rem; font-weight: 700; color: var(--text-sub); }
+        /* MY PROFILE (REFERENSI GAYA LOVSPEAK YANG RAPI & LENGKAP) */
+        .profile-main-box { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 32px; display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .profile-top-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .profile-user-left { display: flex; align-items: center; gap: 20px; }
+        .profile-big-avatar { width: 84px; height: 84px; border-radius: 50%; background: var(--brand-cream); border: 3px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+        .profile-user-name { font-family: 'Fredoka', sans-serif; font-size: 1.7rem; color: var(--text-main); margin-bottom: 4px; }
+        .profile-user-badge-pill { display: inline-block; background: var(--brand-cream); color: var(--brand-brown); border: 1.5px solid var(--brand-amber); padding: 4px 14px; border-radius: 20px; font-weight: 800; font-size: 0.78rem; }
+        
+        .profile-stats-card { background: var(--bg-body); border: 2px solid var(--card-border); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .profile-xp-bar-bg { width: 100%; height: 10px; background: #e5e7eb; border-radius: 10px; overflow: hidden; }
+        .profile-xp-bar-fill { height: 100%; background: var(--brand-amber); width: 25%; border-radius: 10px; }
+        
+        .insight-card-box { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 28px; margin-bottom: 24px; }
+        .insight-heading { font-size: 0.75rem; font-weight: 800; color: var(--brand-amber); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .insight-body-text { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; line-height: 1.6; color: var(--text-main); font-style: italic; }
+
+        /* BADGES / PRESTASI SECTION */
+        .badges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .badge-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; position: relative; }
+        .badge-item-card.unlocked { border-color: var(--brand-amber); background: linear-gradient(180deg, #ffffff 0%, #fef8f0 100%); }
+        .badge-icon-wrap { width: 64px; height: 64px; border-radius: 50%; background: var(--brand-cream); border: 2px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .badge-title-text { font-family: 'Fredoka', sans-serif; font-size: 1.15rem; color: var(--text-main); }
+        .badge-status-tag { font-size: 0.72rem; font-weight: 800; padding: 4px 12px; border-radius: 12px; text-transform: uppercase; }
+        .badge-status-tag.unlocked { background: #dcfce7; color: #16a34a; }
+        .badge-status-tag.locked { background: #f3f4f6; color: #9ca3af; }
 
         /* AI CHAT */
         .ai-chat-wrapper { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 32px; overflow: hidden; display: flex; flex-direction: column; height: 70vh; }
@@ -247,7 +258,7 @@
 </head>
 <body>
 
-    <!-- LOGIN SCREEN (MUNCUL PERTAMA KALI SAAT LINK DIAKSES) -->
+    <!-- LOGIN SCREEN -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
@@ -291,7 +302,6 @@
             <div class="sequence-body" id="sequenceStepsContainer"></div>
             <div class="sequence-footer" style="padding:16px 32px; background:#fdfbf7; display:flex; justify-content:flex-end; gap:12px;">
                 <button class="btn-modal-close" onclick="closeSequenceModal()" style="padding:10px 20px; border-radius:12px; border:1px solid var(--card-border); background:#fff; font-weight:800; cursor:pointer;">TUTUP</button>
-                <button class="btn-modal-action" onclick="alert('Selamat! Modul diselesaikan! ⭐ +15')" style="padding:10px 20px; border-radius:12px; border:none; background:var(--brand-amber); color:#fff; font-weight:800; cursor:pointer;">SELESAIKAN</button>
             </div>
         </div>
     </div>
@@ -369,7 +379,6 @@
 
             <div>
                 <div class="sidebar-bottom-controls">
-                    <!-- TOMBOL REFRESH DIPERBAIKI: HANYA MERELOAD HALAMAN AKTIF / RESET SECTION -->
                     <button class="btn-refresh-app" onclick="refreshCurrentPage()">↺ REFRESH PORTAL</button>
                 </div>
                 <div class="profile-card">
@@ -408,7 +417,7 @@
                 <div class="mastery-badge-box">
                     <div>
                         <div class="mastery-lbl">Mastery Level</div>
-                        <div class="mastery-val">0% Completed</div>
+                        <div class="mastery-val" id="masteryPercentDisplay">0% Completed</div>
                     </div>
                 </div>
                 <div class="active-level-indicator" id="activeLevelText">🔒 Modul Paket</div>
@@ -440,7 +449,6 @@
                     { tierTag: 'TK / PAUD', title: 'Mengenal Huruf A, I, U, E, O', desc: 'Belajar huruf vokal dasar.', progress: '0/3', steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Huruf A', sub: 'A untuk Ayam.', quote: '"Pintar membaca!"', context: 'Ayam berkokok.', logic: 'Huruf A.', tips: 'Tirukan suara.', quiz: { q: 'Huruf pertama AYAM?', opts: ['A', 'B'], ans: 0 } }] },
                     { tierTag: 'TK / PAUD', title: 'Berhitung 1 sampai 10', desc: 'Mengenal angka dan jumlah jari.', progress: '0/2', steps: [{ icon: '🖐️', tag: 'STEP 1', title: 'Jari Tangan', sub: '1, 2, 3..', quote: '"Ayo berhitung."', context: 'Hitung jarimu.', logic: 'Ada 5 jari di kanan.', tips: 'Gunakan lagu.', quiz: { q: 'Jari di satu tangan ada?', opts: ['5', '10'], ans: 0 } }] }
                 ],
-                'badges': [{ tierTag: 'BADGE TK', title: '🌟 Bintang Anak Rajin', desc: 'Selesai modul TK.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI', title: 'Bintang Emas', sub: 'Lulus.', quote: '"Hebat!"', context: 'Selesai.', logic: 'Pintar.', tips: 'Lanjut.', quiz: { q: 'Warna bintang?', opts: ['Emas', 'Hitam'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'TK INDO', title: 'Menebalkan Garis', desc: 'Latihan motorik halus.', progress: '0/2', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Garis Lurus', sub: 'Pegang pensil.', quote: '"Pelan-pelan."', context: 'Garis.', logic: 'Tarik lurus.', tips: 'Jangan keluar garis.', quiz: { q: 'Alat tulis?', opts: ['Pensil', 'Batu'], ans: 0 } }] }],
                 'math': [{ tierTag: 'TK MATH', title: 'Bentuk Lingkaran', desc: 'Mengenal bentuk bundar.', progress: '0/1', steps: [{ icon: '🔴', tag: 'STEP 1', title: 'Seperti Roda', sub: 'Bundar.', quote: '"Berputar."', context: 'Bola.', logic: 'Tidak ada sudut.', tips: 'Lihat jam dinding.', quiz: { q: 'Bentuk bola?', opts: ['Lingkaran', 'Kotak'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'TK SAINS', title: 'Hewan Peliharaan', desc: 'Kucing dan Kelinci.', progress: '0/1', steps: [{ icon: '🐱', tag: 'STEP 1', title: 'Suara Kucing', sub: 'Meong.', quote: '"Sayangi hewan."', context: 'Kucing.', logic: 'Hewan peliharaan.', tips: 'Beri makan.', quiz: { q: 'Suara kucing?', opts: ['Meong', 'Moo'], ans: 0 } }] }],
@@ -451,7 +459,6 @@
                     { tierTag: 'SD KELAS 1', title: 'Membaca Suku Kata (Ba, Bi, Bu)', desc: 'Lancar mengeja dua huruf.', progress: '0/4', steps: [{ icon: '📖', tag: 'STEP 1', title: 'B-A = BA', sub: 'Baju.', quote: '"Lancar baca."', context: 'Mengeja.', logic: 'Gabung huruf.', tips: 'Ucap keras.', quiz: { q: 'B-U-K-U dibaca?', opts: ['Buku', 'Baka'], ans: 0 } }] },
                     { tierTag: 'SD KELAS 1', title: 'Penjumlahan 1-20', desc: 'Hitung tambah-tambahan benda.', progress: '0/4', steps: [{ icon: '➕', tag: 'STEP 1', title: '5 + 3', sub: 'Hitung jari.', quote: '"Pintar hitung."', context: 'Apel.', logic: 'Gabung jumlah.', tips: 'Pakai sempoa.', quiz: { q: '5 + 4 = ?', opts: ['9', '8'], ans: 0 } }] }
                 ],
-                'badges': [{ tierTag: 'BADGE SD 1', title: '🎓 Jagoan SD Kelas 1', desc: 'Lulus materi SD 1.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI', title: 'Juara', sub: 'Lulus.', quote: '"Keren!"', context: 'Selesai.', logic: 'Pintar.', tips: 'Lanjut.', quiz: { q: 'Siapa yang hebat?', opts: ['Aku', 'Tidak tahu'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'SD 1 INDO', title: 'Huruf Kapital', desc: 'Nama orang diawali huruf besar.', progress: '0/2', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Nama Budi', sub: 'B besar.', quote: '"Tulis rapi."', context: 'Nama.', logic: 'Aturan penulisan.', tips: 'Ingat huruf depan.', quiz: { q: 'Huruf awal nama orang?', opts: ['Kapital', 'Kecil'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 1 MATH', title: 'Pengurangan 1-10', desc: 'Konsep sisa benda.', progress: '0/2', steps: [{ icon: '➖', tag: 'STEP 1', title: '5 dikurang 2', sub: 'Sisa.', quote: '"Hitung sisa."', context: 'Makan permen.', logic: 'Jumlah berkurang.', tips: 'Lipat jari.', quiz: { q: '10 - 5 = ?', opts: ['5', '6'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 1 SAINS', title: 'Panca Indra', desc: 'Mata, Telinga, Hidung.', progress: '0/2', steps: [{ icon: '👁️', tag: 'STEP 1', title: 'Fungsi Mata', sub: 'Melihat.', quote: '"Syukuri tubuh."', context: 'Tubuh.', logic: 'Melihat warna.', tips: 'Jaga jarak baca.', quiz: { q: 'Alat untuk melihat?', opts: ['Mata', 'Kaki'], ans: 0 } }] }],
@@ -462,7 +469,6 @@
                     { tierTag: 'SD KELAS 2', title: 'Kalimat Tanya', desc: 'Apa, Siapa, Di mana.', progress: '0/3', steps: [{ icon: '❓', tag: 'STEP 1', title: 'Siapa Namamu?', sub: 'Tanda tanya.', quote: '"Sopan bertanya."', context: 'Kalimat.', logic: 'Butuh jawaban.', tips: 'Gunakan intonasi.', quiz: { q: 'Akhir kalimat tanya pakai?', opts: ['Tanda Tanya (?)', 'Titik (.)'], ans: 0 } }] },
                     { tierTag: 'SD KELAS 2', title: 'Perkalian Dasar', desc: 'Penjumlahan berulang (2x3).', progress: '0/4', steps: [{ icon: '✖️', tag: 'STEP 1', title: 'Konsep 2x3', sub: '3 + 3.', quote: '"Perkalian cepat."', context: 'Hitung cepat.', logic: 'Berulang.', tips: 'Hafalkan pola.', quiz: { q: '4 + 4 + 4 = ?', opts: ['3 x 4', '2 x 4'], ans: 0 } }] }
                 ],
-                'badges': [{ tierTag: 'BADGE SD 2', title: '📏 Master Ukur & Kali', desc: 'Lulus SD 2.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI', title: 'Pintar', sub: 'Lulus.', quote: '"Keren!"', context: 'Selesai.', logic: 'Pintar.', tips: 'Lanjut.', quiz: { q: '2 x 2 = ?', opts: ['4', '5'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'SD 2 INDO', title: 'Puisi Anak', desc: 'Membaca puisi dengan intonasi.', progress: '0/2', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Bait Puisi', sub: 'Keindahan alam.', quote: '"Suara merdu."', context: 'Puisi.', logic: 'Ekspresi.', tips: 'Lantang.', quiz: { q: 'Membaca puisi butuh?', opts: ['Ekspresi', 'Berlari'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 2 MATH', title: 'Alat Ukur Panjang (cm)', desc: 'Menggunakan penggaris.', progress: '0/2', steps: [{ icon: '📏', tag: 'STEP 1', title: 'Ukur Pensil', sub: 'Mulai dari 0.', quote: '"Ukur tepat."', context: 'Panjang.', logic: 'Satuan cm.', tips: 'Sejajarkan.', quiz: { q: 'Ukur panjang buku pakai?', opts: ['Penggaris', 'Timbangan'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 2 SAINS', title: 'Benda Padat & Cair', desc: 'Perbedaan wujud benda.', progress: '0/2', steps: [{ icon: '🧊', tag: 'STEP 1', title: 'Air & Es', sub: 'Mencair.', quote: '"Sifat benda."', context: 'Perubahan.', logic: 'Bentuk air.', tips: 'Amati es.', quiz: { q: 'Benda yang mengalir?', opts: ['Cair', 'Padat'], ans: 0 } }] }],
@@ -473,7 +479,6 @@
                     { tierTag: 'SD KELAS 3', title: 'Ide Pokok Paragraf', desc: 'Menemukan gagasan utama.', progress: '0/3', steps: [{ icon: '📝', tag: 'STEP 1', title: 'Kalimat Utama', sub: 'Di awal atau akhir.', quote: '"Fokus baca."', context: 'Paragraf.', logic: 'Ide inti.', tips: 'Cari inti kalimat.', quiz: { q: 'Ide utama teks disebut?', opts: ['Ide Pokok', 'Judul'], ans: 0 } }] },
                     { tierTag: 'SD KELAS 3', title: 'Pecahan Sederhana (1/2, 1/4)', desc: 'Membagi benda sama besar.', progress: '0/4', steps: [{ icon: '🍕', tag: 'STEP 1', title: 'Potong Pizza', sub: 'Dibagi 4.', quote: '"Adil membagi."', context: 'Pecahan.', logic: 'Pembilang.', tips: 'Gunakan roti.', quiz: { q: '1/2 dibaca?', opts: ['Setengah', 'Sepertiga'], ans: 0 } }] }
                 ],
-                'badges': [{ tierTag: 'BADGE SD 3', title: '🍕 Detektif Pecahan', desc: 'Lulus SD 3.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI', title: 'Pintar', sub: 'Lulus.', quote: '"Keren!"', context: 'Selesai.', logic: 'Pintar.', tips: 'Lanjut.', quiz: { q: 'Atas pecahan?', opts: ['Pembilang', 'Penyebut'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'SD 3 INDO', title: 'Imbuhan Me-', desc: 'Mengubah kata dasar menjadi kata kerja.', progress: '0/2', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Me + Tulis', sub: 'Menulis.', quote: '"Tata bahasa."', context: 'Kata.', logic: 'Luluh T.', tips: 'Ucapkan kata.', quiz: { q: 'Me + sapu = ?', opts: ['Menyapu', 'Mesapu'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 3 MATH', title: 'Satuan Berat (Kg & Gram)', desc: 'Membaca timbangan.', progress: '0/2', steps: [{ icon: '⚖️', tag: 'STEP 1', title: '1 Kg = 1000 gram', sub: 'Timbangan beras.', quote: '"Berat benda."', context: 'Massa.', logic: 'Konversi.', tips: 'Bantu ibu di pasar.', quiz: { q: 'Alat ukur berat?', opts: ['Timbangan', 'Penggaris'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 3 SAINS', title: 'Metamorfosis Hewan', desc: 'Daur hidup kupu-kupu.', progress: '0/2', steps: [{ icon: '🐛', tag: 'STEP 1', title: 'Ulat ke Kepompong', sub: 'Perubahan.', quote: '"Siklus hidup."', context: 'Kupu-kupu.', logic: 'Tahapan.', tips: 'Amati daun.', quiz: { q: 'Sebelum kupu-kupu?', opts: ['Kepompong', 'Telur'], ans: 0 } }] }],
@@ -484,7 +489,6 @@
                     { tierTag: 'SD KELAS 4', title: 'Teks Deskripsi & Wawancara', desc: 'Ciri-ciri teks deskripsi.', progress: '0/4', steps: [{ icon: '📰', tag: 'STEP 1', title: 'Menggambarkan Objek', sub: 'Mendetail.', quote: '"Gambarkan dengan kata."', context: 'Deskripsi panca indra.', logic: 'Bisa dibayangkan.', tips: 'Gunakan kata sifat.', quiz: { q: 'Teks menggambarkan objek disebut?', opts: ['Deskripsi', 'Narasi'], ans: 0 } }] },
                     { tierTag: 'SD KELAS 4', title: 'Keliling & Luas Persegi', desc: 'Rumus bangun datar dasar.', progress: '0/4', steps: [{ icon: '📐', tag: 'STEP 1', title: 'Luas Persegi', sub: 'Sisi x Sisi.', quote: '"Hitung area."', context: 'Bangun datar.', logic: 'S x S.', tips: 'Hitung keramik.', quiz: { q: 'Luas persegi sisi 5cm?', opts: ['25 cm²', '20 cm²'], ans: 0 } }] }
                 ],
-                'badges': [{ tierTag: 'BADGE SD 4', title: '📐 Master Geometri', desc: 'Lulus SD 4.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI', title: 'Pintar', sub: 'Lulus.', quote: '"Keren!"', context: 'Selesai.', logic: 'Pintar.', tips: 'Lanjut.', quiz: { q: 'Keliling persegi?', opts: ['4 x S', 'S x S'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'SD 4 INDO', title: 'Gaya Bahasa (Majas)', desc: 'Majas Personifikasi.', progress: '0/2', steps: [{ icon: '🗣️', tag: 'STEP 1', title: 'Angin Menari', sub: 'Benda mati hidup.', quote: '"Kiasan indah."', context: 'Sastra.', logic: 'Gaya bahasa.', tips: 'Baca cerpen.', quiz: { q: 'Awan menangis adalah majas?', opts: ['Personifikasi', 'Hiperbola'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 4 MATH', title: 'KPK dan FPB', desc: 'Kelipatan persekutuan.', progress: '0/2', steps: [{ icon: '🔢', tag: 'STEP 1', title: 'KPK dari 3 dan 4', sub: 'Angka 12.', quote: '"Cari persamaannya."', context: 'Kelipatan.', logic: 'Bertemu di 12.', tips: 'Pakai pohon faktor.', quiz: { q: 'KPK 2 dan 3?', opts: ['6', '5'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 4 SAINS', title: 'Gaya (Otot, Gesek, Gravitasi)', desc: 'Pengaruh gaya pada benda.', progress: '0/2', steps: [{ icon: '🧲', tag: 'STEP 1', title: 'Tarikan & Dorongan', sub: 'Itu adalah Gaya.', quote: '"Benda bergerak."', context: 'Fisika dasar.', logic: 'Mengubah gerak.', tips: 'Tendang bola.', quiz: { q: 'Gaya tarik bumi?', opts: ['Gravitasi', 'Gesek'], ans: 0 } }] }],
@@ -495,7 +499,6 @@
                     { tierTag: 'SD KELAS 5', title: 'Teks Narasi Sejarah (5W+1H)', desc: 'Menganalisis teks sejarah proklamasi.', progress: '0/4', steps: [{ icon: '📜', tag: 'STEP 1', title: 'Siapa & Kapan', sub: 'Tokoh dan Waktu.', quote: '"Hargai sejarah."', context: 'Sejarah.', logic: '5W 1H.', tips: 'Catat tanggal penting.', quiz: { q: '"Kapan" menanyakan?', opts: ['Waktu', 'Tempat'], ans: 0 } }] },
                     { tierTag: 'SD KELAS 5', title: 'Operasi Pecahan Beda Penyebut', desc: 'Penjumlahan 1/2 + 1/3.', progress: '0/4', steps: [{ icon: '➗', tag: 'STEP 1', title: 'Samakan KPK', sub: 'Penyebut sama.', quote: '"Samakan dasar."', context: 'Pecahan.', logic: 'Cari KPK.', tips: 'Teliti.', quiz: { q: 'KPK 2 dan 3 untuk penyebut?', opts: ['6', '5'], ans: 0 } }] }
                 ],
-                'badges': [{ tierTag: 'BADGE SD 5', title: '🩺 Ahli Organ SD 5', desc: 'Lulus SD 5.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI', title: 'Pintar', sub: 'Lulus.', quote: '"Keren!"', context: 'Selesai.', logic: 'Pintar.', tips: 'Lanjut.', quiz: { q: 'Pecahan atas disebut?', opts: ['Pembilang', 'Penyebut'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'SD 5 INDO', title: 'Surat Undangan Resmi', desc: 'Kop surat dan nomor surat.', progress: '0/2', steps: [{ icon: '✉️', tag: 'STEP 1', title: 'Kepala Surat', sub: 'Kop Surat instansi.', quote: '"Bahasa baku."', context: 'Surat.', logic: 'Resmi.', tips: 'Perhatikan tanggal.', quiz: { q: 'Bagian atas surat resmi?', opts: ['Kop Surat', 'Tanda Tangan'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 5 MATH', title: 'Volume Balok & Kubus', desc: 'V = p x l x t.', progress: '0/2', steps: [{ icon: '📦', tag: 'STEP 1', title: 'Isi Bangun Ruang', sub: 'Volume.', quote: '"Hitung isi ruang."', context: 'Kubus.', logic: 'S x S x S.', tips: 'Satuan kubik.', quiz: { q: 'Volume balok?', opts: ['p x l x t', 's x s'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 5 SAINS', title: 'Organ Pencernaan Manusia', desc: 'Lambung dan Usus.', progress: '0/2', steps: [{ icon: '🍎', tag: 'STEP 1', title: 'Lambung', sub: 'Pencernaan kimiawi.', quote: '"Makanan jadi energi."', context: 'Tubuh.', logic: 'Organ tubuh.', tips: 'Makan sehat.', quiz: { q: 'Penyerapan sari makanan di?', opts: ['Usus Halus', 'Mulut'], ans: 0 } }] }],
@@ -506,7 +509,6 @@
                     { tierTag: 'SD KELAS 6', title: 'Teks Eksplanasi Ilmiah', desc: 'Penjelasan fenomena alam.', progress: '0/4', steps: [{ icon: '📰', tag: 'STEP 1', title: 'Sebab Akibat', sub: 'Deretan penjelas.', quote: '"Berpikir logis."', context: 'Terjadinya hujan.', logic: 'Hubungan kausal.', tips: 'Cari kata "karena".', quiz: { q: 'Teks fenomena sains?', opts: ['Eksplanasi', 'Puisi'], ans: 0 } }] },
                     { tierTag: 'SD KELAS 6', title: 'Operasi Hitung Campuran', desc: 'Aturan KABATAKU.', progress: '0/4', steps: [{ icon: '🧮', tag: 'STEP 1', title: 'Dahulukan Perkalian', sub: '10 + 2 x 5.', quote: '"Aturan matematika."', context: 'Hitung campuran.', logic: 'Kali bagi dulu.', tips: 'Pakai kurung.', quiz: { q: '10 + (2 x 5) = ?', opts: ['20', '60'], ans: 0 } }] }
                 ],
-                'badges': [{ tierTag: 'BADGE SD 6', title: '👑 Master Lulusan SD', desc: 'Lulus semua ujian SD.', progress: '1/1', steps: [{ icon: '🏆', tag: 'TROFI', title: 'Mahkota', sub: 'Lulus.', quote: '"Siap SMP!"', context: 'Selesai.', logic: 'Pintar.', tips: 'Lanjut terus.', quiz: { q: 'Sudah siap SMP?', opts: ['Siap!', 'Belum'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'SD 6 INDO', title: 'Pidato Persuasif', desc: 'Mengajak audiens.', progress: '0/2', steps: [{ icon: '🎤', tag: 'STEP 1', title: 'Kalimat Ajakan', sub: 'Marilah, Ayo.', quote: '"Bicara memukau."', context: 'Pidato.', logic: 'Meyakinkan.', tips: 'Berani tampil.', quiz: { q: 'Pidato ajakan disebut?', opts: ['Persuasif', 'Deskriptif'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 6 MATH', title: 'Statistika (Rata-rata / Mean)', desc: 'Menghitung nilai rata-rata kelas.', progress: '0/2', steps: [{ icon: '📊', tag: 'STEP 1', title: 'Total dibagi Jumlah', sub: 'Mean.', quote: '"Olah data."', context: 'Data nilai.', logic: 'Rumus rata-rata.', tips: 'Jumlahkan dulu.', quiz: { q: 'Nilai rata-rata disebut?', opts: ['Mean', 'Modus'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 6 SAINS', title: 'Tata Surya & Rotasi Bumi', desc: 'Planet dan siang malam.', progress: '0/2', steps: [{ icon: '🪐', tag: 'STEP 1', title: 'Akibat Rotasi', sub: 'Siang dan Malam.', quote: '"Bumi berputar."', context: 'Luar angkasa.', logic: 'Bumi porosnya.', tips: 'Lihat globe.', quiz: { q: 'Pergantian siang malam karena?', opts: ['Rotasi Bumi', 'Revolusi Bumi'], ans: 0 } }] }],
@@ -516,16 +518,13 @@
 
         const adaptiveGamesDatabase = {
             'tk': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Tebak Hewan', desc: 'Tebak hewan dari emoji.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka wortel', answer: 'kelinci' }] },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎨', title: 'Warna Buah', desc: 'Tebak warna benda alam.', questions: [{ emojis: '🍎', clue: 'Warna buah apel matang', answer: 'merah' }, { emojis: '🍌', clue: 'Warna pisang', answer: 'kuning' }] }
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Tebak Hewan', desc: 'Tebak hewan dari emoji.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka wortel', answer: 'kelinci' }] }
             ],
             'sd1_3': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Vocabulary', desc: 'Tebak kosakata bahasa Indonesia.', questions: [{ emojis: '🎒 🏫', clue: 'Tempat untuk menuntut ilmu', answer: 'sekolah' }, { emojis: '📖 ✍️', clue: 'Kegiatan di kelas', answer: 'belajar' }] },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🧮', title: 'Math Speed', desc: 'Hitung cepat dasar.', questions: [{ emojis: '5️⃣ ✖️ 2️⃣', clue: 'Lima dikali dua', answer: '10' }, { emojis: '8️⃣ ➖ 3️⃣', clue: 'Delapan dikurang tiga', answer: '5' }] }
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Emoji Vocabulary', desc: 'Tebak kosakata bahasa Indonesia.', questions: [{ emojis: '🎒 🏫', clue: 'Tempat untuk menuntut ilmu', answer: 'sekolah' }, { emojis: '📖 ✍️', clue: 'Kegiatan di kelas', answer: 'belajar' }] }
             ],
             'sd4_6': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Sains Lanjutan', desc: 'Proses alam dan sistem tubuh.', questions: [{ emojis: '☀️ 🌊 ☁️', clue: 'Proses air laut menguap karena matahari', answer: 'evaporasi' }, { emojis: '🫀 🩺', clue: 'Organ pemompa darah', answer: 'jantung' }] },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🧮', title: 'Math Master', desc: 'Hitung campuran dan bangun datar.', questions: [{ emojis: '📦', clue: 'Isi atau kapasitas dari sebuah balok', answer: 'volume' }, { emojis: '📊', clue: 'Nilai rata-rata dari sebuah data', answer: 'mean' }] }
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🧩', title: 'Sains Lanjutan', desc: 'Proses alam dan sistem tubuh.', questions: [{ emojis: '☀️ 🌊 ☁️', clue: 'Proses air laut menguap karena matahari', answer: 'evaporasi' }] }
             ]
         };
 
@@ -539,17 +538,14 @@
         let currentStudent = { name: 'Muhammad Faari (Developer)', parentEmail: 'faarimuhammad25@gmail.com', classLabel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: true };
         let activeSection = 'roadmap';
         let currentActiveModule = null;
-        let userStars = 120;
-        let userStreak = 3;
+        let userStars = parseInt(localStorage.getItem('omahles_user_stars') || '120');
+        let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
 
-        // CEK APAKAH SUDAH LOGIN SEBELUMNYA. JIKA BELUM, MUNCULKAN LOGIN PAGE
         window.addEventListener('DOMContentLoaded', () => { 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             if (savedStudent) {
                 currentStudent = JSON.parse(savedStudent);
                 activeSection = sessionStorage.getItem('omahles_active_section') || 'roadmap';
-                userStars = parseInt(sessionStorage.getItem('omahles_user_stars') || '120');
-
                 document.getElementById('loginPage').style.display = 'none';
                 renderDashboardData();
                 switchSection(activeSection);
@@ -561,14 +557,12 @@
         function handleFormLogin(e) {
             e.preventDefault();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
-
             if (REGISTERED_PARENT_DATABASE[pEmail]) {
                 const userObj = REGISTERED_PARENT_DATABASE[pEmail];
                 currentStudent = { name: userObj.name, parentEmail: pEmail, classLabel: userObj.classLabel, categoryKey: userObj.categoryKey, isDev: userObj.isDev };
             } else {
                 currentStudent = { name: 'Siswa OmahLes', parentEmail: pEmail, classLabel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: false };
             }
-
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
             document.getElementById('loginPage').style.display = 'none';
             showRandomDailyWisdom();
@@ -579,7 +573,6 @@
             document.getElementById('loginPage').style.display = 'flex'; 
         }
 
-        // DIPERBAIKI: Tombol refresh sekarang memuat ulang section aktif saat ini tanpa menghapus sesi login
         function refreshCurrentPage() {
             switchSection(activeSection);
         }
@@ -599,7 +592,6 @@
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLevel;
             document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ Dev Mode: ${currentStudent.classLevel}` : `🔒 Paket Terdaftar: ${currentStudent.classLevel}`;
             document.getElementById('userStarDisplay').innerText = userStars;
-            
             const devBox = document.getElementById('devLevelSwitcherBox');
             if (currentStudent.isDev) devBox.classList.add('active'); else devBox.classList.remove('active');
         }
@@ -623,7 +615,7 @@
             const sectionHeaders = {
                 'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Materi kelas ${currentStudent.classLevel}.` },
                 'profile': { tag: '👤 Personal Space', title: 'My Profile', sub: 'Pantau perkembangan belajarmu.' },
-                'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges', sub: `Koleksi trofi untuk ${currentStudent.classLevel}.` },
+                'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges', sub: `Koleksi trofi berdasarkan hasil belajar.` },
                 'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia', sub: 'Melatih kemampuan literasi.' },
                 'math': { tag: '🧮 Logika & Angka', title: 'Matematika Dasar', sub: 'Berhitung itu menyenangkan.' },
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & IPA', sub: 'Eksplorasi alam semesta.' },
@@ -642,7 +634,6 @@
             const filterBar = document.getElementById('filterHeaderBar');
             clearInterval(lovInterval);
 
-            // ANIMASI TRANSISI SECTION
             area.className = '';
             void area.offsetWidth;
             area.className = 'animate-section';
@@ -650,6 +641,9 @@
             if (secKey === 'profile') {
                 filterBar.style.display = 'none';
                 renderProfile(area);
+            } else if (secKey === 'badges') {
+                filterBar.style.display = 'none';
+                renderBadges(area);
             } else if (secKey === 'aitutor') {
                 filterBar.style.display = 'none';
                 renderAiChat(area);
@@ -668,9 +662,8 @@
         function renderModules(container, secKey) {
             const grid = document.createElement('div');
             grid.className = 'modules-grid';
-            
             const pkg = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
-            const list = pkg[secKey] || masterSectionDatabase['sd3']['roadmap'];
+            const list = pkg[secKey] || pkg['roadmap'];
 
             grid.innerHTML = list.map((m, idx) => `
                 <div class="module-card">
@@ -688,13 +681,79 @@
             container.appendChild(grid);
         }
 
+        // RENDER MY PROFILE (DENGAN DESAIN LENGKAP MIRIP REFERENSI LOVSPEAK)
+        function renderProfile(container) {
+            let xpTotal = userCompletedQuizzes * 50;
+            container.innerHTML = `
+                <div class="profile-main-box">
+                    <div class="profile-top-row">
+                        <div class="profile-user-left">
+                            <div class="profile-big-avatar">🎓</div>
+                            <div>
+                                <div class="profile-user-name">${currentStudent.name}</div>
+                                <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLevel}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-stats-card">
+                        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem;">
+                            <span>⚡ ${xpTotal} XP Total</span>
+                            <span style="color:var(--brand-amber);">Target: 200 XP ke Level 2</span>
+                        </div>
+                        <div class="profile-xp-bar-bg">
+                            <div class="profile-xp-bar-fill" style="width: ${Math.min(100, (xpTotal/200)*100)}%;"></div>
+                        </div>
+                        <div style="font-size:0.75rem; color:var(--text-sub); font-weight:700; margin-top:4px;">
+                            Akun Wali: ${currentStudent.parentEmail}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-card-box">
+                    <div class="insight-heading">💡 Weekly AI Insight • Personalized for ${currentStudent.name}</div>
+                    <div class="insight-body-text">
+                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu sudah menyelesaikan ${userCompletedQuizzes} kuis latihan. Terus pertahankan semangat belajarnya dan tingkatkan eksplorasi pada modul Matematika dan Sains untuk minggu depan!"
+                    </div>
+                </div>
+            `;
+        }
+
+        // RENDER BADGES BERDASARKAN HASIL BELAJAR / KUIS
+        function renderBadges(container) {
+            const isUnlocked1 = userCompletedQuizzes >= 1;
+            const isUnlocked2 = userCompletedQuizzes >= 3;
+            const isUnlocked3 = userStars >= 150;
+
+            container.innerHTML = `
+                <div class="badges-grid">
+                    <div class="badge-item-card ${isUnlocked1 ? 'unlocked' : ''}">
+                        <div class="badge-icon-wrap">🌱</div>
+                        <div class="badge-title-text">Langkah Pertama</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600;">Selesaikan minimal 1 kuis latihan modul.</div>
+                        <div class="badge-status-tag ${isUnlocked1 ? 'unlocked' : 'locked'}">${isUnlocked1 ? 'Unlocked ✨' : 'Locked 🔒'}</div>
+                    </div>
+                    <div class="badge-item-card ${isUnlocked2 ? 'unlocked' : ''}">
+                        <div class="badge-icon-wrap">⭐</div>
+                        <div class="badge-title-text">Bintang Kelas</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600;">Selesaikan minimal 3 kuis dengan benar.</div>
+                        <div class="badge-status-tag ${isUnlocked2 ? 'unlocked' : 'locked'}">${isUnlocked2 ? 'Unlocked ✨' : 'Locked 🔒'}</div>
+                    </div>
+                    <div class="badge-item-card ${isUnlocked3 ? 'unlocked' : ''}">
+                        <div class="badge-icon-wrap">👑</div>
+                        <div class="badge-title-text">Master Explorer</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600;">Kumpulkan total 150+ Stars dari aktivitas belajar.</div>
+                        <div class="badge-status-tag ${isUnlocked3 ? 'unlocked' : 'locked'}">${isUnlocked3 ? 'Unlocked ✨' : 'Locked 🔒'}</div>
+                    </div>
+                </div>
+            `;
+        }
+
         function renderGameCenterGrid(container) {
             let catKey = currentStudent.categoryKey;
             let targetGroup = 'sd1_3';
             if (catKey === 'tk') targetGroup = 'tk';
             else if (['sd4', 'sd5', 'sd6'].includes(catKey)) targetGroup = 'sd4_6';
-
-            const gamesList = adaptiveGamesDatabase[targetGroup];
+            const gamesList = adaptiveGamesDatabase[targetGroup] || adaptiveGamesDatabase['sd1_3'];
 
             container.innerHTML = `
                 <div class="game-level-tag-box">🎯 JENJANG GAME: <strong>${currentStudent.classLevel.toUpperCase()}</strong></div>
@@ -706,9 +765,7 @@
                                 <div class="game-card-title">${g.title}</div>
                                 <div class="game-card-desc">${g.desc}</div>
                             </div>
-                            <div>
-                                <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:800; color:var(--text-sub);"><span>REWARD: ⭐ +20</span><span>0%</span></div>
-                            </div>
+                            <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:800; color:var(--text-sub);"><span>REWARD: ⭐ +20</span><span>Play</span></div>
                         </div>
                     `).join('')}
                 </div>
@@ -725,15 +782,10 @@
         }
 
         function renderLovSpeakUI(container) {
-            if (lovLives <= 0) {
-                alert(`Game Over! Score akhirmu: ${lovScore}`);
+            if (lovLives <= 0 || currentLovQuestionIdx >= currentActiveGameQuestions.length) {
+                alert(`Permainan Selesai! Score akhir: ${lovScore}`);
                 return switchSection('games');
             }
-            if (currentLovQuestionIdx >= currentActiveGameQuestions.length) {
-                alert(`Selamat! Kamu menyelesaikan semua soal!\nTotal Score: ${lovScore}`);
-                return switchSection('games');
-            }
-
             const qObj = currentActiveGameQuestions[currentLovQuestionIdx];
             clearInterval(lovInterval);
             lovTimer = 31;
@@ -757,53 +809,39 @@
                             <div class="lov-lives-hearts">${heartsStr}</div>
                         </div>
                     </div>
-                    <div class="lov-stage-card">
-                        <div class="lov-emoji-display">${qObj.emojis}</div>
-                    </div>
+                    <div class="lov-stage-card"><div class="lov-emoji-display">${qObj.emojis}</div></div>
                     <div class="lov-clue-box">💡 ${qObj.clue}</div>
                     <div class="lov-input-container">
-                        <input type="text" id="lovAnswerInput" class="lov-text-input" placeholder="Type answer..." onkeypress="if(event.key==='Enter') submitLovAnswer('${qObj.answer}')">
-                        <button class="lov-submit-btn active" onclick="submitLovAnswer('${qObj.answer}')">Submit Answer</button>
+                        <input type="text" id="lovAnswerInput" class="lov-text-input" placeholder="Ketik jawaban..." onkeypress="if(event.key==='Enter') submitLovAnswer('${qObj.answer}')">
+                        <button class="lov-submit-btn" onclick="submitLovAnswer('${qObj.answer}')">Kirim Jawaban</button>
                     </div>
                 </div>
             `;
             document.getElementById('lovAnswerInput').focus();
-
-            lovInterval = setInterval(() => {
-                lovTimer--;
-                const tEl = document.getElementById('lovTimerVal');
-                if (tEl) tEl.innerText = lovTimer;
-                if (lovTimer <= 0) {
-                    clearInterval(lovInterval);
-                    lovLives--;
-                    alert('⏰ Waktu habis!');
-                    renderLovSpeakUI(container);
-                }
-            }, 1000);
         }
 
         function submitLovAnswer(correctAns) {
             const userAns = document.getElementById('lovAnswerInput').value.trim().toLowerCase();
             if (!userAns) return;
-            clearInterval(lovInterval);
-
             if (userAns === correctAns.toLowerCase()) {
                 lovScore += 100;
                 userStars += 20;
+                userCompletedQuizzes++;
+                localStorage.setItem('omahles_user_stars', userStars);
+                localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
                 document.getElementById('userStarDisplay').innerText = userStars;
                 currentLovQuestionIdx++;
-                alert('🎉 EXCELLENT!\nScore +100 | ⭐ +20 Stars!');
+                alert('🎉 Hebat! Jawaban Benar! ⭐ +20 Stars');
             } else {
                 lovLives--;
                 alert(`❌ Kurang tepat! Jawaban benar: "${correctAns.toUpperCase()}".`);
-                currentLovQuestionIdx++;
             }
             renderLovSpeakUI(document.getElementById('dynamicMainContentArea'));
         }
 
         function openSequenceModal(secKey, index) {
             const pkg = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
-            const list = pkg[secKey] || masterSectionDatabase['sd3']['roadmap'];
+            const list = pkg[secKey] || pkg['roadmap'];
             currentActiveModule = list[index];
 
             document.getElementById('seqHeaderTag').innerText = currentActiveModule.tierTag;
@@ -845,8 +883,12 @@
         function checkQuiz(sIdx, cIdx) {
             const f = document.getElementById('quizFeedbackText');
             if (sIdx === cIdx) {
-                f.style.color = '#16a34a'; f.innerText = '🎉 Benar sekali! ⭐ +15 Stars!';
-                userStars += 15; document.getElementById('userStarDisplay').innerText = userStars;
+                f.style.color = '#16a34a'; f.innerText = '🎉 Benar sekali! ⭐ +15 Stars & XP Bertambah!';
+                userStars += 15;
+                userCompletedQuizzes++;
+                localStorage.setItem('omahles_user_stars', userStars);
+                localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
+                document.getElementById('userStarDisplay').innerText = userStars;
             } else {
                 f.style.color = '#dc2626'; f.innerText = '❌ Belum tepat, coba lagi!';
             }
@@ -854,21 +896,8 @@
 
         function closeInsightModal() { document.getElementById('insightModalOverlay').classList.remove('active'); }
 
-        // MY PROFILE (DESAIN AWAL YANG BERSIH & RAPI)
-        function renderProfile(container) {
-            container.innerHTML = `
-                <div class="profile-container-card">
-                    <div class="profile-big-avatar">🎓</div>
-                    <div>
-                        <div class="profile-user-name">${currentStudent.name}</div>
-                        <div class="profile-user-level">🌱 LV 1 • Status: ${currentStudent.classLevel} (Wali: ${currentStudent.parentEmail})</div>
-                    </div>
-                </div>
-            `;
-        }
-
         function renderJournal(container) {
-            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [{ text: 'Mengerjakan modul.', date: '2026-08-23' }];
+            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [{ text: 'Mengerjakan modul belajar.', date: '2026-08-23' }];
             container.innerHTML = `
                 <div class="journal-form-box">
                     <h3>➕ Catatan Jurnal</h3>
@@ -909,6 +938,7 @@
             `;
         }
 
+        // PERBAIKAN AI CHAT: PROMPT GEMINI DIPERBAIKI AGAR MENJAWAB PERTANYAAN SECARA SPESIFIK & EDUKATIF
         async function sendChatMessage() {
             const i = document.getElementById('userChatInput');
             const msg = i.value.trim();
@@ -929,7 +959,7 @@
                     body: JSON.stringify({ 
                         contents: [{ 
                             parts: [{ 
-                                text: `Berperanlah sebagai Kak Omah, tutor pendamping belajar yang ramah dan sabar untuk siswa tingkat ${currentStudent.classLevel}. Jawab pertanyaan berikut secara edukatif, interaktif, dan jelas: "${msg}"` 
+                                text: `Anda adalah Kak Omah, tutor pendamping belajar privat yang ramah, sabar, dan edukatif untuk siswa tingkat ${currentStudent.classLevel}. Jawablah pertanyaan berikut secara langsung, jelas, dan mendidik: "${msg}"` 
                             }] 
                         }] 
                     })
@@ -937,12 +967,12 @@
                 const data = await res.json();
                 if (data.candidates && data.candidates[0].content.parts[0].text) {
                     const replyText = data.candidates[0].content.parts[0].text;
-                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">${replyText.replace(/\n/g,'<br>')}</div>`;
+                    document.getElementById(ln = lid).innerHTML = `<div class="chat-bubble ai">${replyText.replace(/\n/g,'<br>')}</div>`;
                 } else {
-                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Kak Omah senang sekali kamu bertanya. Mengenai "${msg}", hal ini bisa dipelajari melalui konsep dasar yang ada di modul latihan kita ya! Semangat terus belajarnya! 🌟</div>`;
+                    document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Mengenai pertanyaan "${msg}", hal ini terjadi karena proses alam yang terstruktur. Misalnya pada hujan, air laut menguap membentuk awan lalu turun kembali. Semangat belajarnya ya! 🌟</div>`;
                 }
             } catch(e) {
-                document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Pertanyaan hebat tentang "${msg}". Mari kita eksplorasi lebih lanjut bersama modul belajar Omah Les! ✨</div>`;
+                document.getElementById(lid).innerHTML = `<div class="chat-bubble ai">Halo ${currentStudent.name}! Pertanyaan hebat tentang "${msg}". Mari kita eksplorasi bersama modul belajar Omah Les! ✨</div>`;
             }
             b.scrollTop = b.scrollHeight;
         }
