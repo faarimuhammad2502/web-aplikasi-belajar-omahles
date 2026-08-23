@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -37,7 +37,7 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* SPLIT LOGIN SCREEN DENGAN FULL SAMAR BACKGROUND */
+        /* SPLIT LOGIN SCREEN DENGAN SAMAR BACKGROUND */
         .login-page-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; z-index: 1000; background: var(--bg-body);
@@ -69,6 +69,66 @@
 
         .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 15px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; }
 
+        /* DAILY WISDOM MODAL LOVSPEAK STYLE */
+        .wisdom-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(18, 10, 5, 0.75); backdrop-filter: blur(8px);
+            z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
+        }
+        .wisdom-modal-overlay.active { display: flex; }
+
+        .wisdom-card {
+            background: #ffffff; width: 100%; max-width: 480px; border-radius: 32px;
+            padding: 48px 40px 36px 40px; text-align: center; position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 2px solid var(--card-border);
+            animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.92) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .wisdom-quote-icon {
+            width: 64px; height: 64px; background: var(--sidebar-bg); color: #ffffff;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; font-family: 'Playfair Display', serif; margin: 0 auto 24px auto;
+            box-shadow: 0 10px 20px rgba(45, 30, 24, 0.2);
+        }
+
+        .wisdom-tag-title {
+            font-size: 0.75rem; font-weight: 800; color: var(--brand-amber);
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; position: relative;
+            display: inline-block;
+        }
+        .wisdom-tag-title::after {
+            content: ""; display: block; width: 6px; height: 6px; background: var(--brand-amber);
+            border-radius: 50%; margin: 6px auto 0 auto;
+        }
+
+        .wisdom-quote-text {
+            font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem;
+            line-height: 1.7; color: var(--text-main); font-weight: 500; margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .wisdom-author {
+            font-size: 0.8rem; font-weight: 700; color: var(--text-sub);
+            letter-spacing: 0.5px; margin-bottom: 32px; font-style: normal;
+        }
+
+        .btn-enter-wisdom {
+            width: 100%; background: var(--sidebar-bg); color: #ffffff; border: none;
+            padding: 18px; border-radius: 18px; font-weight: 800; font-size: 0.95rem;
+            letter-spacing: 1px; cursor: pointer; font-family: 'Fredoka', sans-serif;
+            text-transform: uppercase; box-shadow: 0 8px 20px rgba(45, 30, 24, 0.25);
+        }
+
+        .wisdom-footer-quote {
+            font-size: 0.68rem; font-weight: 800; color: rgba(120, 100, 84, 0.6);
+            letter-spacing: 1.5px; text-transform: uppercase; margin-top: 20px;
+        }
+
         /* APP LAYOUT */
         .app-wrapper { display: flex; flex: 1; }
 
@@ -79,7 +139,6 @@
         .brand-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: #ffffff; font-weight: 700; line-height: 1.1; }
         .brand-sub { font-size: 0.7rem; color: var(--brand-yellow); font-weight: 800; letter-spacing: 1px; }
 
-        /* WIDGET BINTANG ⭐ & STREAK API 🔥 */
         .gamification-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
         .stat-badge-card { background: rgba(255, 255, 255, 0.06); border: 1.5px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
         .stat-icon { font-size: 1.3rem; }
@@ -176,7 +235,7 @@
 </head>
 <body>
 
-    <!-- SPLIT LOGIN SCREEN (DENGAN INPUT EMAIL ORANG TUA) -->
+    <!-- SPLIT LOGIN SCREEN -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
@@ -187,7 +246,7 @@
 
         <div class="login-right-form">
             <div class="form-header-text">Login Student</div>
-            <div class="form-sub-text">Masukkan nama, email orang tua, & pilih level belajar untuk mengunci portal.</div>
+            <div class="form-sub-text">Masukkan nama, email orang tua, & pilih level belajar.</div>
 
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
@@ -205,7 +264,6 @@
                     <select class="form-select" id="selectJenjang" onchange="toggleSdClassDropdown()" required>
                         <option value="tk">TK / PAUD</option>
                         <option value="sd" selected>Sekolah Dasar (SD)</option>
-                        <option value="sma">SMA (Les Privat)</option>
                     </select>
                 </div>
 
@@ -223,6 +281,24 @@
 
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
+        </div>
+    </div>
+
+    <!-- DAILY WISDOM LOVSPEAK POPUP MODAL -->
+    <div class="wisdom-modal-overlay" id="wisdomModalOverlay">
+        <div class="wisdom-card">
+            <div class="wisdom-quote-icon">“</div>
+            <div class="wisdom-tag-title">Daily Wisdom</div>
+            
+            <div class="wisdom-quote-text" id="wisdomQuoteText">
+                "Barangsiapa menempuh jalan untuk menuntut ilmu, maka Allah akan mudahkan baginya jalan menuju surga."
+            </div>
+            
+            <div class="wisdom-author" id="wisdomAuthorText">— HR. Muslim</div>
+
+            <button class="btn-enter-wisdom" onclick="closeWisdomModal()">ENTER OMAH LES PORTAL</button>
+            
+            <div class="wisdom-footer-quote">Excellence in learning is a habit, not an act</div>
         </div>
     </div>
 
@@ -285,7 +361,7 @@
             </div>
         </aside>
 
-        <!-- DASHBOARD GRID VIEW (TERKUNCI KHUSUS KELAS PILIHAN) -->
+        <!-- DASHBOARD GRID VIEW -->
         <main class="content-area" id="mainDashboardView">
 
             <div class="roadmap-banner">
@@ -302,7 +378,6 @@
                     </div>
                 </div>
 
-                <!-- INDIKATOR KELAS TERKUNCI -->
                 <div class="active-level-indicator" id="activeLevelText">
                     🔒 Modul Terkunci: Kelas 3 SD
                 </div>
@@ -363,6 +438,13 @@
     </footer>
 
     <script>
+        const dailyQuotesList = [
+            { quote: "Barangsiapa menempuh jalan untuk menuntut ilmu, maka Allah akan mudahkan baginya jalan menuju surga.", author: "— HR. Muslim" },
+            { quote: "Pendidikan adalah senjata paling mematikan di dunia, karena dengan pendidikan Anda dapat mengubah dunia.", author: "— Nelson Mandela" },
+            { quote: "Niatkan belajar karena Allah, agar setiap detik membaca dan berhitung menjadi pahala kebaikan.", author: "— Omah Les Privat" },
+            { quote: "Ilmu itu seperti air; jika tidak mengalir, ia akan mengendap. Teruslah membaca dan berbagi pengetahuan.", author: "— Pepatah Bijak" }
+        ];
+
         const databaseMateriLengkap = {
             'tk': [
                 { tierTag: 'TK / PAUD', title: 'Huruf A - Z & Vokal', desc: 'Mengenal huruf vokal A-I-U-E-O dengan contoh kata bergambar.', progress: '0/4', content: `Modul ini dirancang khusus untuk adik-adik TK/PAUD dalam mengenal alfabet dasar dan huruf vokal.\n\n<h2>1. Pengenalan Huruf Vokal</h2>\n• A - Apel 🍎\n• I - Ikan 🐟\n• U - Ular 🐍\n• E - Elang 🦅\n• O - Obor 🟠` },
@@ -424,10 +506,11 @@
             document.getElementById('sdClassGroup').style.display = jenjang === 'sd' ? 'block' : 'none';
         }
 
+        // LOGIKA LOGIN DENGAN PENGUNCIAN EMAIL ORANG TUA
         function handleFormLogin(e) {
             e.preventDefault();
             const name = document.getElementById('inputStudentName').value.trim();
-            const pEmail = document.getElementById('inputParentEmail').value.trim();
+            const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
             const jenjang = document.getElementById('selectJenjang').value;
             const sdClass = document.getElementById('selectSdClass').value;
 
@@ -438,6 +521,26 @@
             else if (jenjang === 'sma') { catKey = 'sma'; labelClass = 'Kelas 10 SMA'; }
             else { catKey = sdClass; labelClass = `Kelas ${sdClass.replace('sd', '')} SD`; }
 
+            // CEK DATABASE LOKAL APAKAH EMAIL SUDAH TERDENGAR DENGAN KELAS BERBEDA
+            const registeredUsers = JSON.parse(localStorage.getItem('olp_registered_accounts') || '{}');
+
+            if (registeredUsers[pEmail]) {
+                // Email sudah terdaftar sebelumnya
+                const existingAccount = registeredUsers[pEmail];
+                if (existingAccount.categoryKey !== catKey) {
+                    alert(`⚠️ Peringatan Akses Portal!\n\nEmail orang tua (${pEmail}) sudah terdaftar khusus untuk "${existingAccount.classLevel}".\n\nSiswa tidak diperbolehkan mengganti ke kelas/jenjang lain (${labelClass}) saat login ulang.`);
+                    return; // Batalkan Login
+                }
+            } else {
+                // Pendaftaran akun baru
+                registeredUsers[pEmail] = {
+                    studentName: name,
+                    classLevel: labelClass,
+                    categoryKey: catKey
+                };
+                localStorage.setItem('olp_registered_accounts', JSON.stringify(registeredUsers));
+            }
+
             currentStudent = { name: name, parentEmail: pEmail, classLevel: labelClass, categoryKey: catKey };
 
             localStorage.setItem('olp_form_name', name);
@@ -446,6 +549,18 @@
             localStorage.setItem('olp_form_catKey', catKey);
 
             document.getElementById('loginPage').style.display = 'none';
+            showRandomDailyWisdom();
+        }
+
+        function showRandomDailyWisdom() {
+            const randomObj = dailyQuotesList[Math.floor(Math.random() * dailyQuotesList.length)];
+            document.getElementById('wisdomQuoteText').innerText = randomObj.quote;
+            document.getElementById('wisdomAuthorText').innerText = randomObj.author;
+            document.getElementById('wisdomModalOverlay').classList.add('active');
+        }
+
+        function closeWisdomModal() {
+            document.getElementById('wisdomModalOverlay').classList.remove('active');
             renderDashboardData();
         }
 
@@ -461,7 +576,6 @@
             document.getElementById('userStarDisplay').innerText = userStars;
             document.getElementById('userStreakDisplay').innerText = userStreak;
 
-            // HANYA MENAMPILKAN MATERI KELAS YANG DIPILIH SISWA SAAT LOGIN
             renderModulesForStudentLevel(currentStudent.categoryKey);
         }
 
