@@ -9,9 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-    
-    <!-- GOOGLE IDENTITY SERVICES (GOOGLE SIGN-IN) -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <style>
         :root {
@@ -62,7 +59,14 @@
 
         .login-right-form { width: 480px; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; overflow-y: auto; }
         .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: var(--brand-brown); margin-bottom: 6px; }
-        .form-sub-text { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 30px; font-weight: 600; }
+        .form-sub-text { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 24px; font-weight: 600; }
+
+        .form-group { margin-bottom: 16px; text-align: left; }
+        .form-label { display: block; font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
+        .form-input { width: 100%; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: #fdfbf7; }
+        .form-input:focus { border-color: var(--brand-amber); background: #ffffff; }
+
+        .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 15px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; }
 
         /* MODAL BASE */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 10, 5, 0.75); backdrop-filter: blur(8px); z-index: 5000; display: none; align-items: center; justify-content: center; padding: 20px; }
@@ -339,7 +343,7 @@
         <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰ Menu</button>
     </div>
 
-    <!-- LOGIN SCREEN DENGAN GOOGLE SIGN-IN OTOMATIS -->
+    <!-- LOGIN SCREEN (FORM EMAIL MANUAL, AMAN & GRATIS) -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
@@ -349,22 +353,14 @@
         </div>
         <div class="login-right-form">
             <div class="form-header-text">Login Student</div>
-            <div class="form-sub-text">Silakan masuk menggunakan akun Google Anda</div>
-            
-            <!-- TOMBOL GOOGLE SIGN-IN OTOMATIS -->
-            <div id="g_id_onload"
-                 data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
-                 data-callback="handleGoogleLoginResponse"
-                 data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin"
-                 data-type="standard"
-                 data-shape="pill"
-                 data-theme="outline"
-                 data-text="sign_in_with"
-                 data-size="large"
-                 data-logo_alignment="left">
-            </div>
+            <div class="form-sub-text">Masukkan Email Orang Tua / Tutor terdaftar</div>
+            <form onsubmit="handleFormLogin(event)">
+                <div class="form-group">
+                    <label class="form-label">Email Terdaftar</label>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="faarimuhammad25@gmail.com" required>
+                </div>
+                <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
+            </form>
         </div>
     </div>
 
@@ -575,7 +571,10 @@
 
         const REGISTERED_PARENT_DATABASE = {
             'faarimuhammad25@gmail.com': { name: 'Muhammad Faari Akbar', categoryKey: 'sd3', classLabel: 'Kelas 3 SD (Full Access)', isDev: true },
-            'michellehimmelda@gmail.com': { name: 'Michelle Himmelda Cahyadi', categoryKey: 'sd6', classLabel: 'Tutor / Admin (Full Access)', isDev: true }
+            'michellehimmelda@gmail.com': { name: 'Michelle Himmelda Cahyadi', categoryKey: 'sd6', classLabel: 'Tutor / Admin (Full Access)', isDev: true },
+            'ortu.tk@gmail.com': { name: 'Siswa TK Aisyah', categoryKey: 'tk', classLabel: 'TK / PAUD', isDev: false },
+            'ortu.sd1@gmail.com': { name: 'Siswa SD Kelas 1', categoryKey: 'sd1', classLabel: 'Kelas 1 SD', isDev: false },
+            'ortu.sd6@gmail.com': { name: 'Siswa SD Kelas 6', categoryKey: 'sd6', classLabel: 'Kelas 6 SD', isDev: false }
         };
 
         const DAILY_WISDOM_LIST = [
@@ -613,7 +612,7 @@
             { id: 'badge_stiker_star', type: 'badge', title: 'Stiker Golden Star', desc: 'Koleksi stiker eksklusif di profilmu.', icon: '🌟', price: 80 }
         ];
 
-        let currentStudent = { name: 'Siswa OmahLes', parentEmail: '', classLabel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: false };
+        let currentStudent = { name: 'Muhammad Faari Akbar', parentEmail: 'faarimuhammad25@gmail.com', classLabel: 'Kelas 3 SD (Full Access)', categoryKey: 'sd3', isDev: true };
         let activeSection = 'dashboard';
         let currentActiveModule = null;
 
@@ -623,51 +622,22 @@
         let purchasedItems = [];
         let activeAvatar = '🎒';
 
-        // DECODE GOOGLE JWT TOKEN AUTOMATIS
-        function parseJwt(token) {
-            var base64Url = token.split('.')[1];
-            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
-            return JSON.parse(jsonPayload);
-        }
-
-        function handleGoogleLoginResponse(response) {
-            playClickSound();
-            const responsePayload = parseJwt(response.credential);
-            const userEmail = responsePayload.email.toLowerCase().trim();
-            const userName = responsePayload.name;
-
-            if (REGISTERED_PARENT_DATABASE[userEmail]) {
-                const userObj = REGISTERED_PARENT_DATABASE[userEmail];
-                currentStudent = { name: userObj.name, parentEmail: userEmail, classLabel: userObj.classLabel, categoryKey: userObj.categoryKey, isDev: userObj.isDev };
-            } else {
-                currentStudent = { name: userName, parentEmail: userEmail, classLabel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: false };
-            }
-
-            loadUserDataForEmail(userEmail);
-            sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
-            document.getElementById('loginPage').style.display = 'none';
-            showRandomDailyWisdom();
-        }
-
         function loadUserDataForEmail(email) {
-            userStars = parseInt(localStorage.getItem(`omahles_stars_${email}`) || '0');
-            userCompletedQuizzes = parseInt(localStorage.getItem(`omahles_quizzes_${email}`) || '0');
-            userStreak = parseInt(localStorage.getItem(`omahles_streak_${email}`) || '1');
-            purchasedItems = JSON.parse(localStorage.getItem(`omahles_purchased_${email}`) || '[]');
-            activeAvatar = localStorage.getItem(`omahles_avatar_${email}`) || '🎒';
+            const cleanEmail = email.toLowerCase().trim();
+            userStars = parseInt(localStorage.getItem(`omahles_stars_${cleanEmail}`) || '0');
+            userCompletedQuizzes = parseInt(localStorage.getItem(`omahles_quizzes_${cleanEmail}`) || '0');
+            userStreak = parseInt(localStorage.getItem(`omahles_streak_${cleanEmail}`) || '1');
+            purchasedItems = JSON.parse(localStorage.getItem(`omahles_purchased_${cleanEmail}`) || '[]');
+            activeAvatar = localStorage.getItem(`omahles_avatar_${cleanEmail}`) || '🎒';
         }
 
         function saveUserDataForEmail() {
-            const email = currentStudent.parentEmail;
-            if(!email) return;
-            localStorage.setItem(`omahles_stars_${email}`, userStars);
-            localStorage.setItem(`omahles_quizzes_${email}`, userCompletedQuizzes);
-            localStorage.setItem(`omahles_streak_${email}`, userStreak);
-            localStorage.setItem(`omahles_purchased_${email}`, JSON.stringify(purchasedItems));
-            localStorage.setItem(`omahles_avatar_${email}`, activeAvatar);
+            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
+            localStorage.setItem(`omahles_stars_${cleanEmail}`, userStars);
+            localStorage.setItem(`omahles_quizzes_${cleanEmail}`, userCompletedQuizzes);
+            localStorage.setItem(`omahles_streak_${cleanEmail}`, userStreak);
+            localStorage.setItem(`omahles_purchased_${cleanEmail}`, JSON.stringify(purchasedItems));
+            localStorage.setItem(`omahles_avatar_${cleanEmail}`, activeAvatar);
         }
 
         const masterSectionDatabase = {
@@ -801,6 +771,23 @@
                 openLoginForm();
             }
         });
+
+        function handleFormLogin(e) {
+            e.preventDefault();
+            playClickSound();
+            const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
+            if (REGISTERED_PARENT_DATABASE[pEmail]) {
+                const userObj = REGISTERED_PARENT_DATABASE[pEmail];
+                currentStudent = { name: userObj.name, parentEmail: pEmail, classLabel: userObj.classLabel, categoryKey: userObj.categoryKey, isDev: userObj.isDev };
+            } else {
+                currentStudent = { name: 'Siswa OmahLes', parentEmail: pEmail, classLabel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: false };
+            }
+            
+            loadUserDataForEmail(pEmail);
+            sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
+            document.getElementById('loginPage').style.display = 'none';
+            showRandomDailyWisdom();
+        }
 
         function openLoginForm() { 
             sessionStorage.clear();
@@ -1293,8 +1280,8 @@
         function closeInsightModal() { document.getElementById('insightModalOverlay').classList.remove('active'); }
 
         function renderJournal(container) {
-            const email = currentStudent.parentEmail;
-            let j = JSON.parse(localStorage.getItem(`omahles_journals_${email}`)) || [{ text: 'Mengerjakan modul belajar pertama.', date: '2026-08-23' }];
+            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
+            let j = JSON.parse(localStorage.getItem(`omahles_journals_${cleanEmail}`)) || [{ text: 'Mengerjakan modul belajar pertama.', date: '2026-08-23' }];
             container.innerHTML = `
                 <div class="journal-form-box">
                     <h3>➕ Catatan Jurnal</h3>
@@ -1308,17 +1295,17 @@
         function addJournal() {
             const t = document.getElementById('inputJournalText').value.trim();
             if(!t) return;
-            const email = currentStudent.parentEmail;
-            let j = JSON.parse(localStorage.getItem(`omahles_journals_${email}`)) || [];
+            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
+            let j = JSON.parse(localStorage.getItem(`omahles_journals_${cleanEmail}`)) || [];
             j.unshift({ text: t, date: new Date().toISOString().split('T')[0] });
-            localStorage.setItem(`omahles_journals_${email}`, JSON.stringify(j));
+            localStorage.setItem(`omahles_journals_${cleanEmail}`, JSON.stringify(j));
             renderJournal(document.getElementById('dynamicMainContentArea'));
         }
         function delJournal(idx) {
-            const email = currentStudent.parentEmail;
-            let j = JSON.parse(localStorage.getItem(`omahles_journals_${email}`)) || [];
+            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
+            let j = JSON.parse(localStorage.getItem(`omahles_journals_${cleanEmail}`)) || [];
             j.splice(idx, 1);
-            localStorage.setItem(`omahles_journals_${email}`, JSON.stringify(j));
+            localStorage.setItem(`omahles_journals_${cleanEmail}`, JSON.stringify(j));
             renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
@@ -1402,7 +1389,7 @@
                 if (lower.includes('fosil') || lower.includes('fosil terbentuk')) {
                     reply = `Fosil adalah sisa-sisa makhluk hidup masa lampau (tumbuhan, hewan, atau manusia) yang telah membatu karena tertimbun lapisan sedimen bumi dalam waktu jutaan tahun! Prosesnya dimulai saat makhluk hidup mati, terkubur lumpur/pasir sebelum membusuk, lalu mineral meresap menggantikan jaringan organiknya. 🦖✨`;
                 } else if (lower.includes('pecahan')) {
-                    reply = `Pecahan sederhana seperti 1/2 atau 1/4 adalah cara adil untuk membagi sebuah benda utuh (seperti pizza atau kue) menjadi bagian-bagian yang sama besar! Angka di atas (pembilang) adalah bagian yang diambil, dan angka di bawah (penyebutan) adalah total bagian seluruhnya. 🍕🧮`;
+                    reply = `Pecahan sederhana seperti 1/2 atau 1/4 adalah cara adil untuk membagi sebuah benda utuh (seperti pizza atau kue) menjadi bagian-bagian yang sama besar! Angka di atas (pembilang) adalah bagian yang diambil, dan angka di bawah (penyebut) adalah total bagian seluruhnya. 🍕🧮`;
                 } else if (lower.includes('hujan') || lower.includes('siklus air')) {
                     reply = `Hujan terjadi melalui siklus air (hidrologi): Panas matahari menguapkan air laut menjadi uap air (evaporasi), uap naik dan mendingin membentuk awan (kondensasi), lalu saat awan sudah berat, titik-titik air jatuh kembali ke bumi sebagai hujan (presipitasi)! ☀️🌧️`;
                 } else if (lower.includes('tips') || lower.includes('belajar')) {
