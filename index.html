@@ -57,15 +57,7 @@
         .brand-slogan-title span { color: var(--brand-yellow); }
         .brand-slogan-sub { font-size: 1rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 500px; z-index: 2; }
 
-        /* KOTAK KANAN LOGIN DENGAN TEKSTUR GAMBAR PENSIL, BUKU, & BINTANG */
-        .login-right-form { 
-            width: 480px; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; 
-            background-color: #ffffff;
-            /* Pola SVG detail berbentuk pensil, buku terbuka, dan bintang belajar */
-            background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d97706' fill-opacity='0.08'%3E%3C!-- Ikon Buku Terbuka --%3E%3Cpath d='M20 30c5-3 12-3 18 0v20c-6-3-13-3-18 0V30zm22 0c6-3 13-3 18 0v20c-5-3-12-3-18 0V30z'/%3E%3C!-- Ikon Pensil Miring --%3E%3Cpath d='M85 20l10 10-25 25-10-10L85 20zm-27 37l6 6-12 3-3-3 3-12 6 6z'/%3E%3C!-- Ikon Bintang Kecil --%3E%3Cpath d='M95 85l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z'/%3E%3C/g%3E%3C/svg%3E");
-            box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; overflow-y: auto; 
-        }
-
+        .login-right-form { width: 480px; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; overflow-y: auto; }
         .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: var(--brand-brown); margin-bottom: 6px; }
         .form-sub-text { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 24px; font-weight: 600; }
 
@@ -136,16 +128,6 @@
         .dash-icon-box { width: 56px; height: 56px; border-radius: 18px; background: var(--brand-cream); border: 1.5px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
         .dash-info-title { font-size: 0.75rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; margin-bottom: 4px; }
         .dash-info-val { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); }
-
-        /* STAR STORE STYLES */
-        .store-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-        .store-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; position: relative; }
-        .store-item-card.owned { border-color: #22c55e; background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%); }
-        .store-icon-wrap { width: 72px; height: 72px; border-radius: 50%; background: var(--brand-cream); border: 2px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; }
-        .store-title { font-family: 'Fredoka', sans-serif; font-size: 1.2rem; color: var(--text-main); }
-        .store-price-tag { font-size: 0.85rem; font-weight: 800; color: var(--brand-amber); background: #fef3c7; padding: 6px 16px; border-radius: 20px; }
-        .btn-buy-item { width: 100%; background: var(--brand-amber); color: white; border: none; padding: 12px; border-radius: 14px; font-weight: 800; font-family: 'Fredoka', sans-serif; cursor: pointer; margin-top: 8px; }
-        .btn-buy-item:disabled { background: #e5e7eb; color: #9ca3af; cursor: not-allowed; }
 
         /* OMAH GAMES CENTER STYLES */
         .game-level-tag-box { background: var(--brand-cream); border: 2px solid var(--brand-amber); border-radius: 16px; padding: 12px 20px; font-weight: 800; font-size: 0.9rem; color: var(--brand-brown); margin-bottom: 20px; display: inline-block; }
@@ -351,7 +333,7 @@
         <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰ Menu</button>
     </div>
 
-    <!-- LOGIN SCREEN (DENGAN TEKSTUR PENSIL, BUKU, & BINTANG DI SISI KANAN) -->
+    <!-- LOGIN SCREEN -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
@@ -365,7 +347,7 @@
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
                     <label class="form-label">Email Terdaftar</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="belajar@gmail.com" required>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="faarimuhammad25@gmail.com" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
@@ -450,14 +432,14 @@
                     <div class="stat-badge-card">
                         <div class="stat-icon">⭐</div>
                         <div>
-                            <div class="stat-val" id="userStarDisplay">0</div>
+                            <div class="stat-val" id="userStarDisplay">120</div>
                             <div class="stat-lbl">Stars</div>
                         </div>
                     </div>
                     <div class="stat-badge-card">
                         <div class="stat-icon">🔥</div>
                         <div>
-                            <div class="stat-val" id="userStreakDisplay">1</div>
+                            <div class="stat-val" id="userStreakDisplay">3</div>
                             <div class="stat-lbl">Hari</div>
                         </div>
                     </div>
@@ -484,7 +466,6 @@
                     <li class="menu-item" id="menuAitutor"><a onclick="playClickSound(); switchSection('aitutor')"><span>🎙️</span> <span>Ruang AI Tutor</span></a></li>
                     <li class="menu-item" id="menuGames"><a onclick="playClickSound(); switchSection('games')"><span>🎮</span> <span>Game Center</span></a></li>
                     <li class="menu-item" id="menuFlashcards"><a onclick="playClickSound(); switchSection('flashcards')"><span>🃏</span> <span>Flashcards</span></a></li>
-                    <li class="menu-item" id="menuStore"><a onclick="playClickSound(); switchSection('store')"><span>🛍️</span> <span>Toko Bintang</span></a></li>
                     <li class="menu-item" id="menuDiary"><a onclick="playClickSound(); switchSection('diary')"><span>📝</span> <span>Jurnal Belajar</span></a></li>
                 </ul>
             </div>
@@ -495,7 +476,7 @@
                 </div>
                 <div class="profile-card">
                     <div class="profile-left">
-                        <div class="avatar-box" id="sidebarAvatarIcon">🎒</div>
+                        <div class="avatar-box">🎒</div>
                         <div class="profile-info">
                             <div class="profile-name" id="userNameDisplay">Siswa</div>
                             <div class="profile-badge" id="userLevelDisplay">Kelas 3 SD</div>
@@ -612,41 +593,6 @@
         ];
         let currentFlashcardIdx = 0;
         let isFlashcardFlipped = false;
-
-        const storeItemsDatabase = [
-            { id: 'avatar_rabbit', type: 'avatar', title: 'Avatar Kelinci Pintar', desc: 'Avatar imut untuk profil belajarmu.', icon: '🐰', price: 50 },
-            { id: 'avatar_lion', type: 'avatar', title: 'Avatar Singa Berani', desc: 'Simbol keberanian dan semangat tinggi.', icon: '🦁', price: 100 },
-            { id: 'avatar_owl', type: 'avatar', title: 'Avatar Burung Hantu', desc: 'Lambang kebijaksanaan dan rajin belajar.', icon: '🦉', price: 150 },
-            { id: 'badge_stiker_star', type: 'badge', title: 'Stiker Golden Star', desc: 'Koleksi stiker eksklusif di profilmu.', icon: '🌟', price: 80 }
-        ];
-
-        let currentStudent = { name: 'Muhammad Faari Akbar', parentEmail: 'faarimuhammad25@gmail.com', classLabel: 'Kelas 3 SD (Full Access)', categoryKey: 'sd3', isDev: true };
-        let activeSection = 'dashboard';
-        let currentActiveModule = null;
-
-        let userStars = 0;
-        let userCompletedQuizzes = 0;
-        let userStreak = 1;
-        let purchasedItems = [];
-        let activeAvatar = '🎒';
-
-        function loadUserDataForEmail(email) {
-            const cleanEmail = email.toLowerCase().trim();
-            userStars = parseInt(localStorage.getItem(`omahles_stars_${cleanEmail}`) || '0');
-            userCompletedQuizzes = parseInt(localStorage.getItem(`omahles_quizzes_${cleanEmail}`) || '0');
-            userStreak = parseInt(localStorage.getItem(`omahles_streak_${cleanEmail}`) || '1');
-            purchasedItems = JSON.parse(localStorage.getItem(`omahles_purchased_${cleanEmail}`) || '[]');
-            activeAvatar = localStorage.getItem(`omahles_avatar_${cleanEmail}`) || '🎒';
-        }
-
-        function saveUserDataForEmail() {
-            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
-            localStorage.setItem(`omahles_stars_${cleanEmail}`, userStars);
-            localStorage.setItem(`omahles_quizzes_${cleanEmail}`, userCompletedQuizzes);
-            localStorage.setItem(`omahles_streak_${cleanEmail}`, userStreak);
-            localStorage.setItem(`omahles_purchased_${cleanEmail}`, JSON.stringify(purchasedItems));
-            localStorage.setItem(`omahles_avatar_${cleanEmail}`, activeAvatar);
-        }
 
         const masterSectionDatabase = {
             'tk': {
@@ -766,11 +712,16 @@
         let lovTimer = 31;
         let lovInterval = null;
 
+        let currentStudent = { name: 'Muhammad Faari Akbar', parentEmail: 'faarimuhammad25@gmail.com', classLabel: 'Kelas 3 SD (Full Access)', categoryKey: 'sd3', isDev: true };
+        let activeSection = 'dashboard';
+        let currentActiveModule = null;
+        let userStars = parseInt(localStorage.getItem('omahles_user_stars') || '120');
+        let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
+
         window.addEventListener('DOMContentLoaded', () => { 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             if (savedStudent) {
                 currentStudent = JSON.parse(savedStudent);
-                loadUserDataForEmail(currentStudent.parentEmail);
                 activeSection = sessionStorage.getItem('omahles_active_section') || 'dashboard';
                 document.getElementById('loginPage').style.display = 'none';
                 renderDashboardData();
@@ -790,8 +741,6 @@
             } else {
                 currentStudent = { name: 'Siswa OmahLes', parentEmail: pEmail, classLabel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: false };
             }
-            
-            loadUserDataForEmail(pEmail);
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
             document.getElementById('loginPage').style.display = 'none';
             showRandomDailyWisdom();
@@ -824,8 +773,6 @@
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLabel;
             document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ All-Access Mode: ${currentStudent.classLabel}` : `🔒 Paket Terdaftar: ${currentStudent.classLabel}`;
             document.getElementById('userStarDisplay').innerText = userStars;
-            document.getElementById('userStreakDisplay').innerText = userStreak;
-            document.getElementById('sidebarAvatarIcon').innerText = activeAvatar;
             const devBox = document.getElementById('devLevelSwitcherBox');
             if (currentStudent.isDev) devBox.classList.add('active'); else devBox.classList.remove('active');
         }
@@ -861,7 +808,6 @@
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
                 'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif khusus ${currentStudent.classLabel}.` },
                 'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan', sub: 'Latihan kilat rumus dan pengetahuan umum.' },
-                'store': { tag: '🛍️ Star Store', title: 'Toko Bintang', sub: 'Tukarkan bintangmu dengan avatar dan item eksklusif!' },
                 'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar', sub: 'Tulis target harianmu.' }
             };
 
@@ -886,7 +832,7 @@
                 renderLovSpeakAiChat(area);
             } else {
                 topBanner.style.display = 'block';
-                if (['dashboard', 'profile', 'badges', 'games', 'flashcards', 'store', 'diary'].includes(secKey)) {
+                if (secKey === 'dashboard' || secKey === 'profile' || secKey === 'badges' || secKey === 'games' || secKey === 'flashcards' || secKey === 'diary') {
                     filterBar.style.display = 'none';
                 } else {
                     filterBar.style.display = 'flex';
@@ -903,8 +849,6 @@
                     renderGameCenterGrid(area);
                 } else if (secKey === 'flashcards') {
                     renderFlashcardsUI(area);
-                } else if (secKey === 'store') {
-                    renderStoreUI(area);
                 } else if (secKey === 'diary') {
                     renderJournal(area);
                 } else {
@@ -934,14 +878,14 @@
                         <div class="dash-icon-box">🔥</div>
                         <div>
                             <div class="dash-info-title">Streak Belajar</div>
-                            <div class="dash-info-val">${userStreak} Hari</div>
+                            <div class="dash-info-val">3 Hari</div>
                         </div>
                     </div>
                 </div>
                 <div class="insight-card-box">
                     <div class="insight-heading">💡 Ringkasan Sistem Omah Les Privat</div>
                     <div class="insight-body-text">
-                        "Halo ${currentStudent.name}, gunakan bintangmu di <strong>Toko Bintang</strong> untuk membeli avatar profil baru atau tukarkan poin dari latihan soalmu!"
+                        "Halo ${currentStudent.name}, Anda masuk menggunakan akun dengan hak akses penuh. Anda dapat meninjau seluruh materi dari jenjang TK hingga SD Kelas 6 melalui menu <strong>Learning Roadmap</strong> atau menguji coba fitur interaktif di <strong>Omah Games</strong> dan <strong>Flashcards</strong>."
                     </div>
                 </div>
             `;
@@ -976,16 +920,13 @@
                     <div class="profile-main-box">
                         <div class="profile-top-row">
                             <div class="profile-user-left">
-                                <div class="profile-big-avatar">${activeAvatar}</div>
+                                <div class="profile-big-avatar">🎓</div>
                                 <div>
                                     <div class="profile-user-name">${currentStudent.name}</div>
                                     <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLabel}</div>
                                 </div>
                             </div>
-                            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                                <button class="btn-open-module" onclick="window.print()">🖨️ Cetak PDF</button>
-                                <button class="btn-open-module" style="background:var(--brand-brown);" onclick="sendReportToEmail()">✉️ Kirim ke Email</button>
-                            </div>
+                            <button class="btn-open-module" onclick="window.print()">🖨️ Cetak / Unduh Laporan</button>
                         </div>
                         <div class="profile-stats-card">
                             <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem;">
@@ -1005,34 +946,10 @@
                 <div class="insight-card-box">
                     <div class="insight-heading">💡 AI Insight • Personalized for ${currentStudent.name}</div>
                     <div class="insight-body-text">
-                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu sudah menyelesaikan ${userCompletedQuizzes} kuis latihan. Terus kumpulkan bintang untuk koleksi avatar di Toko Bintang!"
+                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu sudah menyelesaikan ${userCompletedQuizzes} kuis latihan. Terus pertahankan semangat belajar dan mengajarmu!"
                     </div>
                 </div>
             `;
-        }
-
-        function sendReportToEmail() {
-            playClickSound();
-            const studentName = currentStudent.name;
-            const parentEmail = currentStudent.parentEmail;
-            const classLabel = currentStudent.classLabel;
-            const totalQuizzes = userCompletedQuizzes;
-            const totalStars = userStars;
-            
-            const reportSubject = encodeURIComponent(`Laporan Perkembangan Belajar Omah Les Privat - ${studentName}`);
-            const reportBody = encodeURIComponent(
-                `Kepada Yth. Orang Tua / Wali dari ${studentName},\n\n` +
-                `Berikut adalah ringkasan laporan perkembangan belajar siswa di platform Omah Les Privat:\n\n` +
-                `• Nama Siswa: ${studentName}\n` +
-                `• Jenjang / Kelas: ${classLabel}\n` +
-                `• Total Kuis Selesai: ${totalQuizzes} modul\n` +
-                `• Perolehan Bintang: ${totalStars} Stars\n\n` +
-                `Perkembangan anak menunjukkan hasil yang baik dan aktif menyelesaikan tantangan belajar harian. Terima kasih atas dukungan Bapak/Ibu di rumah.\n\n` +
-                `Salam hangat,\n` +
-                `Tim Akademik Omah Les Privat`
-            );
-
-            window.location.href = `mailto:${parentEmail}?subject=${reportSubject}&body=${reportBody}`;
         }
 
         function renderBadges(container) {
@@ -1062,56 +979,6 @@
                     </div>
                 </div>
             `;
-        }
-
-        function renderStoreUI(container) {
-            container.innerHTML = `
-                <div style="margin-bottom:20px; font-weight:800; color:var(--text-sub); font-size:0.95rem;">
-                    🌟 Saldo Bintang Kamu: <span style="color:var(--brand-amber); font-size:1.2rem;">${userStars} Stars</span>
-                </div>
-                <div class="store-grid animate-section">
-                    ${storeItemsDatabase.map(item => {
-                        const isOwned = purchasedItems.includes(item.id);
-                        const canBuy = userStars >= item.price;
-                        return `
-                            <div class="store-item-card ${isOwned ? 'owned' : ''}">
-                                <div class="store-icon-wrap">${item.icon}</div>
-                                <div class="store-title">${item.title}</div>
-                                <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600; min-height:36px;">${item.desc}</div>
-                                <div class="store-price-tag">⭐ ${item.price} Stars</div>
-                                ${isOwned ? 
-                                    `<button class="btn-buy-item" style="background:#22c55e;" onclick="playClickSound(); equipAvatar('${item.icon}')">Gunakan / Aktifkan ✨</button>` :
-                                    `<button class="btn-buy-item" ${!canBuy ? 'disabled' : ''} onclick="playClickSound(); buyStoreItem('${item.id}', ${item.price}, '${item.icon}')">${canBuy ? 'Beli Sekarang 🛒' : 'Bintang Kurang 🔒'}</button>`
-                                }
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            `;
-        }
-
-        function buyStoreItem(itemId, price, icon) {
-            if (userStars < price) {
-                alert('Maaf, bintangmu belum cukup!');
-                return;
-            }
-            userStars -= price;
-            purchasedItems.push(itemId);
-            activeAvatar = icon;
-            saveUserDataForEmail();
-            playSuccessSound();
-            alert(`🎉 Berhasil membeli item! Avatar profil otomatis diubah ke ${icon}.`);
-            renderDashboardData();
-            renderStoreUI(document.getElementById('dynamicMainContentArea'));
-        }
-
-        function equipAvatar(icon) {
-            activeAvatar = icon;
-            saveUserDataForEmail();
-            playSuccessSound();
-            alert(`✨ Avatar berhasil diubah ke ${icon}!`);
-            renderDashboardData();
-            renderStoreUI(document.getElementById('dynamicMainContentArea'));
         }
 
         function openCertModal(badgeTitle, badgeDesc) {
@@ -1244,7 +1111,8 @@
                 lovScore += 100;
                 userStars += 20;
                 userCompletedQuizzes++;
-                saveUserDataForEmail();
+                localStorage.setItem('omahles_user_stars', userStars);
+                localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
                 document.getElementById('userStarDisplay').innerText = userStars;
                 currentLovQuestionIdx++;
                 alert('🎉 Hebat! Jawaban Benar! ⭐ +20 Stars');
@@ -1304,7 +1172,8 @@
                 f.style.color = '#16a34a'; f.innerText = '🎉 Benar sekali! ⭐ +15 Stars & XP Bertambah!';
                 userStars += 15;
                 userCompletedQuizzes++;
-                saveUserDataForEmail();
+                localStorage.setItem('omahles_user_stars', userStars);
+                localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
                 document.getElementById('userStarDisplay').innerText = userStars;
             } else {
                 playErrorSound();
@@ -1315,8 +1184,7 @@
         function closeInsightModal() { document.getElementById('insightModalOverlay').classList.remove('active'); }
 
         function renderJournal(container) {
-            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
-            let j = JSON.parse(localStorage.getItem(`omahles_journals_${cleanEmail}`)) || [{ text: 'Mengerjakan modul belajar pertama.', date: '2026-08-23' }];
+            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [{ text: 'Mengerjakan modul belajar.', date: '2026-08-23' }];
             container.innerHTML = `
                 <div class="journal-form-box">
                     <h3>➕ Catatan Jurnal</h3>
@@ -1330,17 +1198,15 @@
         function addJournal() {
             const t = document.getElementById('inputJournalText').value.trim();
             if(!t) return;
-            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
-            let j = JSON.parse(localStorage.getItem(`omahles_journals_${cleanEmail}`)) || [];
+            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [];
             j.unshift({ text: t, date: new Date().toISOString().split('T')[0] });
-            localStorage.setItem(`omahles_journals_${cleanEmail}`, JSON.stringify(j));
+            localStorage.setItem('omahles_student_journals', JSON.stringify(j));
             renderJournal(document.getElementById('dynamicMainContentArea'));
         }
         function delJournal(idx) {
-            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
-            let j = JSON.parse(localStorage.getItem(`omahles_journals_${cleanEmail}`)) || [];
+            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [];
             j.splice(idx, 1);
-            localStorage.setItem(`omahles_journals_${cleanEmail}`, JSON.stringify(j));
+            localStorage.setItem('omahles_student_journals', JSON.stringify(j));
             renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
@@ -1394,7 +1260,8 @@
             sendLovChatMessage();
         }
 
-        function sendLovChatMessage() {
+        // FUNGSI UTAMA AI DENGAN GOOGLE GEMINI API YANG AKTIF
+        async function sendLovChatMessage() {
             const input = document.getElementById('lovUserChatInput');
             const msg = input.value.trim();
             if(!msg) return;
@@ -1412,24 +1279,29 @@
             const loadingId = 'load-' + Date.now();
             box.innerHTML += `
                 <div class="lovespeak-bubble-row ai" id="${loadingId}">
-                    <div class="lovespeak-bubble">⏳ Kak Omah sedang mengetik jawaban...</div>
+                    <div class="lovespeak-bubble">⏳ Kak Omah sedang berpikir dan mengetik jawaban...</div>
                 </div>
             `;
             box.scrollTop = box.scrollHeight;
 
-            setTimeout(() => {
-                let lower = msg.toLowerCase();
-                let reply = `Halo ${currentStudent.name}! Topik mengenai "${msg}" sangat menarik untuk dibahas. Di Omah Les Privat, kita bisa mendalami materi ini secara bertahap agar kamu semakin paham dan percaya diri. Ada bagian khusus yang ingin kita kulik bersama? ✨`;
+            // Masukkan API Key Kakak di bawah ini (ganti tulisan di dalam tanda kutip):
+            const GEMINI_API_KEY = "AQ.Ab8RN6IYy9WUpPm8qp9H1MBJmQK2JgqFyvJba-CxlP29L2sRg"; 
 
-                if (lower.includes('fosil') || lower.includes('fosil terbentuk')) {
-                    reply = `Fosil adalah sisa-sisa makhluk hidup masa lampau (tumbuhan, hewan, atau manusia) yang telah membatu karena tertimbun lapisan sedimen bumi dalam waktu jutaan tahun! Prosesnya dimulai saat makhluk hidup mati, terkubur lumpur/pasir sebelum membusuk, lalu mineral meresap menggantikan jaringan organiknya. 🦖✨`;
-                } else if (lower.includes('pecahan')) {
-                    reply = `Pecahan sederhana seperti 1/2 atau 1/4 adalah cara adil untuk membagi sebuah benda utuh (seperti pizza atau kue) menjadi bagian-bagian yang sama besar! Angka di atas (pembilang) adalah bagian yang diambil, dan angka di bawah (penyebut) adalah total bagian seluruhnya. 🍕🧮`;
-                } else if (lower.includes('hujan') || lower.includes('siklus air')) {
-                    reply = `Hujan terjadi melalui siklus air (hidrologi): Panas matahari menguapkan air laut menjadi uap air (evaporasi), uap naik dan mendingin membentuk awan (kondensasi), lalu saat awan sudah berat, titik-titik air jatuh kembali ke bumi sebagai hujan (presipitasi)! ☀️🌧️`;
-                } else if (lower.includes('tips') || lower.includes('belajar')) {
-                    reply = `Tips belajar seru bersama Kak Omah: 1. Buat jadwal rutin setiap hari, 2. Gunakan teknik mencatat warna-warni, 3. Jangan takut bertanya jika ada yang belum dipahami, dan 4. Berikan jeda istirahat agar otak tetap segar! Semangat ya! <span>🌟🚀</span>`;
-                }
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: `Kamu adalah Kak Omah, seorang AI tutor yang ramah untuk anak-anak sekolah dasar (SD). Jawablah pertanyaan berikut dengan bahasa Indonesia yang mendidik, hangat, dan mudah dipahami: ${msg}` }]
+                        }]
+                    })
+                });
+
+                const data = await response.json();
+                let reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf, Kak Omah sedang ada kendala koneksi sebentar. Coba tanyakan lagi ya! ✨";
+                
+                reply = reply.replace(/\n/g, '<br>');
 
                 const timeReply = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 document.getElementById(loadingId).innerHTML = `
@@ -1439,8 +1311,12 @@
                         <span>${timeReply}</span>
                     </div>
                 `;
-                box.scrollTop = box.scrollHeight;
-            }, 900);
+            } catch (error) {
+                document.getElementById(loadingId).innerHTML = `
+                    <div class="lovespeak-bubble">Waduh, koneksi internet atau API key bermasalah nih. Coba periksa kembali API Key Kakak ya! 🛠️</div>
+                `;
+            }
+            box.scrollTop = box.scrollHeight;
         }
     </script>
 </body>
