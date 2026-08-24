@@ -255,14 +255,17 @@
         .badge-status-tag.unlocked { background: #dcfce7; color: #16a34a; }
         .badge-status-tag.locked { background: #f3f4f6; color: #9ca3af; }
 
-        /* STYLE LOVSPEAK UNTUK RUANG AI TUTOR */
+        /* STYLE AI TUTOR & API KEY SETTINGS */
         .lovespeak-chat-container { display: flex; flex-direction: column; height: calc(100vh - 120px); width: 100%; background: #ffffff; border-radius: 24px; border: 2px solid var(--card-border); overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-        .lovespeak-top-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; border-bottom: 2px solid var(--card-border); background: #ffffff; }
+        .lovespeak-top-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; border-bottom: 2px solid var(--card-border); background: #ffffff; flex-wrap: wrap; gap: 12px; }
         .lovespeak-profile-info { display: flex; align-items: center; gap: 12px; }
         .lovespeak-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3); }
         .lovespeak-name { font-family: 'Fredoka', sans-serif; font-size: 1.1rem; color: var(--text-main); font-weight: 700; margin-bottom: 2px; }
         .lovespeak-status { font-size: 0.7rem; color: #16a34a; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .lovespeak-badge-mode { background: #fffbeb; border: 1.5px solid #fde68a; color: #b45309; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.78rem; text-transform: uppercase; }
+        
+        .api-key-config-box { display: flex; align-items: center; gap: 8px; background: var(--brand-cream); padding: 8px 14px; border-radius: 16px; border: 1.5px solid var(--brand-amber); }
+        .api-key-input { border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; outline: none; width: 180px; }
+        .api-key-save-btn { background: var(--brand-amber); color: white; border: none; padding: 6px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 800; cursor: pointer; font-family: 'Fredoka', sans-serif; }
 
         .lovespeak-messages-area { flex: 1; padding: 32px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; background: #fdfbf7; }
         .lovespeak-bubble-row { display: flex; flex-direction: column; width: 100%; max-width: 85%; }
@@ -291,7 +294,7 @@
 
         .portal-footer { margin-left: 280px; background: var(--card-bg); border-top: 2px solid var(--card-border); padding: 24px 48px; display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
 
-        /* MOBILE HEADER BAR (Hidden on desktop) */
+        /* MOBILE HEADER BAR */
         .mobile-header-bar { display: none; background: var(--sidebar-bg); color: white; padding: 14px 20px; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--brand-amber); }
         .mobile-menu-btn { background: var(--brand-amber); color: white; border: none; padding: 8px 14px; border-radius: 10px; font-weight: 800; font-size: 0.85rem; cursor: pointer; }
 
@@ -302,7 +305,6 @@
             .sidebar, .portal-footer, .dev-level-switcher, button { display: none !important; }
         }
 
-        /* KHUSUS TAMPILAN HP (MOBILE RESPONSIVE FIX) */
         @media (max-width: 768px) {
             .mobile-header-bar { display: flex; }
             .sidebar { 
@@ -317,6 +319,8 @@
             .login-left-brand { padding: 40px 20px; min-height: 35vh; }
             .login-right-form { width: 100%; padding: 30px 20px; height: 65vh; }
             .lovespeak-chat-container { height: 75vh; }
+            .lovespeak-top-header { flex-direction: column; align-items: flex-start; }
+            .api-key-config-box { width: 100%; justify-content: space-between; }
             .banner-title { font-size: 1.6rem; }
             .roadmap-banner { padding: 20px; }
         }
@@ -324,7 +328,6 @@
 </head>
 <body>
 
-    <!-- MOBILE TOP HEADER BAR -->
     <div class="mobile-header-bar">
         <div style="display:flex; align-items:center; gap:10px;">
             <img src="./logo.jpg" alt="Logo" style="width:32px; height:32px; border-radius:8px; border:1px solid var(--brand-amber);" onerror="this.src='https://via.placeholder.com/32?text=OLP'">
@@ -487,7 +490,7 @@
             </div>
         </aside>
 
-        <!-- MAIN DASHBOARD CONTENT -->
+        <!-- MAIN CONTENT AREA -->
         <main class="content-area" id="mainContentAreaContainer">
             <div class="roadmap-banner" id="topBannerSection">
                 <div class="banner-tag" id="bannerTagText">🎓 Master Path</div>
@@ -516,9 +519,7 @@
                 <div class="active-level-indicator" id="activeLevelText">🔒 Modul Paket</div>
             </div>
 
-            <div id="dynamicMainContentArea">
-                <!-- Content injected here -->
-            </div>
+            <div id="dynamicMainContentArea"></div>
         </main>
     </div>
 
@@ -527,7 +528,6 @@
     </footer>
 
     <script>
-        // WEB AUDIO API FOR INTERACTIVE SOUND EFFECTS
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playTone(freq, type, duration) {
             try {
@@ -554,8 +554,7 @@
 
         function toggleMobileSidebar() {
             playClickSound();
-            const sb = document.getElementById('appSidebar');
-            sb.classList.toggle('mobile-open');
+            document.getElementById('appSidebar').classList.toggle('mobile-open');
         }
 
         const REGISTERED_PARENT_DATABASE = {
@@ -569,17 +568,7 @@
         const DAILY_WISDOM_LIST = [
             { quote: "Pendidikan adalah senjata paling ampuh yang bisa kamu gunakan untuk mengubah dunia.", author: "Nelson Mandela" },
             { quote: "Akar dari pendidikan itu pahit, namun buahnya sangat manis.", author: "Aristoteles" },
-            { quote: "Hiduplah seolah-olah kamu akan mati besok. Belajarlah seolah-olah kamu akan hidup selamanya.", author: "Mahatma Gandhi" },
-            { quote: "Investasi dalam pengetahuan membayar bunga terbaik.", author: "Benjamin Franklin" },
-            { quote: "Jangan batasi tantanganmu, tapi tantang batasmu setiap hari.", author: "Omah Les Mentor" },
-            { quote: "Pendidikan bukan persiapan untuk hidup; pendidikan adalah hidup itu sendiri.", author: "John Dewey" },
-            { quote: "Seorang guru yang baik dapat menginspirasi harapan, menyalakan imajinasi, dan menanamkan kecintaan belajar.", author: "Brad Henry" },
-            { quote: "Yang terpenting adalah jangan berhenti bertanya. Rasa ingin tahu memiliki alasan tersendiri untuk eksis.", author: "Albert Einstein" },
-            { quote: "Belajar tanpa berpikir adalah sia-sia, tetapi berpikir tanpa belajar adalah sangat berbahaya.", author: "Confucius" },
-            { quote: "Kesuksesan tidak datang dari apa yang kita lakukan sekali-sekali, tetapi dari apa yang kita lakukan secara konsisten.", author: "Marie Forleo" },
-            { quote: "Pendidikan adalah paspor untuk masa depan, karena hari esok adalah milik mereka yang mempersiapkannya hari ini.", author: "Malcolm X" },
-            { quote: "Jangan malu bertanya ketika kamu tidak tahu, karena rasa malu bertanya adalah awal dari ketidaktahuan.", author: "Peribahasa" },
-            { quote: "Genius adalah 1 persen inspirasi dan 99 persen keringat kerja keras.", author: "Thomas Alva Edison" }
+            { quote: "Jangan batasi tantanganmu, tapi tantang batasmu setiap hari.", author: "Omah Les Mentor" }
         ];
 
         const flashcardsDatabase = [
@@ -587,39 +576,28 @@
             { q: "Berapa hasil dari 7 x 8 dalam perkalian dasar?", a: "56" },
             { q: "Sebutkan 3 wujud benda di alam!", a: "Padat, Cair, Gas" },
             { q: "Apa nama alat untuk mengukur berat benda?", a: "Timbangan (Neraca)" },
-            { q: "Apa gaya tarik pusat bumi yang membuat buah jatuh?", a: "Gaya Gravitasi" },
-            { q: "Apa ibukota negara Indonesia?", a: "Jakarta" },
-            { q: "Berapa jumlah sudut dalam sebuah segitiga?", a: "180 Derajat" }
+            { q: "Apa gaya tarik pusat bumi yang membuat buah jatuh?", a: "Gaya Gravitasi" }
         ];
         let currentFlashcardIdx = 0;
         let isFlashcardFlipped = false;
 
         const masterSectionDatabase = {
             'tk': {
-                'roadmap': [
-                    { tierTag: 'TK / PAUD', title: 'Mengenal Huruf A, I, U, E, O', desc: 'Belajar huruf vokal dasar.', progress: '0/3', steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Huruf A', sub: 'A untuk Ayam.', quote: '"Pintar membaca!"', context: 'Ayam berkokok.', logic: 'Huruf A.', tips: 'Tirukan suara.', quiz: { q: 'Huruf pertama AYAM?', opts: ['A', 'B'], ans: 0 } }] },
-                    { tierTag: 'TK / PAUD', title: 'Berhitung 1 sampai 10', desc: 'Mengenal angka dan jumlah jari.', progress: '0/2', steps: [{ icon: '🖐️', tag: 'STEP 1', title: 'Jari Tangan', sub: '1, 2, 3..', quote: '"Ayo berhitung."', context: 'Hitung jarimu.', logic: 'Ada 5 jari di kanan.', tips: 'Gunakan lagu.', quiz: { q: 'Jari di satu tangan ada?', opts: ['5', '10'], ans: 0 } }] }
-                ],
+                'roadmap': [{ tierTag: 'TK / PAUD', title: 'Mengenal Huruf A, I, U, E, O', desc: 'Belajar huruf vokal dasar.', progress: '0/3', steps: [{ icon: '🔤', tag: 'STEP 1', title: 'Huruf A', sub: 'A untuk Ayam.', quote: '"Pintar membaca!"', context: 'Ayam berkokok.', logic: 'Huruf A.', tips: 'Tirukan suara.', quiz: { q: 'Huruf pertama AYAM?', opts: ['A', 'B'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'TK INDO', title: 'Menebalkan Garis', desc: 'Latihan motorik halus.', progress: '0/2', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Garis Lurus', sub: 'Pegang pensil.', quote: '"Pelan-pelan."', context: 'Garis.', logic: 'Tarik lurus.', tips: 'Jangan keluar garis.', quiz: { q: 'Alat tulis?', opts: ['Pensil', 'Batu'], ans: 0 } }] }],
                 'math': [{ tierTag: 'TK MATH', title: 'Bentuk Lingkaran', desc: 'Mengenal bentuk bundar.', progress: '0/1', steps: [{ icon: '🔴', tag: 'STEP 1', title: 'Seperti Roda', sub: 'Bundar.', quote: '"Berputar."', context: 'Bola.', logic: 'Tidak ada sudut.', tips: 'Lihat jam dinding.', quiz: { q: 'Bentuk bola?', opts: ['Lingkaran', 'Kotak'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'TK SAINS', title: 'Hewan Peliharaan', desc: 'Kucing dan Kelinci.', progress: '0/1', steps: [{ icon: '🐱', tag: 'STEP 1', title: 'Suara Kucing', sub: 'Meong.', quote: '"Sayangi hewan."', context: 'Kucing.', logic: 'Hewan peliharaan.', tips: 'Beri makan.', quiz: { q: 'Suara kucing?', opts: ['Meong', 'Moo'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'TK SENI', title: 'Warna Merah & Biru', desc: 'Mengenal warna dasar.', progress: '0/2', steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Warna Apel', sub: 'Merah.', quote: '"Cerah."', context: 'Apel.', logic: 'Buah.', tips: 'Mewarnai.', quiz: { q: 'Warna apel matang?', opts: ['Merah', 'Biru'], ans: 0 } }] }]
             },
             'sd1': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 1', title: 'Membaca Suku Kata (Ba, Bi, Bu)', desc: 'Lancar mengeja dua huruf.', progress: '0/4', steps: [{ icon: '📖', tag: 'STEP 1', title: 'B-A = BA', sub: 'Baju.', quote: '"Lancar baca."', context: 'Mengeja.', logic: 'Gabung huruf.', tips: 'Ucap keras.', quiz: { q: 'B-U-K-U dibaca?', opts: ['Buku', 'Baka'], ans: 0 } }] },
-                    { tierTag: 'SD KELAS 1', title: 'Penjumlahan 1-20', desc: 'Hitung tambah-tambahan benda.', progress: '0/4', steps: [{ icon: '➕', tag: 'STEP 1', title: '5 + 3', sub: 'Hitung jari.', quote: '"Pintar hitung."', context: 'Apel.', logic: 'Gabung jumlah.', tips: 'Pakai sempoa.', quiz: { q: '5 + 4 = ?', opts: ['9', '8'], ans: 0 } }] }
-                ],
+                'roadmap': [{ tierTag: 'SD KELAS 1', title: 'Membaca Suku Kata (Ba, Bi, Bu)', desc: 'Lancar mengeja dua huruf.', progress: '0/4', steps: [{ icon: '📖', tag: 'STEP 1', title: 'B-A = BA', sub: 'Baju.', quote: '"Lancar baca."', context: 'Mengeja.', logic: 'Gabung huruf.', tips: 'Ucap keras.', quiz: { q: 'B-U-K-U dibaca?', opts: ['Buku', 'Baka'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'SD 1 INDO', title: 'Huruf Kapital', desc: 'Nama orang diawali huruf besar.', progress: '0/2', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Nama Budi', sub: 'B besar.', quote: '"Tulis rapi."', context: 'Nama.', logic: 'Aturan penulisan.', tips: 'Ingat huruf depan.', quiz: { q: 'Huruf awal nama orang?', opts: ['Kapital', 'Kecil'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 1 MATH', title: 'Pengurangan 1-10', desc: 'Konsep sisa benda.', progress: '0/2', steps: [{ icon: '➖', tag: 'STEP 1', title: '5 dikurang 2', sub: 'Sisa.', quote: '"Hitung sisa."', context: 'Makan permen.', logic: 'Jumlah berkurang.', tips: 'Lipat jari.', quiz: { q: '10 - 5 = ?', opts: ['5', '6'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 1 SAINS', title: 'Panca Indra', desc: 'Mata, Telinga, Hidung.', progress: '0/2', steps: [{ icon: '👁️', tag: 'STEP 1', title: 'Fungsi Mata', sub: 'Melihat.', quote: '"Syukuri tubuh."', context: 'Tubuh.', logic: 'Melihat warna.', tips: 'Jaga jarak baca.', quiz: { q: 'Alat untuk melihat?', opts: ['Mata', 'Kaki'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'SD 1 SENI', title: 'Garis Lurus & Lengkung', desc: 'Menggambar dasar.', progress: '0/2', steps: [{ icon: '🖍️', tag: 'STEP 1', title: 'Gambar Rumah', sub: 'Garis tegak.', quote: '"Kreatif."', context: 'Seni rupa.', logic: 'Bentuk dari garis.', tips: 'Gunakan penggaris.', quiz: { q: 'Bentuk atap rumah?', opts: ['Segitiga', 'Bulat'], ans: 0 } }] }]
             },
             'sd2': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 2', title: 'Kalimat Tanya', desc: 'Apa, Siapa, Di mana.', progress: '0/3', steps: [{ icon: '❓', tag: 'STEP 1', title: 'Siapa Namamu?', sub: 'Tanda tanya.', quote: '"Sopan bertanya."', context: 'Kalimat.', logic: 'Butuh jawaban.', tips: 'Gunakan intonasi.', quiz: { q: 'Akhir kalimat tanya pakai?', opts: ['Tanda Tanya (?)', 'Titik (.)'], ans: 0 } }] },
-                    { tierTag: 'SD KELAS 2', title: 'Perkalian Dasar', desc: 'Penjumlahan berulang (2x3).', progress: '0/4', steps: [{ icon: '✖️', tag: 'STEP 1', title: 'Konsep 2x3', sub: '3 + 3.', quote: '"Perkalian cepat."', context: 'Hitung cepat.', logic: 'Berulang.', tips: 'Hafalkan pola.', quiz: { q: '4 + 4 + 4 = ?', opts: ['3 x 4', '2 x 4'], ans: 0 } }] }
-                ],
+                'roadmap': [{ tierTag: 'SD KELAS 2', title: 'Kalimat Tanya', desc: 'Apa, Siapa, Di mana.', progress: '0/3', steps: [{ icon: '❓', tag: 'STEP 1', title: 'Siapa Namamu?', sub: 'Tanda tanya.', quote: '"Sopan bertanya."', context: 'Kalimat.', logic: 'Butuh jawaban.', tips: 'Gunakan intonasi.', quiz: { q: 'Akhir kalimat tanya pakai?', opts: ['Tanda Tanya (?)', 'Titik (.)'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'SD 2 INDO', title: 'Puisi Anak', desc: 'Membaca puisi dengan intonasi.', progress: '0/2', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Bait Puisi', sub: 'Keindahan alam.', quote: '"Suara merdu."', context: 'Puisi.', logic: 'Ekspresi.', tips: 'Lantang.', quiz: { q: 'Membaca puisi butuh?', opts: ['Ekspresi', 'Berlari'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 2 MATH', title: 'Alat Ukur Panjang (cm)', desc: 'Menggunakan penggaris.', progress: '0/2', steps: [{ icon: '📏', tag: 'STEP 1', title: 'Ukur Pensil', sub: 'Mulai dari 0.', quote: '"Ukur tepat."', context: 'Panjang.', logic: 'Satuan cm.', tips: 'Sejajarkan.', quiz: { q: 'Ukur panjang buku pakai?', opts: ['Penggaris', 'Timbangan'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 2 SAINS', title: 'Benda Padat & Cair', desc: 'Perbedaan wujud benda.', progress: '0/2', steps: [{ icon: '🧊', tag: 'STEP 1', title: 'Air & Es', sub: 'Mencair.', quote: '"Sifat benda."', context: 'Perubahan.', logic: 'Bentuk air.', tips: 'Amati es.', quiz: { q: 'Benda yang mengalir?', opts: ['Cair', 'Padat'], ans: 0 } }] }],
@@ -636,73 +614,36 @@
                 'seni': [{ tierTag: 'SD 3 SENI', title: 'Warna Campuran (Sekunder)', desc: 'Mencampur warna cat.', progress: '0/2', steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Merah + Kuning', sub: 'Jadi Oranye.', quote: '"Eksperimen warna."', context: 'Melukis.', logic: 'Pencampuran.', tips: 'Pakai cat air.', quiz: { q: 'Kuning + Biru?', opts: ['Hijau', 'Ungu'], ans: 0 } }] }]
             },
             'sd4': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 4', title: 'Teks Deskripsi & Wawancara', desc: 'Ciri-ciri teks deskripsi.', progress: '0/4', steps: [{ icon: '📰', tag: 'STEP 1', title: 'Menggambarkan Objek', sub: 'Mendetail.', quote: '"Gambarkan dengan kata."', context: 'Deskripsi panca indra.', logic: 'Bisa dibayangkan.', tips: 'Gunakan kata sifat.', quiz: { q: 'Teks menggambarkan objek disebut?', opts: ['Deskripsi', 'Narasi'], ans: 0 } }] },
-                    { tierTag: 'SD KELAS 4', title: 'Keliling & Luas Persegi', desc: 'Rumus bangun datar dasar.', progress: '0/4', steps: [{ icon: '📐', tag: 'STEP 1', title: 'Luas Persegi', sub: 'Sisi x Sisi.', quote: '"Hitung area."', context: 'Bangun datar.', logic: 'S x S.', tips: 'Hitung keramik.', quiz: { q: 'Luas persegi sisi 5cm?', opts: ['25 cm²', '20 cm²'], ans: 0 } }] }
-                ],
+                'roadmap': [{ tierTag: 'SD KELAS 4', title: 'Teks Deskripsi & Wawancara', desc: 'Ciri-ciri teks deskripsi.', progress: '0/4', steps: [{ icon: '📰', tag: 'STEP 1', title: 'Menggambarkan Objek', sub: 'Mendetail.', quote: '"Gambarkan dengan kata."', context: 'Deskripsi.', logic: 'Bisa dibayangkan.', tips: 'Gunakan kata sifat.', quiz: { q: 'Teks menggambarkan objek disebut?', opts: ['Deskripsi', 'Narasi'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'SD 4 INDO', title: 'Gaya Bahasa (Majas)', desc: 'Majas Personifikasi.', progress: '0/2', steps: [{ icon: '🗣️', tag: 'STEP 1', title: 'Angin Menari', sub: 'Benda mati hidup.', quote: '"Kiasan indah."', context: 'Sastra.', logic: 'Gaya bahasa.', tips: 'Baca cerpen.', quiz: { q: 'Awan menangis adalah majas?', opts: ['Personifikasi', 'Hiperbola'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 4 MATH', title: 'KPK dan FPB', desc: 'Kelipatan persekutuan.', progress: '0/2', steps: [{ icon: '🔢', tag: 'STEP 1', title: 'KPK dari 3 dan 4', sub: 'Angka 12.', quote: '"Cari persamaannya."', context: 'Kelipatan.', logic: 'Bertemu di 12.', tips: 'Pakai pohon faktor.', quiz: { q: 'KPK 2 dan 3?', opts: ['6', '5'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 4 SAINS', title: 'Gaya (Otot, Gesek, Gravitasi)', desc: 'Pengaruh gaya pada benda.', progress: '0/2', steps: [{ icon: '🧲', tag: 'STEP 1', title: 'Tarikan & Dorongan', sub: 'Itu adalah Gaya.', quote: '"Benda bergerak."', context: 'Fisika dasar.', logic: 'Mengubah gerak.', tips: 'Tendang bola.', quiz: { q: 'Gaya tarik bumi?', opts: ['Gravitasi', 'Gesek'], ans: 0 } }] }],
-                'seni': [{ tierTag: 'SD 4 SENI', title: 'Alat Musik Tradisional Daerah', desc: 'Angklung, Kecapi, Tifa.', progress: '0/2', steps: [{ icon: '🪕', tag: 'STEP 1', title: 'Angklung', sub: 'Dari bambu.', quote: '"Budaya kita."', context: 'Seni musik.', logic: 'Digoyangkan.', tips: 'Dengar musik daerah.', quiz: { q: 'Angklung dimainkan dengan?', opts: ['Digoyangkan', 'Ditiup'], ans: 0 } }] }]
+                'seni': [{ tierTag: 'SD 4 SENI', title: 'Alat Musik Tradisional', desc: 'Angklung, Kecapi, Tifa.', progress: '0/2', steps: [{ icon: '🪕', tag: 'STEP 1', title: 'Angklung', sub: 'Dari bambu.', quote: '"Budaya kita."', context: 'Seni musik.', logic: 'Digoyangkan.', tips: 'Dengar musik daerah.', quiz: { q: 'Angklung dimainkan dengan?', opts: ['Digoyangkan', 'Ditiup'], ans: 0 } }] }]
             },
             'sd5': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 5', title: 'Teks Narasi Sejarah (5W+1H)', desc: 'Menganalisis teks sejarah proklamasi.', progress: '0/4', steps: [{ icon: '📜', tag: 'STEP 1', title: 'Siapa & Kapan', sub: 'Tokoh dan Waktu.', quote: '"Hargai sejarah."', context: 'Sejarah.', logic: '5W 1H.', tips: 'Catat tanggal penting.', quiz: { q: '"Kapan" menanyakan?', opts: ['Waktu', 'Tempat'], ans: 0 } }] },
-                    { tierTag: 'SD KELAS 5', title: 'Operasi Pecahan Beda Penyebut', desc: 'Penjumlahan 1/2 + 1/3.', progress: '0/4', steps: [{ icon: '➗', tag: 'STEP 1', title: 'Samakan KPK', sub: 'Penyebut sama.', quote: '"Samakan dasar."', context: 'Pecahan.', logic: 'Cari KPK.', tips: 'Teliti.', quiz: { q: 'KPK 2 dan 3 untuk penyebut?', opts: ['6', '5'], ans: 0 } }] }
-                ],
-                'indo': [{ tierTag: 'SD 5 INDO', title: 'Surat Undangan Resmi', desc: 'Kop surat dan nomor surat.', progress: '0/2', steps: [{ icon: '✉️', tag: 'STEP 1', title: 'Kepala Surat', sub: 'Kop Surat instansi.', quote: '"Bahasa baku."', context: 'Surat.', logic: 'Resmi.', tips: 'Perhatikan tanggal.', quiz: { q: 'Bagian atas surat resmi?', opts: ['Kop Surat', 'Tanda Tangan'], ans: 0 } }] }],
+                'roadmap': [{ tierTag: 'SD KELAS 5', title: 'Teks Narasi Sejarah (5W+1H)', desc: 'Menganalisis teks sejarah.', progress: '0/4', steps: [{ icon: '📜', tag: 'STEP 1', title: 'Siapa & Kapan', sub: 'Tokoh dan Waktu.', quote: '"Hargai sejarah."', context: 'Sejarah.', logic: '5W 1H.', tips: 'Catat tanggal.', quiz: { q: '"Kapan" menanyakan?', opts: ['Waktu', 'Tempat'], ans: 0 } }] }],
+                'indo': [{ tierTag: 'SD 5 INDO', title: 'Surat Undangan Resmi', desc: 'Kop surat.', progress: '0/2', steps: [{ icon: '✉️', tag: 'STEP 1', title: 'Kepala Surat', sub: 'Kop Surat instansi.', quote: '"Bahasa baku."', context: 'Surat.', logic: 'Resmi.', tips: 'Perhatikan tanggal.', quiz: { q: 'Bagian atas surat resmi?', opts: ['Kop Surat', 'Tanda Tangan'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 5 MATH', title: 'Volume Balok & Kubus', desc: 'V = p x l x t.', progress: '0/2', steps: [{ icon: '📦', tag: 'STEP 1', title: 'Isi Bangun Ruang', sub: 'Volume.', quote: '"Hitung isi ruang."', context: 'Kubus.', logic: 'S x S x S.', tips: 'Satuan kubik.', quiz: { q: 'Volume balok?', opts: ['p x l x t', 's x s'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 5 SAINS', title: 'Organ Pencernaan Manusia', desc: 'Lambung dan Usus.', progress: '0/2', steps: [{ icon: '🍎', tag: 'STEP 1', title: 'Lambung', sub: 'Pencernaan kimiawi.', quote: '"Makanan jadi energi."', context: 'Tubuh.', logic: 'Organ tubuh.', tips: 'Makan sehat.', quiz: { q: 'Penyerapan sari makanan di?', opts: ['Usus Halus', 'Mulut'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'SD 5 SENI', title: 'Tangga Nada Mayor & Minor', desc: 'Lagu ceria vs sedih.', progress: '0/2', steps: [{ icon: '🎼', tag: 'STEP 1', title: 'Mayor Ceria', sub: 'Maju Tak Gentar.', quote: '"Musik semangat."', context: 'Nada.', logic: 'Diatonis.', tips: 'Dengar lagu.', quiz: { q: 'Lagu mayor bersifat?', opts: ['Riang Gembira', 'Sedih'], ans: 0 } }] }]
             },
             'sd6': {
-                'roadmap': [
-                    { tierTag: 'SD KELAS 6', title: 'Teks Eksplanasi Ilmiah', desc: 'Penjelasan fenomena alam.', progress: '0/4', steps: [{ icon: '📰', tag: 'STEP 1', title: 'Sebab Akibat', sub: 'Deretan penjelas.', quote: '"Berpikir logis."', context: 'Terjadinya hujan.', logic: 'Hubungan kausal.', tips: 'Cari kata "karena".', quiz: { q: 'Teks fenomena sains?', opts: ['Eksplanasi', 'Puisi'], ans: 0 } }] },
-                    { tierTag: 'SD KELAS 6', title: 'Operasi Hitung Campuran', desc: 'Aturan KABATAKU.', progress: '0/4', steps: [{ icon: '🧮', tag: 'STEP 1', title: 'Dahulukan Perkalian', sub: '10 + 2 x 5.', quote: '"Aturan matematika."', context: 'Hitung campuran.', logic: 'Kali bagi dulu.', tips: 'Pakai kurung.', quiz: { q: '10 + (2 x 5) = ?', opts: ['20', '60'], ans: 0 } }] }
-                ],
+                'roadmap': [{ tierTag: 'SD KELAS 6', title: 'Teks Eksplanasi Ilmiah', desc: 'Penjelasan fenomena alam.', progress: '0/4', steps: [{ icon: '📰', tag: 'STEP 1', title: 'Sebab Akibat', sub: 'Deretan penjelas.', quote: '"Berpikir logis."', context: 'Terjadinya hujan.', logic: 'Hubungan kausal.', tips: 'Cari kata.', quiz: { q: 'Teks fenomena sains?', opts: ['Eksplanasi', 'Puisi'], ans: 0 } }] }],
                 'indo': [{ tierTag: 'SD 6 INDO', title: 'Pidato Persuasif', desc: 'Mengajak audiens.', progress: '0/2', steps: [{ icon: '🎤', tag: 'STEP 1', title: 'Kalimat Ajakan', sub: 'Marilah, Ayo.', quote: '"Bicara memukau."', context: 'Pidato.', logic: 'Meyakinkan.', tips: 'Berani tampil.', quiz: { q: 'Pidato ajakan disebut?', opts: ['Persuasif', 'Deskriptif'], ans: 0 } }] }],
-                'math': [{ tierTag: 'SD 6 MATH', title: 'Statistika (Rata-rata / Mean)', desc: 'Menghitung nilai rata-rata kelas.', progress: '0/2', steps: [{ icon: '📊', tag: 'STEP 1', title: 'Total dibagi Jumlah', sub: 'Mean.', quote: '"Olah data."', context: 'Data nilai.', logic: 'Rumus rata-rata.', tips: 'Jumlahkan dulu.', quiz: { q: 'Nilai rata-rata disebut?', opts: ['Mean', 'Modus'], ans: 0 } }] }],
+                'math': [{ tierTag: 'SD 6 MATH', title: 'Statistika (Rata-rata / Mean)', desc: 'Menghitung rata-rata kelas.', progress: '0/2', steps: [{ icon: '📊', tag: 'STEP 1', title: 'Total dibagi Jumlah', sub: 'Mean.', quote: '"Olah data."', context: 'Data nilai.', logic: 'Rumus rata-rata.', tips: 'Jumlahkan dulu.', quiz: { q: 'Nilai rata-rata disebut?', opts: ['Mean', 'Modus'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 6 SAINS', title: 'Tata Surya & Rotasi Bumi', desc: 'Planet dan siang malam.', progress: '0/2', steps: [{ icon: '🪐', tag: 'STEP 1', title: 'Akibat Rotasi', sub: 'Siang dan Malam.', quote: '"Bumi berputar."', context: 'Luar angkasa.', logic: 'Bumi porosnya.', tips: 'Lihat globe.', quiz: { q: 'Pergantian siang malam karena?', opts: ['Rotasi Bumi', 'Revolusi Bumi'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'SD 6 SENI', title: 'Membuat Poster Edukasi', desc: 'Poster layanan masyarakat.', progress: '0/2', steps: [{ icon: '🖼️', tag: 'STEP 1', title: 'Kalimat Singkat', sub: 'Jelas dan menarik.', quote: '"Visual kuat."', context: 'Iklan.', logic: 'Mengajak.', tips: 'Beri gambar.', quiz: { q: 'Kalimat poster harus?', opts: ['Singkat Jelas', 'Panjang Lebar'], ans: 0 } }] }]
             }
         };
 
         const omahGamesDatabasePerLevel = {
-            'tk': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🐱', title: 'Tebak Hewan & Suara', desc: 'Mengenal hewan peliharaan dari emoji & cirinya.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka melompat makan wortel', answer: 'kelinci' }, { emojis: '🐮 🌾', clue: 'Penghasil susu segar bersuara moo', answer: 'sapi' }] },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎨', title: 'Warna Buah & Alam', desc: 'Mengenal warna dasar buah dan lingkungan.', questions: [{ emojis: '🍎', clue: 'Warna buah apel segar matang', answer: 'merah' }, { emojis: '🍌', clue: 'Warna buah pisang manis', answer: 'kuning' }, { emojis: '🍃', clue: 'Warna daun pohon di hutan', answer: 'hijau' }] },
-                { id: 'g3', bg: '#e0f2fe', color: '#0369a1', icon: '🖐️', title: 'Hitung Jari 1-5', desc: 'Belajar berhitung jumlah jari tangan.', questions: [{ emojis: '🖐️', clue: 'Berapa jumlah jari dalam satu tangan manusia?', answer: '5' }, { emojis: '✌️', clue: 'Berapa jari yang diacungkan pada simbol ini?', answer: '2' }] }
-            ],
-            'sd1': [
-                { id: 'g1', bg: '#fef3c7', color: '#b45309', icon: '📖', title: 'Mengeja Suku Kata', desc: 'Latihan membaca dan merangkai kata dasar.', questions: [{ emojis: '🎒 🏫', clue: 'Tempat anak-anak belajar bersama guru di sekolah', answer: 'sekolah' }, { emojis: '👕 👖', clue: 'Pakaian yang kita pakai setiap hari', answer: 'baju' }, { emojis: '⚽ 🥅', clue: 'Bola digiring dan ditendang masuk ke...', answer: 'gawang' }] },
-                { id: 'g2', bg: '#dcfce7', color: '#16a34a', icon: '➕', title: 'Penjumlahan Ceria 1-20', desc: 'Latihan hitung tambah benda sehari-hari.', questions: [{ emojis: '🍎 🍎 ➕ 🍎', clue: '2 buah apel ditambah 1 buah apel jadi berapa?', answer: '3' }, { emojis: '⭐ 5️⃣ ➕ 5️⃣', clue: 'Lima ditambah lima hasilnya adalah', answer: '10' }, { emojis: '🍬 7️⃣ ➕ 2️⃣', clue: 'Tujuh ditambah dua permen', answer: '9' }] },
-                { id: 'g3', bg: '#fae8ff', color: '#a855f7', icon: '👁️', title: 'Panca Indra Kita', desc: 'Mengenal fungsi bagian tubuh manusia.', questions: [{ emojis: '👁️ 📺', clue: 'Alat tubuh untuk melihat pemandangan dan televisi', answer: 'mata' }, { emojis: '👃 🌸', clue: 'Alat tubuh untuk mencium bau harum bunga', answer: 'hidung' }] }
-            ],
-            'sd2': [
-                { id: 'g1', bg: '#ccfbf1', color: '#0f766e', icon: '❓', title: 'Tanya Jawab Kalimat', desc: 'Melatih penggunaan kata tanya yang tepat.', questions: [{ emojis: '👤 ❓', clue: 'Kata tanya untuk menanyakan orang atau nama disebut...', answer: 'siapa' }, { emojis: '📍 ❓', clue: 'Kata tanya untuk menanyakan tempat atau lokasi', answer: 'di mana' }, { emojis: '⏰ ❓', clue: 'Kata tanya untuk menanyakan waktu kejadian', answer: 'kapan' }] },
-                { id: 'g2', bg: '#ffedd5', color: '#c2410c', icon: '✖️', title: 'Perkalian Dasar Asyik', desc: 'Penjumlahan berulang angka dasar.', questions: [{ emojis: '2️⃣ ✖️ 3️⃣', clue: 'Berapa hasil dari 2 dikali 3 (atau 3 + 3)?', answer: '6' }, { emojis: '4️⃣ ✖️ 2️⃣', clue: 'Empat dikali dua hasilnya adalah', answer: '8' }, { emojis: '5️⃣ ✖️ 3️⃣', clue: 'Lima dikali tiga', answer: '15' }] },
-                { id: 'g3', bg: '#e0f2fe', color: '#0369a1', icon: '🧊', title: 'Wujud Benda Padat & Cair', desc: 'Memahami sifat perubahan wujud benda.', questions: [{ emojis: '🧊 ➡️ 💧', clue: 'Es batu yang dibiarkan di suhu ruang akan berubah menjadi...', answer: 'cair' }, { emojis: '🪨 🪵', clue: 'Batu dan kayu termasuk golongan wujud benda...', answer: 'padat' }] }
-            ],
-            'sd3': [
-                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '📝', title: 'Ide Pokok Paragraf', desc: 'Menemukan gagasan utama dalam bacaan.', questions: [{ emojis: '📖 🔍', clue: 'Gagasan utama atau inti pembahasan dalam sebuah paragraf disebut ide...', answer: 'pokok' }, { emojis: '📌 📋', clue: 'Kalimat yang memuat gagasan utama disebut kalimat...', answer: 'utama' }] },
-                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🍕', title: 'Pecahan Sederhana', desc: 'Mengenal pembagian nilai pecahan.', questions: [{ emojis: '🍕 ➗ 2️⃣', clue: 'Satu buah roti dipotong dua sama besar, nilai bagiannya adalah 1/...', answer: '2' }, { emojis: '1️⃣ 🧮 4️⃣', clue: 'Pecahan seperempat ditulis dengan angka 1 per...', answer: '4' }] },
-                { id: 'g3', bg: '#fef3c7', color: '#b45309', icon: '🐛', title: 'Siklus Metamorfosis', desc: 'Daur hidup hewan di alam.', questions: [{ emojis: '🐛 ➡️ 🦋', clue: 'Sebelum menjadi kupu-kupu yang indah, ulat berubah menjadi...', answer: 'kepompong' }, { emojis: '🥚 ➡️ 🐣', clue: 'Awal mula daur hidup ayam berasal dari sebutir...', answer: 'telur' }] }
-            ],
-            'sd4': [
-                { id: 'g1', bg: '#e0e7ff', color: '#3730a3', icon: '📐', title: 'Master Luas Persegi', desc: 'Menghitung keliling dan luas bangun datar.', questions: [{ emojis: '⬛ 📏', clue: 'Rumus luas persegi adalah sisi dikali...', answer: 'sisi' }, { emojis: '📐 🔲', clue: 'Besar sudut siku-siku adalah ... derajat', answer: '90' }] },
-                { id: 'g2', bg: '#ccfbf1', color: '#115e59', icon: '🧲', title: 'Gaya & Gerak Benda', desc: 'Eksplorasi fisika dasar gaya tarik dan dorong.', questions: [{ emojis: '🌍 🍎 ⬇️', clue: 'Gaya tarik pusat bumi yang membuat buah jatuh ke bawah disebut...', answer: 'gravitasi' }, { emojis: '🛞 🛣️ 🛑', clue: 'Gaya yang timbul karena gesekan dua permukaan benda disebut gaya...', answer: 'gesek' }] },
-                { id: 'g3', bg: '#fae8ff', color: '#86198f', icon: '🗣️', title: 'Majas Personifikasi', desc: 'Mengenal gaya bahasa sastra Indonesia.', questions: [{ emojis: '🍃 💃 🌬️', clue: 'Majas yang seolah-olah menghidupkan benda mati (misal: daun menari) adalah...', answer: 'personifikasi' }] }
-            ],
-            'sd5': [
-                { id: 'g1', bg: '#ffedd5', color: '#9a3412', icon: '📜', title: 'Teks Sejarah 5W+1H', desc: 'Analisis unsur penting dalam teks narasi sejarah.', questions: [{ emojis: '⏰ ❓', clue: 'Unsur tanya dalam 5W+1H yang menanyakan waktu kejadian sejarah adalah...', answer: 'kapan' }, { emojis: '📍 🏛️', clue: 'Unsur tanya yang menanyakan tempat terjadinya peristiwa adalah di...', answer: 'mana' }] },
-                { id: 'g2', bg: '#dcfce7', color: '#14532d', icon: '📦', title: 'Volume Bangun Ruang', desc: 'Menghitung isi balok dan kubus.', questions: [{ emojis: '📦 📐', clue: 'Rumus volume balok adalah panjang dikali lebar dikali...', answer: 'tinggi' }, { emojis: '🧊 🧮', clue: 'Satuan baku volume kubus adalah sentimeter...', answer: 'kubik' }] },
-                { id: 'g3', bg: '#fef3c7', color: '#78350f', icon: '🍎', title: 'Sistem Pencernaan', desc: 'Organ tubuh manusia dan fungsinya.', questions: [{ emojis: '🫀 🍎 🫁', clue: 'Tempat penyerapan sari-sari makanan terjadi di usus...', answer: 'halus' }] }
-            ],
-            'sd6': [
-                { id: 'g1', bg: '#f3e8ff', color: '#581c87', icon: '📰', title: 'Teks Eksplanasi Ilmiah', desc: 'Menganalisis fenomena alam dan sosial.', questions: [{ emojis: '🌋 ⚡ 🔬', clue: 'Teks yang berisi penjelasan tentang proses terjadinya fenomena alam disebut teks...', answer: 'eksplanasi' }, { emojis: '🌧️ ☀️ 🔄', clue: 'Hubungan sebab akibat dalam teks eksplanasi disebut hubungan...', answer: 'kausalitas' }] },
-                { id: 'g2', bg: '#e0f2fe', color: '#0c4a6e', icon: '📊', title: 'Statistika & Mean', desc: 'Mengolah data nilai dan hitung rata-rata.', questions: [{ emojis: '📊 ➕ ➗', clue: 'Nilai rata-rata dari sekelompok data dalam matematika disebut juga dengan...', answer: 'mean' }, { emojis: '📈 🔢', clue: 'Nilai data yang paling sering muncul disebut...', answer: 'modus' }] },
-                { id: 'g3', bg: '#fee2e2', color: '#7f1d1d', icon: '🪐', title: 'Tata Surya & Rotasi', desc: 'Pergerakan planet dan bumi kita.', questions: [{ emojis: '🌍 ☀️ 🌙', clue: 'Pergantian siang dan malam di bumi disebabkan oleh gerak ... bumi', answer: 'rotasi' }, { emojis: '🪐 🚀', clue: 'Planet terbesar yang berada di dalam sistem tata surya kita adalah...', answer: 'jupiter' }] }
-            ]
+            'tk': [{ id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🐱', title: 'Tebak Hewan & Suara', desc: 'Mengenal hewan peliharaan.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }] }],
+            'sd1': [{ id: 'g1', bg: '#fef3c7', color: '#b45309', icon: '📖', title: 'Mengeja Suku Kata', desc: 'Latihan membaca.', questions: [{ emojis: '🎒 🏫', clue: 'Tempat anak-anak belajar bersama guru di sekolah', answer: 'sekolah' }] }],
+            'sd2': [{ id: 'g1', bg: '#ccfbf1', color: '#0f766e', icon: '❓', title: 'Tanya Jawab Kalimat', desc: 'Kata tanya.', questions: [{ emojis: '👤 ❓', clue: 'Kata tanya untuk menanyakan orang atau nama', answer: 'siapa' }] }],
+            'sd3': [{ id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '📝', title: 'Ide Pokok Paragraf', desc: 'Gagasan utama.', questions: [{ emojis: '📖 🔍', clue: 'Gagasan utama dalam paragraf disebut ide...', answer: 'pokok' }] }],
+            'sd4': [{ id: 'g1', bg: '#e0e7ff', color: '#3730a3', icon: '📐', title: 'Master Luas Persegi', desc: 'Bangun datar.', questions: [{ emojis: '⬛ 📏', clue: 'Rumus luas persegi adalah sisi dikali...', answer: 'sisi' }] }],
+            'sd5': [{ id: 'g1', bg: '#ffedd5', color: '#9a3412', icon: '📜', title: 'Teks Sejarah 5W+1H', desc: 'Analisis teks.', questions: [{ emojis: '⏰ ❓', clue: 'Unsur tanya yang menanyakan waktu', answer: 'kapan' }] }],
+            'sd6': [{ id: 'g1', bg: '#f3e8ff', color: '#581c87', icon: '📰', title: 'Teks Eksplanasi', desc: 'Fenomena.', questions: [{ emojis: '🌋 ⚡ 🔬', clue: 'Teks penjelasan fenomena alam disebut teks...', answer: 'eksplanasi' }] }]
         };
 
         let currentActiveGameQuestions = [];
@@ -751,9 +692,7 @@
             document.getElementById('loginPage').style.display = 'flex'; 
         }
 
-        function refreshCurrentPage() {
-            switchSection(activeSection);
-        }
+        function refreshCurrentPage() { switchSection(activeSection); }
 
         function showRandomDailyWisdom() {
             const randomWisdom = DAILY_WISDOM_LIST[Math.floor(Math.random() * DAILY_WISDOM_LIST.length)];
@@ -789,7 +728,6 @@
         function switchSection(secKey) {
             activeSection = secKey;
             sessionStorage.setItem('omahles_active_section', secKey);
-
             document.getElementById('appSidebar').classList.remove('mobile-open');
 
             document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
@@ -806,8 +744,8 @@
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & IPA', sub: 'Eksplorasi alam semesta.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni Budaya', sub: 'Berkreasi tanpa batas.' },
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
-                'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif khusus ${currentStudent.classLabel}.` },
-                'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan', sub: 'Latihan kilat rumus dan pengetahuan umum.' },
+                'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif.` },
+                'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan', sub: 'Latihan kilat rumus.' },
                 'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar', sub: 'Tulis target harianmu.' }
             };
 
@@ -821,9 +759,7 @@
             const topBanner = document.getElementById('topBannerSection');
             clearInterval(lovInterval);
 
-            area.className = '';
-            void area.offsetWidth;
-            area.className = 'animate-section';
+            area.className = ''; void area.offsetWidth; area.className = 'animate-section';
 
             if (secKey === 'aitutor') {
                 topBanner.style.display = 'none';
@@ -832,61 +768,33 @@
                 renderLovSpeakAiChat(area);
             } else {
                 topBanner.style.display = 'block';
-                if (secKey === 'dashboard' || secKey === 'profile' || secKey === 'badges' || secKey === 'games' || secKey === 'flashcards' || secKey === 'diary') {
+                if (['dashboard', 'profile', 'badges', 'games', 'flashcards', 'diary'].includes(secKey)) {
                     filterBar.style.display = 'none';
                 } else {
                     filterBar.style.display = 'flex';
                 }
                 renderDashboardData();
 
-                if (secKey === 'dashboard') {
-                    renderDashboardMain(area);
-                } else if (secKey === 'profile') {
-                    renderProfile(area);
-                } else if (secKey === 'badges') {
-                    renderBadges(area);
-                } else if (secKey === 'games') {
-                    renderGameCenterGrid(area);
-                } else if (secKey === 'flashcards') {
-                    renderFlashcardsUI(area);
-                } else if (secKey === 'diary') {
-                    renderJournal(area);
-                } else {
-                    renderModules(area, secKey);
-                }
+                if (secKey === 'dashboard') renderDashboardMain(area);
+                else if (secKey === 'profile') renderProfile(area);
+                else if (secKey === 'badges') renderBadges(area);
+                else if (secKey === 'games') renderGameCenterGrid(area);
+                else if (secKey === 'flashcards') renderFlashcardsUI(area);
+                else if (secKey === 'diary') renderJournal(area);
+                else renderModules(area, secKey);
             }
         }
 
         function renderDashboardMain(container) {
             container.innerHTML = `
                 <div class="dashboard-grid">
-                    <div class="dash-card">
-                        <div class="dash-icon-box">⭐</div>
-                        <div>
-                            <div class="dash-info-title">Total Stars</div>
-                            <div class="dash-info-val">${userStars}</div>
-                        </div>
-                    </div>
-                    <div class="dash-card">
-                        <div class="dash-icon-box">🎯</div>
-                        <div>
-                            <div class="dash-info-title">Kuis Selesai</div>
-                            <div class="dash-info-val">${userCompletedQuizzes}</div>
-                        </div>
-                    </div>
-                    <div class="dash-card">
-                        <div class="dash-icon-box">🔥</div>
-                        <div>
-                            <div class="dash-info-title">Streak Belajar</div>
-                            <div class="dash-info-val">3 Hari</div>
-                        </div>
-                    </div>
+                    <div class="dash-card"><div class="dash-icon-box">⭐</div><div><div class="dash-info-title">Total Stars</div><div class="dash-info-val">${userStars}</div></div></div>
+                    <div class="dash-card"><div class="dash-icon-box">🎯</div><div><div class="dash-info-title">Kuis Selesai</div><div class="dash-info-val">${userCompletedQuizzes}</div></div></div>
+                    <div class="dash-card"><div class="dash-icon-box">🔥</div><div><div class="dash-info-title">Streak Belajar</div><div class="dash-info-val">3 Hari</div></div></div>
                 </div>
                 <div class="insight-card-box">
                     <div class="insight-heading">💡 Ringkasan Sistem Omah Les Privat</div>
-                    <div class="insight-body-text">
-                        "Halo ${currentStudent.name}, Anda masuk menggunakan akun dengan hak akses penuh. Anda dapat meninjau seluruh materi dari jenjang TK hingga SD Kelas 6 melalui menu <strong>Learning Roadmap</strong> atau menguji coba fitur interaktif di <strong>Omah Games</strong> dan <strong>Flashcards</strong>."
-                    </div>
+                    <div class="insight-body-text">"Halo ${currentStudent.name}, Anda masuk dengan hak akses penuh. Gunakan Ruang AI Tutor dengan memasukkan API Key Gemini Anda di pojok kanan atas."</div>
                 </div>
             `;
         }
@@ -896,21 +804,15 @@
             grid.className = 'modules-grid';
             const pkg = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
             const list = pkg[secKey] || pkg['roadmap'];
-
             grid.innerHTML = list.map((m, idx) => `
                 <div class="module-card">
-                    <div>
-                        <div class="card-top"><span class="tier-badge">${m.tierTag}</span><span class="progress-count">${m.progress}</span></div>
-                        <div class="card-body"><h3>${m.title}</h3><p>${m.desc}</p></div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="icons-group">📖 🎧 📝</div>
-                        <button class="btn-open-module" onclick="playClickSound(); openSequenceModal('${secKey}', ${idx})">OPEN &gt;</button>
-                    </div>
+                    <div><div class="card-top"><span class="tier-badge">${m.tierTag}</span><span class="progress-count">${m.progress}</span></div>
+                    <div class="card-body"><h3>${m.title}</h3><p>${m.desc}</p></div></div>
+                    <div class="card-footer"><div class="icons-group">📖 🎧 📝</div>
+                    <button class="btn-open-module" onclick="playClickSound(); openSequenceModal('${secKey}', ${idx})">OPEN &gt;</button></div>
                 </div>
             `).join('');
-            container.innerHTML = '';
-            container.appendChild(grid);
+            container.innerHTML = ''; container.appendChild(grid);
         }
 
         function renderProfile(container) {
@@ -921,32 +823,17 @@
                         <div class="profile-top-row">
                             <div class="profile-user-left">
                                 <div class="profile-big-avatar">🎓</div>
-                                <div>
-                                    <div class="profile-user-name">${currentStudent.name}</div>
-                                    <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLabel}</div>
-                                </div>
+                                <div><div class="profile-user-name">${currentStudent.name}</div>
+                                <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLabel}</div></div>
                             </div>
-                            <button class="btn-open-module" onclick="window.print()">🖨️ Cetak / Unduh Laporan</button>
+                            <button class="btn-open-module" onclick="window.print()">🖨️ Cetak Laporan</button>
                         </div>
                         <div class="profile-stats-card">
                             <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem;">
-                               <span>⚡ ${xpTotal} XP Total</span>
-                                <span style="color:var(--brand-amber);">Total Kuis Selesai: ${userCompletedQuizzes}</span>
+                                <span>⚡ ${xpTotal} XP Total</span><span style="color:var(--brand-amber);">Kuis Selesai: ${userCompletedQuizzes}</span>
                             </div>
-                            <div class="profile-xp-bar-bg">
-                                <div class="profile-xp-bar-fill" style="width: ${Math.min(100, (xpTotal/200)*100)}%;"></div>
-                            </div>
-                            <div style="font-size:0.75rem; color:var(--text-sub); font-weight:700; margin-top:4px;">
-                                Email Akun Terdaftar: ${currentStudent.parentEmail}
-                            </div>
+                            <div class="profile-xp-bar-bg"><div class="profile-xp-bar-fill" style="width: ${Math.min(100, (xpTotal/200)*100)}%;"></div></div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="insight-card-box">
-                    <div class="insight-heading">💡 AI Insight • Personalized for ${currentStudent.name}</div>
-                    <div class="insight-body-text">
-                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu sudah menyelesaikan ${userCompletedQuizzes} kuis latihan. Terus pertahankan semangat belajar dan mengajarmu!"
                     </div>
                 </div>
             `;
@@ -954,36 +841,19 @@
 
         function renderBadges(container) {
             const isUnlocked1 = userCompletedQuizzes >= 1;
-            const isUnlocked2 = userCompletedQuizzes >= 3;
-            const isUnlocked3 = userStars >= 150;
-
             container.innerHTML = `
                 <div class="badges-grid">
-                    <div class="badge-item-card ${isUnlocked1 ? 'unlocked' : ''}" ${isUnlocked1 ? `onclick="playClickSound(); openCertModal('Langkah Pertama', 'Menyelesaikan modul dan kuis pertama di portal.')"` : ''}>
+                    <div class="badge-item-card ${isUnlocked1 ? 'unlocked' : ''}" ${isUnlocked1 ? `onclick="openCertModal('Langkah Pertama', 'Menyelesaikan modul pertama.')"` : ''}>
                         <div class="badge-icon-wrap">🌱</div>
                         <div class="badge-title-text">Langkah Pertama</div>
-                        <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600;">Selesaikan minimal 1 kuis latihan modul.</div>
-                        <div class="badge-status-tag ${isUnlocked1 ? 'unlocked' : 'locked'}">${isUnlocked1 ? 'Unlocked ✨ (Klik)' : 'Locked 🔒'}</div>
-                    </div>
-                    <div class="badge-item-card ${isUnlocked2 ? 'unlocked' : ''}" ${isUnlocked2 ? `onclick="playClickSound(); openCertModal('Bintang Kelas', 'Menyelesaikan 3 kuis latihan dengan hasil yang sangat memuaskan.')"` : ''}>
-                        <div class="badge-icon-wrap">⭐</div>
-                        <div class="badge-title-text">Bintang Kelas</div>
-                        <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600;">Selesaikan minimal 3 kuis dengan benar.</div>
-                        <div class="badge-status-tag ${isUnlocked2 ? 'unlocked' : 'locked'}">${isUnlocked2 ? 'Unlocked ✨ (Klik)' : 'Locked 🔒'}</div>
-                    </div>
-                    <div class="badge-item-card ${isUnlocked3 ? 'unlocked' : ''}" ${isUnlocked3 ? `onclick="playClickSound(); openCertModal('Master Explorer', 'Mengumpulkan 150+ Stars dari berbagai aktivitas pembelajaran interaktif.')"` : ''}>
-                        <div class="badge-icon-wrap">👑</div>
-                        <div class="badge-title-text">Master Explorer</div>
-                        <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600;">Kumpulkan total 150+ Stars dari aktivitas belajar.</div>
-                        <div class="badge-status-tag ${isUnlocked3 ? 'unlocked' : 'locked'}">${isUnlocked3 ? 'Unlocked ✨ (Klik)' : 'Locked 🔒'}</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub);">Selesaikan 1 kuis latihan.</div>
+                        <div class="badge-status-tag ${isUnlocked1 ? 'unlocked' : 'locked'}">${isUnlocked1 ? 'Unlocked ✨' : 'Locked 🔒'}</div>
                     </div>
                 </div>
             `;
         }
-
-        function openCertModal(badgeTitle, badgeDesc) {
+        function openCertModal(t, d) {
             document.getElementById('certStudentName').innerText = currentStudent.name;
-            document.getElementById('certDescText').innerText = `Atas pencapaian badge "${badgeTitle}": ${badgeDesc}`;
             document.getElementById('certModalOverlay').classList.add('active');
         }
         function closeCertModal() { document.getElementById('certModalOverlay').classList.remove('active'); }
@@ -993,194 +863,122 @@
             isFlashcardFlipped = false;
             container.innerHTML = `
                 <div class="flashcard-wrapper animate-section">
-                    <div style="font-weight:800; color:var(--text-sub); font-size:0.9rem;">KARTU HAFALAN ${currentFlashcardIdx + 1} DARI ${flashcardsDatabase.length}</div>
+                    <div style="font-weight:800; color:var(--text-sub);">KARTU HAFALAN ${currentFlashcardIdx + 1} / ${flashcardsDatabase.length}</div>
                     <div class="flashcard-box" onclick="flipFlashcard()">
                         <div class="flashcard-instruction" id="fcInstruction">Klik kartu untuk melihat jawaban</div>
                         <div class="flashcard-content" id="fcText">${fc.q}</div>
                     </div>
                     <div class="flashcard-controls">
-                        <button class="btn-flashcard" style="background:#f3f4f6; color:var(--text-main);" onclick="prevFlashcard()">← Sebelumnya</button>
+                        <button class="btn-flashcard" style="background:#f3f4f6;" onclick="prevFlashcard()">← Sebelumnya</button>
                         <button class="btn-flashcard" style="background:var(--brand-amber); color:#fff;" onclick="nextFlashcard()">Selanjutnya →</button>
                     </div>
                 </div>
             `;
         }
-
         function flipFlashcard() {
             playClickSound();
             const fc = flashcardsDatabase[currentFlashcardIdx];
-            const textEl = document.getElementById('fcText');
-            const insEl = document.getElementById('fcInstruction');
             isFlashcardFlipped = !isFlashcardFlipped;
-            if (isFlashcardFlipped) {
-                insEl.innerText = "JAWABAN / PENJELASAN:";
-                textEl.innerText = fc.a;
-                textEl.style.color = '#16a34a';
-            } else {
-                insEl.innerText = "Klik kartu untuk melihat jawaban";
-                textEl.innerText = fc.q;
-                textEl.style.color = 'var(--text-main)';
-            }
+            document.getElementById('fcInstruction').innerText = isFlashcardFlipped ? "JAWABAN:" : "Klik kartu untuk melihat jawaban";
+            document.getElementById('fcText').innerText = isFlashcardFlipped ? fc.a : fc.q;
         }
-
-        function nextFlashcard() {
-            playClickSound();
-            currentFlashcardIdx = (currentFlashcardIdx + 1) % flashcardsDatabase.length;
-            renderFlashcardsUI(document.getElementById('dynamicMainContentArea'));
-        }
-        function prevFlashcard() {
-            playClickSound();
-            currentFlashcardIdx = (currentFlashcardIdx - 1 + flashcardsDatabase.length) % flashcardsDatabase.length;
-            renderFlashcardsUI(document.getElementById('dynamicMainContentArea'));
-        }
+        function nextFlashcard() { currentFlashcardIdx = (currentFlashcardIdx + 1) % flashcardsDatabase.length; renderFlashcardsUI(document.getElementById('dynamicMainContentArea')); }
+        function prevFlashcard() { currentFlashcardIdx = (currentFlashcardIdx - 1 + flashcardsDatabase.length) % flashcardsDatabase.length; renderFlashcardsUI(document.getElementById('dynamicMainContentArea')); }
 
         function renderGameCenterGrid(container) {
             let catKey = currentStudent.categoryKey;
             const gamesList = omahGamesDatabasePerLevel[catKey] || omahGamesDatabasePerLevel['sd3'];
-
             container.innerHTML = `
-                <div class="game-level-tag-box">🎮 OMAH GAMES KELAS: <strong>${currentStudent.classLabel.toUpperCase()}</strong></div>
+                <div class="game-level-tag-box">🎮 OMAH GAMES: <strong>${currentStudent.classLabel.toUpperCase()}</strong></div>
                 <div class="game-card-grid">
                     ${gamesList.map((g, idx) => `
-                        <div class="game-item-card" onclick="playClickSound(); startOmahGame('${catKey}', ${idx})">
-                            <div>
-                                <div class="game-icon-box" style="background:${g.bg}; color:${g.color};">${g.icon}</div>
-                                <div class="game-card-title">${g.title}</div>
-                                <div class="game-card-desc">${g.desc}</div>
-                            </div>
-                            <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:800; color:var(--text-sub);"><span>REWARD: ⭐ +20</span><span>Play 🎮</span></div>
+                        <div class="game-item-card" onclick="startOmahGame('${catKey}', ${idx})">
+                            <div><div class="game-icon-box" style="background:${g.bg}; color:${g.color};">${g.icon}</div>
+                            <div class="game-card-title">${g.title}</div><div class="game-card-desc">${g.desc}</div></div>
+                            <div style="font-size:0.75font; font-weight:800; color:var(--text-sub);">REWARD: ⭐ +20</div>
                         </div>
                     `).join('')}
                 </div>
             `;
         }
 
-        function startOmahGame(catKey, gameIdx) {
-            const gameObj = omahGamesDatabasePerLevel[catKey][gameIdx];
-            currentActiveGameQuestions = gameObj.questions;
-            currentLovQuestionIdx = 0;
-            lovScore = 0;
-            lovLives = 3;
+        function startOmahGame(catKey, idx) {
+            currentActiveGameQuestions = omahGamesDatabasePerLevel[catKey][idx].questions;
+            currentLovQuestionIdx = 0; lovScore = 0; lovLives = 3;
             renderOmahGameUI(document.getElementById('dynamicMainContentArea'));
         }
 
         function renderOmahGameUI(container) {
             if (lovLives <= 0 || currentLovQuestionIdx >= currentActiveGameQuestions.length) {
-                alert(`Permainan Selesai! Score akhir: ${lovScore}`);
-                return switchSection('games');
+                alert(`Permainan Selesai! Score: ${lovScore}`); return switchSection('games');
             }
-            const qObj = currentActiveGameQuestions[currentLovQuestionIdx];
-            clearInterval(lovInterval);
-            lovTimer = 31;
-
-            let heartsStr = '';
-            for(let i=0; i<lovLives; i++) heartsStr += '❤️';
-
+            const q = currentActiveGameQuestions[currentLovQuestionIdx];
             container.innerHTML = `
                 <div class="lov-game-wrapper animate-section">
                     <div class="lov-top-bar">
-                        <div class="lov-level-dots">
-                            <div class="lov-btn-close" onclick="playClickSound(); switchSection('games')">✕</div>
-                            <span>TANTANGAN ${currentLovQuestionIdx + 1}</span>
-                        </div>
-                        <div class="lov-score-pill">
-                            <div class="lov-score-label">SCORE</div>
-                            <div class="lov-score-value">${lovScore}</div>
-                        </div>
-                        <div class="lov-timer-lives">
-                            <div class="lov-timer-badge" id="lovTimerVal">31</div>
-                            <div class="lov-lives-hearts">${heartsStr}</div>
-                        </div>
+                        <div class="lov-btn-close" onclick="switchSection('games')">✕</div>
+                        <div class="lov-score-pill">SCORE: ${lovScore}</div>
+                        <div>❤️❤️❤️</div>
                     </div>
-                    <div class="lov-stage-card"><div class="lov-emoji-display">${qObj.emojis}</div></div>
-                    <div class="lov-clue-box">💡 ${qObj.clue}</div>
+                    <div class="lov-stage-card"><div class="lov-emoji-display">${q.emojis}</div></div>
+                    <div class="lov-clue-box">💡 ${q.clue}</div>
                     <div class="lov-input-container">
-                        <input type="text" id="lovAnswerInput" class="lov-text-input" placeholder="Ketik jawaban..." onkeypress="if(event.key==='Enter') submitOmahGameAnswer('${qObj.answer}')">
-                        <button class="lov-submit-btn" onclick="submitOmahGameAnswer('${qObj.answer}')">Kirim Jawaban</button>
+                        <input type="text" id="lovAnswerInput" class="lov-text-input" placeholder="Ketik jawaban..." onkeypress="if(event.key==='Enter') submitOmahGameAnswer('${q.answer}')">
+                        <button class="lov-submit-btn" onclick="submitOmahGameAnswer('${q.answer}')">Kirim</button>
                     </div>
                 </div>
             `;
             document.getElementById('lovAnswerInput').focus();
         }
 
-        function submitOmahGameAnswer(correctAns) {
-            const userAns = document.getElementById('lovAnswerInput').value.trim().toLowerCase();
-            if (!userAns) return;
-            if (userAns === correctAns.toLowerCase()) {
-                playSuccessSound();
-                lovScore += 100;
-                userStars += 20;
-                userCompletedQuizzes++;
+        function submitOmahGameAnswer(ans) {
+            const val = document.getElementById('lovAnswerInput').value.trim().toLowerCase();
+            if(val === ans.toLowerCase()) {
+                playSuccessSound(); lovScore += 100; userStars += 20; userCompletedQuizzes++;
                 localStorage.setItem('omahles_user_stars', userStars);
                 localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
-                document.getElementById('userStarDisplay').innerText = userStars;
-                currentLovQuestionIdx++;
-                alert('🎉 Hebat! Jawaban Benar! ⭐ +20 Stars');
-            } else {
-                playErrorSound();
-                lovLives--;
-                alert(`❌ Kurang tepat! Jawaban benar: "${correctAns.toUpperCase()}".`);
-            }
+                currentLovQuestionIdx++; alert('🎉 Benar! ⭐ +20 Stars');
+            } else { playErrorSound(); lovLives--; alert(`❌ Salah! Jawaban: ${ans}`); }
             renderOmahGameUI(document.getElementById('dynamicMainContentArea'));
         }
 
-        function openSequenceModal(secKey, index) {
+        function openSequenceModal(secKey, idx) {
             const pkg = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
-            const list = pkg[secKey] || pkg['roadmap'];
-            currentActiveModule = list[index];
-
+            currentActiveModule = (pkg[secKey] || pkg['roadmap'])[idx];
             document.getElementById('seqHeaderTag').innerText = currentActiveModule.tierTag;
             document.getElementById('seqHeaderTitle').innerText = currentActiveModule.title;
-            document.getElementById('seqHeaderSub').innerText = currentActiveModule.desc;
-
-            const c = document.getElementById('sequenceStepsContainer');
-            c.innerHTML = currentActiveModule.steps.map((st, sIdx) => `
-                <div class="sequence-step-card" onclick="playClickSound(); openInsightModal(${sIdx})">
-                    <div class="sequence-step-left">
-                        <div class="sequence-icon-box">${st.icon}</div>
-                        <div>
-                            <div class="sequence-step-title">${st.tag} • ${st.title}</div>
-                            <div class="sequence-step-sub">${st.sub}</div>
-                        </div>
-                    </div>
+            document.getElementById('sequenceStepsContainer').innerHTML = currentActiveModule.steps.map((st, s) => `
+                <div class="sequence-step-card" onclick="openInsightModal(${s})">
+                    <div class="sequence-step-left"><div class="sequence-icon-box">${st.icon}</div>
+                    <div><div class="sequence-step-title">${st.title}</div><div class="sequence-step-sub">${st.sub}</div></div></div>
                     <div class="sequence-play-btn">▶</div>
                 </div>
             `).join('');
             document.getElementById('sequenceModalOverlay').classList.add('active');
         }
-
         function closeSequenceModal() { document.getElementById('sequenceModalOverlay').classList.remove('active'); }
 
-        function openInsightModal(sIdx) {
-            const st = currentActiveModule.steps[sIdx];
-            document.getElementById('insTag').innerText = `${currentActiveModule.tierTag} • ${st.tag}`;
+        function openInsightModal(s) {
+            const st = currentActiveModule.steps[s];
+            document.getElementById('insTag').innerText = st.tag;
             document.getElementById('insTitle').innerText = st.title;
             document.getElementById('insQuote').innerText = st.quote;
             document.getElementById('insContext').innerText = st.context;
             document.getElementById('insLogic').innerText = st.logic;
-            
             document.getElementById('quizQuestionText').innerText = `❓ Kuis: ${st.quiz.q}`;
-            document.getElementById('quizOptionsContainer').innerHTML = st.quiz.opts.map((opt, i) => `<button class="quiz-btn" onclick="playClickSound(); checkQuiz(${i}, ${st.quiz.ans})">${opt}</button>`).join('');
+            document.getElementById('quizOptionsContainer').innerHTML = st.quiz.opts.map((o, i) => `<button class="quiz-btn" onclick="checkQuiz(${i}, ${st.quiz.ans})">${o}</button>`).join('');
             document.getElementById('quizFeedbackText').innerText = '';
             document.getElementById('insightModalOverlay').classList.add('active');
         }
-
-        function checkQuiz(sIdx, cIdx) {
-            const f = document.getElementById('quizFeedbackText');
-            if (sIdx === cIdx) {
-                playSuccessSound();
-                f.style.color = '#16a34a'; f.innerText = '🎉 Benar sekali! ⭐ +15 Stars & XP Bertambah!';
-                userStars += 15;
-                userCompletedQuizzes++;
+        function checkQuiz(s, c) {
+            if(s === c) {
+                playSuccessSound(); document.getElementById('quizFeedbackText').style.color = '#16a34a';
+                document.getElementById('quizFeedbackText').innerText = '🎉 Benar! ⭐ +15 Stars';
+                userStars += 15; userCompletedQuizzes++;
                 localStorage.setItem('omahles_user_stars', userStars);
                 localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
-                document.getElementById('userStarDisplay').innerText = userStars;
-            } else {
-                playErrorSound();
-                f.style.color = '#dc2626'; f.innerText = '❌ Belum tepat, coba lagi!';
-            }
+            } else { playErrorSound(); document.getElementById('quizFeedbackText').style.color = '#dc2626'; document.getElementById('quizFeedbackText').innerText = '❌ Salah!'; }
         }
-
         function closeInsightModal() { document.getElementById('insightModalOverlay').classList.remove('active'); }
 
         function renderJournal(container) {
@@ -1188,29 +986,26 @@
             container.innerHTML = `
                 <div class="journal-form-box">
                     <h3>➕ Catatan Jurnal</h3>
-                    <input type="text" id="inputJournalText" class="journal-input" placeholder="Tulis rencana belajarmu...">
-                    <button class="btn-add-journal" onclick="playClickSound(); addJournal()">Simpan 💾</button>
+                    <input type="text" id="inputJournalText" class="journal-input" placeholder="Tulis rencana...">
+                    <button class="btn-add-journal" onclick="addJournal()">Simpan 💾</button>
                 </div>
-                ${j.map((x, i) => `<div class="journal-item-card"><div><strong>${x.text}</strong><br><small>${x.date}</small></div><button onclick="playClickSound(); delJournal(${i})" style="background:#fee2e2; color:#b91c1c; border:none; padding:6px 12px; border-radius:8px; cursor:pointer;">Hapus</button></div>`).join('')}
+                ${j.map((x, i) => `<div class="journal-item-card"><div><strong>${x.text}</strong><br><small>${x.date}</small></div><button onclick="delJournal(${i})" style="background:#fee2e2; color:#b91c1c; border:none; padding:6px 12px; border-radius:8px;">Hapus</button></div>`).join('')}
             `;
         }
-
         function addJournal() {
-            const t = document.getElementById('inputJournalText').value.trim();
-            if(!t) return;
+            const t = document.getElementById('inputJournalText').value.trim(); if(!t) return;
             let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [];
             j.unshift({ text: t, date: new Date().toISOString().split('T')[0] });
-            localStorage.setItem('omahles_student_journals', JSON.stringify(j));
-            renderJournal(document.getElementById('dynamicMainContentArea'));
+            localStorage.setItem('omahles_student_journals', JSON.stringify(j)); renderJournal(document.getElementById('dynamicMainContentArea'));
         }
-        function delJournal(idx) {
-            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [];
-            j.splice(idx, 1);
-            localStorage.setItem('omahles_student_journals', JSON.stringify(j));
-            renderJournal(document.getElementById('dynamicMainContentArea'));
+        function delJournal(i) {
+            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || []; j.splice(i, 1);
+            localStorage.setItem('omahles_student_journals', JSON.stringify(j)); renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
+        // --- RUANG AI TUTOR DENGAN PENGATURAN API KEY MANDIRI (100% AMAN DI GITHUB) ---
         function renderLovSpeakAiChat(container) {
+            const savedKey = localStorage.getItem('omahles_user_gemini_key') || '';
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             container.innerHTML = `
                 <div class="lovespeak-chat-container animate-section">
@@ -1219,52 +1014,63 @@
                             <div class="lovespeak-avatar">👑</div>
                             <div>
                                 <div class="lovespeak-name">Kak Omah AI Tutor</div>
-                                <div class="lovespeak-status">● ONLINE, ALWAYS</div>
+                                <div class="lovespeak-status">● ONLINE, AI CONNECTED</div>
                             </div>
                         </div>
-                        <div class="lovespeak-badge-mode">Omah Les AI Assistant</div>
+                        <div class="api-key-config-box">
+                            <span style="font-size:0.72rem; font-weight:800; color:var(--brand-brown);">🔑 API Key:</span>
+                            <input type="password" id="inputUserApiKey" class="api-key-input" placeholder="Paste AIzaSy..." value="${savedKey}">
+                            <button class="api-key-save-btn" onclick="saveUserApiKey()">Simpan</button>
+                        </div>
                     </div>
 
                     <div class="lovespeak-messages-area" id="lovChatMessagesBox">
                         <div class="lovespeak-bubble-row ai">
                             <div class="lovespeak-bubble">
-                                Assalamu'alaikum ${currentStudent.name}! I'm Kak Omah. Don't be afraid to make mistakes—that's how we grow. Shall we talk about your day or study material?
+                                Assalamu'alaikum ${currentStudent.name}! Masukkan Gemini API Key kamu di kolom kanan atas (jika belum), lalu tanyakan PR atau materi sekolah apa pun ke Kak Omah ya! ✨
                             </div>
                             <div class="lovespeak-bubble-footer">
-                                <button class="lovespeak-btn-listen" onclick="playClickSound(); alert('🔊 Memutar audio penjelasan Kak Omah...')">🔊 LISTEN</button>
+                                <button class="lovespeak-btn-listen" onclick="alert('🔊 Memutar audio...')">🔊 LISTEN</button>
                                 <span>${timeStr}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="lovespeak-suggestions-bar">
-                        <div class="lovespeak-suggestion-chip" onclick="playClickSound(); quickSendPrompt('Tolong jelaskan bagaimana proses terbentuknya fosil!')">🦖 Jelaskan Fosil</div>
-                        <div class="lovespeak-suggestion-chip" onclick="playClickSound(); quickSendPrompt('Bagaimana cara menghitung pecahan sederhana?')">🍕 Pecahan Sederhana</div>
-                        <div class="lovespeak-suggestion-chip" onclick="playClickSound(); quickSendPrompt('Ceritakan bagaimana proses terjadinya hujan.')">🌧️ Terjadinya Hujan</div>
-                        <div class="lovespeak-suggestion-chip" onclick="playClickSound(); quickSendPrompt('Berikan tips belajar yang menyenangkan.')">✨ Tips Belajar</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana cara bumi berevolusi?')">🌍 Revolusi Bumi</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Tolong jelaskan proses terbentuknya fosil!')">🦖 Jelaskan Fosil</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana cara menghitung perkalian matematika?')">🧮 Perkalian Matematika</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana proses terjadinya hujan?')">🌧️ Terjadinya Hujan</div>
                     </div>
 
                     <div class="lovespeak-input-bar">
-                        <button class="lovespeak-input-icon-btn" title="Lampirkan File">📎</button>
-                        <button class="lovespeak-input-icon-btn" title="Voice Input">🎙️</button>
-                        <input type="text" id="lovUserChatInput" class="lovespeak-text-input" placeholder="Ketik pesan..." onkeypress="if(event.key==='Enter') sendLovChatMessage()">
-                        <button class="lovespeak-send-btn" onclick="playClickSound(); sendLovChatMessage()">➤</button>
+                        <button class="lovespeak-input-icon-btn">📎</button>
+                        <input type="text" id="lovUserChatInput" class="lovespeak-text-input" placeholder="Tanyakan PR atau materi sekolah..." onkeypress="if(event.key==='Enter') sendGeminiApiChat()">
+                        <button class="lovespeak-send-btn" onclick="sendGeminiApiChat()">➤</button>
                     </div>
                 </div>
             `;
             document.getElementById('lovUserChatInput').focus();
         }
 
-        function quickSendPrompt(txt) {
-            document.getElementById('lovUserChatInput').value = txt;
-            sendLovChatMessage();
+        function saveUserApiKey() {
+            const key = document.getElementById('inputUserApiKey').value.trim();
+            if(!key) { alert('Masukkan API Key yang valid!'); return; }
+            localStorage.setItem('omahles_user_gemini_key', key);
+            alert('✅ API Key berhasil disimpan di browser Anda! Sekarang AI siap digunakan.');
         }
 
-        // FUNGSI UTAMA AI DENGAN GOOGLE GEMINI API YANG AKTIF
-        async function sendLovChatMessage() {
+        async function sendGeminiApiChat() {
             const input = document.getElementById('lovUserChatInput');
             const msg = input.value.trim();
             if(!msg) return;
+
+            const apiKey = localStorage.getItem('omahles_user_gemini_key');
+            if(!apiKey) {
+                alert('⚠️ Masukkan terlebih dahulu Google Gemini API Key Anda di kolom kanan atas sebelum bertanya!');
+                return;
+            }
+
             const box = document.getElementById('lovChatMessagesBox');
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
@@ -1279,44 +1085,51 @@
             const loadingId = 'load-' + Date.now();
             box.innerHTML += `
                 <div class="lovespeak-bubble-row ai" id="${loadingId}">
-                    <div class="lovespeak-bubble">⏳ Kak Omah sedang berpikir dan mengetik jawaban...</div>
+                    <div class="lovespeak-bubble">⏳ Kak Omah sedang berpikir...</div>
                 </div>
             `;
             box.scrollTop = box.scrollHeight;
 
-            // Masukkan API Key Kakak di bawah ini (ganti tulisan di dalam tanda kutip):
-            const GEMINI_API_KEY = "AQ.Ab8RN6IYyY9WUpPm8qp9H1MBJMqK2JgqFyvJba-CxIP29L2sRg"; 
-
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                // MENGGUNAKAN GEMINI API ASLI SECARA AMAN DARI BROWSER PENGGUNA
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: [{
-                            parts: [{ text: `Kamu adalah Kak Omah, seorang AI tutor yang ramah untuk anak-anak sekolah dasar (SD). Jawablah pertanyaan berikut dengan bahasa Indonesia yang mendidik, hangat, dan mudah dipahami: ${msg}` }]
+                            parts: [{
+                                text: `Kamu adalah Kak Omah, seorang tutor privat ramah dan berpengalaman mengajar anak sekolah dasar (SD). Jawablah pertanyaan siswa berikut dengan bahasa yang suportif, edukatif, mudah dipahami anak-anak, dan sertakan emoji yang menarik: "${msg}"`
+                            }]
                         }]
                     })
                 });
 
                 const data = await response.json();
-                let reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf, Kak Omah sedang ada kendala koneksi sebentar. Coba tanyakan lagi ya! ✨";
-                
-                reply = reply.replace(/\n/g, '<br>');
-
-                const timeReply = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                if(data.candidates && data.candidates[0].content.parts[0].text) {
+                    let aiReply = data.candidates[0].content.parts[0].text;
+                    aiReply = aiReply.replace(/\n/g, '<br>');
+                    
+                    document.getElementById(loadingId).innerHTML = `
+                        <div class="lovespeak-bubble">${aiReply}</div>
+                        <div class="lovespeak-bubble-footer">
+                            <button class="lovespeak-btn-listen" onclick="alert('🔊 Memutar audio...')">🔊 LISTEN</button>
+                            <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Respon API tidak valid.');
+                }
+            } catch (err) {
                 document.getElementById(loadingId).innerHTML = `
-                    <div class="lovespeak-bubble">${reply}</div>
-                    <div class="lovespeak-bubble-footer">
-                        <button class="lovespeak-btn-listen" onclick="playClickSound(); alert('🔊 Memutar audio penjelasan Kak Omah...')">🔊 LISTEN</button>
-                        <span>${timeReply}</span>
-                    </div>
-                `;
-            } catch (error) {
-                document.getElementById(loadingId).innerHTML = `
-                    <div class="lovespeak-bubble">Waduh, koneksi internet atau API key bermasalah nih. Coba periksa kembali API Key Kakak ya! 🛠️</div>
+                    <div class="lovespeak-bubble" style="color:#dc2626;">❌ Gagal terhubung ke Gemini AI. Periksa kembali apakah API Key yang Anda masukkan sudah benar dan aktif.</div>
                 `;
             }
             box.scrollTop = box.scrollHeight;
+        }
+
+        function quickSendPrompt(txt) {
+            document.getElementById('lovUserChatInput').value = txt;
+            sendGeminiApiChat();
         }
     </script>
 </body>
