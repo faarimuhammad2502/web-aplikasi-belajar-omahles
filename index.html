@@ -1060,7 +1060,7 @@
             alert('✅ API Key berhasil disimpan di browser Anda! Sekarang AI siap digunakan.');
         }
 
-        async function sendGeminiApiChat() {
+async function sendGeminiApiChat() {
             const input = document.getElementById('lovUserChatInput');
             const msg = input.value.trim();
             if(!msg) return;
@@ -1085,27 +1085,34 @@
             const loadingId = 'load-' + Date.now();
             box.innerHTML += `
                 <div class="lovespeak-bubble-row ai" id="${loadingId}">
-                    <div class="lovespeak-bubble">⏳ Kak Omah sedang berpikir...</div>
+                    <div class="lovespeak-bubble">⏳ Kak Omah sedang menghubungi Gemini AI...</div>
                 </div>
             `;
             box.scrollTop = box.scrollHeight;
 
             try {
-                // MENGGUNAKAN GEMINI API ASLI SECARA AMAN DARI BROWSER PENGGUNA
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                // Endpoint resmi Google Generative Language API untuk Gemini 1.5 Flash
+                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiEndpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: [{
                             parts: [{
-                                text: `Kamu adalah Kak Omah, seorang tutor privat ramah dan berpengalaman mengajar anak sekolah dasar (SD). Jawablah pertanyaan siswa berikut dengan bahasa yang suportif, edukatif, mudah dipahami anak-anak, dan sertakan emoji yang menarik: "${msg}"`
+                                text: `Anda adalah Kak Omah, seorang tutor privat ramah dan berpengalaman untuk anak sekolah dasar (SD). Jawablah pertanyaan siswa berikut dengan bahasa yang suportif, edukatif, dan ramah anak: "${msg}"`
                             }]
                         }]
                     })
                 });
 
                 const data = await response.json();
-                if(data.candidates && data.candidates[0].content.parts[0].text) {
+                
+                if (data.error) {
+                    throw new Error(data.error.message || 'API Error');
+                }
+
+                if(data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
                     let aiReply = data.candidates[0].content.parts[0].text;
                     aiReply = aiReply.replace(/\n/g, '<br>');
                     
@@ -1117,11 +1124,12 @@
                         </div>
                     `;
                 } else {
-                    throw new Error('Respon API tidak valid.');
+                    throw new Error('Struktur respon API tidak dikenali.');
                 }
             } catch (err) {
+                console.error(err);
                 document.getElementById(loadingId).innerHTML = `
-                    <div class="lovespeak-bubble" style="color:#dc2626;">❌ Gagal terhubung ke Gemini AI. Periksa kembali apakah API Key yang Anda masukkan sudah benar dan aktif.</div>
+                    <div class="lovespeak-bubble" style="color:#dc2626;">❌ Gagal terhubung: ${err.message}. Pastikan API Key di pojok kanan atas aktif, valid, dan berasal dari Google AI Studio yang baru.</div>
                 `;
             }
             box.scrollTop = box.scrollHeight;
