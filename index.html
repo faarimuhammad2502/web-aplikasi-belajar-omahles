@@ -442,14 +442,14 @@
                     <div class="stat-badge-card">
                         <div class="stat-icon">⭐</div>
                         <div>
-                            <div class="stat-val" id="userStarDisplay">120</div>
+                            <div class="stat-val" id="userStarDisplay">0</div>
                             <div class="stat-lbl">Stars</div>
                         </div>
                     </div>
                     <div class="stat-badge-card">
                         <div class="stat-icon">🔥</div>
                         <div>
-                            <div class="stat-val" id="userStreakDisplay">3</div>
+                            <div class="stat-val" id="userStreakDisplay">1</div>
                             <div class="stat-lbl">Hari</div>
                         </div>
                     </div>
@@ -612,8 +612,35 @@
             { id: 'avatar_owl', type: 'avatar', title: 'Avatar Burung Hantu', desc: 'Lambang kebijaksanaan dan rajin belajar.', icon: '🦉', price: 150 },
             { id: 'badge_stiker_star', type: 'badge', title: 'Stiker Golden Star', desc: 'Koleksi stiker eksklusif di profilmu.', icon: '🌟', price: 80 }
         ];
-        let purchasedItems = JSON.parse(localStorage.getItem('omahles_purchased_items') || '[]');
-        let activeAvatar = localStorage.getItem('omahles_active_avatar') || '🎒';
+
+        let currentStudent = { name: 'Muhammad Faari Akbar', parentEmail: 'faarimuhammad25@gmail.com', classLabel: 'Kelas 3 SD (Full Access)', categoryKey: 'sd3', isDev: true };
+        let activeSection = 'dashboard';
+        let currentActiveModule = null;
+
+        // VARIABEL STATE PER AKUN (DIAMBIL BERDASARKAN EMAIL)
+        let userStars = 0;
+        let userCompletedQuizzes = 0;
+        let userStreak = 1;
+        let purchasedItems = [];
+        let activeAvatar = '🎒';
+
+        function loadUserDataForEmail(email) {
+            const cleanEmail = email.toLowerCase().trim();
+            userStars = parseInt(localStorage.getItem(`omahles_stars_${cleanEmail}`) || '0');
+            userCompletedQuizzes = parseInt(localStorage.getItem(`omahles_quizzes_${cleanEmail}`) || '0');
+            userStreak = parseInt(localStorage.getItem(`omahles_streak_${cleanEmail}`) || '1');
+            purchasedItems = JSON.parse(localStorage.getItem(`omahles_purchased_${cleanEmail}`) || '[]');
+            activeAvatar = localStorage.getItem(`omahles_avatar_${cleanEmail}`) || '🎒';
+        }
+
+        function saveUserDataForEmail() {
+            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
+            localStorage.setItem(`omahles_stars_${cleanEmail}`, userStars);
+            localStorage.setItem(`omahles_quizzes_${cleanEmail}`, userCompletedQuizzes);
+            localStorage.setItem(`omahles_streak_${cleanEmail}`, userStreak);
+            localStorage.setItem(`omahles_purchased_${cleanEmail}`, JSON.stringify(purchasedItems));
+            localStorage.setItem(`omahles_avatar_${cleanEmail}`, activeAvatar);
+        }
 
         const masterSectionDatabase = {
             'tk': {
@@ -733,16 +760,11 @@
         let lovTimer = 31;
         let lovInterval = null;
 
-        let currentStudent = { name: 'Muhammad Faari Akbar', parentEmail: 'faarimuhammad25@gmail.com', classLabel: 'Kelas 3 SD (Full Access)', categoryKey: 'sd3', isDev: true };
-        let activeSection = 'dashboard';
-        let currentActiveModule = null;
-        let userStars = parseInt(localStorage.getItem('omahles_user_stars') || '120');
-        let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
-
         window.addEventListener('DOMContentLoaded', () => { 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             if (savedStudent) {
                 currentStudent = JSON.parse(savedStudent);
+                loadUserDataForEmail(currentStudent.parentEmail);
                 activeSection = sessionStorage.getItem('omahles_active_section') || 'dashboard';
                 document.getElementById('loginPage').style.display = 'none';
                 renderDashboardData();
@@ -762,6 +784,10 @@
             } else {
                 currentStudent = { name: 'Siswa OmahLes', parentEmail: pEmail, classLabel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: false };
             }
+            
+            // Muat data khusus berdasarkan email ini (jika belum ada, otomatis mulai dari 0)
+            loadUserDataForEmail(pEmail);
+
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
             document.getElementById('loginPage').style.display = 'none';
             showRandomDailyWisdom();
@@ -794,6 +820,7 @@
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLabel;
             document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ All-Access Mode: ${currentStudent.classLabel}` : `🔒 Paket Terdaftar: ${currentStudent.classLabel}`;
             document.getElementById('userStarDisplay').innerText = userStars;
+            document.getElementById('userStreakDisplay').innerText = userStreak;
             document.getElementById('sidebarAvatarIcon').innerText = activeAvatar;
             const devBox = document.getElementById('devLevelSwitcherBox');
             if (currentStudent.isDev) devBox.classList.add('active'); else devBox.classList.remove('active');
@@ -903,7 +930,7 @@
                         <div class="dash-icon-box">🔥</div>
                         <div>
                             <div class="dash-info-title">Streak Belajar</div>
-                            <div class="dash-info-val">3 Hari</div>
+                            <div class="dash-info-val">${userStreak} Hari</div>
                         </div>
                     </div>
                 </div>
@@ -1040,9 +1067,7 @@
             userStars -= price;
             purchasedItems.push(itemId);
             activeAvatar = icon;
-            localStorage.setItem('omahles_user_stars', userStars);
-            localStorage.setItem('omahles_purchased_items', JSON.stringify(purchasedItems));
-            localStorage.setItem('omahles_active_avatar', activeAvatar);
+            saveUserDataForEmail();
             playSuccessSound();
             alert(`🎉 Berhasil membeli item! Avatar profil otomatis diubah ke ${icon}.`);
             renderDashboardData();
@@ -1051,7 +1076,7 @@
 
         function equipAvatar(icon) {
             activeAvatar = icon;
-            localStorage.setItem('omahles_active_avatar', activeAvatar);
+            saveUserDataForEmail();
             playSuccessSound();
             alert(`✨ Avatar berhasil diubah ke ${icon}!`);
             renderDashboardData();
@@ -1188,8 +1213,7 @@
                 lovScore += 100;
                 userStars += 20;
                 userCompletedQuizzes++;
-                localStorage.setItem('omahles_user_stars', userStars);
-                localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
+                saveUserDataForEmail();
                 document.getElementById('userStarDisplay').innerText = userStars;
                 currentLovQuestionIdx++;
                 alert('🎉 Hebat! Jawaban Benar! ⭐ +20 Stars');
@@ -1249,8 +1273,7 @@
                 f.style.color = '#16a34a'; f.innerText = '🎉 Benar sekali! ⭐ +15 Stars & XP Bertambah!';
                 userStars += 15;
                 userCompletedQuizzes++;
-                localStorage.setItem('omahles_user_stars', userStars);
-                localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
+                saveUserDataForEmail();
                 document.getElementById('userStarDisplay').innerText = userStars;
             } else {
                 playErrorSound();
@@ -1261,7 +1284,8 @@
         function closeInsightModal() { document.getElementById('insightModalOverlay').classList.remove('active'); }
 
         function renderJournal(container) {
-            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [{ text: 'Mengerjakan modul belajar.', date: '2026-08-23' }];
+            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
+            let j = JSON.parse(localStorage.getItem(`omahles_journals_${cleanEmail}`)) || [{ text: 'Mengerjakan modul belajar pertama.', date: '2026-08-23' }];
             container.innerHTML = `
                 <div class="journal-form-box">
                     <h3>➕ Catatan Jurnal</h3>
@@ -1275,15 +1299,17 @@
         function addJournal() {
             const t = document.getElementById('inputJournalText').value.trim();
             if(!t) return;
-            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [];
+            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
+            let j = JSON.parse(localStorage.getItem(`omahles_journals_${cleanEmail}`)) || [];
             j.unshift({ text: t, date: new Date().toISOString().split('T')[0] });
-            localStorage.setItem('omahles_student_journals', JSON.stringify(j));
+            localStorage.setItem(`omahles_journals_${cleanEmail}`, JSON.stringify(j));
             renderJournal(document.getElementById('dynamicMainContentArea'));
         }
         function delJournal(idx) {
-            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [];
+            const cleanEmail = currentStudent.parentEmail.toLowerCase().trim();
+            let j = JSON.parse(localStorage.getItem(`omahles_journals_${cleanEmail}`)) || [];
             j.splice(idx, 1);
-            localStorage.setItem('omahles_student_journals', JSON.stringify(j));
+            localStorage.setItem(`omahles_journals_${cleanEmail}`, JSON.stringify(j));
             renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
@@ -1369,7 +1395,7 @@
                 } else if (lower.includes('pecahan')) {
                     reply = `Pecahan sederhana seperti 1/2 atau 1/4 adalah cara adil untuk membagi sebuah benda utuh (seperti pizza atau kue) menjadi bagian-bagian yang sama besar! Angka di atas (pembilang) adalah bagian yang diambil, dan angka di bawah (penyebut) adalah total bagian seluruhnya. 🍕🧮`;
                 } else if (lower.includes('hujan') || lower.includes('siklus air')) {
-                    reply = `Hujan terjadi melalui siklus air (hidrologi): Panas matahari menguapkan air laut menjadi uap air (evaporasi), uap naik dan mendingin membentuk awan (kondensasi), lalu saat awan sudah berat, titik-titik air jatuh kembali ke bumi sebagai hujan (presipitasi)! 🌧️☀️`;
+                    reply = `Hujan terjadi melalui siklus air (hidrologi): Panas matahari menguapkan air laut menjadi uap air (evaporasi), uap naik dan mendingin membentuk awan (kondensasi), lalu saat awan sudah berat, titik-titik air jatuh kembali ke bumi sebagai hujan (presipitasi)! ☀️🌧️`;
                 } else if (lower.includes('tips') || lower.includes('belajar')) {
                     reply = `Tips belajar seru bersama Kak Omah: 1. Buat jadwal rutin setiap hari, 2. Gunakan teknik mencatat warna-warni, 3. Jangan takut bertanya jika ada yang belum dipahami, dan 4. Berikan jeda istirahat agar otak tetap segar! Semangat ya! 🌟🚀`;
                 }
