@@ -1091,8 +1091,8 @@ async function sendGeminiApiChat() {
             box.scrollTop = box.scrollHeight;
 
             try {
-                // Endpoint resmi Google Generative Language API untuk Gemini 1.5 Flash
-                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+                // Menggunakan model alias stabil terbaru yang didukung penuh oleh Google AI Studio
+                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
                 
                 const response = await fetch(apiEndpoint, {
                     method: 'POST',
@@ -1129,12 +1129,11 @@ async function sendGeminiApiChat() {
             } catch (err) {
                 console.error(err);
                 document.getElementById(loadingId).innerHTML = `
-                    <div class="lovespeak-bubble" style="color:#dc2626;">❌ Gagal terhubung: ${err.message}. Pastikan API Key di pojok kanan atas aktif, valid, dan berasal dari Google AI Studio yang baru.</div>
+                    <div class="lovespeak-bubble" style="color:#dc2626;">❌ Gagal terhubung: ${err.message}. Pastikan API Key di pojok kanan atas sudah aktif.</div>
                 `;
             }
             box.scrollTop = box.scrollHeight;
         }
-
         function quickSendPrompt(txt) {
             document.getElementById('lovUserChatInput').value = txt;
             sendGeminiApiChat();
