@@ -57,7 +57,15 @@
         .brand-slogan-title span { color: var(--brand-yellow); }
         .brand-slogan-sub { font-size: 1rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 500px; z-index: 2; }
 
-        .login-right-form { width: 480px; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; overflow-y: auto; }
+        /* KOTAK KANAN LOGIN DENGAN TEKSTUR PERALATAN BELAJAR (PENSIL, BUKU, BINTANG) */
+        .login-right-form { 
+            width: 480px; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; 
+            background-color: #ffffff;
+            /* Pola tekstur pensil, buku, dan bintang belajar */
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d97706' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M10 10h12v12H10zM50 50h14v14H50zM25 45l6-6 6 6-6 6zM60 15l5-10 5 10z'/%3E%3C/g%3E%3C/svg%3E");
+            box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; overflow-y: auto; 
+        }
+
         .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: var(--brand-brown); margin-bottom: 6px; }
         .form-sub-text { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 24px; font-weight: 600; }
 
@@ -343,7 +351,7 @@
         <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰ Menu</button>
     </div>
 
-    <!-- LOGIN SCREEN (FORM EMAIL MANUAL, AMAN & GRATIS) -->
+    <!-- LOGIN SCREEN (DENGAN TEKSTUR PERALATAN BELAJAR DI SISI KANAN) -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
@@ -357,7 +365,7 @@
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
                     <label class="form-label">Email Terdaftar</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="faarimuhammad25@gmail.com" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
