@@ -129,6 +129,16 @@
         .dash-info-title { font-size: 0.75rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; margin-bottom: 4px; }
         .dash-info-val { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); }
 
+        /* STAR STORE STYLES */
+        .store-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .store-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; position: relative; }
+        .store-item-card.owned { border-color: #22c55e; background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%); }
+        .store-icon-wrap { width: 72px; height: 72px; border-radius: 50%; background: var(--brand-cream); border: 2px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; }
+        .store-title { font-family: 'Fredoka', sans-serif; font-size: 1.2rem; color: var(--text-main); }
+        .store-price-tag { font-size: 0.85rem; font-weight: 800; color: var(--brand-amber); background: #fef3c7; padding: 6px 16px; border-radius: 20px; }
+        .btn-buy-item { width: 100%; background: var(--brand-amber); color: white; border: none; padding: 12px; border-radius: 14px; font-weight: 800; font-family: 'Fredoka', sans-serif; cursor: pointer; margin-top: 8px; }
+        .btn-buy-item:disabled { background: #e5e7eb; color: #9ca3af; cursor: not-allowed; }
+
         /* OMAH GAMES CENTER STYLES */
         .game-level-tag-box { background: var(--brand-cream); border: 2px solid var(--brand-amber); border-radius: 16px; padding: 12px 20px; font-weight: 800; font-size: 0.9rem; color: var(--brand-brown); margin-bottom: 20px; display: inline-block; }
         .game-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 10px; }
@@ -347,7 +357,7 @@
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
                     <label class="form-label">Email Terdaftar</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="faarimuhammad25@gmail.com" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
@@ -466,6 +476,7 @@
                     <li class="menu-item" id="menuAitutor"><a onclick="playClickSound(); switchSection('aitutor')"><span>🎙️</span> <span>Ruang AI Tutor</span></a></li>
                     <li class="menu-item" id="menuGames"><a onclick="playClickSound(); switchSection('games')"><span>🎮</span> <span>Game Center</span></a></li>
                     <li class="menu-item" id="menuFlashcards"><a onclick="playClickSound(); switchSection('flashcards')"><span>🃏</span> <span>Flashcards</span></a></li>
+                    <li class="menu-item" id="menuStore"><a onclick="playClickSound(); switchSection('store')"><span>🛍️</span> <span>Toko Bintang</span></a></li>
                     <li class="menu-item" id="menuDiary"><a onclick="playClickSound(); switchSection('diary')"><span>📝</span> <span>Jurnal Belajar</span></a></li>
                 </ul>
             </div>
@@ -476,7 +487,7 @@
                 </div>
                 <div class="profile-card">
                     <div class="profile-left">
-                        <div class="avatar-box">🎒</div>
+                        <div class="avatar-box" id="sidebarAvatarIcon">🎒</div>
                         <div class="profile-info">
                             <div class="profile-name" id="userNameDisplay">Siswa</div>
                             <div class="profile-badge" id="userLevelDisplay">Kelas 3 SD</div>
@@ -593,6 +604,16 @@
         ];
         let currentFlashcardIdx = 0;
         let isFlashcardFlipped = false;
+
+        // STORE ITEMS DATABASE
+        const storeItemsDatabase = [
+            { id: 'avatar_rabbit', type: 'avatar', title: 'Avatar Kelinci Pintar', desc: 'Avatar imut untuk profil belajarmu.', icon: '🐰', price: 50 },
+            { id: 'avatar_lion', type: 'avatar', title: 'Avatar Singa Berani', desc: 'Simbol keberanian dan semangat tinggi.', icon: '🦁', price: 100 },
+            { id: 'avatar_owl', type: 'avatar', title: 'Avatar Burung Hantu', desc: 'Lambang kebijaksanaan dan rajin belajar.', icon: '🦉', price: 150 },
+            { id: 'badge_stiker_star', type: 'badge', title: 'Stiker Golden Star', desc: 'Koleksi stiker eksklusif di profilmu.', icon: '🌟', price: 80 }
+        ];
+        let purchasedItems = JSON.parse(localStorage.getItem('omahles_purchased_items') || '[]');
+        let activeAvatar = localStorage.getItem('omahles_active_avatar') || '🎒';
 
         const masterSectionDatabase = {
             'tk': {
@@ -773,6 +794,7 @@
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLabel;
             document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ All-Access Mode: ${currentStudent.classLabel}` : `🔒 Paket Terdaftar: ${currentStudent.classLabel}`;
             document.getElementById('userStarDisplay').innerText = userStars;
+            document.getElementById('sidebarAvatarIcon').innerText = activeAvatar;
             const devBox = document.getElementById('devLevelSwitcherBox');
             if (currentStudent.isDev) devBox.classList.add('active'); else devBox.classList.remove('active');
         }
@@ -790,7 +812,6 @@
             activeSection = secKey;
             sessionStorage.setItem('omahles_active_section', secKey);
 
-            // Auto close mobile sidebar when menu clicked
             document.getElementById('appSidebar').classList.remove('mobile-open');
 
             document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
@@ -809,6 +830,7 @@
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
                 'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif khusus ${currentStudent.classLabel}.` },
                 'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan', sub: 'Latihan kilat rumus dan pengetahuan umum.' },
+                'store': { tag: '🛍️ Star Store', title: 'Toko Bintang', sub: 'Tukarkan bintangmu dengan avatar dan item eksklusif!' },
                 'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar', sub: 'Tulis target harianmu.' }
             };
 
@@ -833,7 +855,7 @@
                 renderLovSpeakAiChat(area);
             } else {
                 topBanner.style.display = 'block';
-                if (secKey === 'dashboard' || secKey === 'profile' || secKey === 'badges' || secKey === 'games' || secKey === 'flashcards' || secKey === 'diary') {
+                if (['dashboard', 'profile', 'badges', 'games', 'flashcards', 'store', 'diary'].includes(secKey)) {
                     filterBar.style.display = 'none';
                 } else {
                     filterBar.style.display = 'flex';
@@ -850,6 +872,8 @@
                     renderGameCenterGrid(area);
                 } else if (secKey === 'flashcards') {
                     renderFlashcardsUI(area);
+                } else if (secKey === 'store') {
+                    renderStoreUI(area);
                 } else if (secKey === 'diary') {
                     renderJournal(area);
                 } else {
@@ -886,7 +910,7 @@
                 <div class="insight-card-box">
                     <div class="insight-heading">💡 Ringkasan Sistem Omah Les Privat</div>
                     <div class="insight-body-text">
-                        "Halo ${currentStudent.name}, Anda masuk menggunakan akun dengan hak akses penuh. Anda dapat meninjau seluruh materi dari jenjang TK hingga SD Kelas 6 melalui menu <strong>Learning Roadmap</strong> atau menguji coba fitur interaktif di <strong>Omah Games</strong> dan <strong>Flashcards</strong>."
+                        "Halo ${currentStudent.name}, gunakan bintangmu di <strong>Toko Bintang</strong> untuk membeli avatar profil baru atau tukarkan poin dari latihan soalmu!"
                     </div>
                 </div>
             `;
@@ -921,7 +945,7 @@
                     <div class="profile-main-box">
                         <div class="profile-top-row">
                             <div class="profile-user-left">
-                                <div class="profile-big-avatar">🎓</div>
+                                <div class="profile-big-avatar">${activeAvatar}</div>
                                 <div>
                                     <div class="profile-user-name">${currentStudent.name}</div>
                                     <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLabel}</div>
@@ -947,7 +971,7 @@
                 <div class="insight-card-box">
                     <div class="insight-heading">💡 AI Insight • Personalized for ${currentStudent.name}</div>
                     <div class="insight-body-text">
-                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu sudah menyelesaikan ${userCompletedQuizzes} kuis latihan. Terus pertahankan semangat belajar dan mengajarmu!"
+                        "Halo ${currentStudent.name}, catatan aktivitas menunjukkan kamu sudah menyelesaikan ${userCompletedQuizzes} kuis latihan. Terus kumpulkan bintang untuk koleksi avatar di Toko Bintang!"
                     </div>
                 </div>
             `;
@@ -980,6 +1004,58 @@
                     </div>
                 </div>
             `;
+        }
+
+        function renderStoreUI(container) {
+            container.innerHTML = `
+                <div style="margin-bottom:20px; font-weight:800; color:var(--text-sub); font-size:0.95rem;">
+                    🌟 Saldo Bintang Kamu: <span style="color:var(--brand-amber); font-size:1.2rem;">${userStars} Stars</span>
+                </div>
+                <div class="store-grid animate-section">
+                    ${storeItemsDatabase.map(item => {
+                        const isOwned = purchasedItems.includes(item.id);
+                        const canBuy = userStars >= item.price;
+                        return `
+                            <div class="store-item-card ${isOwned ? 'owned' : ''}">
+                                <div class="store-icon-wrap">${item.icon}</div>
+                                <div class="store-title">${item.title}</div>
+                                <div style="font-size:0.8rem; color:var(--text-sub); font-weight:600; min-height:36px;">${item.desc}</div>
+                                <div class="store-price-tag">⭐ ${item.price} Stars</div>
+                                ${isOwned ? 
+                                    `<button class="btn-buy-item" style="background:#22c55e;" onclick="playClickSound(); equipAvatar('${item.icon}')">Gunakan / Aktifkan ✨</button>` :
+                                    `<button class="btn-buy-item" ${!canBuy ? 'disabled' : ''} onclick="playClickSound(); buyStoreItem('${item.id}', ${item.price}, '${item.icon}')">${canBuy ? 'Beli Sekarang 🛒' : 'Bintang Kurang 🔒'}</button>`
+                                }
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        function buyStoreItem(itemId, price, icon) {
+            if (userStars < price) {
+                alert('Maaf, bintangmu belum cukup!');
+                return;
+            }
+            userStars -= price;
+            purchasedItems.push(itemId);
+            activeAvatar = icon;
+            localStorage.setItem('omahles_user_stars', userStars);
+            localStorage.setItem('omahles_purchased_items', JSON.stringify(purchasedItems));
+            localStorage.setItem('omahles_active_avatar', activeAvatar);
+            playSuccessSound();
+            alert(`🎉 Berhasil membeli item! Avatar profil otomatis diubah ke ${icon}.`);
+            renderDashboardData();
+            renderStoreUI(document.getElementById('dynamicMainContentArea'));
+        }
+
+        function equipAvatar(icon) {
+            activeAvatar = icon;
+            localStorage.setItem('omahles_active_avatar', activeAvatar);
+            playSuccessSound();
+            alert(`✨ Avatar berhasil diubah ke ${icon}!`);
+            renderDashboardData();
+            renderStoreUI(document.getElementById('dynamicMainContentArea'));
         }
 
         function openCertModal(badgeTitle, badgeDesc) {
