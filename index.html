@@ -213,8 +213,7 @@
         .mastery-lbl { font-size: 0.72rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; }
         .active-level-indicator { background: var(--brand-cream); border: 2px solid var(--brand-amber); color: var(--brand-brown); font-family: 'Fredoka', sans-serif; font-size: 1rem; padding: 8px 18px; border-radius: var(--radius-sm); font-weight: 700; }
 
-        .dev-level-switcher { display: none; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; background: #ffffff; padding: 16px; border-radius: 16px; border: 2px solid var(--brand-amber); }
-        .dev-level-switcher.active { display: flex !important; }
+        .dev-level-switcher { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; background: #ffffff; padding: 16px; border-radius: 16px; border: 2px solid var(--brand-amber); }
         .dev-switch-btn { background: var(--brand-cream); border: 1.5px solid var(--brand-amber); color: var(--brand-brown); padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.8rem; cursor: pointer; }
         .dev-switch-btn:hover, .dev-switch-btn.active { background: var(--brand-amber); color: white; }
 
@@ -346,11 +345,15 @@
         </div>
         <div class="login-right-form">
             <div class="form-header-text">Login Student</div>
-            <div class="form-sub-text">Masukkan Email Orang Tua / Tutor terdaftar</div>
+            <div class="form-sub-text">Masukkan Nama Siswa & Email Pengguna</div>
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
-                    <label class="form-label">Email Terdaftar</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="faarimuhammad25@gmail.com" required>
+                    <label class="form-label">Nama Siswa / Anak</label>
+                    <input type="text" class="form-input" id="inputStudentName" placeholder="Contoh: Budi Santoso" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Orang Tua / Pembeli</label>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
@@ -461,6 +464,7 @@
                     <li class="menu-item" id="menuIndo"><a onclick="playClickSound(); switchSection('indo')"><span>📖</span> <span>Bahasa Indonesia</span></a></li>
                     <li class="menu-item" id="menuMath"><a onclick="playClickSound(); switchSection('math')"><span>🧮</span> <span>Matematika Dasar</span></a></li>
                     <li class="menu-item" id="menuSains"><a onclick="playClickSound(); switchSection('sains')"><span>🔬</span> <span>Sains & IPA</span></a></li>
+                    <li class="menu-item" id="menuEnglish"><a onclick="playClickSound(); switchSection('english')"><span>🇬🇧</span> <span>Bahasa Inggris</span></a></li>
                     <li class="menu-item" id="menuSeni"><a onclick="playClickSound(); switchSection('seni')"><span>🎨</span> <span>Seni & Karakter</span></a></li>
                 </ul>
 
@@ -482,7 +486,7 @@
                         <div class="avatar-box">🎒</div>
                         <div class="profile-info">
                             <div class="profile-name" id="userNameDisplay">Siswa</div>
-                            <div class="profile-badge" id="userLevelDisplay">Kelas 3 SD</div>
+                            <div class="profile-badge" id="userLevelDisplay">Pilih Jenjang</div>
                         </div>
                     </div>
                     <button class="btn-switch-user" onclick="playClickSound(); openLoginForm()">Switch</button>
@@ -498,15 +502,15 @@
                 <div class="banner-sub" id="bannerWelcomeSub">Modul materi terstruktur disesuaikan.</div>
             </div>
 
-            <div class="dev-level-switcher active" id="devLevelSwitcherBox">
-                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">🛠️ ALL-ACCESS MODE (Akses Penuh Semua Jenjang & Konten):</span>
-                <button class="dev-switch-btn" onclick="devSwitchClass('tk', 'TK / PAUD')">TK</button>
-                <button class="dev-switch-btn" onclick="devSwitchClass('sd1', 'Kelas 1 SD')">SD 1</button>
-                <button class="dev-switch-btn" onclick="devSwitchClass('sd2', 'Kelas 2 SD')">SD 2</button>
-                <button class="dev-switch-btn" onclick="devSwitchClass('sd3', 'Kelas 3 SD')">SD 3</button>
-                <button class="dev-switch-btn" onclick="devSwitchClass('sd4', 'Kelas 4 SD')">SD 4</button>
-                <button class="dev-switch-btn" onclick="devSwitchClass('sd5', 'Kelas 5 SD')">SD 5</button>
-                <button class="dev-switch-btn" onclick="devSwitchClass('sd6', 'Kelas 6 SD')">SD 6</button>
+            <div class="dev-level-switcher" id="devLevelSwitcherBox">
+                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">📌 PILIH JENJANG KELAS SISWA:</span>
+                <button class="dev-switch-btn" id="btn-cat-tk" onclick="devSwitchClass('tk', 'TK / PAUD')">TK / PAUD</button>
+                <button class="dev-switch-btn" id="btn-cat-sd1" onclick="devSwitchClass('sd1', 'Kelas 1 SD')">SD 1</button>
+                <button class="dev-switch-btn" id="btn-cat-sd2" onclick="devSwitchClass('sd2', 'Kelas 2 SD')">SD 2</button>
+                <button class="dev-switch-btn" id="btn-cat-sd3" onclick="devSwitchClass('sd3', 'Kelas 3 SD')">SD 3</button>
+                <button class="dev-switch-btn" id="btn-cat-sd4" onclick="devSwitchClass('sd4', 'Kelas 4 SD')">SD 4</button>
+                <button class="dev-switch-btn" id="btn-cat-sd5" onclick="devSwitchClass('sd5', 'Kelas 5 SD')">SD 5</button>
+                <button class="dev-switch-btn" id="btn-cat-sd6" onclick="devSwitchClass('sd6', 'Kelas 6 SD')">SD 6</button>
             </div>
 
             <div class="filter-header-bar" id="filterHeaderBar">
@@ -516,7 +520,7 @@
                         <div class="mastery-val" id="masteryPercentDisplay">0% Completed</div>
                     </div>
                 </div>
-                <div class="active-level-indicator" id="activeLevelText">🔒 Modul Paket</div>
+                <div class="active-level-indicator" id="activeLevelText">Pilih Jenjang di Atas</div>
             </div>
 
             <div id="dynamicMainContentArea"></div>
@@ -557,14 +561,6 @@
             document.getElementById('appSidebar').classList.toggle('mobile-open');
         }
 
-        const REGISTERED_PARENT_DATABASE = {
-            'faarimuhammad25@gmail.com': { name: 'Muhammad Faari Akbar', categoryKey: 'sd3', classLabel: 'Kelas 3 SD (Full Access)', isDev: true },
-            'michellehimmelda@gmail.com': { name: 'Michelle Himmelda Cahyadi', categoryKey: 'sd6', classLabel: 'Tutor / Admin (Full Access)', isDev: true },
-            'ortu.tk@gmail.com': { name: 'Siswa TK Aisyah', categoryKey: 'tk', classLabel: 'TK / PAUD', isDev: false },
-            'ortu.sd1@gmail.com': { name: 'Siswa SD Kelas 1', categoryKey: 'sd1', classLabel: 'Kelas 1 SD', isDev: false },
-            'ortu.sd6@gmail.com': { name: 'Siswa SD Kelas 6', categoryKey: 'sd6', classLabel: 'Kelas 6 SD', isDev: false }
-        };
-
         const DAILY_WISDOM_LIST = [
             { quote: "Pendidikan adalah senjata paling ampuh yang bisa kamu gunakan untuk mengubah dunia.", author: "Nelson Mandela" },
             { quote: "Akar dari pendidikan itu pahit, namun buahnya sangat manis.", author: "Aristoteles" },
@@ -575,7 +571,7 @@
             { q: "Apa ide utama di awal/akhir paragraf?", a: "Ide Pokok / Kalimat Utama" },
             { q: "Berapa hasil dari 7 x 8 dalam perkalian dasar?", a: "56" },
             { q: "Sebutkan 3 wujud benda di alam!", a: "Padat, Cair, Gas" },
-            { q: "Apa nama alat untuk mengukur berat benda?", a: "Timbangan (Neraca)" },
+            { q: "Apa bahasa Inggris dari 'Buku'?", a: "Book" },
             { q: "Apa gaya tarik pusat bumi yang membuat buah jatuh?", a: "Gaya Gravitasi" }
         ];
         let currentFlashcardIdx = 0;
@@ -587,6 +583,7 @@
                 'indo': [{ tierTag: 'TK INDO', title: 'Menebalkan Garis', desc: 'Latihan motorik halus.', progress: '0/2', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Garis Lurus', sub: 'Pegang pensil.', quote: '"Pelan-pelan."', context: 'Garis.', logic: 'Tarik lurus.', tips: 'Jangan keluar garis.', quiz: { q: 'Alat tulis?', opts: ['Pensil', 'Batu'], ans: 0 } }] }],
                 'math': [{ tierTag: 'TK MATH', title: 'Bentuk Lingkaran', desc: 'Mengenal bentuk bundar.', progress: '0/1', steps: [{ icon: '🔴', tag: 'STEP 1', title: 'Seperti Roda', sub: 'Bundar.', quote: '"Berputar."', context: 'Bola.', logic: 'Tidak ada sudut.', tips: 'Lihat jam dinding.', quiz: { q: 'Bentuk bola?', opts: ['Lingkaran', 'Kotak'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'TK SAINS', title: 'Hewan Peliharaan', desc: 'Kucing dan Kelinci.', progress: '0/1', steps: [{ icon: '🐱', tag: 'STEP 1', title: 'Suara Kucing', sub: 'Meong.', quote: '"Sayangi hewan."', context: 'Kucing.', logic: 'Hewan peliharaan.', tips: 'Beri makan.', quiz: { q: 'Suara kucing?', opts: ['Meong', 'Moo'], ans: 0 } }] }],
+                'english': [{ tierTag: 'TK ENGLISH', title: 'Colors (Warna Dasar)', desc: 'Red, Blue, Yellow.', progress: '0/2', steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Red is Merah', sub: 'Warna merah.', quote: '"Fun English."', context: 'Colors.', logic: 'Kosakata.', tips: 'Sebutkan bendanya.', quiz: { q: 'Bahasa Inggris dari Merah?', opts: ['Red', 'Blue'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'TK SENI', title: 'Warna Merah & Biru', desc: 'Mengenal warna dasar.', progress: '0/2', steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Warna Apel', sub: 'Merah.', quote: '"Cerah."', context: 'Apel.', logic: 'Buah.', tips: 'Mewarnai.', quiz: { q: 'Warna apel matang?', opts: ['Merah', 'Biru'], ans: 0 } }] }]
             },
             'sd1': {
@@ -594,6 +591,7 @@
                 'indo': [{ tierTag: 'SD 1 INDO', title: 'Huruf Kapital', desc: 'Nama orang diawali huruf besar.', progress: '0/2', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Nama Budi', sub: 'B besar.', quote: '"Tulis rapi."', context: 'Nama.', logic: 'Aturan penulisan.', tips: 'Ingat huruf depan.', quiz: { q: 'Huruf awal nama orang?', opts: ['Kapital', 'Kecil'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 1 MATH', title: 'Pengurangan 1-10', desc: 'Konsep sisa benda.', progress: '0/2', steps: [{ icon: '➖', tag: 'STEP 1', title: '5 dikurang 2', sub: 'Sisa.', quote: '"Hitung sisa."', context: 'Makan permen.', logic: 'Jumlah berkurang.', tips: 'Lipat jari.', quiz: { q: '10 - 5 = ?', opts: ['5', '6'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 1 SAINS', title: 'Panca Indra', desc: 'Mata, Telinga, Hidung.', progress: '0/2', steps: [{ icon: '👁️', tag: 'STEP 1', title: 'Fungsi Mata', sub: 'Melihat.', quote: '"Syukuri tubuh."', context: 'Tubuh.', logic: 'Melihat warna.', tips: 'Jaga jarak baca.', quiz: { q: 'Alat untuk melihat?', opts: ['Mata', 'Kaki'], ans: 0 } }] }],
+                'english': [{ tierTag: 'SD 1 ENGLISH', title: 'Greetings & Introduction', desc: 'Hello, Good Morning.', progress: '0/2', steps: [{ icon: '👋', tag: 'STEP 1', title: 'Saying Hello', sub: 'Menyapa teman.', quote: '"Friendly greetings."', context: 'Daily conversation.', logic: 'Sopan santun.', tips: 'Ucapkan dengan senyum.', quiz: { q: 'Bahasa Inggris dari "Selamat Pagi"?', opts: ['Good Morning', 'Good Night'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'SD 1 SENI', title: 'Garis Lurus & Lengkung', desc: 'Menggambar dasar.', progress: '0/2', steps: [{ icon: '🖍️', tag: 'STEP 1', title: 'Gambar Rumah', sub: 'Garis tegak.', quote: '"Kreatif."', context: 'Seni rupa.', logic: 'Bentuk dari garis.', tips: 'Gunakan penggaris.', quiz: { q: 'Bentuk atap rumah?', opts: ['Segitiga', 'Bulat'], ans: 0 } }] }]
             },
             'sd2': {
@@ -601,6 +599,7 @@
                 'indo': [{ tierTag: 'SD 2 INDO', title: 'Puisi Anak', desc: 'Membaca puisi dengan intonasi.', progress: '0/2', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Bait Puisi', sub: 'Keindahan alam.', quote: '"Suara merdu."', context: 'Puisi.', logic: 'Ekspresi.', tips: 'Lantang.', quiz: { q: 'Membaca puisi butuh?', opts: ['Ekspresi', 'Berlari'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 2 MATH', title: 'Alat Ukur Panjang (cm)', desc: 'Menggunakan penggaris.', progress: '0/2', steps: [{ icon: '📏', tag: 'STEP 1', title: 'Ukur Pensil', sub: 'Mulai dari 0.', quote: '"Ukur tepat."', context: 'Panjang.', logic: 'Satuan cm.', tips: 'Sejajarkan.', quiz: { q: 'Ukur panjang buku pakai?', opts: ['Penggaris', 'Timbangan'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 2 SAINS', title: 'Benda Padat & Cair', desc: 'Perbedaan wujud benda.', progress: '0/2', steps: [{ icon: '🧊', tag: 'STEP 1', title: 'Air & Es', sub: 'Mencair.', quote: '"Sifat benda."', context: 'Perubahan.', logic: 'Bentuk air.', tips: 'Amati es.', quiz: { q: 'Benda yang mengalir?', opts: ['Cair', 'Padat'], ans: 0 } }] }],
+                'english': [{ tierTag: 'SD 2 ENGLISH', title: 'Animals & Fruits Vocabulary', desc: 'Cat, Dog, Apple, Banana.', progress: '0/2', steps: [{ icon: '🍎', tag: 'STEP 1', title: 'Fruits Name', sub: 'Nama buah.', quote: '"Healthy food."', context: 'Vocabulary.', logic: 'Hafalan.', tips: 'Sebutkan buah kesukaan.', quiz: { q: 'Bahasa Inggris dari "Pisang"?', opts: ['Banana', 'Apple'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'SD 2 SENI', title: 'Lagu Anak Ketukan 2/4', desc: 'Irama musik sederhana.', progress: '0/2', steps: [{ icon: '🎵', tag: 'STEP 1', title: 'Balonku', sub: 'Ketukan.', quote: '"Nyanyi ceria."', context: 'Musik.', logic: 'Ritme.', tips: 'Tepuk tangan.', quiz: { q: 'Balonku ada?', opts: ['Lima', 'Enam'], ans: 0 } }] }]
             },
             'sd3': {
@@ -611,6 +610,7 @@
                 'indo': [{ tierTag: 'SD 3 INDO', title: 'Imbuhan Me-', desc: 'Mengubah kata dasar menjadi kata kerja.', progress: '0/2', steps: [{ icon: '✍️', tag: 'STEP 1', title: 'Me + Tulis', sub: 'Menulis.', quote: '"Tata bahasa."', context: 'Kata.', logic: 'Luluh T.', tips: 'Ucapkan kata.', quiz: { q: 'Me + sapu = ?', opts: ['Menyapu', 'Mesapu'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 3 MATH', title: 'Satuan Berat (Kg & Gram)', desc: 'Membaca timbangan.', progress: '0/2', steps: [{ icon: '⚖️', tag: 'STEP 1', title: '1 Kg = 1000 gram', sub: 'Timbangan beras.', quote: '"Berat benda."', context: 'Massa.', logic: 'Konversi.', tips: 'Bantu ibu di pasar.', quiz: { q: 'Alat ukur berat?', opts: ['Timbangan', 'Penggaris'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 3 SAINS', title: 'Metamorfosis Hewan', desc: 'Daur hidup kupu-kupu.', progress: '0/2', steps: [{ icon: '🐛', tag: 'STEP 1', title: 'Ulat ke Kepompong', sub: 'Perubahan.', quote: '"Siklus hidup."', context: 'Kupu-kupu.', logic: 'Tahapan.', tips: 'Amati daun.', quiz: { q: 'Sebelum kupu-kupu?', opts: ['Kepompong', 'Telur'], ans: 0 } }] }],
+                'english': [{ tierTag: 'SD 3 ENGLISH', title: 'Simple Continuous Tense', desc: 'I am reading a book.', progress: '0/2', steps: [{ icon: '📖', tag: 'STEP 1', title: 'Action Verbs', sub: 'Kegiatan sekarang.', quote: '"Active learning."', context: 'Grammar.', logic: 'Verb-ing.', tips: 'Praktikkan langsung.', quiz: { q: 'She is ... (menulis) a letter.', opts: ['writing', 'reading'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'SD 3 SENI', title: 'Warna Campuran (Sekunder)', desc: 'Mencampur warna cat.', progress: '0/2', steps: [{ icon: '🎨', tag: 'STEP 1', title: 'Merah + Kuning', sub: 'Jadi Oranye.', quote: '"Eksperimen warna."', context: 'Melukis.', logic: 'Pencampuran.', tips: 'Pakai cat air.', quiz: { q: 'Kuning + Biru?', opts: ['Hijau', 'Ungu'], ans: 0 } }] }]
             },
             'sd4': {
@@ -618,6 +618,7 @@
                 'indo': [{ tierTag: 'SD 4 INDO', title: 'Gaya Bahasa (Majas)', desc: 'Majas Personifikasi.', progress: '0/2', steps: [{ icon: '🗣️', tag: 'STEP 1', title: 'Angin Menari', sub: 'Benda mati hidup.', quote: '"Kiasan indah."', context: 'Sastra.', logic: 'Gaya bahasa.', tips: 'Baca cerpen.', quiz: { q: 'Awan menangis adalah majas?', opts: ['Personifikasi', 'Hiperbola'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 4 MATH', title: 'KPK dan FPB', desc: 'Kelipatan persekutuan.', progress: '0/2', steps: [{ icon: '🔢', tag: 'STEP 1', title: 'KPK dari 3 dan 4', sub: 'Angka 12.', quote: '"Cari persamaannya."', context: 'Kelipatan.', logic: 'Bertemu di 12.', tips: 'Pakai pohon faktor.', quiz: { q: 'KPK 2 dan 3?', opts: ['6', '5'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 4 SAINS', title: 'Gaya (Otot, Gesek, Gravitasi)', desc: 'Pengaruh gaya pada benda.', progress: '0/2', steps: [{ icon: '🧲', tag: 'STEP 1', title: 'Tarikan & Dorongan', sub: 'Itu adalah Gaya.', quote: '"Benda bergerak."', context: 'Fisika dasar.', logic: 'Mengubah gerak.', tips: 'Tendang bola.', quiz: { q: 'Gaya tarik bumi?', opts: ['Gravitasi', 'Gesek'], ans: 0 } }] }],
+                'english': [{ tierTag: 'SD 4 ENGLISH', title: 'Describing People & Things', desc: 'Tall, Short, Big, Small.', progress: '0/2', steps: [{ icon: '👤', tag: 'STEP 1', title: 'Adjectives', sub: 'Kata sifat.', quote: '"Expressing details."', context: 'English grammar.', logic: 'Deskripsi fisik.', tips: 'Gunakan dalam kalimat.', quiz: { q: 'Bahasa Inggris dari "Tinggi"?', opts: ['Tall', 'Short'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'SD 4 SENI', title: 'Alat Musik Tradisional', desc: 'Angklung, Kecapi, Tifa.', progress: '0/2', steps: [{ icon: '🪕', tag: 'STEP 1', title: 'Angklung', sub: 'Dari bambu.', quote: '"Budaya kita."', context: 'Seni musik.', logic: 'Digoyangkan.', tips: 'Dengar musik daerah.', quiz: { q: 'Angklung dimainkan dengan?', opts: ['Digoyangkan', 'Ditiup'], ans: 0 } }] }]
             },
             'sd5': {
@@ -625,6 +626,7 @@
                 'indo': [{ tierTag: 'SD 5 INDO', title: 'Surat Undangan Resmi', desc: 'Kop surat.', progress: '0/2', steps: [{ icon: '✉️', tag: 'STEP 1', title: 'Kepala Surat', sub: 'Kop Surat instansi.', quote: '"Bahasa baku."', context: 'Surat.', logic: 'Resmi.', tips: 'Perhatikan tanggal.', quiz: { q: 'Bagian atas surat resmi?', opts: ['Kop Surat', 'Tanda Tangan'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 5 MATH', title: 'Volume Balok & Kubus', desc: 'V = p x l x t.', progress: '0/2', steps: [{ icon: '📦', tag: 'STEP 1', title: 'Isi Bangun Ruang', sub: 'Volume.', quote: '"Hitung isi ruang."', context: 'Kubus.', logic: 'S x S x S.', tips: 'Satuan kubik.', quiz: { q: 'Volume balok?', opts: ['p x l x t', 's x s'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 5 SAINS', title: 'Organ Pencernaan Manusia', desc: 'Lambung dan Usus.', progress: '0/2', steps: [{ icon: '🍎', tag: 'STEP 1', title: 'Lambung', sub: 'Pencernaan kimiawi.', quote: '"Makanan jadi energi."', context: 'Tubuh.', logic: 'Organ tubuh.', tips: 'Makan sehat.', quiz: { q: 'Penyerapan sari makanan di?', opts: ['Usus Halus', 'Mulut'], ans: 0 } }] }],
+                'english': [{ tierTag: 'SD 5 ENGLISH', title: 'Past Tense (Kegiatan Lampau)', desc: 'I went to school yesterday.', progress: '0/2', steps: [{ icon: '⏳', tag: 'STEP 1', title: 'Regular & Irregular Verbs', sub: 'Verb 2.', quote: '"Talking about past."', context: 'Grammar.', logic: 'Waktu lampau.', quiz: { q: 'Bentuk V2 dari "Go" adalah?', opts: ['Went', 'Gone'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'SD 5 SENI', title: 'Tangga Nada Mayor & Minor', desc: 'Lagu ceria vs sedih.', progress: '0/2', steps: [{ icon: '🎼', tag: 'STEP 1', title: 'Mayor Ceria', sub: 'Maju Tak Gentar.', quote: '"Musik semangat."', context: 'Nada.', logic: 'Diatonis.', tips: 'Dengar lagu.', quiz: { q: 'Lagu mayor bersifat?', opts: ['Riang Gembira', 'Sedih'], ans: 0 } }] }]
             },
             'sd6': {
@@ -632,6 +634,7 @@
                 'indo': [{ tierTag: 'SD 6 INDO', title: 'Pidato Persuasif', desc: 'Mengajak audiens.', progress: '0/2', steps: [{ icon: '🎤', tag: 'STEP 1', title: 'Kalimat Ajakan', sub: 'Marilah, Ayo.', quote: '"Bicara memukau."', context: 'Pidato.', logic: 'Meyakinkan.', tips: 'Berani tampil.', quiz: { q: 'Pidato ajakan disebut?', opts: ['Persuasif', 'Deskriptif'], ans: 0 } }] }],
                 'math': [{ tierTag: 'SD 6 MATH', title: 'Statistika (Rata-rata / Mean)', desc: 'Menghitung rata-rata kelas.', progress: '0/2', steps: [{ icon: '📊', tag: 'STEP 1', title: 'Total dibagi Jumlah', sub: 'Mean.', quote: '"Olah data."', context: 'Data nilai.', logic: 'Rumus rata-rata.', tips: 'Jumlahkan dulu.', quiz: { q: 'Nilai rata-rata disebut?', opts: ['Mean', 'Modus'], ans: 0 } }] }],
                 'sains': [{ tierTag: 'SD 6 SAINS', title: 'Tata Surya & Rotasi Bumi', desc: 'Planet dan siang malam.', progress: '0/2', steps: [{ icon: '🪐', tag: 'STEP 1', title: 'Akibat Rotasi', sub: 'Siang dan Malam.', quote: '"Bumi berputar."', context: 'Luar angkasa.', logic: 'Bumi porosnya.', tips: 'Lihat globe.', quiz: { q: 'Pergantian siang malam karena?', opts: ['Rotasi Bumi', 'Revolusi Bumi'], ans: 0 } }] }],
+                'english': [{ tierTag: 'SD 6 ENGLISH', title: 'Future Tense & Expressing Hopes', desc: 'I will be a doctor.', progress: '0/2', steps: [{ icon: '🎯', tag: 'STEP 1', title: 'Future Plans', sub: 'Menggunakan Will.', quote: '"Dream big."', context: 'Grammar.', logic: 'Masa depan.', quiz: { q: 'I ... (will / went) visit Bali tomorrow.', opts: ['will', 'went'], ans: 0 } }] }],
                 'seni': [{ tierTag: 'SD 6 SENI', title: 'Membuat Poster Edukasi', desc: 'Poster layanan masyarakat.', progress: '0/2', steps: [{ icon: '🖼️', tag: 'STEP 1', title: 'Kalimat Singkat', sub: 'Jelas dan menarik.', quote: '"Visual kuat."', context: 'Iklan.', logic: 'Mengajak.', tips: 'Beri gambar.', quiz: { q: 'Kalimat poster harus?', opts: ['Singkat Jelas', 'Panjang Lebar'], ans: 0 } }] }]
             }
         };
@@ -653,7 +656,7 @@
         let lovTimer = 31;
         let lovInterval = null;
 
-        let currentStudent = { name: 'Muhammad Faari Akbar', parentEmail: 'faarimuhammad25@gmail.com', classLabel: 'Kelas 3 SD (Full Access)', categoryKey: 'sd3', isDev: true };
+        let currentStudent = { name: '', parentEmail: '', classLabel: 'Belum Dipilih', categoryKey: null };
         let activeSection = 'dashboard';
         let currentActiveModule = null;
         let userStars = parseInt(localStorage.getItem('omahles_user_stars') || '120');
@@ -675,13 +678,12 @@
         function handleFormLogin(e) {
             e.preventDefault();
             playClickSound();
+            const sName = document.getElementById('inputStudentName').value.trim();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
-            if (REGISTERED_PARENT_DATABASE[pEmail]) {
-                const userObj = REGISTERED_PARENT_DATABASE[pEmail];
-                currentStudent = { name: userObj.name, parentEmail: pEmail, classLabel: userObj.classLabel, categoryKey: userObj.categoryKey, isDev: userObj.isDev };
-            } else {
-                currentStudent = { name: 'Siswa OmahLes', parentEmail: pEmail, classLabel: 'Kelas 3 SD', categoryKey: 'sd3', isDev: false };
-            }
+            
+            // Default kosong (belum dipilih jenjangnya) agar pembeli memilih manual
+            currentStudent = { name: sName, parentEmail: pEmail, classLabel: 'Belum Dipilih (Pilih di atas)', categoryKey: null };
+            
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
             document.getElementById('loginPage').style.display = 'none';
             showRandomDailyWisdom();
@@ -708,18 +710,23 @@
         }
 
         function renderDashboardData() {
-            document.getElementById('userNameDisplay').innerText = currentStudent.name;
+            document.getElementById('userNameDisplay').innerText = currentStudent.name || 'Siswa';
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLabel;
-            document.getElementById('activeLevelText').innerText = currentStudent.isDev ? `🛠️ All-Access Mode: ${currentStudent.classLabel}` : `🔒 Paket Terdaftar: ${currentStudent.classLabel}`;
+            document.getElementById('activeLevelText').innerText = currentStudent.categoryKey ? `Jenjang Aktif: ${currentStudent.classLabel}` : `⚠️ Silakan klik pilih jenjang kelas di atas!`;
             document.getElementById('userStarDisplay').innerText = userStars;
-            const devBox = document.getElementById('devLevelSwitcherBox');
-            if (currentStudent.isDev) devBox.classList.add('active'); else devBox.classList.remove('active');
+
+            // Highlight tombol kategori yang aktif
+            document.querySelectorAll('.dev-switch-btn').forEach(btn => btn.classList.remove('active'));
+            if(currentStudent.categoryKey) {
+                const activeBtn = document.getElementById(`btn-cat-${currentStudent.categoryKey}`);
+                if(activeBtn) activeBtn.classList.add('active');
+            }
         }
 
         function devSwitchClass(catKey, classLabel) {
             playClickSound();
             currentStudent.categoryKey = catKey;
-            currentStudent.classLabel = `Full Access (${classLabel})`;
+            currentStudent.classLabel = classLabel;
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
             renderDashboardData();
             switchSection(activeSection);
@@ -735,13 +742,14 @@
             if (activeMenu) activeMenu.classList.add('active');
 
             const sectionHeaders = {
-                'dashboard': { tag: '📊 Overview', title: 'Portal Dashboard', sub: `Selamat datang kembali, ${currentStudent.name}!` },
+                'dashboard': { tag: '📊 Overview', title: 'Portal Dashboard', sub: `Selamat datang kembali, ${currentStudent.name || 'Siswa'}!` },
                 'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Materi kelas ${currentStudent.classLabel}.` },
                 'profile': { tag: '👤 Personal Space', title: 'My Profile', sub: 'Pantau perkembangan belajarmu.' },
                 'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges', sub: `Koleksi trofi berdasarkan hasil belajar.` },
                 'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia', sub: 'Melatih kemampuan literasi.' },
                 'math': { tag: '🧮 Logika & Angka', title: 'Matematika Dasar', sub: 'Berhitung itu menyenangkan.' },
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & IPA', sub: 'Eksplorasi alam semesta.' },
+                'english': { tag: '🇬🇧 Bahasa Internasional', title: 'Bahasa Inggris', sub: 'Let us practice English together.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni Budaya', sub: 'Berkreasi tanpa batas.' },
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
                 'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif.` },
@@ -764,7 +772,6 @@
             if (secKey === 'aitutor') {
                 topBanner.style.display = 'none';
                 filterBar.style.display = 'none';
-                document.getElementById('devLevelSwitcherBox').style.display = 'none';
                 renderLovSpeakAiChat(area);
             } else {
                 topBanner.style.display = 'block';
@@ -793,13 +800,17 @@
                     <div class="dash-card"><div class="dash-icon-box">🔥</div><div><div class="dash-info-title">Streak Belajar</div><div class="dash-info-val">3 Hari</div></div></div>
                 </div>
                 <div class="insight-card-box">
-                    <div class="insight-heading">💡 Ringkasan Sistem Omah Les Privat</div>
-                    <div class="insight-body-text">"Halo ${currentStudent.name}, Anda masuk dengan hak akses penuh. Gunakan Ruang AI Tutor dengan memasukkan API Key Gemini Anda di pojok kanan atas."</div>
+                    <div class="insight-heading">💡 Panduan Penggunaan Omah Les Privat</div>
+                    <div class="insight-body-text">"Halo <strong>${currentStudent.name || 'Siswa'}</strong>! Silakan pilih terlebih dahulu jenjang kelas anak Anda pada tombol di atas (TK hingga SD Kelas 6) untuk menyesuaikan materi belajar, roadmap, dan game edukasi."</div>
                 </div>
             `;
         }
 
         function renderModules(container, secKey) {
+            if(!currentStudent.categoryKey) {
+                container.innerHTML = `<div class="insight-card-box" style="text-align:center; padding:40px;"><h3>⚠️ Pilih Jenjang Kelas Terlebih Dahulu!</h3><p style="margin-top:10px; color:var(--text-sub);">Silakan klik salah satu tombol pilihan jenjang kelas di bagian atas (TK / SD 1 - SD 6) untuk melihat materi pelajaran.</p></div>`;
+                return;
+            }
             const grid = document.createElement('div');
             grid.className = 'modules-grid';
             const pkg = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
@@ -823,8 +834,8 @@
                         <div class="profile-top-row">
                             <div class="profile-user-left">
                                 <div class="profile-big-avatar">🎓</div>
-                                <div><div class="profile-user-name">${currentStudent.name}</div>
-                                <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLabel}</div></div>
+                                <div><div class="profile-user-name">${currentStudent.name || 'Siswa'}</div>
+                                <div class="profile-user-badge-pill">🌱 Jenjang: ${currentStudent.classLabel}</div></div>
                             </div>
                             <button class="btn-open-module" onclick="window.print()">🖨️ Cetak Laporan</button>
                         </div>
@@ -853,7 +864,7 @@
             `;
         }
         function openCertModal(t, d) {
-            document.getElementById('certStudentName').innerText = currentStudent.name;
+            document.getElementById('certStudentName').innerText = currentStudent.name || 'Siswa';
             document.getElementById('certModalOverlay').classList.add('active');
         }
         function closeCertModal() { document.getElementById('certModalOverlay').classList.remove('active'); }
@@ -886,6 +897,10 @@
         function prevFlashcard() { currentFlashcardIdx = (currentFlashcardIdx - 1 + flashcardsDatabase.length) % flashcardsDatabase.length; renderFlashcardsUI(document.getElementById('dynamicMainContentArea')); }
 
         function renderGameCenterGrid(container) {
+            if(!currentStudent.categoryKey) {
+                container.innerHTML = `<div class="insight-card-box" style="text-align:center; padding:40px;"><h3>⚠️ Pilih Jenjang Kelas Terlebih Dahulu!</h3><p style="margin-top:10px; color:var(--text-sub);">Pilih jenjang kelas di atas untuk memainkan Omah Games.</p></div>`;
+                return;
+            }
             let catKey = currentStudent.categoryKey;
             const gamesList = omahGamesDatabasePerLevel[catKey] || omahGamesDatabasePerLevel['sd3'];
             container.innerHTML = `
@@ -895,7 +910,7 @@
                         <div class="game-item-card" onclick="startOmahGame('${catKey}', ${idx})">
                             <div><div class="game-icon-box" style="background:${g.bg}; color:${g.color};">${g.icon}</div>
                             <div class="game-card-title">${g.title}</div><div class="game-card-desc">${g.desc}</div></div>
-                            <div style="font-size:0.75font; font-weight:800; color:var(--text-sub);">REWARD: ⭐ +20</div>
+                            <div style="font-size:0.75rem; font-weight:800; color:var(--text-sub);">REWARD: ⭐ +20</div>
                         </div>
                     `).join('')}
                 </div>
@@ -1003,7 +1018,7 @@
             localStorage.setItem('omahles_student_journals', JSON.stringify(j)); renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
-        // --- RUANG AI TUTOR DENGAN PENGATURAN API KEY MANDIRI (100% AMAN DI GITHUB) ---
+        // RUANG AI TUTOR DENGAN PENGATURAN API KEY MANDIRI
         function renderLovSpeakAiChat(container) {
             const savedKey = localStorage.getItem('omahles_user_gemini_key') || '';
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -1027,7 +1042,7 @@
                     <div class="lovespeak-messages-area" id="lovChatMessagesBox">
                         <div class="lovespeak-bubble-row ai">
                             <div class="lovespeak-bubble">
-                                Assalamu'alaikum ${currentStudent.name}! Masukkan Gemini API Key kamu di kolom kanan atas (jika belum), lalu tanyakan PR atau materi sekolah apa pun ke Kak Omah ya! ✨
+                                Assalamu'alaikum ${currentStudent.name || 'Siswa'}! Masukkan Gemini API Key kamu di kolom kanan atas (jika belum), lalu tanyakan PR atau materi sekolah apa pun (Matematika, Bahasa Indonesia, Sains, Bahasa Inggris, dll) ke Kak Omah ya! ✨
                             </div>
                             <div class="lovespeak-bubble-footer">
                                 <button class="lovespeak-btn-listen" onclick="alert('🔊 Memutar audio...')">🔊 LISTEN</button>
@@ -1040,7 +1055,7 @@
                         <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana cara bumi berevolusi?')">🌍 Revolusi Bumi</div>
                         <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Tolong jelaskan proses terbentuknya fosil!')">🦖 Jelaskan Fosil</div>
                         <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana cara menghitung perkalian matematika?')">🧮 Perkalian Matematika</div>
-                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana proses terjadinya hujan?')">🌧️ Terjadinya Hujan</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Tolong berikan contoh percakapan bahasa Inggris.')">🇬🇧 Bahasa Inggris</div>
                     </div>
 
                     <div class="lovespeak-input-bar">
@@ -1060,7 +1075,7 @@
             alert('✅ API Key berhasil disimpan di browser Anda! Sekarang AI siap digunakan.');
         }
 
-async function sendGeminiApiChat() {
+        async function sendGeminiApiChat() {
             const input = document.getElementById('lovUserChatInput');
             const msg = input.value.trim();
             if(!msg) return;
@@ -1091,7 +1106,6 @@ async function sendGeminiApiChat() {
             box.scrollTop = box.scrollHeight;
 
             try {
-                // Menggunakan model rekomendasi terbaru dari Google
                 const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
                 
                 const response = await fetch(apiEndpoint, {
@@ -1100,17 +1114,14 @@ async function sendGeminiApiChat() {
                     body: JSON.stringify({
                         contents: [{
                             parts: [{
-                                text: `Anda adalah Kak Omah, seorang tutor privat ramah dan berpengalaman untuk anak sekolah dasar (SD). Jawablah pertanyaan siswa berikut dengan bahasa yang suportif, edukatif, dan ramah anak: "${msg}"`
+                                text: `Anda adalah Kak Omah, seorang tutor privat ramah dan berpengalaman untuk anak sekolah dasar (SD). Jawablah pertanyaan siswa berikut dengan bahasa yang suportif, edukatif, dan ramah anak (bisa mencakup Matematika, Sains, Bahasa Indonesia, Bahasa Inggris, dll): "${msg}"`
                             }]
                         }]
                     })
                 });
 
                 const data = await response.json();
-                
-                if (data.error) {
-                    throw new Error(data.error.message || 'API Error');
-                }
+                if (data.error) throw new Error(data.error.message || 'API Error');
 
                 if(data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
                     let aiReply = data.candidates[0].content.parts[0].text;
@@ -1134,6 +1145,7 @@ async function sendGeminiApiChat() {
             }
             box.scrollTop = box.scrollHeight;
         }
+
         function quickSendPrompt(txt) {
             document.getElementById('lovUserChatInput').value = txt;
             sendGeminiApiChat();
