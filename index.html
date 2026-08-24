@@ -357,7 +357,7 @@
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
                     <label class="form-label">Email Terdaftar</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="faarimuhammad25@gmail.com" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
@@ -974,7 +974,10 @@
                                     <div class="profile-user-badge-pill">🌱 Level 1 • ${currentStudent.classLabel}</div>
                                 </div>
                             </div>
-                            <button class="btn-open-module" onclick="window.print()">🖨️ Cetak / Unduh Laporan</button>
+                            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                                <button class="btn-open-module" onclick="window.print()">🖨️ Cetak PDF</button>
+                                <button class="btn-open-module" style="background:var(--brand-brown);" onclick="sendReportToEmail()">✉️ Kirim ke Email</button>
+                            </div>
                         </div>
                         <div class="profile-stats-card">
                             <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem;">
@@ -998,6 +1001,30 @@
                     </div>
                 </div>
             `;
+        }
+
+        function sendReportToEmail() {
+            playClickSound();
+            const studentName = currentStudent.name;
+            const parentEmail = currentStudent.parentEmail;
+            const classLabel = currentStudent.classLabel;
+            const totalQuizzes = userCompletedQuizzes;
+            const totalStars = userStars;
+            
+            const reportSubject = encodeURIComponent(`Laporan Perkembangan Belajar Omah Les Privat - ${studentName}`);
+            const reportBody = encodeURIComponent(
+                `Kepada Yth. Orang Tua / Wali dari ${studentName},\n\n` +
+                `Berikut adalah ringkasan laporan perkembangan belajar siswa di platform Omah Les Privat:\n\n` +
+                `• Nama Siswa: ${studentName}\n` +
+                `• Jenjang / Kelas: ${classLabel}\n` +
+                `• Total Kuis Selesai: ${totalQuizzes} modul\n` +
+                `• Perolehan Bintang: ${totalStars} Stars\n\n` +
+                `Perkembangan anak menunjukkan hasil yang baik dan aktif menyelesaikan tantangan belajar harian. Terima kasih atas dukungan Bapak/Ibu di rumah.\n\n` +
+                `Salam hangat,\n` +
+                `Tim Akademik Omah Les Privat`
+            );
+
+            window.location.href = `mailto:${parentEmail}?subject=${reportSubject}&body=${reportBody}`;
         }
 
         function renderBadges(container) {
