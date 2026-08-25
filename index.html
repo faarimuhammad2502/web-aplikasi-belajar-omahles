@@ -59,25 +59,10 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* FOCUS MODE: SIDEBAR MENYUSUT JADI ICON COMPACT, KONTEN DI TENGAH DENGAN MAKSIMAL LEBAR */
-        body.focus-mode .sidebar { width: 80px; padding: 16px 10px; }
-        body.focus-mode .sidebar .brand-title,
-        body.focus-mode .sidebar .brand-sub,
-        body.focus-mode .sidebar .virtual-pet-box,
-        body.focus-mode .sidebar .gamification-bar,
-        body.focus-mode .sidebar .sidebar-badges-showcase,
-        body.focus-mode .sidebar .menu-group-label,
-        body.focus-mode .sidebar .menu-item span:nth-child(2),
-        body.focus-mode .sidebar .sidebar-bottom-controls button span,
-        body.focus-mode .sidebar .profile-card .profile-info,
-        body.focus-mode .sidebar .profile-card .btn-switch-user { display: none !important; }
-        
-        body.focus-mode .sidebar .menu-item a { justify-content: center; padding: 12px; font-size: 1.2rem; }
-        body.focus-mode .sidebar .brand-header { justify-content: center; }
-        body.focus-mode .sidebar .profile-card { justify-content: center; padding: 8px; }
-
-        body.focus-mode .content-area { margin-left: 80px !important; max-width: 1000px; margin-right: auto; padding-left: 40px; padding-right: 40px; }
-        body.focus-mode .portal-footer { margin-left: 80px !important; }
+        /* FOCUS MODE: SIDEBAR DISEMBUNYIKAN TOTAL, KONTEN LEBAR DI TENGAH */
+        body.focus-mode .sidebar { transform: translateX(-100%); }
+        body.focus-mode .content-area { margin-left: 0 !important; max-width: 1400px; margin-right: auto; margin-left: auto !important; padding-left: 30px; padding-right: 30px; }
+        body.focus-mode .portal-footer { margin-left: 0 !important; }
 
         .floating-exit-focus {
             position: fixed; top: 20px; right: 25px; z-index: 99999;
@@ -267,7 +252,7 @@
         .lov-submit-btn:hover { background: var(--brand-amber); color: #ffffff; }
 
         .app-wrapper { display: flex; flex: 1; position: relative; }
-        .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); overflow-y: auto; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); overflow-y: auto; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         
         .brand-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
         .brand-logo-area { display: flex; align-items: center; gap: 12px; }
