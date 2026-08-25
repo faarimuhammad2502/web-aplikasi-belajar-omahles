@@ -719,8 +719,9 @@
                     currentStudent = { name: data.name, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: data.categoryKey, isAdmin: false };
                 }
             } else {
-                // Jika email baru tidak terdaftar, default dikunci ke Kelas 3 SD standar
-                currentStudent = { name: 'Siswa Omah Les', parentEmail: pEmail, classLabel: 'Kelas 3 SD (Paket Standar)', categoryKey: 'sd3', isAdmin: false };
+                // Jika email baru tidak terdaftar, buat nama otomatis dari bagian depan email
+                const generatedName = pEmail.split('@')[0].toUpperCase();
+                currentStudent = { name: generatedName, parentEmail: pEmail, classLabel: 'Kelas 3 SD (Standar)', categoryKey: 'sd3', isAdmin: false };
             }
             
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
@@ -754,7 +755,6 @@
             document.getElementById('activeLevelText').innerText = `Paket Aktif: ${currentStudent.classLabel} (Terkunci)`;
             document.getElementById('userStarDisplay').innerText = userStars;
 
-            // Panel switcher kelas hanya muncul jika akun adalah Master Admin
             const adminBox = document.getElementById('adminClassSwitcherBox');
             if (currentStudent.isAdmin) {
                 adminBox.style.display = 'flex';
@@ -770,7 +770,7 @@
 
         function adminSwitchClass(catKey, classLabel) {
             playClickSound();
-            if (!currentStudent.isAdmin) return; // Keamanan tambahan agar siswa biasa tidak bisa switch kelas
+            if (!currentStudent.isAdmin) return;
             currentStudent.categoryKey = catKey;
             currentStudent.classLabel = `Master Admin (${classLabel})`;
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
@@ -1056,10 +1056,11 @@
             localStorage.setItem('omahles_student_journals', JSON.stringify(j)); renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
-        // RUANG AI TUTOR DENGAN PENGATURAN API KEY MANDIRI
+        // RUANG AI TUTOR DENGAN PENYEBUTAN NAMA PENGGUNA OTOMATIS
         function renderLovSpeakAiChat(container) {
             const savedKey = localStorage.getItem('omahles_user_gemini_key') || '';
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const studentName = currentStudent.name || 'Siswa';
             container.innerHTML = `
                 <div class="lovespeak-chat-container animate-section">
                     <div class="lovespeak-top-header">
@@ -1080,7 +1081,7 @@
                     <div class="lovespeak-messages-area" id="lovChatMessagesBox">
                         <div class="lovespeak-bubble-row ai">
                             <div class="lovespeak-bubble">
-                                Assalamu'alaikum ${currentStudent.name || 'Siswa'}! Masukkan Gemini API Key kamu di kolom kanan atas (jika belum), lalu tanyakan PR atau materi sekolah apa pun (Matematika, Bahasa Indonesia, Sains, Bahasa Inggris, dll) ke Kak Omah ya! ✨
+                                Assalamu'alaikum ${studentName}! Masukkan Gemini API Key kamu di kolom kanan atas (jika belum), lalu tanyakan PR atau materi sekolah apa pun ke Kak Omah ya! ✨
                             </div>
                             <div class="lovespeak-bubble-footer">
                                 <button class="lovespeak-btn-listen" onclick="alert('🔊 Memutar audio...')">🔊 LISTEN</button>
@@ -1126,6 +1127,7 @@
 
             const box = document.getElementById('lovChatMessagesBox');
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const studentName = currentStudent.name || 'Siswa';
 
             box.innerHTML += `
                 <div class="lovespeak-bubble-row user">
@@ -1152,7 +1154,7 @@
                     body: JSON.stringify({
                         contents: [{
                             parts: [{
-                                text: `Anda adalah Kak Omah, seorang tutor privat ramah dan berpengalaman untuk anak sekolah dasar (SD). Jawablah pertanyaan siswa berikut dengan bahasa yang suportif, edukatif, dan ramah anak (bisa mencakup Matematika, Sains, Bahasa Indonesia, Bahasa Inggris, dll): "${msg}"`
+                                text: `Anda adalah Kak Omah, tutor privat ramah untuk anak SD. Siswa yang sedang bertanya bernama "${studentName}". Sapa dan panggil namanya di awal kalimat (misal: "Wah pertanyaan bagus, ${studentName}!" atau semacamnya). Jawablah pertanyaan berikut dengan suportif dan ramah anak: "${msg}"`
                             }]
                         }]
                     })
