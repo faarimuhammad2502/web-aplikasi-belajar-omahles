@@ -642,11 +642,28 @@
         }
         function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
 
-       // BGM AUDIO CERIA KHUSUS ANAK-ANAK
-        const bgmAudio = new Audio('https://actions.google.com/sounds/v1/cartoon/silly_chicken.ogg'); 
-        bgmAudio.loop = true;
-        bgmAudio.volume = 0.3; 
+     // BGM SYNTHESIS CERIA (MELODI MUSIK ANAK OTOMATIS)
         let isBgmPlaying = false;
+        let bgmTimer = null;
+
+        const cheerfulNotes = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50]; // Tangga nada ceria (C Major)
+
+        function playCheerfulBgmLoop() {
+            if (!isBgmPlaying) return;
+            try {
+                // Mainkan 2-3 nada acak berturut-turut bernuansa riang
+                const note1 = cheerfulNotes[Math.floor(Math.random() * cheerfulNotes.length)];
+                const note2 = cheerfulNotes[Math.floor(Math.random() * cheerfulNotes.length)];
+                
+                playTone(note1, 'triangle', 0.2);
+                setTimeout(() => {
+                    if (isBgmPlaying) playTone(note2, 'triangle', 0.2);
+                }, 250);
+            } catch(e) {}
+
+            // Ulangi ketukan melodi setiap 600ms agar terdengar seperti musik latar anak-anak yang ceria
+            bgmTimer = setTimeout(playCheerfulBgmLoop, 600);
+        }
 
         function toggleBgmMusic() {
             playClickSound();
@@ -654,12 +671,10 @@
             const btn = document.getElementById('btnToggleBgm');
             if (isBgmPlaying) {
                 btn.innerText = '🎵 Musik BGM: ON';
-                bgmAudio.play().catch(err => {
-                    console.log("Autoplay dicegah browser, klik sekali lagi untuk memutar.");
-                });
+                playCheerfulBgmLoop();
             } else {
                 btn.innerText = '🎵 Musik BGM: OFF';
-                bgmAudio.pause();
+                if (bgmTimer) clearTimeout(bgmTimer);
             }
         }
 
