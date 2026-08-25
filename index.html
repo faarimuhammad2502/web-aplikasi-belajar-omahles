@@ -1387,7 +1387,7 @@
             }
 
             const box = document.getElementById('lovChatMessagesBox');
-            const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }, { hour12: false });
             const studentName = currentStudent.name || 'Siswa';
 
             box.innerHTML += `
@@ -1407,7 +1407,6 @@
             box.scrollTop = box.scrollHeight;
 
             try {
-                // Diperbarui menggunakan model gemini-3.6-flash sesuai anjuran sistem API terbaru
                 const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
                 
                 const response = await fetch(apiEndpoint, {
@@ -1416,7 +1415,7 @@
                     body: JSON.stringify({
                         contents: [{
                             parts: [{
-                                text: `Anda adalah Kak Omah, tutor privat ramah untuk anak TK dan SD. Siswa yang bertanya bernama "${studentName}". Jawablah pertanyaan berikut dengan singkat, jelas, dan langsung ke inti. ATURAN PENTING UNTUK MATEMATIKA: Jangan pernah gunakan format kode LaTeX mentah seperti backslash times atau backslash div. Gunakan simbol matematika biasa secara langsung (contoh gunakan tanda "×" untuk perkalian, "÷" untuk pembagian, "+" untuk penjumlahan, "-" untuk pengurangan). Pertanyaan siswa: "${msg}"`
+                                text: `Anda adalah Kak Omah, tutor privat ramah untuk anak TK dan SD. Siswa yang bertanya bernama "${studentName}". Jawablah pertanyaan berikut dengan singkat, jelas, dan langsung ke inti. ATURAN PENTING: JANGAN gunakan simbol tanda bintang ganda (**) sama sekali di seluruh jawaban Anda. Jika ingin menebalkan kata, gunakan tag HTML <b>...</b> atau jangan gunakan format tebal. Jangan sertakan tanda bintang markdown. Pertanyaan siswa: "${msg}"`
                             }]
                         }]
                     })
@@ -1428,12 +1427,14 @@
                 if(data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
                     let aiReply = data.candidates[0].content.parts[0].text;
                     
-                    aiReply = aiReply.replace(/\\times/g, '×')
+                    // Membersihkan sisa simbol bintang jika ada dari AI
+                    aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+                                     .replace(/\*/g, '')
+                                     .replace(/\\times/g, '×')
                                      .replace(/\\div/g, '÷')
                                      .replace(/\\pm/g, '±')
                                      .replace(/\\le/g, '≤')
-                                     .replace(/\\ge/g, '≥')
-                                     .replace(/\$/g, '');
+                                     .replace(/\\ge/g, '≥');
 
                     aiReply = aiReply.replace(/\n/g, '<br>');
                     
