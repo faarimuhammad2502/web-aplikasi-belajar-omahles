@@ -642,9 +642,10 @@
         }
         function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
 
-        const bgmAudio = new Audio('https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg'); 
+       // BGM AUDIO CERIA KHUSUS ANAK-ANAK
+        const bgmAudio = new Audio('https://actions.google.com/sounds/v1/cartoon/silly_chicken.ogg'); 
         bgmAudio.loop = true;
-        bgmAudio.volume = 0.25; 
+        bgmAudio.volume = 0.3; 
         let isBgmPlaying = false;
 
         function toggleBgmMusic() {
