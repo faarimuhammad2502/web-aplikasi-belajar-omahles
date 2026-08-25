@@ -1407,7 +1407,7 @@
             box.scrollTop = box.scrollHeight;
 
             try {
-                // Menggunakan model flash terbaru agar respon jauh lebih cepat dan instan
+                // Diperbarui menggunakan gemini-2.5-flash agar sesuai dengan update model terbaru
                 const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
                 
                 const response = await fetch(apiEndpoint, {
@@ -1428,13 +1428,12 @@
                 if(data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
                     let aiReply = data.candidates[0].content.parts[0].text;
                     
-                    // Membersihkan format LaTeX mentah agar langsung menjadi simbol matematika biasa
                     aiReply = aiReply.replace(/\\times/g, '×')
                                      .replace(/\\div/g, '÷')
                                      .replace(/\\pm/g, '±')
                                      .replace(/\\le/g, '≤')
                                      .replace(/\\ge/g, '≥')
-                                     .replace(/\$/g, ''); // Menghilangkan simbol dolar sisa LaTeX
+                                     .replace(/\$/g, '');
 
                     aiReply = aiReply.replace(/\n/g, '<br>');
                     
