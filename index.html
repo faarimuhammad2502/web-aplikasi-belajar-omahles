@@ -389,11 +389,15 @@
         </div>
         <div class="login-right-form">
             <div class="form-header-text">Login Student</div>
-            <div class="form-sub-text">Masukkan Email Orang Tua / Pembeli Paket</div>
+            <div class="form-sub-text">Masukkan Email Orang Tua / Profil Anak</div>
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
-                    <label class="form-label">Email Orang Tua / Pembeli</label>
+                    <label class="form-label">Email Orang Tua / Profil</label>
                     <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nama Anak (Multi-Profil)</label>
+                    <input type="text" class="form-input" id="inputChildName" placeholder="Contoh: Budi" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
@@ -475,7 +479,7 @@
             <div class="quiz-box">
                 <div class="quiz-question">
                     <span id="quizQuestionText">❓ Kuis: ...</span>
-                    <button class="tts-action-btn" id="btnQuizAudio" style="margin:0;" onclick="toggleSpeakText(document.getElementById('quizQuestionText').innerText, this)">🔊 Dengar Soal</button>
+                    <button class="tts-action-btn" id="btnQuizAudio" style="margin:0;" onclick="toggleSpeech(document.getElementById('quizQuestionText').innerText, this)">🔊 Dengar Soal</button>
                 </div>
                 <div class="quiz-options" id="quizOptionsContainer"></div>
                 <div class="quiz-feedback" id="quizFeedbackText"></div>
@@ -517,10 +521,10 @@
                         </div>
                     </div>
                     <div class="stat-badge-card">
-                        <div class="stat-icon">🔥</div>
+                        <div class="stat-icon">🏆</div>
                         <div>
-                            <div class="stat-val" id="userStreakDisplay">1</div>
-                            <div class="stat-lbl">Hari</div>
+                            <div class="stat-val" id="userLevelBadgeDisplay">Lv.1</div>
+                            <div class="stat-lbl" id="userLevelNameDisplay">Pemula</div>
                         </div>
                     </div>
                 </div>
@@ -546,6 +550,7 @@
                 <div class="menu-group-label">TOOLS & FITUR</div>
                 <ul class="menu-list">
                     <li class="menu-item" id="menuWorksheets"><a onclick="playClickSound(); switchSection('worksheets')"><span>📥</span> <span>Pusat Unduh PDF</span></a></li>
+                    <li class="menu-item" id="menuExam"><a onclick="playClickSound(); switchSection('exam')"><span>⏱️</span> <span>Ujian / Quiz Challenge</span></a></li>
                     <li class="menu-item" id="menuAitutor"><a onclick="playClickSound(); switchSection('aitutor')"><span>🎙️</span> <span>Ruang AI Tutor</span></a></li>
                     <li class="menu-item" id="menuGames"><a onclick="playClickSound(); switchSection('games')"><span>🎮</span> <span>Game Center</span></a></li>
                     <li class="menu-item" id="menuFlashcards"><a onclick="playClickSound(); switchSection('flashcards')"><span>🃏</span> <span>Flashcards</span></a></li>
@@ -649,7 +654,6 @@
                 return;
             }
 
-            // Jika sedang bersuara dan tombol yang sama diketuk lagi -> STOP (OFF)
             if (window.speechSynthesis.speaking && activeSpeakingButton === btnElement) {
                 window.speechSynthesis.cancel();
                 if (activeSpeakingButton) {
@@ -659,13 +663,11 @@
                 return;
             }
 
-            // Jika sedang bersuara di tempat lain, batalkan dulu
             window.speechSynthesis.cancel();
             if (activeSpeakingButton) {
                 activeSpeakingButton.classList.remove('playing');
             }
 
-            // Mulai bicara (ON)
             const utterance = new SpeechSynthesisUtterance(textString);
             utterance.lang = 'id-ID';
             utterance.rate = 0.9;
@@ -895,12 +897,25 @@
             ]
         };
 
+        const examQuestionsDatabase = [
+            { q: "Apa nama alat tubuh yang digunakan untuk melihat keindahan alam?", opts: ["Mata", "Telinga", "Hidung", "Kaki"], ans: 0 },
+            { q: "Berapa hasil dari penjumlahan 7 ditambah 4?", opts: ["10", "11", "12", "13"], ans: 1 },
+            { q: "Gagasan utama atau inti pembahasan dalam paragraf disebut...?", opts: ["Judul", "Ide Pokok", "Kesimpulan", "Pantun"], ans: 1 },
+            { q: "Gaya tarik pusat bumi yang membuat benda jatuh ke bawah disebut gaya...?", opts: ["Gesek", "Otot", "Gravitasi", "Pegas"], ans: 2 },
+            { q: "Bahasa Inggris dari buah 'Apel' adalah...?", opts: ["Banana", "Apple", "Orange", "Grape"], ans: 1 }
+        ];
+
         let currentActiveGameQuestions = [];
         let currentLovQuestionIdx = 0;
         let lovScore = 0;
         let lovLives = 3;
         let lovTimer = 31;
         let lovInterval = null;
+
+        let examTimerInterval = null;
+        let examTimeRemaining = 60;
+        let examCurrentIdx = 0;
+        let examScoreCount = 0;
 
         let currentStudent = { name: '', parentEmail: '', classLabel: 'Belum Dipilih', categoryKey: null, isAdmin: false };
         let activeSection = 'dashboard';
@@ -939,16 +954,18 @@
             e.preventDefault();
             playClickSound();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
+            const childNameInput = document.getElementById('inputChildName').value.trim();
             
             if (REGISTERED_PARENT_DATABASE[pEmail]) {
                 const data = REGISTERED_PARENT_DATABASE[pEmail];
+                const finalName = childNameInput ? childNameInput : data.name;
                 if (data.isAdmin) {
-                    currentStudent = { name: data.name, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: 'sd3', isAdmin: true };
+                    currentStudent = { name: finalName, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: 'sd3', isAdmin: true };
                 } else {
-                    currentStudent = { name: data.name, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: data.categoryKey, isAdmin: false };
+                    currentStudent = { name: finalName, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: data.categoryKey, isAdmin: false };
                 }
             } else {
-                const generatedName = pEmail.split('@')[0].toUpperCase();
+                const generatedName = childNameInput ? childNameInput : pEmail.split('@')[0].toUpperCase();
                 currentStudent = { name: generatedName, parentEmail: pEmail, classLabel: 'Kelas 3 SD (Standar)', categoryKey: 'sd3', isAdmin: false };
             }
             
@@ -998,11 +1015,26 @@
             }
         }
 
+        function calculateLevelInfo() {
+            let totalXp = userCompletedQuizzes * 50;
+            let levelNum = 1;
+            let levelName = 'Pemula';
+            if(totalXp >= 150) { levelNum = 2; levelName = 'Penjelajah'; }
+            if(totalXp >= 350) { levelNum = 3; levelName = 'Ahli Cilik'; }
+            if(totalXp >= 600) { levelNum = 4; levelName = 'Master Cilik'; }
+            if(totalXp >= 1000) { levelNum = 5; levelName = 'Grandmaster Omah Les'; }
+            return { totalXp, levelNum, levelName };
+        }
+
         function renderDashboardData() {
             document.getElementById('userNameDisplay').innerText = currentStudent.name || 'Siswa';
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLabel;
             document.getElementById('activeLevelText').innerText = `Paket Aktif: ${currentStudent.classLabel} (Terkunci)`;
             document.getElementById('userStarDisplay').innerText = userStars;
+
+            const lvl = calculateLevelInfo();
+            document.getElementById('userLevelBadgeDisplay').innerText = `Lv.${lvl.levelNum}`;
+            document.getElementById('userLevelNameDisplay').innerText = lvl.levelName;
 
             const adminBox = document.getElementById('adminClassSwitcherBox');
             if (currentStudent.isAdmin) {
@@ -1048,6 +1080,7 @@
                 'english': { tag: '🇬🇧 Bahasa Internasional', title: 'Bahasa Inggris', sub: 'Let us practice English together.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni Budaya', sub: 'Berkreasi tanpa batas.' },
                 'worksheets': { tag: '📥 Unduh Materi', title: 'Pusat Lembar Kerja (Worksheet)', sub: 'Unduh lembar latihan cetak PDF khusus jenjang aktif.' },
+                'exam': { tag: '⏱️ Ujian Evaluasi', title: 'Quiz Challenge Mode', sub: 'Uji kemampuanmu dengan batasan waktu!' },
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
                 'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif.` },
                 'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan', sub: `Latihan kilat khusus jenjang ${currentStudent.classLabel}.` }
@@ -1062,6 +1095,7 @@
             const filterBar = document.getElementById('filterHeaderBar');
             const topBanner = document.getElementById('topBannerSection');
             clearInterval(lovInterval);
+            clearInterval(examTimerInterval);
 
             area.className = ''; void area.offsetWidth; area.className = 'animate-section';
 
@@ -1069,6 +1103,10 @@
                 topBanner.style.display = 'none';
                 filterBar.style.display = 'none';
                 renderLovSpeakAiChat(area);
+            } else if (secKey === 'exam') {
+                topBanner.style.display = 'none';
+                filterBar.style.display = 'none';
+                startExamChallenge();
             } else {
                 topBanner.style.display = 'block';
                 if (['dashboard', 'leaderboard', 'profile', 'badges', 'worksheets', 'games', 'flashcards'].includes(secKey)) {
@@ -1092,6 +1130,7 @@
         function renderDashboardMain(container) {
             const todayStr = new Date().toISOString().split('T')[0];
             const isAlreadyClaimed = (lastClaimDate === todayStr);
+            const lvl = calculateLevelInfo();
 
             container.innerHTML = `
                 <div class="resume-learning-card">
@@ -1117,6 +1156,7 @@
 
                 <div class="dashboard-grid">
                     <div class="dash-card"><div class="dash-icon-box">⭐</div><div><div class="dash-info-title">Total Stars</div><div class="dash-info-val">${userStars}</div></div></div>
+                    <div class="dash-card"><div class="dash-icon-box">🏆</div><div><div class="dash-info-title">Level Anda</div><div class="dash-info-val">Lv.${lvl.levelNum} (${lvl.levelName})</div></div></div>
                     <div class="dash-card"><div class="dash-icon-box">🎯</div><div><div class="dash-info-title">Kuis Selesai</div><div class="dash-info-val">${userCompletedQuizzes}</div></div></div>
                     <div class="dash-card"><div class="dash-icon-box">🔥</div><div><div class="dash-info-title">Streak Belajar</div><div class="dash-info-val">1 Hari</div></div></div>
                 </div>
@@ -1138,6 +1178,87 @@
             alert('🎉 HORE! Anda mendapatkan +50 Bintang Bonus Harian dari Tantangan Streak!');
             renderDashboardMain(document.getElementById('dynamicMainContentArea'));
             renderDashboardData();
+        }
+
+        function startExamChallenge() {
+            examCurrentIdx = 0;
+            examScoreCount = 0;
+            examTimeRemaining = 60;
+            renderExamQuestionUI();
+            clearInterval(examTimerInterval);
+            examTimerInterval = setInterval(() => {
+                examTimeRemaining--;
+                const timerEl = document.getElementById('examTimerDisplay');
+                if(timerEl) timerEl.innerText = examTimeRemaining;
+                if(examTimeRemaining <= 0) {
+                    clearInterval(examTimerInterval);
+                    finishExamChallenge();
+                }
+            }, 1000);
+        }
+
+        function renderExamQuestionUI() {
+            const area = document.getElementById('dynamicMainContentArea');
+            if(examCurrentIdx >= examQuestionsDatabase.length) {
+                clearInterval(examTimerInterval);
+                return finishExamChallenge();
+            }
+            const q = examQuestionsDatabase[examCurrentIdx];
+            area.innerHTML = `
+                <div class="lov-game-wrapper animate-section">
+                    <div class="lov-top-bar">
+                        <div class="lov-btn-close" onclick="switchSection('dashboard')">✕</div>
+                        <div class="lov-score-pill">SOAL ${examCurrentIdx + 1} / ${examQuestionsDatabase.length}</div>
+                        <div style="font-family:'Fredoka',sans-serif; color:var(--brand-brown); font-weight:800;">⏱️ Sisa Waktu: <span id="examTimerDisplay">${examTimeRemaining}</span> detik</div>
+                    </div>
+                    <div class="insight-card-box" style="text-align:center;">
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.3rem; color:var(--text-main); margin-bottom:20px;">${q.q}</div>
+                        <div style="display:flex; flex-direction:column; gap:12px;">
+                            ${q.opts.map((opt, i) => `
+                                <button class="quiz-btn" style="padding:16px; font-size:1rem; text-align:center; background:var(--brand-cream);" onclick="submitExamOption(${i}, ${q.ans})">${opt}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function submitExamOption(selectedIdx, correctIdx) {
+            if(selectedIdx === correctIdx) {
+                playSuccessSound();
+                examScoreCount += 20;
+            } else {
+                playErrorSound();
+            }
+            examCurrentIdx++;
+            renderExamQuestionUI();
+        }
+
+        function finishExamChallenge() {
+            clearInterval(examTimerInterval);
+            userStars += examScoreCount;
+            userCompletedQuizzes += 1;
+            localStorage.setItem('omahles_user_stars', userStars);
+            localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
+
+            let historyList = JSON.parse(localStorage.getItem('omahles_quiz_history') || '[]');
+            historyList.push({
+                title: `Ujian Quiz Challenge (Skor: ${examScoreCount}/100)`,
+                time: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            });
+            localStorage.setItem('omahles_quiz_history', JSON.stringify(historyList));
+
+            const area = document.getElementById('dynamicMainContentArea');
+            area.innerHTML = `
+                <div class="cert-modal-card animate-section" style="margin:40px auto; max-width:600px;">
+                    <div style="font-size:3.5rem; margin-bottom:10px;">🏆</div>
+                    <div class="cert-title">Ujian Selesai!</div>
+                    <div class="cert-sub">Quiz Challenge Mode Omah Les</div>
+                    <div style="font-family:'Fredoka',sans-serif; font-size:2rem; color:var(--brand-amber); margin:20px 0;">Skor Anda: ${examScoreCount} / 100</div>
+                    <p style="font-size:0.9rem; color:var(--text-sub); font-weight:700; margin-bottom:24px;">Anda mendapatkan tambahan ⭐ +${examScoreCount} Bintang ke akun Anda!</p>
+                    <button class="btn-enter-wisdom" onclick="switchSection('dashboard')">KEMBALI KE DASHBOARD</button>
+                </div>
+            `;
         }
 
         function renderLeaderboard(container) {
@@ -1171,7 +1292,7 @@
         }
 
         function renderParentReportCard(container) {
-            let xpTotal = userCompletedQuizzes * 50;
+            let lvl = calculateLevelInfo();
             let historyList = JSON.parse(localStorage.getItem('omahles_quiz_history') || '[]');
 
             container.innerHTML = `
@@ -1182,7 +1303,7 @@
                                 <div class="profile-big-avatar">📋</div>
                                 <div>
                                     <div class="profile-user-name">Parent Report Card: ${currentStudent.name || 'Siswa'}</div>
-                                    <div class="profile-user-badge-pill">🌱 Paket: ${currentStudent.classLabel} | Email Ortu: ${currentStudent.parentEmail || '-'}</div>
+                                    <div class="profile-user-badge-pill">🌱 Paket: ${currentStudent.classLabel} | Level: Lv.${lvl.levelNum} (${lvl.levelName}) | Email Ortu: ${currentStudent.parentEmail || '-'}</div>
                                 </div>
                             </div>
                             <div style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -1192,12 +1313,12 @@
                         </div>
                         <div class="profile-stats-card">
                             <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem;">
-                                <span>⚡ Total XP: ${xpTotal} XP</span><span style="color:var(--brand-amber);">Kuis Selesai: ${userCompletedQuizzes} | Bintang: ${userStars} ⭐</span>
+                                <span>⚡ Total XP: ${lvl.totalXp} XP (Lv.${lvl.levelNum})</span><span style="color:var(--brand-amber);">Kuis Selesai: ${userCompletedQuizzes} | Bintang: ${userStars} ⭐</span>
                             </div>
-                            <div class="profile-xp-bar-bg"><div class="profile-xp-bar-fill" style="width: ${Math.min(100, (xpTotal/200)*100)}%;"></div></div>
+                            <div class="profile-xp-bar-bg"><div class="profile-xp-bar-fill" style="width: ${Math.min(100, (lvl.totalXp/200)*100)}%;"></div></div>
                         </div>
                         <div style="font-size:0.9rem; font-weight:700; color:var(--text-sub); line-height:1.6;">
-                            <strong>Catatan Evaluasi Mentor:</strong> Ananda menunjukkan konsistensi yang sangat baik dalam menyelesaikan latihan soal interaktif dan aktif menggunakan fitur AI Tutor di portal Omah Les.
+                            <strong>Catatan Evaluasi Mentor:</strong> Ananda menunjukkan konsistensi yang sangat baik dalam menyelesaikan latihan soal interaktif, ujian berbatas waktu, dan aktif menggunakan fitur AI Tutor di portal Omah Les.
                         </div>
 
                         <div style="margin-top:10px;">
