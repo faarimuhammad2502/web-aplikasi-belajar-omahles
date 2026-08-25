@@ -287,8 +287,10 @@
         .lovespeak-status { font-size: 0.7rem; color: #16a34a; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
         
         .api-key-config-box { display: flex; align-items: center; gap: 8px; background: var(--brand-cream); padding: 8px 14px; border-radius: 16px; border: 1.5px solid var(--brand-amber); }
-        .api-key-input { border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; outline: none; width: 180px; }
+        .api-key-input { border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; outline: none; width: 160px; }
         .api-key-save-btn { background: var(--brand-amber); color: white; border: none; padding: 6px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 800; cursor: pointer; font-family: 'Fredoka', sans-serif; }
+        .btn-reset-chat { background: #fee2e2; border: 1px solid #f87171; color: #b91c1c; padding: 6px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 800; cursor: pointer; font-family: 'Fredoka', sans-serif; }
+        .btn-reset-chat:hover { background: #f87171; color: white; }
 
         .lovespeak-messages-area { flex: 1; padding: 32px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; background: #fdfbf7; }
         .lovespeak-bubble-row { display: flex; flex-direction: column; width: 100%; max-width: 85%; }
@@ -1332,10 +1334,13 @@
                                 <div class="lovespeak-status">● ONLINE, AI CONNECTED</div>
                             </div>
                         </div>
-                        <div class="api-key-config-box">
-                            <span style="font-size:0.72rem; font-weight:800; color:var(--brand-brown);">🔑 API Key:</span>
-                            <input type="password" id="inputUserApiKey" class="api-key-input" placeholder="Paste AIzaSy..." value="${savedKey}">
-                            <button class="api-key-save-btn" onclick="saveUserApiKey()">Simpan</button>
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <button class="btn-reset-chat" onclick="resetChatHistory()">🔄 Reset Chat</button>
+                            <div class="api-key-config-box">
+                                <span style="font-size:0.72rem; font-weight:800; color:var(--brand-brown);">🔑 API Key:</span>
+                                <input type="password" id="inputUserApiKey" class="api-key-input" placeholder="Paste AIzaSy..." value="${savedKey}">
+                                <button class="api-key-save-btn" onclick="saveUserApiKey()">Simpan</button>
+                            </div>
                         </div>
                     </div>
 
@@ -1374,6 +1379,13 @@
             const storageKey = `omahles_key_${currentStudent.parentEmail}`;
             localStorage.setItem(storageKey, key);
             alert('✅ API Key berhasil disimpan untuk akun ini!');
+        }
+
+        function resetChatHistory() {
+            chatHistoryMemory = [];
+            playClickSound();
+            renderLovSpeakAiChat(document.getElementById('dynamicMainContentArea'));
+            alert('🔄 Riwayat percakapan berhasil direset!');
         }
 
         async function sendGeminiApiChat() {
@@ -1416,15 +1428,14 @@
             box.scrollTop = box.scrollHeight;
 
             try {
-                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
+                // Menggunakan model stabil gemini-1.5-flash
+                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
                 
-                // Sistem instruksi agar AI memberikan cara dan tidak pakai bintang
                 const systemInstruction = {
                     role: "model",
                     parts: [{ text: `Anda adalah Kak Omah, tutor privat ramah untuk anak TK dan SD. Siswa yang bertanya bernama "${studentName}". Aturan penting: 1) Jika siswa bertanya soal matematika atau PR, SELALU berikan langkah-langkah atau cara penyelesaiannya secara lengkap dan bertahap, jangan hanya menyebutkan hasil akhirnya saja. 2) JANGAN gunakan simbol tanda bintang ganda (**) sama sekali di seluruh jawaban Anda. Jika ingin menebalkan kata, gunakan tag HTML <b>...</b> atau jangan gunakan format tebal.` }]
                 };
 
-                // Kirim seluruh riwayat chat (chatHistoryMemory) agar AI ingat konteks sebelumnya
                 const response = await fetch(apiEndpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1445,7 +1456,6 @@
                         parts: [{ text: aiReply }]
                     });
 
-                    // Bersihkan format markdown bintang
                     aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
                                      .replace(/\*/g, '')
                                      .replace(/\\times/g, '×')
@@ -1468,8 +1478,30 @@
                 }
             } catch (err) {
                 console.error(err);
+                
+                // Deteksi apakah error karena kuota habis (quota exceeded)
+                const isQuotaError = err.message.toLowerCase().includes('quota') || err.message.toLowerCase().includes('exceeded');
+                
+                let errorHtmlContent = "";
+                if (isQuotaError) {
+                    errorHtmlContent = `
+                        <b>Waduh, Kak Omah kelelahan nih, kebanyakan nanya dalam waktu singkat! 😅</b><br><br>
+                        Yuk, istirahat sejenak sambil minum air putih selama <b>1 menit</b>, lalu coba kirim pertanyaannya lagi ya, Kak ${studentName}! ✨
+                    `;
+                } else {
+                    errorHtmlContent = `
+                        <b>Waduh, maaf ya! 🤖 Jaringan Kak Omah lagi agak ngantuk nih...</b><br><br>
+                        Coba klik tombol <b>"➤" (Kirim)</b> sekali lagi, atau minta bantuan Papa/Mama untuk mengecek <b>API Key</b> di pojok kanan atas ya! Kak Omah siap bantu lagi kok! ✨
+                    `;
+                }
+
                 document.getElementById(loadingId).innerHTML = `
-                    <div class="lovespeak-bubble" style="color:#dc2626;">❌ Gagal terhubung: ${err.message}. Pastikan API Key di pojok kanan atas sudah aktif.</div>
+                    <div class="lovespeak-bubble" style="background: #fffbeb; border-color: #fde68a; color: #92400e;">
+                        ${errorHtmlContent}
+                    </div>
+                    <div class="lovespeak-bubble-footer">
+                        <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    </div>
                 `;
             }
             box.scrollTop = box.scrollHeight;
