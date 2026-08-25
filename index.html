@@ -324,9 +324,12 @@
         .brand-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: #ffffff; font-weight: 700; line-height: 1.1; }
         .brand-sub { font-size: 0.7rem; color: var(--brand-yellow); font-weight: 800; letter-spacing: 1px; }
 
-        /* VIRTUAL PET STAGE BOX DI SIDEBAR */
-        .virtual-pet-stage-box { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 12px; margin-bottom: 16px; text-align: center; }
-        .virtual-pet-render-area { font-size: 2.8rem; line-height: 1.1; margin-bottom: 6px; min-height: 50px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+        /* VIRTUAL PET STAGE BOX DI SIDEBAR - KELAS ABSOLUTE DENGAN POSISI YANG MENYATU */
+        .virtual-pet-stage-box { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 14px 12px; margin-bottom: 16px; text-align: center; }
+        .virtual-pet-render-area { position: relative; width: 80px; height: 75px; margin: 0 auto 6px auto; display: flex; align-items: center; justify-content: center; }
+        .pet-base-avatar { font-size: 2.8rem; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); z-index: 1; }
+        .pet-overlay-head { font-size: 1.5rem; position: absolute; top: -2px; left: 50%; transform: translateX(-50%); z-index: 3; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        .pet-overlay-eyes { font-size: 1.1rem; position: absolute; top: 26px; left: 50%; transform: translateX(-50%); z-index: 2; }
         .pet-select { background: #2d1e18; color: #fff; border: 1px solid var(--brand-amber); border-radius: 8px; padding: 4px 8px; font-size: 0.78rem; font-weight: 700; outline: none; width: 100%; margin-top: 4px; }
 
         .gamification-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
@@ -647,10 +650,12 @@
                     </div>
                 </div>
 
-                <!-- STAGE RENDER MASKOT DI SIDEBAR YANG JELAS DAN RAPI -->
+                <!-- STAGE RENDER MASKOT DI SIDEBAR: TOP & EYES BENAR-BENAR MENEMPEL DI KEPALA KARAKTER -->
                 <div class="virtual-pet-stage-box">
                     <div style="font-size:0.7rem; font-weight:800; color:var(--brand-yellow); text-transform:uppercase; margin-bottom:4px;">🐾 Maskot Peliharaan:</div>
-                    <div class="virtual-pet-render-area" id="virtualPetDisplay" title="Maskot Peliharaan Virtual">🐶</div>
+                    <div class="virtual-pet-render-area" id="virtualPetDisplay" title="Maskot Peliharaan Virtual">
+                        <!-- Render bertumpuk dinamis via script -->
+                    </div>
                     <select class="pet-select" id="petSelector" onchange="changeVirtualPet(this.value)">
                         <option value="🐱">Kucing Meo</option>
                         <option value="🐰">Kelinci Ciko</option>
@@ -951,12 +956,15 @@
 
         function updatePetDisplayUI() {
             const petEmoji = localStorage.getItem('omahles_virtual_pet') || '🐶';
-            const headAcc = currentPetHead || '';
-            const eyesAcc = currentPetEyes || '';
+            const headAcc = currentPetHead ? `<div class="pet-overlay-head">${currentPetHead}</div>` : '';
+            const eyesAcc = currentPetEyes ? `<div class="pet-overlay-eyes">${currentPetEyes}</div>` : '';
             
-            // Susunan visual realistis di atas karakter: [Topi/Mahkota] [Kacamata] [Karakter Pet]
-            // Supaya posisinya proporsional, kita render bertumpuk atau berjejer rapi di stage box sidebar.
-            const fullDisplay = `<div style="font-size:1.4rem; line-height:1; margin-bottom:-6px; position:relative; z-index:2;">${headAcc}</div><div style="font-size:1.1rem; line-height:1; margin-bottom:-4px; position:relative; z-index:3;">${eyesAcc}</div><div style="font-size:2.4rem; line-height:1; position:relative; z-index:1;">${petEmoji}</div>`;
+            // Render bertumpuk mutlak (absolute positioning) sehingga Topi/Mahkota tepat di kepala, Kacamata tepat di mata karakter
+            const fullDisplay = `
+                <div class="pet-base-avatar">${petEmoji}</div>
+                ${eyesAcc}
+                ${headAcc}
+            `;
 
             const displayEl = document.getElementById('virtualPetDisplay');
             if(displayEl) displayEl.innerHTML = fullDisplay;
