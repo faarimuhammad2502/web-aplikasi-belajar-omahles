@@ -819,6 +819,9 @@
         let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
         let lastClaimDate = localStorage.getItem('omahles_last_claim_date') || '';
 
+        // MEMORI RIWAYAT CHAT UTAMA
+        let chatHistoryMemory = [];
+
         window.addEventListener('DOMContentLoaded', () => { 
             localStorage.removeItem('omahles_user_gemini_key');
 
@@ -1317,7 +1320,6 @@
         function renderLovSpeakAiChat(container) {
             const storageKey = `omahles_key_${currentStudent.parentEmail}`;
             const savedKey = localStorage.getItem(storageKey) || '';
-            const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             const studentName = currentStudent.name || 'Siswa';
 
             container.innerHTML = `
@@ -1344,7 +1346,7 @@
                             </div>
                             <div class="lovespeak-bubble-footer">
                                 <button class="lovespeak-btn-listen" onclick="speakText(this.parentElement.previousElementSibling.innerText)">🔊 LISTEN</button>
-                                <span>${timeStr}</span>
+                                <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                             </div>
                         </div>
                     </div>
@@ -1387,9 +1389,10 @@
             }
 
             const box = document.getElementById('lovChatMessagesBox');
-            const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }, { hour12: false });
+            const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             const studentName = currentStudent.name || 'Siswa';
 
+            // Tampilkan pesan user ke layar
             box.innerHTML += `
                 <div class="lovespeak-bubble-row user">
                     <div class="lovespeak-bubble">${msg.replace(/</g,"&lt;")}</div>
@@ -1397,6 +1400,12 @@
                 </div>
             `;
             input.value = ''; box.scrollTop = box.scrollHeight;
+
+            // Simpan ke memori riwayat chat
+            chatHistoryMemory.push({
+                role: "user",
+                parts: [{ text: msg }]
+            });
 
             const loadingId = 'load-' + Date.now();
             box.innerHTML += `
@@ -1409,15 +1418,18 @@
             try {
                 const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
                 
+                // Sistem instruksi agar AI memberikan cara dan tidak pakai bintang
+                const systemInstruction = {
+                    role: "model",
+                    parts: [{ text: `Anda adalah Kak Omah, tutor privat ramah untuk anak TK dan SD. Siswa yang bertanya bernama "${studentName}". Aturan penting: 1) Jika siswa bertanya soal matematika atau PR, SELALU berikan langkah-langkah atau cara penyelesaiannya secara lengkap dan bertahap, jangan hanya menyebutkan hasil akhirnya saja. 2) JANGAN gunakan simbol tanda bintang ganda (**) sama sekali di seluruh jawaban Anda. Jika ingin menebalkan kata, gunakan tag HTML <b>...</b> atau jangan gunakan format tebal.` }]
+                };
+
+                // Kirim seluruh riwayat chat (chatHistoryMemory) agar AI ingat konteks sebelumnya
                 const response = await fetch(apiEndpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        contents: [{
-                            parts: [{
-                                text: `Anda adalah Kak Omah, tutor privat ramah untuk anak TK dan SD. Siswa yang bertanya bernama "${studentName}". Jawablah pertanyaan berikut dengan singkat, jelas, dan langsung ke inti. ATURAN PENTING: JANGAN gunakan simbol tanda bintang ganda (**) sama sekali di seluruh jawaban Anda. Jika ingin menebalkan kata, gunakan tag HTML <b>...</b> atau jangan gunakan format tebal. Jangan sertakan tanda bintang markdown. Pertanyaan siswa: "${msg}"`
-                            }]
-                        }]
+                        contents: [systemInstruction, ...chatHistoryMemory]
                     })
                 });
 
@@ -1427,7 +1439,13 @@
                 if(data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
                     let aiReply = data.candidates[0].content.parts[0].text;
                     
-                    // Membersihkan sisa simbol bintang jika ada dari AI
+                    // Simpan jawaban AI ke memori riwayat chat
+                    chatHistoryMemory.push({
+                        role: "model",
+                        parts: [{ text: aiReply }]
+                    });
+
+                    // Bersihkan format markdown bintang
                     aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
                                      .replace(/\*/g, '')
                                      .replace(/\\times/g, '×')
