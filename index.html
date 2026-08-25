@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&family=Comic+Neue:wght@700&display=stylesheet" rel="stylesheet">
 
     <style>
         :root {
@@ -59,10 +59,18 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* FOCUS MODE (SEMBNYIKAN SIDEBAR) */
-        body.focus-mode .sidebar { transform: translateX(-100%); }
-        body.focus-mode .content-area { margin-left: 0 !important; max-width: 1000px; margin: 0 auto; }
+        /* FOCUS MODE (SEMBUNYIKAN SIDEBAR & TAMPILKAN TOMBOL KELUAR MELAYANG) */
+        body.focus-mode .sidebar { transform: translateX(-100%); width: 0; padding: 0; overflow: hidden; border: none; }
+        body.focus-mode .content-area { margin-left: 0 !important; max-width: 1000px; margin: 0 auto; padding-top: 50px; }
         body.focus-mode .portal-footer { margin-left: 0 !important; }
+        
+        .floating-exit-focus {
+            position: fixed; top: 20px; right: 25px; z-index: 99999;
+            background: linear-gradient(135deg, var(--brand-brown), var(--brand-amber)); color: white;
+            border: 2px solid #fff; padding: 10px 20px; border-radius: 30px; font-weight: 800; font-size: 0.85rem;
+            cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.25); display: none; font-family: 'Fredoka', sans-serif;
+        }
+        body.focus-mode .floating-exit-focus { display: flex; align-items: center; gap: 8px; }
 
         /* ANIMASI BINTANG MELAYANG (FLOATING REWARD) */
         @keyframes floatUpReward {
@@ -244,7 +252,7 @@
         .lov-submit-btn:hover { background: var(--brand-amber); color: #ffffff; }
 
         .app-wrapper { display: flex; flex: 1; position: relative; }
-        .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); overflow-y: auto; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); overflow-y: auto; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         
         .brand-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
         .brand-logo-area { display: flex; align-items: center; gap: 12px; }
@@ -271,7 +279,7 @@
         .menu-item.active a, .menu-item a:hover { background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: #ffffff; }
 
         .sidebar-bottom-controls { border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 14px; margin-top: 10px; z-index: 10; position: relative; }
-        .btn-refresh-app { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #ffffff; padding: 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 800; cursor: pointer; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .btn-refresh-app { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #ffffff; padding: 10px; border-radius: 12px; font-size: 0.78rem; font-weight: 800; cursor: pointer; letter-spacing: 0.5px; margin-bottom: 8px; text-align: left; display: flex; align-items: center; gap: 8px; }
         .btn-refresh-app:hover { background: rgba(255,255,255,0.15); }
 
         .profile-card { background: rgba(255,255,255,0.05); border-radius: var(--radius-sm); padding: 10px 12px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
@@ -400,6 +408,9 @@
 </head>
 <body>
 
+    <!-- TOMBOL MELAYANG KELUAR FOCUS MODE -->
+    <button class="floating-exit-focus" onclick="toggleFocusMode()">🎯 Keluar Focus Mode</button>
+
     <div class="mobile-header-bar">
         <div style="display:flex; align-items:center; gap:10px;">
             <img src="./logo.jpg" alt="Logo" style="width:32px; height:32px; border-radius:8px; border:1px solid var(--brand-amber);" onerror="this.src='https://via.placeholder.com/32?text=OLP'">
@@ -437,6 +448,25 @@
             <div class="wisdom-quote-text" id="wisdomQuoteText">"Pendidikan adalah senjata paling ampuh."</div>
             <div class="wisdom-author" id="wisdomAuthorText">— Nelson Mandela</div>
             <button class="btn-enter-wisdom" onclick="playClickSound(); closeWisdomModal()">ENTER OMAH LES PORTAL</button>
+        </div>
+    </div>
+
+    <!-- SETTINGS / PENGATURAN MODAL -->
+    <div class="modal-overlay" id="settingsModalOverlay">
+        <div class="modal-card" style="max-width: 440px; text-align: left;">
+            <button class="btn-close-modal" style="color:var(--text-main); background:var(--brand-cream);" onclick="closeSettingsModal()">✕</button>
+            <div style="font-family:'Fredoka',sans-serif; font-size:1.6rem; color:var(--brand-brown); margin-bottom:4px;">⚙️ Pengaturan Portal</div>
+            <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:24px;">Sesuaikan kenyamanan belajar Anda</div>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" id="btnToggleBgmModal" onclick="toggleBgmMusic()">🎵 Musik BGM: OFF</button>
+                <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleDarkMode()">🌓 Ganti Tema (Dark/Light)</button>
+                <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleDyslexiaFont()">🔤 Font Disleksia On/Off</button>
+                <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleFocusMode(); closeSettingsModal();">🎯 Focus Mode On/Off</button>
+                <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); refreshCurrentPage()">↺ Refresh Portal</button>
+            </div>
+            
+            <button class="btn-enter-wisdom" style="margin-top: 24px; padding: 12px;" onclick="closeSettingsModal()">TUTUP</button>
         </div>
     </div>
 
@@ -595,12 +625,8 @@
 
             <div>
                 <div class="sidebar-bottom-controls">
-                    <button class="btn-refresh-app" id="btnToggleBgm" onclick="toggleBgmMusic()">🎵 Musik BGM: OFF</button>
-                    <button class="btn-refresh-app" onclick="playClickSound(); toggleDarkMode()">🌓 Ganti Tema (Dark/Light)</button>
-                    <button class="btn-refresh-app" onclick="playClickSound(); toggleDyslexiaFont()">🔤 Font Disleksia On/Off</button>
-                    <button class="btn-refresh-app" id="btnToggleFocus" onclick="toggleFocusMode()">🎯 Focus Mode On/Off</button>
-                    <button class="btn-refresh-app" onclick="playClickSound(); refreshCurrentPage()">↺ REFRESH PORTAL</button>
-                    <button class="btn-refresh-app" style="background:rgba(217,119,6,0.2); border-color:var(--brand-amber); color:#fef08a; margin-top:4px;" onclick="openParentPinModal()">🔒 Mode Orang Tua</button>
+                    <button class="btn-refresh-app" onclick="playClickSound(); openSettingsModal()">⚙️ Pengaturan Portal</button>
+                    <button class="btn-refresh-app" style="background:rgba(217,119,6,0.2); border-color:var(--brand-amber); color:#fef08a;" onclick="openParentPinModal()">🔒 Mode Orang Tua</button>
                 </div>
                 <div class="profile-card">
                     <div class="profile-left">
@@ -721,13 +747,13 @@
         function toggleBgmMusic() {
             playClickSound();
             isBgmPlaying = !isBgmPlaying;
-            const btn = document.getElementById('btnToggleBgm');
+            const btn = document.getElementById('btnToggleBgmModal');
             if (isBgmPlaying) {
-                btn.innerText = '🎵 Musik BGM: ON';
+                if(btn) btn.innerText = '🎵 Musik BGM: ON';
                 melodyStep = 0;
                 playCheerfulBgmLoop();
             } else {
-                btn.innerText = '🎵 Musik BGM: OFF';
+                if(btn) btn.innerText = '🎵 Musik BGM: OFF';
                 if (bgmTimer) clearTimeout(bgmTimer);
             }
         }
@@ -749,9 +775,14 @@
         function toggleFocusMode() {
             playClickSound();
             document.body.classList.toggle('focus-mode');
-            const isFocus = document.body.classList.contains('focus-mode');
-            const btn = document.getElementById('btnToggleFocus');
-            if(btn) btn.innerText = isFocus ? '🎯 Focus Mode: ON' : '🎯 Focus Mode On/Off';
+        }
+
+        function openSettingsModal() {
+            playClickSound();
+            document.getElementById('settingsModalOverlay').classList.add('active');
+        }
+        function closeSettingsModal() {
+            document.getElementById('settingsModalOverlay').classList.remove('active');
         }
 
         let activeSpeakingButton = null;
@@ -1367,7 +1398,6 @@
             `;
         }
 
-        // FITUR BARU 1: SISTEM BACKUP & RESTORE DATA (JSON)
         function exportStudentDataBackup() {
             playClickSound();
             const backupData = {
