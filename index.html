@@ -821,12 +821,9 @@
         let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
         let lastClaimDate = localStorage.getItem('omahles_last_claim_date') || '';
 
-        // MEMORI RIWAYAT CHAT UTAMA
         let chatHistoryMemory = [];
 
         window.addEventListener('DOMContentLoaded', () => { 
-            localStorage.removeItem('omahles_user_gemini_key');
-
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             if (savedStudent) {
                 currentStudent = JSON.parse(savedStudent);
@@ -1404,7 +1401,6 @@
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             const studentName = currentStudent.name || 'Siswa';
 
-            // Tampilkan pesan user ke layar
             box.innerHTML += `
                 <div class="lovespeak-bubble-row user">
                     <div class="lovespeak-bubble">${msg.replace(/</g,"&lt;")}</div>
@@ -1413,7 +1409,6 @@
             `;
             input.value = ''; box.scrollTop = box.scrollHeight;
 
-            // Simpan ke memori riwayat chat
             chatHistoryMemory.push({
                 role: "user",
                 parts: [{ text: msg }]
@@ -1428,8 +1423,7 @@
             box.scrollTop = box.scrollHeight;
 
             try {
-                // Menggunakan model stabil gemini-1.5-flash
-                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.0-pro:generateContent?key=${apiKey}`;
+                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
                 
                 const systemInstruction = {
                     role: "model",
@@ -1450,7 +1444,6 @@
                 if(data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
                     let aiReply = data.candidates[0].content.parts[0].text;
                     
-                    // Simpan jawaban AI ke memori riwayat chat
                     chatHistoryMemory.push({
                         role: "model",
                         parts: [{ text: aiReply }]
@@ -1479,7 +1472,6 @@
             } catch (err) {
                 console.error(err);
                 
-                // Deteksi apakah error karena kuota habis (quota exceeded)
                 const isQuotaError = err.message.toLowerCase().includes('quota') || err.message.toLowerCase().includes('exceeded');
                 
                 let errorHtmlContent = "";
