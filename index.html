@@ -132,7 +132,7 @@
         .insight-section-title { font-size: 0.82rem; font-weight: 800; color: var(--brand-amber); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
         .insight-text-body { font-size: 0.92rem; color: var(--text-main); line-height: 1.7; font-weight: 600; margin-bottom: 24px; }
         .quiz-box { background: var(--brand-cream); border: 2px solid var(--card-border); border-radius: 20px; padding: 20px; margin-top: 20px; }
-        .quiz-question { font-weight: 800; font-size: 1rem; color: var(--brand-brown); margin-bottom: 12px; }
+        .quiz-question { font-weight: 800; font-size: 1rem; color: var(--brand-brown); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
         .quiz-options { display: flex; flex-direction: column; gap: 8px; }
         .quiz-btn { background: var(--card-bg); border: 1.5px solid var(--card-border); padding: 10px 14px; border-radius: 12px; font-weight: 700; color: var(--text-main); text-align: left; cursor: pointer; }
         .quiz-btn:hover { background: var(--brand-cream); }
@@ -185,7 +185,7 @@
 
         /* FLASHCARD STYLES */
         .flashcard-wrapper { display: flex; flex-direction: column; align-items: center; gap: 24px; max-width: 600px; margin: 0 auto; }
-        .flashcard-box { width: 100%; height: 280px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 3px solid var(--brand-amber); border-radius: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; text-align: center; cursor: pointer; box-shadow: 0 10px 25px rgba(217, 119, 6, 0.15); transition: transform 0.3s; }
+        .flashcard-box { width: 100%; height: 280px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 3px solid var(--brand-amber); border-radius: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; text-align: center; cursor: pointer; box-shadow: 0 10px 25px rgba(217, 119, 6, 0.15); transition: transform 0.3s; position: relative; }
         .flashcard-box:hover { transform: scale(1.02); }
         .flashcard-instruction { font-size: 0.75rem; font-weight: 800; color: #b45309; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
         .flashcard-content { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); line-height: 1.4; }
@@ -212,10 +212,15 @@
         .app-wrapper { display: flex; flex: 1; position: relative; }
         .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); overflow-y: auto; }
         
-        .brand-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .brand-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .brand-logo-area { display: flex; align-items: center; gap: 12px; }
         .brand-logo { width: 44px; height: 44px; border-radius: 14px; object-fit: cover; border: 2px solid var(--brand-amber); }
         .brand-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: #ffffff; font-weight: 700; line-height: 1.1; }
         .brand-sub { font-size: 0.7rem; color: var(--brand-yellow); font-weight: 800; letter-spacing: 1px; }
+
+        /* VIRTUAL PET SELECTOR */
+        .virtual-pet-box { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; font-size: 0.78rem; font-weight: 700; color: #fef08a; }
+        .pet-select { background: #2d1e18; color: #fff; border: 1px solid var(--brand-amber); border-radius: 8px; padding: 2px 6px; font-size: 0.75rem; font-weight: 700; outline: none; }
 
         .gamification-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
         .stat-badge-card { background: rgba(255, 255, 255, 0.06); border: 1.5px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
@@ -284,7 +289,7 @@
         .insight-body-text { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; line-height: 1.6; color: var(--text-main); font-style: italic; }
 
         /* BADGES SECTION */
-        .badges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .badges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
         .badge-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; position: relative; transition: transform 0.2s; }
         .badge-item-card.unlocked { border-color: var(--brand-amber); background: linear-gradient(180deg, var(--card-bg) 0%, var(--brand-cream) 100%); cursor: pointer; }
         .badge-item-card.unlocked:hover { transform: translateY(-4px); }
@@ -466,7 +471,10 @@
             <div class="insight-section-title">📌 LOGIC</div>
             <div class="insight-text-body" id="insLogic">Logika...</div>
             <div class="quiz-box">
-                <div class="quiz-question" id="quizQuestionText">❓ Kuis: ...</div>
+                <div class="quiz-question">
+                    <span id="quizQuestionText">❓ Kuis: ...</span>
+                    <button class="tts-action-btn" style="margin:0;" onclick="speakText(document.getElementById('quizQuestionText').innerText)">🔊 Dengar Soal</button>
+                </div>
                 <div class="quiz-options" id="quizOptionsContainer"></div>
                 <div class="quiz-feedback" id="quizFeedbackText"></div>
             </div>
@@ -478,11 +486,24 @@
         <aside class="sidebar" id="appSidebar">
             <div>
                 <div class="brand-header">
-                    <img src="./logo.jpg" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/44?text=OLP'">
-                    <div>
-                        <div class="brand-title">OmahLes</div>
-                        <div class="brand-sub">LEARNING PORTAL</div>
+                    <div class="brand-logo-area">
+                        <img src="./logo.jpg" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/44?text=OLP'">
+                        <div>
+                            <div class="brand-title">OmahLes</div>
+                            <div class="brand-sub">LEARNING PORTAL</div>
+                        </div>
                     </div>
+                    <div id="virtualPetDisplay" style="font-size:1.8rem;" title="Maskot Peliharaan Virtual">🐱</div>
+                </div>
+
+                <div class="virtual-pet-box">
+                    <span>🐾 Maskot:</span>
+                    <select class="pet-select" id="petSelector" onchange="changeVirtualPet(this.value)">
+                        <option value="🐱">Kucing Meo</option>
+                        <option value="🐰">Kelinci Ciko</option>
+                        <option value="🐼">Panda Pandy</option>
+                        <option value="🐶">Anjing Doby</option>
+                    </select>
                 </div>
 
                 <div class="gamification-bar">
@@ -537,7 +558,7 @@
                 </div>
                 <div class="profile-card">
                     <div class="profile-left">
-                        <div class="avatar-box">🎒</div>
+                        <div class="avatar-box" id="sidebarAvatarIcon">🐱</div>
                         <div class="profile-info">
                             <div class="profile-name" id="userNameDisplay">Siswa</div>
                             <div class="profile-badge" id="userLevelDisplay">Paket Kelas</div>
@@ -633,6 +654,13 @@
         function toggleMobileSidebar() {
             playClickSound();
             document.getElementById('appSidebar').classList.toggle('mobile-open');
+        }
+
+        function changeVirtualPet(petEmoji) {
+            playClickSound();
+            localStorage.setItem('omahles_virtual_pet', petEmoji);
+            document.getElementById('virtualPetDisplay').innerText = petEmoji;
+            document.getElementById('sidebarAvatarIcon').innerText = petEmoji;
         }
 
         const REGISTERED_PARENT_DATABASE = {
@@ -850,6 +878,11 @@
             if(localStorage.getItem('omahles_dark_mode') === 'true') {
                 document.body.classList.add('dark-mode');
             }
+
+            const savedPet = localStorage.getItem('omahles_virtual_pet') || '🐱';
+            document.getElementById('petSelector').value = savedPet;
+            document.getElementById('virtualPetDisplay').innerText = savedPet;
+            document.getElementById('sidebarAvatarIcon').innerText = savedPet;
 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             if (savedStudent) {
@@ -1113,7 +1146,10 @@
                                     <div class="profile-user-badge-pill">🌱 Paket: ${currentStudent.classLabel} | Email Ortu: ${currentStudent.parentEmail || '-'}</div>
                                 </div>
                             </div>
-                            <button class="btn-open-module" onclick="window.print()">🖨️ Cetak / Simpan PDF Report</button>
+                            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                                <button class="btn-open-module" style="background:#16a34a;" onclick="alert('☁️ Cloud Sync Status: Tersinkronisasi aman ke Cloud Server Omah Les (Simulasi).')">☁️ Cloud Synced</button>
+                                <button class="btn-open-module" onclick="window.print()">🖨️ Cetak PDF</button>
+                            </div>
                         </div>
                         <div class="profile-stats-card">
                             <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem;">
@@ -1191,6 +1227,10 @@
 
         function renderBadges(container) {
             const isUnlocked1 = userCompletedQuizzes >= 1;
+            const isUnlockedMath = userCompletedQuizzes >= 3;
+            const isUnlockedStreak = true;
+            const isUnlockedStar = userStars >= 50;
+
             container.innerHTML = `
                 <div class="badges-grid">
                     <div class="badge-item-card ${isUnlocked1 ? 'unlocked' : ''}" ${isUnlocked1 ? `onclick="openCertModal('Langkah Pertama', 'Menyelesaikan modul pertama.')"` : ''}>
@@ -1199,9 +1239,31 @@
                         <div style="font-size:0.8rem; color:var(--text-sub);">Selesaikan 1 kuis latihan.</div>
                         <div class="badge-status-tag ${isUnlocked1 ? 'unlocked' : 'locked'}">${isUnlocked1 ? 'Unlocked ✨' : 'Locked 🔒'}</div>
                     </div>
+
+                    <div class="badge-item-card ${isUnlockedMath ? 'unlocked' : ''}" ${isUnlockedMath ? `onclick="openCertModal('Math Wizard', 'Menyelesaikan banyak kuis matematika.')"` : ''}>
+                        <div class="badge-icon-wrap">🧙‍♂️</div>
+                        <div class="badge-title-text">Math Wizard</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub);">Selesaikan minimal 3 kuis.</div>
+                        <div class="badge-status-tag ${isUnlockedMath ? 'unlocked' : 'locked'}">${isUnlockedMath ? 'Unlocked ✨' : 'Locked 🔒'}</div>
+                    </div>
+
+                    <div class="badge-item-card ${isUnlockedStreak ? 'unlocked' : ''}" onclick="openCertModal('Streak Master', 'Konsisten login harian.')">
+                        <div class="badge-icon-wrap">🔥</div>
+                        <div class="badge-title-text">Streak Master</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub);">Aktivasi streak harian portal.</div>
+                        <div class="badge-status-tag unlocked">Unlocked ✨</div>
+                    </div>
+
+                    <div class="badge-item-card ${isUnlockedStar ? 'unlocked' : ''}" ${isUnlockedStar ? `onclick="openCertModal('Star Collector', 'Mengumpulkan 50 bintang.')"` : ''}>
+                        <div class="badge-icon-wrap">🌟</div>
+                        <div class="badge-title-text">Star Collector</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub);">Kumpulkan minimal 50 bintang.</div>
+                        <div class="badge-status-tag ${isUnlockedStar ? 'unlocked' : 'locked'}">${isUnlockedStar ? 'Unlocked ✨' : 'Locked 🔒'}</div>
+                    </div>
                 </div>
             `;
         }
+
         function openCertModal(t, d) {
             document.getElementById('certStudentName').innerText = currentStudent.name || 'Siswa';
             document.getElementById('certModalOverlay').classList.add('active');
@@ -1217,7 +1279,10 @@
 
             container.innerHTML = `
                 <div class="flashcard-wrapper animate-section">
-                    <div style="font-weight:800; color:var(--brand-brown); text-transform:uppercase; font-size:0.85rem;">🃏 FLASHCARDS: ${currentStudent.classLabel.toUpperCase()} (${currentFlashcardIdx + 1} / ${currentDeck.length})</div>
+                    <div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
+                        <div style="font-weight:800; color:var(--brand-brown); text-transform:uppercase; font-size:0.85rem;">🃏 FLASHCARDS: ${currentStudent.classLabel.toUpperCase()} (${currentFlashcardIdx + 1} / ${currentDeck.length})</div>
+                        <button class="tts-action-btn" style="margin:0;" onclick="speakText(document.getElementById('fcText').innerText)">🔊 Dengar Kartu</button>
+                    </div>
                     <div class="flashcard-box" onclick="flipFlashcard()">
                         <div class="flashcard-instruction" id="fcInstruction">Klik kartu untuk melihat jawaban</div>
                         <div class="flashcard-content" id="fcText">${fc.q}</div>
@@ -1284,7 +1349,10 @@
                     <div class="lov-top-bar">
                         <div class="lov-btn-close" onclick="switchSection('games')">✕</div>
                         <div class="lov-score-pill">SCORE: ${lovScore}</div>
-                        <div>❤️❤️❤️</div>
+                        <div style="display:flex; gap:12px; align-items:center;">
+                            <button class="tts-action-btn" style="margin:0;" onclick="speakText('${q.clue}')">🔊 Dengar Clue</button>
+                            <span>❤️❤️❤️</span>
+                        </div>
                     </div>
                     <div class="lov-stage-card"><div class="lov-emoji-display">${q.emojis}</div></div>
                     <div class="lov-clue-box">💡 ${q.clue}</div>
