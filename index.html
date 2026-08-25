@@ -642,27 +642,38 @@
         }
         function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
 
-     // BGM SYNTHESIS CERIA (MELODI MUSIK ANAK OTOMATIS)
+    // BGM ARANSEMEN CHIME/MUSIC BOX CERIA ANAK-ANAK
         let isBgmPlaying = false;
         let bgmTimer = null;
 
-        const cheerfulNotes = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50]; // Tangga nada ceria (C Major)
+        // Tangga nada riang (C Major pentatonic & full scale harmonis)
+        const cheerfulMelody = [
+            523.25, 659.25, 783.99, 1046.50, // C5, E5, G5, C6
+            587.33, 783.99, 880.00,          // D5, G5, A5
+            659.25, 880.00, 987.77, 1046.50  // E5, A5, B5, C6
+        ];
+
+        let melodyStep = 0;
 
         function playCheerfulBgmLoop() {
             if (!isBgmPlaying) return;
             try {
-                // Mainkan 2-3 nada acak berturut-turut bernuansa riang
-                const note1 = cheerfulNotes[Math.floor(Math.random() * cheerfulNotes.length)];
-                const note2 = cheerfulNotes[Math.floor(Math.random() * cheerfulNotes.length)];
+                // Memainkan pola nada berurutan ala music box/permainan anak
+                const freq = cheerfulMelody[melodyStep % cheerfulMelody.length];
+                playTone(freq, 'sine', 0.25);
                 
-                playTone(note1, 'triangle', 0.2);
-                setTimeout(() => {
-                    if (isBgmPlaying) playTone(note2, 'triangle', 0.2);
-                }, 250);
+                // Tambahkan harmoni kecil berselang di nada tertentu agar lebih hidup
+                if (melodyStep % 2 === 0) {
+                    setTimeout(() => {
+                        if (isBgmPlaying) playTone(freq * 1.25, 'triangle', 0.15);
+                    }, 150);
+                }
+
+                melodyStep++;
             } catch(e) {}
 
-            // Ulangi ketukan melodi setiap 600ms agar terdengar seperti musik latar anak-anak yang ceria
-            bgmTimer = setTimeout(playCheerfulBgmLoop, 600);
+            // Tempo ritme ceria setiap 400ms
+            bgmTimer = setTimeout(playCheerfulBgmLoop, 400);
         }
 
         function toggleBgmMusic() {
@@ -671,13 +682,13 @@
             const btn = document.getElementById('btnToggleBgm');
             if (isBgmPlaying) {
                 btn.innerText = '🎵 Musik BGM: ON';
+                melodyStep = 0;
                 playCheerfulBgmLoop();
             } else {
                 btn.innerText = '🎵 Musik BGM: OFF';
                 if (bgmTimer) clearTimeout(bgmTimer);
             }
         }
-
         function toggleDarkMode() {
             playClickSound();
             document.body.classList.toggle('dark-mode');
