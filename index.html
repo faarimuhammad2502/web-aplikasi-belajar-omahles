@@ -150,14 +150,8 @@
         /* GAMEPLAY UI */
         .lov-game-wrapper { width: 100%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; animation: modalFadeIn 0.3s; }
         .lov-top-bar { background: #ffffff; border: 2px solid var(--card-border); border-radius: 24px; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; }
-        .lov-level-dots { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 800; color: var(--text-sub); }
         .lov-btn-close { cursor: pointer; font-size: 1.2rem; background: var(--card-border); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px;}
         .lov-score-pill { background: #fdf4ff; border: 1.5px solid #f0abfc; padding: 6px 18px; border-radius: 16px; text-align: center; }
-        .lov-score-label { font-size: 0.65rem; font-weight: 800; color: #c084fc; text-transform: uppercase; }
-        .lov-score-value { font-family: 'Fredoka', sans-serif; font-size: 1.3rem; color: #9333ea; }
-        .lov-timer-lives { display: flex; align-items: center; gap: 14px; }
-        .lov-timer-badge { border: 2px solid #22c55e; color: #16a34a; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.1rem; }
-        .lov-lives-hearts { font-size: 1.3rem; letter-spacing: 2px;}
 
         .lov-stage-card { background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border: 2px solid #d8b4fe; border-radius: 32px; padding: 60px 32px; display: flex; align-items: center; justify-content: center; gap: 30px; box-shadow: 0 12px 30px rgba(168, 85, 247, 0.12); }
         .lov-emoji-display { font-size: 6rem; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); animation: floatEmoji 2.5s infinite ease-in-out; }
@@ -212,10 +206,6 @@
         .mastery-val { font-family: 'Fredoka', sans-serif; font-size: 1.3rem; color: var(--brand-amber); }
         .mastery-lbl { font-size: 0.72rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; }
         .active-level-indicator { background: var(--brand-cream); border: 2px solid var(--brand-amber); color: var(--brand-brown); font-family: 'Fredoka', sans-serif; font-size: 1rem; padding: 8px 18px; border-radius: var(--radius-sm); font-weight: 700; }
-
-        .dev-level-switcher { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; background: #ffffff; padding: 16px; border-radius: 16px; border: 2px solid var(--brand-amber); }
-        .dev-switch-btn { background: var(--brand-cream); border: 1.5px solid var(--brand-amber); color: var(--brand-brown); padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.8rem; cursor: pointer; }
-        .dev-switch-btn:hover, .dev-switch-btn.active { background: var(--brand-amber); color: white; }
 
         .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px; }
         .module-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
@@ -335,7 +325,7 @@
         <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰ Menu</button>
     </div>
 
-    <!-- LOGIN SCREEN -->
+    <!-- LOGIN SCREEN (HANYA EMAIL ORANG TUA SAJA) -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
@@ -345,12 +335,8 @@
         </div>
         <div class="login-right-form">
             <div class="form-header-text">Login Student</div>
-            <div class="form-sub-text">Masukkan Nama Siswa & Email Pengguna</div>
+            <div class="form-sub-text">Masukkan Email Orang Tua / Pembeli Paket</div>
             <form onsubmit="handleFormLogin(event)">
-                <div class="form-group">
-                    <label class="form-label">Nama Siswa / Anak</label>
-                    <input type="text" class="form-input" id="inputStudentName" placeholder="Contoh: Budi Santoso" required>
-                </div>
                 <div class="form-group">
                     <label class="form-label">Email Orang Tua / Pembeli</label>
                     <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
@@ -438,14 +424,14 @@
                     <div class="stat-badge-card">
                         <div class="stat-icon">⭐</div>
                         <div>
-                            <div class="stat-val" id="userStarDisplay">120</div>
+                            <div class="stat-val" id="userStarDisplay">0</div>
                             <div class="stat-lbl">Stars</div>
                         </div>
                     </div>
                     <div class="stat-badge-card">
                         <div class="stat-icon">🔥</div>
                         <div>
-                            <div class="stat-val" id="userStreakDisplay">3</div>
+                            <div class="stat-val" id="userStreakDisplay">1</div>
                             <div class="stat-lbl">Hari</div>
                         </div>
                     </div>
@@ -486,7 +472,7 @@
                         <div class="avatar-box">🎒</div>
                         <div class="profile-info">
                             <div class="profile-name" id="userNameDisplay">Siswa</div>
-                            <div class="profile-badge" id="userLevelDisplay">Pilih Jenjang</div>
+                            <div class="profile-badge" id="userLevelDisplay">Paket Kelas</div>
                         </div>
                     </div>
                     <button class="btn-switch-user" onclick="playClickSound(); openLoginForm()">Switch</button>
@@ -502,17 +488,6 @@
                 <div class="banner-sub" id="bannerWelcomeSub">Modul materi terstruktur disesuaikan.</div>
             </div>
 
-            <div class="dev-level-switcher" id="devLevelSwitcherBox">
-                <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">📌 PILIH JENJANG KELAS SISWA:</span>
-                <button class="dev-switch-btn" id="btn-cat-tk" onclick="devSwitchClass('tk', 'TK / PAUD')">TK / PAUD</button>
-                <button class="dev-switch-btn" id="btn-cat-sd1" onclick="devSwitchClass('sd1', 'Kelas 1 SD')">SD 1</button>
-                <button class="dev-switch-btn" id="btn-cat-sd2" onclick="devSwitchClass('sd2', 'Kelas 2 SD')">SD 2</button>
-                <button class="dev-switch-btn" id="btn-cat-sd3" onclick="devSwitchClass('sd3', 'Kelas 3 SD')">SD 3</button>
-                <button class="dev-switch-btn" id="btn-cat-sd4" onclick="devSwitchClass('sd4', 'Kelas 4 SD')">SD 4</button>
-                <button class="dev-switch-btn" id="btn-cat-sd5" onclick="devSwitchClass('sd5', 'Kelas 5 SD')">SD 5</button>
-                <button class="dev-switch-btn" id="btn-cat-sd6" onclick="devSwitchClass('sd6', 'Kelas 6 SD')">SD 6</button>
-            </div>
-
             <div class="filter-header-bar" id="filterHeaderBar">
                 <div class="mastery-badge-box">
                     <div>
@@ -520,7 +495,7 @@
                         <div class="mastery-val" id="masteryPercentDisplay">0% Completed</div>
                     </div>
                 </div>
-                <div class="active-level-indicator" id="activeLevelText">Pilih Jenjang di Atas</div>
+                <div class="active-level-indicator" id="activeLevelText">Paket Kelas Terkunci</div>
             </div>
 
             <div id="dynamicMainContentArea"></div>
@@ -560,6 +535,19 @@
             playClickSound();
             document.getElementById('appSidebar').classList.toggle('mobile-open');
         }
+
+        // DATABASE EMAIL: Master Admin (Full Access Semua Kelas) & Akun Pembeli Paket
+        const REGISTERED_PARENT_DATABASE = {
+            'faarimuhammad25@gmail.com': { name: 'Muhammad Faari Akbar', categoryKey: 'sd3', classLabel: 'Master Admin (All Access)' },
+            'michellehimmelda@gmail.com': { name: 'Michelle Himmelda Cahyadi', categoryKey: 'sd3', classLabel: 'Master Admin & Founder (All Access)' },
+            'tk.user@gmail.com': { name: 'Siswa TK', categoryKey: 'tk', classLabel: 'TK / PAUD' },
+            'sd1.user@gmail.com': { name: 'Siswa SD 1', categoryKey: 'sd1', classLabel: 'Kelas 1 SD' },
+            'sd2.user@gmail.com': { name: 'Siswa SD 2', categoryKey: 'sd2', classLabel: 'Kelas 2 SD' },
+            'sd3.user@gmail.com': { name: 'Siswa SD 3', categoryKey: 'sd3', classLabel: 'Kelas 3 SD' },
+            'sd4.user@gmail.com': { name: 'Siswa SD 4', categoryKey: 'sd4', classLabel: 'Kelas 4 SD' },
+            'sd5.user@gmail.com': { name: 'Siswa SD 5', categoryKey: 'sd5', classLabel: 'Kelas 5 SD' },
+            'sd6.user@gmail.com': { name: 'Siswa SD 6', categoryKey: 'sd6', classLabel: 'Kelas 6 SD' }
+        };
 
         const DAILY_WISDOM_LIST = [
             { quote: "Pendidikan adalah senjata paling ampuh yang bisa kamu gunakan untuk mengubah dunia.", author: "Nelson Mandela" },
@@ -640,13 +628,38 @@
         };
 
         const omahGamesDatabasePerLevel = {
-            'tk': [{ id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🐱', title: 'Tebak Hewan & Suara', desc: 'Mengenal hewan peliharaan.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }] }],
-            'sd1': [{ id: 'g1', bg: '#fef3c7', color: '#b45309', icon: '📖', title: 'Mengeja Suku Kata', desc: 'Latihan membaca.', questions: [{ emojis: '🎒 🏫', clue: 'Tempat anak-anak belajar bersama guru di sekolah', answer: 'sekolah' }] }],
-            'sd2': [{ id: 'g1', bg: '#ccfbf1', color: '#0f766e', icon: '❓', title: 'Tanya Jawab Kalimat', desc: 'Kata tanya.', questions: [{ emojis: '👤 ❓', clue: 'Kata tanya untuk menanyakan orang atau nama', answer: 'siapa' }] }],
-            'sd3': [{ id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '📝', title: 'Ide Pokok Paragraf', desc: 'Gagasan utama.', questions: [{ emojis: '📖 🔍', clue: 'Gagasan utama dalam paragraf disebut ide...', answer: 'pokok' }] }],
-            'sd4': [{ id: 'g1', bg: '#e0e7ff', color: '#3730a3', icon: '📐', title: 'Master Luas Persegi', desc: 'Bangun datar.', questions: [{ emojis: '⬛ 📏', clue: 'Rumus luas persegi adalah sisi dikali...', answer: 'sisi' }] }],
-            'sd5': [{ id: 'g1', bg: '#ffedd5', color: '#9a3412', icon: '📜', title: 'Teks Sejarah 5W+1H', desc: 'Analisis teks.', questions: [{ emojis: '⏰ ❓', clue: 'Unsur tanya yang menanyakan waktu', answer: 'kapan' }] }],
-            'sd6': [{ id: 'g1', bg: '#f3e8ff', color: '#581c87', icon: '📰', title: 'Teks Eksplanasi', desc: 'Fenomena.', questions: [{ emojis: '🌋 ⚡ 🔬', clue: 'Teks penjelasan fenomena alam disebut teks...', answer: 'eksplanasi' }] }]
+            'tk': [
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🐱', title: 'Tebak Hewan & Suara', desc: 'Mengenal hewan peliharaan dari emoji & cirinya.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka melompat makan wortel', answer: 'kelinci' }, { emojis: '🐮 🌾', clue: 'Penghasil susu segar bersuara moo', answer: 'sapi' }] },
+                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🎨', title: 'Warna Buah & Alam', desc: 'Mengenal warna dasar buah dan lingkungan.', questions: [{ emojis: '🍎', clue: 'Warna buah apel segar matang', answer: 'merah' }, { emojis: '🍌', clue: 'Warna buah pisang manis', answer: 'kuning' }, { emojis: '🍃', clue: 'Warna daun pohon di hutan', answer: 'hijau' }] },
+                { id: 'g3', bg: '#e0f2fe', color: '#0369a1', icon: '🖐️', title: 'Hitung Jari 1-5', desc: 'Belajar berhitung jumlah jari tangan.', questions: [{ emojis: '🖐️', clue: 'Berapa jumlah jari dalam satu tangan manusia?', answer: '5' }, { emojis: '✌️', clue: 'Berapa jari yang diacungkan pada simbol ini?', answer: '2' }] }
+            ],
+            'sd1': [
+                { id: 'g1', bg: '#fef3c7', color: '#b45309', icon: '📖', title: 'Mengeja Suku Kata', desc: 'Latihan membaca dan merangkai kata dasar.', questions: [{ emojis: '🎒 🏫', clue: 'Tempat anak-anak belajar bersama guru di sekolah', answer: 'sekolah' }, { emojis: '👕 👖', clue: 'Pakaian yang kita pakai setiap hari', answer: 'baju' }, { emojis: '⚽ 🥅', clue: 'Bola digiring dan ditendang masuk ke...', answer: 'gawang' }] },
+                { id: 'g2', bg: '#dcfce7', color: '#16a34a', icon: '➕', title: 'Penjumlahan Ceria 1-20', desc: 'Latihan hitung tambah benda sehari-hari.', questions: [{ emojis: '🍎 🍎 ➕ 🍎', clue: '2 buah apel ditambah 1 buah apel jadi berapa?', answer: '3' }, { emojis: '⭐ 5️⃣ ➕ 5️⃣', clue: 'Lima ditambah lima hasilnya adalah', answer: '10' }] },
+                { id: 'g3', bg: '#fae8ff', color: '#a855f7', icon: '👁️', title: 'Panca Indra Kita', desc: 'Mengenal fungsi bagian tubuh manusia.', questions: [{ emojis: '👁️ 📺', clue: 'Alat tubuh untuk melihat pemandangan dan televisi', answer: 'mata' }, { emojis: '👃 🌸', clue: 'Alat tubuh untuk mencium bau harum bunga', answer: 'hidung' }] }
+            ],
+            'sd2': [
+                { id: 'g1', bg: '#ccfbf1', color: '#0f766e', icon: '❓', title: 'Tanya Jawab Kalimat', desc: 'Melatih penggunaan kata tanya yang tepat.', questions: [{ emojis: '👤 ❓', clue: 'Kata tanya untuk menanyakan orang atau nama disebut...', answer: 'siapa' }, { emojis: '📍 ❓', clue: 'Kata tanya untuk menanyakan tempat atau lokasi', answer: 'di mana' }] },
+                { id: 'g2', bg: '#ffedd5', color: '#c2410c', icon: '✖️', title: 'Perkalian Dasar Asyik', desc: 'Penjumlahan berulang angka dasar.', questions: [{ emojis: '2️⃣ ✖️ 3️⃣', clue: 'Berapa hasil dari 2 dikali 3 (atau 3 + 3)?', answer: '6' }, { emojis: '4️⃣ ✖️ 2️⃣', clue: 'Empat dikali dua hasilnya adalah', answer: '8' }] },
+                { id: 'g3', bg: '#e0f2fe', color: '#0369a1', icon: '🧊', title: 'Wujud Benda Padat & Cair', desc: 'Memahami sifat perubahan wujud benda.', questions: [{ emojis: '🧊 ➡️ 💧', clue: 'Es batu yang dibiarkan di suhu ruang akan berubah menjadi...', answer: 'cair' }] }
+            ],
+            'sd3': [
+                { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '📝', title: 'Ide Pokok Paragraf', desc: 'Menemukan gagasan utama dalam bacaan.', questions: [{ emojis: '📖 🔍', clue: 'Gagasan utama atau inti pembahasan dalam sebuah paragraf disebut ide...', answer: 'pokok' }] },
+                { id: 'g2', bg: '#fee2e2', color: '#b91c1c', icon: '🍕', title: 'Pecahan Sederhana', desc: 'Mengenal pembagian nilai pecahan.', questions: [{ emojis: '🍕 ➗ 2️⃣', clue: 'Satu buah roti dipotong dua sama besar, nilai bagiannya adalah 1/...', answer: '2' }] },
+                { id: 'g3', bg: '#fef3c7', color: '#b45309', icon: '🐛', title: 'Siklus Metamorfosis', desc: 'Daur hidup hewan di alam.', questions: [{ emojis: '🐛 ➡️ 🦋', clue: 'Sebelum menjadi kupu-kupu yang indah, ulat berubah menjadi...', answer: 'kepompong' }] }
+            ],
+            'sd4': [
+                { id: 'g1', bg: '#e0e7ff', color: '#3730a3', icon: '📐', title: 'Master Luas Persegi', desc: 'Menghitung keliling dan luas bangun datar.', questions: [{ emojis: '⬛ 📏', clue: 'Rumus luas persegi adalah sisi dikali...', answer: 'sisi' }] },
+                { id: 'g2', bg: '#ccfbf1', color: '#115e59', icon: '🧲', title: 'Gaya & Gerak Benda', desc: 'Eksplorasi fisika dasar gaya tarik dan dorong.', questions: [{ emojis: '🌍 🍎 ⬇️', clue: 'Gaya tarik pusat bumi yang membuat buah jatuh ke bawah disebut...', answer: 'gravitasi' }] }
+            ],
+            'sd5': [
+                { id: 'g1', bg: '#ffedd5', color: '#9a3412', icon: '📜', title: 'Teks Sejarah 5W+1H', desc: 'Analisis unsur penting dalam teks narasi sejarah.', questions: [{ emojis: '⏰ ❓', clue: 'Unsur tanya dalam 5W+1H yang menanyakan waktu kejadian sejarah adalah...', answer: 'kapan' }] },
+                { id: 'g2', bg: '#dcfce7', color: '#14532d', icon: '📦', title: 'Volume Bangun Ruang', desc: 'Menghitung isi balok dan kubus.', questions: [{ emojis: '📦 📐', clue: 'Rumus volume balok adalah panjang dikali lebar dikali...', answer: 'tinggi' }] }
+            ],
+            'sd6': [
+                { id: 'g1', bg: '#f3e8ff', color: '#581c87', icon: '📰', title: 'Teks Eksplanasi Ilmiah', desc: 'Menganalisis fenomena alam dan sosial.', questions: [{ emojis: '🌋 ⚡ 🔬', clue: 'Teks yang berisi penjelasan tentang proses terjadinya fenomena alam disebut teks...', answer: 'eksplanasi' }] },
+                { id: 'g2', bg: '#e0f2fe', color: '#0c4a6e', icon: '📊', title: 'Statistika & Mean', desc: 'Mengolah data nilai dan hitung rata-rata.', questions: [{ emojis: '📊 ➕ ➗', clue: 'Nilai rata-rata dari sekelompok data dalam matematika disebut juga dengan...', answer: 'mean' }] }
+            ]
         };
 
         let currentActiveGameQuestions = [];
@@ -656,10 +669,12 @@
         let lovTimer = 31;
         let lovInterval = null;
 
-        let currentStudent = { name: '', parentEmail: '', classLabel: 'Belum Dipilih', categoryKey: null };
+        let currentStudent = { name: '', parentEmail: '', classLabel: 'Terkunci', categoryKey: 'sd3' };
         let activeSection = 'dashboard';
         let currentActiveModule = null;
-        let userStars = parseInt(localStorage.getItem('omahles_user_stars') || '120');
+        
+        // Reset default dari 0 stars dan 1 hari streak
+        let userStars = parseInt(localStorage.getItem('omahles_user_stars') || '0');
         let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
 
         window.addEventListener('DOMContentLoaded', () => { 
@@ -678,11 +693,16 @@
         function handleFormLogin(e) {
             e.preventDefault();
             playClickSound();
-            const sName = document.getElementById('inputStudentName').value.trim();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
             
-            // Default kosong (belum dipilih jenjangnya) agar pembeli memilih manual
-            currentStudent = { name: sName, parentEmail: pEmail, classLabel: 'Belum Dipilih (Pilih di atas)', categoryKey: null };
+            // Cek apakah email terdaftar di database
+            if (REGISTERED_PARENT_DATABASE[pEmail]) {
+                const data = REGISTERED_PARENT_DATABASE[pEmail];
+                currentStudent = { name: data.name, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: data.categoryKey };
+            } else {
+                // Default jika email bebas baru
+                currentStudent = { name: 'Siswa Omah Les', parentEmail: pEmail, classLabel: 'Kelas 3 SD (Paket Standar)', categoryKey: 'sd3' };
+            }
             
             sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
             document.getElementById('loginPage').style.display = 'none';
@@ -712,24 +732,8 @@
         function renderDashboardData() {
             document.getElementById('userNameDisplay').innerText = currentStudent.name || 'Siswa';
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLabel;
-            document.getElementById('activeLevelText').innerText = currentStudent.categoryKey ? `Jenjang Aktif: ${currentStudent.classLabel}` : `⚠️ Silakan klik pilih jenjang kelas di atas!`;
+            document.getElementById('activeLevelText').innerText = `Paket Aktif: ${currentStudent.classLabel}`;
             document.getElementById('userStarDisplay').innerText = userStars;
-
-            // Highlight tombol kategori yang aktif
-            document.querySelectorAll('.dev-switch-btn').forEach(btn => btn.classList.remove('active'));
-            if(currentStudent.categoryKey) {
-                const activeBtn = document.getElementById(`btn-cat-${currentStudent.categoryKey}`);
-                if(activeBtn) activeBtn.classList.add('active');
-            }
-        }
-
-        function devSwitchClass(catKey, classLabel) {
-            playClickSound();
-            currentStudent.categoryKey = catKey;
-            currentStudent.classLabel = classLabel;
-            sessionStorage.setItem('omahles_active_student', JSON.stringify(currentStudent));
-            renderDashboardData();
-            switchSection(activeSection);
         }
 
         function switchSection(secKey) {
@@ -743,7 +747,7 @@
 
             const sectionHeaders = {
                 'dashboard': { tag: '📊 Overview', title: 'Portal Dashboard', sub: `Selamat datang kembali, ${currentStudent.name || 'Siswa'}!` },
-                'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Materi kelas ${currentStudent.classLabel}.` },
+                'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Materi khusus ${currentStudent.classLabel}.` },
                 'profile': { tag: '👤 Personal Space', title: 'My Profile', sub: 'Pantau perkembangan belajarmu.' },
                 'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges', sub: `Koleksi trofi berdasarkan hasil belajar.` },
                 'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia', sub: 'Melatih kemampuan literasi.' },
@@ -797,20 +801,16 @@
                 <div class="dashboard-grid">
                     <div class="dash-card"><div class="dash-icon-box">⭐</div><div><div class="dash-info-title">Total Stars</div><div class="dash-info-val">${userStars}</div></div></div>
                     <div class="dash-card"><div class="dash-icon-box">🎯</div><div><div class="dash-info-title">Kuis Selesai</div><div class="dash-info-val">${userCompletedQuizzes}</div></div></div>
-                    <div class="dash-card"><div class="dash-icon-box">🔥</div><div><div class="dash-info-title">Streak Belajar</div><div class="dash-info-val">3 Hari</div></div></div>
+                    <div class="dash-card"><div class="dash-icon-box">🔥</div><div><div class="dash-info-title">Streak Belajar</div><div class="dash-info-val">1 Hari</div></div></div>
                 </div>
                 <div class="insight-card-box">
-                    <div class="insight-heading">💡 Panduan Penggunaan Omah Les Privat</div>
-                    <div class="insight-body-text">"Halo <strong>${currentStudent.name || 'Siswa'}</strong>! Silakan pilih terlebih dahulu jenjang kelas anak Anda pada tombol di atas (TK hingga SD Kelas 6) untuk menyesuaikan materi belajar, roadmap, dan game edukasi."</div>
+                    <div class="insight-heading">💡 Paket Belajar Aktif</div>
+                    <div class="insight-body-text">"Halo <strong>${currentStudent.name || 'Siswa'}</strong>! Akun Anda terdaftar otomatis pada paket <strong>${currentStudent.classLabel}</strong>. Selesaikan kuis dan tantangan belajar untuk mengumpulkan bintang ⭐!"</div>
                 </div>
             `;
         }
 
         function renderModules(container, secKey) {
-            if(!currentStudent.categoryKey) {
-                container.innerHTML = `<div class="insight-card-box" style="text-align:center; padding:40px;"><h3>⚠️ Pilih Jenjang Kelas Terlebih Dahulu!</h3><p style="margin-top:10px; color:var(--text-sub);">Silakan klik salah satu tombol pilihan jenjang kelas di bagian atas (TK / SD 1 - SD 6) untuk melihat materi pelajaran.</p></div>`;
-                return;
-            }
             const grid = document.createElement('div');
             grid.className = 'modules-grid';
             const pkg = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
@@ -835,7 +835,7 @@
                             <div class="profile-user-left">
                                 <div class="profile-big-avatar">🎓</div>
                                 <div><div class="profile-user-name">${currentStudent.name || 'Siswa'}</div>
-                                <div class="profile-user-badge-pill">🌱 Jenjang: ${currentStudent.classLabel}</div></div>
+                                <div class="profile-user-badge-pill">🌱 Paket: ${currentStudent.classLabel}</div></div>
                             </div>
                             <button class="btn-open-module" onclick="window.print()">🖨️ Cetak Laporan</button>
                         </div>
@@ -897,10 +897,6 @@
         function prevFlashcard() { currentFlashcardIdx = (currentFlashcardIdx - 1 + flashcardsDatabase.length) % flashcardsDatabase.length; renderFlashcardsUI(document.getElementById('dynamicMainContentArea')); }
 
         function renderGameCenterGrid(container) {
-            if(!currentStudent.categoryKey) {
-                container.innerHTML = `<div class="insight-card-box" style="text-align:center; padding:40px;"><h3>⚠️ Pilih Jenjang Kelas Terlebih Dahulu!</h3><p style="margin-top:10px; color:var(--text-sub);">Pilih jenjang kelas di atas untuk memainkan Omah Games.</p></div>`;
-                return;
-            }
             let catKey = currentStudent.categoryKey;
             const gamesList = omahGamesDatabasePerLevel[catKey] || omahGamesDatabasePerLevel['sd3'];
             container.innerHTML = `
