@@ -386,7 +386,7 @@
         </div>
     </div>
 
-    <!-- PARENT PIN LOCK MODAL (POINT 1) -->
+    <!-- PARENT PIN LOCK MODAL -->
     <div class="modal-overlay" id="parentPinModalOverlay">
         <div class="modal-card">
             <div style="font-size:3rem; margin-bottom:10px;">🔒</div>
@@ -747,7 +747,7 @@
                 { title: 'Lembar Kerja SD 1 - Penjumlahan Angka 1 sampai 10', desc: 'Latihan berhitung dasar dengan bantuan gambar.', cat: 'Kelas 1 SD' }
             ],
             'sd2': [
-                { title: 'Lembar Kerja SD 2 - Kalimat Tanya & Tanda Baca', desc: 'Latihan menggunakan kata apa, siapa, dan di mana.', cat: 'Kelas 2 SD' },
+                { title: 'Lembar Kerja SD 2 - Kalimat Tanya & Tanda Baca', desc: 'Latihan menggunakan apa, siapa, dan di mana.', cat: 'Kelas 2 SD' },
                 { title: 'Lembar Kerja SD 2 - Pengukuran Panjang Benda (cm)', desc: 'Latihan membaca penggaris dan konversi satuan.', cat: 'Kelas 2 SD' }
             ],
             'sd3': [
@@ -1098,7 +1098,6 @@
             `;
         }
 
-        // PUSAT UNDUH PDF DINAMIS BERDASARKAN JENJANG KELAS (POINT 3)
         function renderWorksheetCenter(container) {
             const catKey = currentStudent.categoryKey || 'sd3';
             const listWs = worksheetsDatabasePerLevel[catKey] || worksheetsDatabasePerLevel['sd3'];
@@ -1258,7 +1257,6 @@
             const pkg = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
             currentActiveModule = (pkg[secKey] || pkg['roadmap'])[idx];
             
-            // Simpan Resume Learning (POINT 4)
             lastOpenedModuleTitle = currentActiveModule.title;
             localStorage.setItem('omahles_last_module', lastOpenedModuleTitle);
 
@@ -1409,7 +1407,8 @@
             box.scrollTop = box.scrollHeight;
 
             try {
-                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
+                // Menggunakan model flash terbaru agar respon jauh lebih cepat dan instan
+                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
                 
                 const response = await fetch(apiEndpoint, {
                     method: 'POST',
@@ -1417,7 +1416,7 @@
                     body: JSON.stringify({
                         contents: [{
                             parts: [{
-                                text: `Anda adalah Kak Omah, tutor privat ramah untuk anak SD. Siswa yang sedang bertanya bernama "${studentName}". Sapa dan panggil namanya di awal kalimat (misal: "Wah pertanyaan bagus, ${studentName}!" atau semacamnya). Jawablah pertanyaan berikut dengan suportif dan ramah anak: "${msg}"`
+                                text: `Anda adalah Kak Omah, tutor privat ramah untuk anak TK dan SD. Siswa yang bertanya bernama "${studentName}". Jawablah pertanyaan berikut dengan singkat, jelas, dan langsung ke inti. ATURAN PENTING UNTUK MATEMATIKA: Jangan pernah gunakan format kode LaTeX mentah seperti backslash times atau backslash div. Gunakan simbol matematika biasa secara langsung (contoh gunakan tanda "×" untuk perkalian, "÷" untuk pembagian, "+" untuk penjumlahan, "-" untuk pengurangan). Pertanyaan siswa: "${msg}"`
                             }]
                         }]
                     })
@@ -1428,6 +1427,15 @@
 
                 if(data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
                     let aiReply = data.candidates[0].content.parts[0].text;
+                    
+                    // Membersihkan format LaTeX mentah agar langsung menjadi simbol matematika biasa
+                    aiReply = aiReply.replace(/\\times/g, '×')
+                                     .replace(/\\div/g, '÷')
+                                     .replace(/\\pm/g, '±')
+                                     .replace(/\\le/g, '≤')
+                                     .replace(/\\ge/g, '≥')
+                                     .replace(/\$/g, ''); // Menghilangkan simbol dolar sisa LaTeX
+
                     aiReply = aiReply.replace(/\n/g, '<br>');
                     
                     document.getElementById(loadingId).innerHTML = `
