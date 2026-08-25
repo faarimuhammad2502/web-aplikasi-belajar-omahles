@@ -29,7 +29,6 @@
             --current-font: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* TEMA WARNA KARTUN (CUSTOMIZER) */
         body.theme-space {
             --brand-brown: #4f46e5;
             --brand-terracotta: #4338ca;
@@ -60,7 +59,6 @@
             --text-light: #f0fdfa;
         }
 
-        /* DARK THEME */
         body.dark-mode {
             --brand-brown: #d97706;
             --brand-terracotta: #b45309;
@@ -76,7 +74,6 @@
             --text-light: #f5f5f4;
         }
 
-        /* DYSLEXIA FRIENDLY FONT MODE */
         body.dyslexia-mode * {
             font-family: 'Comic Neue', sans-serif !important;
             letter-spacing: 0.5px;
@@ -90,7 +87,7 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* FOCUS MODE: FULLSCREEN & RESPONSIVE UNTUK PC & HP */
+        /* FOCUS MODE */
         body.focus-mode .sidebar { 
             transform: translateX(-100%); 
             z-index: 999998;
@@ -121,7 +118,6 @@
         body.focus-mode .lov-emoji-display { font-size: 9rem; }
         body.focus-mode .lov-stage-card { padding: 90px; }
 
-        /* TOMBOL FLOATING RINGKAS DI FOCUS MODE */
         .floating-exit-focus {
             position: fixed; top: 12px; right: 15px; z-index: 99999;
             background: linear-gradient(135deg, var(--brand-brown), var(--brand-amber)); color: white;
@@ -154,6 +150,21 @@
             50% { transform: translateY(-8px) scale(1.1); }
         }
         .mascot-jump { animation: mascotBounce 0.4s ease; }
+
+        /* STREAK FLAME BADGE */
+        .streak-fire-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: linear-gradient(135deg, #f97316, #ef4444); color: white;
+            padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.8rem;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); font-family: 'Fredoka', sans-serif;
+        }
+
+        /* TROPHY ROOM STYLES */
+        .trophy-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+        .trophy-pedestal-card { background: var(--card-bg); border: 3px solid var(--brand-amber); border-radius: 32px; padding: 32px 24px; text-align: center; position: relative; box-shadow: 0 15px 35px rgba(217, 119, 6, 0.15); transition: transform 0.3s; }
+        .trophy-pedestal-card:hover { transform: translateY(-6px); }
+        .trophy-icon-3d { font-size: 4.5rem; margin-bottom: 16px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15)); animation: floatEmoji 3s infinite ease-in-out; }
+        @keyframes floatEmoji { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
         /* LOGIN SCREEN */
         .login-page-container {
@@ -260,7 +271,6 @@
         .btn-claim-reward { background: var(--brand-amber); color: white; border: none; padding: 12px 24px; border-radius: 14px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.95rem; cursor: pointer; box-shadow: 0 6px 15px rgba(217, 119, 6, 0.3); }
         .btn-claim-reward:disabled { background: #9ca3af; cursor: not-allowed; box-shadow: none; }
 
-        /* WEEKLY QUESTS STYLES */
         .weekly-quest-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 24px; margin-bottom: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); }
         .quest-item { display: flex; align-items: center; justify-content: space-between; background: var(--brand-cream); padding: 12px 18px; border-radius: 14px; margin-bottom: 10px; border: 1px solid var(--card-border); gap: 12px; flex-wrap: wrap; }
         .btn-claim-quest { background: var(--brand-amber); color: white; border: none; padding: 6px 14px; border-radius: 10px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.78rem; cursor: pointer; }
@@ -313,7 +323,6 @@
 
         .lov-stage-card { background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border: 2px solid #d8b4fe; border-radius: 32px; padding: 60px 32px; display: flex; align-items: center; justify-content: center; gap: 30px; box-shadow: 0 12px 30px rgba(168, 85, 247, 0.12); }
         .lov-emoji-display { font-size: 6rem; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); animation: floatEmoji 2.5s infinite ease-in-out; }
-        @keyframes floatEmoji { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
         .lov-clue-box { background: var(--card-bg); border: 1.5px solid var(--brand-amber); color: var(--brand-brown); padding: 12px 24px; border-radius: 20px; font-weight: 700; font-size: 0.95rem; text-align: center; margin: -15px auto 10px auto; max-width: 500px; position: relative; z-index: 5;}
         .lov-input-container { display: flex; flex-direction: column; gap: 16px; align-items: center; margin-top: 10px; }
@@ -455,7 +464,6 @@
             .sidebar, .portal-footer, button { display: none !important; }
         }
 
-        /* RESPONSIVE UNTUK HP / MOBILE */
         @media (max-width: 768px) {
             .mobile-header-bar { display: flex; }
             .sidebar { 
@@ -487,7 +495,6 @@
 </head>
 <body>
 
-    <!-- TOMBOL FLOATING RINGKAS DI FOCUS MODE -->
     <button class="floating-menu-focus" onclick="toggleFocusSidebar(event)">☰ Menu</button>
     <button class="floating-exit-focus" onclick="toggleFocusMode()">🎯 Keluar</button>
 
@@ -531,31 +538,39 @@
         </div>
     </div>
 
-    <!-- SETTINGS / PENGATURAN MODAL (DENGAN THEME CUSTOMIZER) -->
+    <!-- SETTINGS / PENGATURAN MODAL (DENGAN VOICE CUSTOMIZER & THEME) -->
     <div class="modal-overlay" id="settingsModalOverlay">
         <div class="modal-card" style="max-width: 440px; text-align: left;">
             <button class="btn-close-modal" style="color:var(--text-main); background:var(--brand-cream);" onclick="closeSettingsModal()">✕</button>
             <div style="font-family:'Fredoka',sans-serif; font-size:1.6rem; color:var(--brand-brown); margin-bottom:4px;">⚙️ Pengaturan Portal</div>
             <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Sesuaikan kenyamanan belajar Anda</div>
             
-            <div style="margin-bottom: 14px;">
+            <div style="margin-bottom: 12px;">
                 <label style="font-size:0.78rem; font-weight:800; color:var(--brand-brown); display:block; margin-bottom:6px;">🎨 Kustomisasi Tema Kartun:</label>
-                <div style="display: flex; gap: 8px;">
-                    <button class="admin-switch-btn active" onclick="setAppTheme('default')">Klasik Terra</button>
-                    <button class="admin-switch-btn" onclick="setAppTheme('space')">🌌 Luar Angkasa</button>
-                    <button class="admin-switch-btn" onclick="setAppTheme('pastel')">🌿 Hutan Pastel</button>
+                <div style="display: flex; gap: 6px;">
+                    <button class="admin-switch-btn active" onclick="setAppTheme('default')">Klasik</button>
+                    <button class="admin-switch-btn" onclick="setAppTheme('space')">🌌 Space</button>
+                    <button class="admin-switch-btn" onclick="setAppTheme('pastel')">🌿 Pastel</button>
                 </div>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="margin-bottom: 14px;">
+                <label style="font-size:0.78rem; font-weight:800; color:var(--brand-brown); display:block; margin-bottom:6px;">🎙️ Kustomisasi Kecepatan Suara AI (Voice Speed):</label>
+                <select id="voiceSpeedSelect" class="form-input" style="padding: 8px 12px; font-size:0.85rem;" onchange="updateVoiceSpeed(this.value)">
+                    <option value="0.7">Lambat (Santai untuk TK/SD 1)</option>
+                    <option value="0.9" selected>Normal (Standar Kak Omah)</option>
+                    <option value="1.2">Cepat (Kilat)</option>
+                </select>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 8px;">
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" id="btnToggleBgmModal" onclick="toggleBgmMusic()">🎵 Musik BGM: OFF</button>
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleDarkMode()">🌓 Ganti Tema (Dark/Light)</button>
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleDyslexiaFont()">🔤 Font Disleksia On/Off</button>
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleFocusMode(); closeSettingsModal();">🎯 Focus Mode On/Off</button>
-                <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); refreshCurrentPage()">↺ Refresh Portal</button>
             </div>
             
-            <button class="btn-enter-wisdom" style="margin-top: 20px; padding: 12px;" onclick="closeSettingsModal()">TUTUP</button>
+            <button class="btn-enter-wisdom" style="margin-top: 16px; padding: 12px;" onclick="closeSettingsModal()">TUTUP</button>
         </div>
     </div>
 
@@ -690,6 +705,7 @@
                     <li class="menu-item" id="menuRoadmap"><a onclick="playClickSound(); switchSection('roadmap')"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
                     <li class="menu-item" id="menuLeaderboard"><a onclick="playClickSound(); switchSection('leaderboard')"><span>🏆</span> <span>Papan Peringkat</span></a></li>
                     <li class="menu-item" id="menuProfile"><a onclick="playClickSound(); switchSection('profile')"><span>👤</span> <span>Parent Report Card</span></a></li>
+                    <li class="menu-item" id="menuTrophy"><a onclick="playClickSound(); switchSection('trophy')"><span>🏆</span> <span>Trophy Room (3D)</span></a></li>
                     <li class="menu-item" id="menuBadges"><a onclick="playClickSound(); switchSection('badges')"><span>🎖️</span> <span>Prestasi & Badges</span></a></li>
                 </ul>
 
@@ -862,6 +878,14 @@
             localStorage.setItem('omahles_app_theme', themeName);
         }
 
+        let currentVoiceSpeed = parseFloat(localStorage.getItem('omahles_voice_speed') || '0.9');
+
+        function updateVoiceSpeed(val) {
+            currentVoiceSpeed = parseFloat(val);
+            localStorage.setItem('omahles_voice_speed', currentVoiceSpeed);
+            playClickSound();
+        }
+
         function toggleDyslexiaFont() {
             playClickSound();
             document.body.classList.toggle('dyslexia-mode');
@@ -894,6 +918,7 @@
 
         function openSettingsModal() {
             playClickSound();
+            document.getElementById('voiceSpeedSelect').value = currentVoiceSpeed;
             document.getElementById('settingsModalOverlay').classList.add('active');
         }
         function closeSettingsModal() {
@@ -914,7 +939,7 @@
 
             const utterance = new SpeechSynthesisUtterance(textString);
             utterance.lang = 'id-ID';
-            utterance.rate = 0.9;
+            utterance.rate = currentVoiceSpeed;
             activeSpeakingButton = btnElement;
             btnElement.classList.add('playing');
 
@@ -1254,6 +1279,7 @@
                 'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Materi khusus ${currentStudent.classLabel}.` },
                 'leaderboard': { tag: '🏆 Papan Peringkat', title: 'Leaderboard Siswa', sub: 'Peringkat progres siswa aktif saat ini.' },
                 'profile': { tag: '👤 Parent Report', title: 'Parent Report Card', sub: 'Laporan perkembangan belajar anak untuk orang tua.' },
+                'trophy': { tag: '🏆 Trophy Room', title: 'Piala Prestasi Virtual (3D Gallery)', sub: 'Koleksi piala dan penghargaan eksklusif Anda.' },
                 'badges': { tag: '🎖️ Pencapaian', title: 'Prestasi & Badges', sub: `Koleksi trofi berdasarkan hasil belajar.` },
                 'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia', sub: 'Melatih kemampuan literasi.' },
                 'math': { tag: '🧮 Logika & Angka', title: 'Matematika Dasar', sub: 'Berhitung itu menyenangkan.' },
@@ -1290,7 +1316,7 @@
                 checkAndStartExamChallenge();
             } else {
                 topBanner.style.display = 'block';
-                if (['dashboard', 'leaderboard', 'profile', 'badges', 'worksheets', 'games', 'flashcards'].includes(secKey)) {
+                if (['dashboard', 'leaderboard', 'profile', 'trophy', 'badges', 'worksheets', 'games', 'flashcards'].includes(secKey)) {
                     filterBar.style.display = 'none';
                 } else {
                     filterBar.style.display = 'flex';
@@ -1300,6 +1326,7 @@
                 if (secKey === 'dashboard') renderDashboardMain(area);
                 else if (secKey === 'leaderboard') renderLeaderboard(area);
                 else if (secKey === 'profile') renderParentReportCard(area);
+                else if (secKey === 'trophy') renderTrophyRoom(area);
                 else if (secKey === 'badges') renderBadges(area);
                 else if (secKey === 'worksheets') renderWorksheetCenter(area);
                 else if (secKey === 'games') renderGameCenterGrid(area);
@@ -1323,7 +1350,18 @@
                     <button class="btn-resume" onclick="switchSection('roadmap')">Lanjut Belajar →</button>
                 </div>
 
-                <!-- WEEKLY QUESTS (MISI MINGGUAN) -->
+                <!-- STREAK & NOTIFIKASI TANTANGAN HARIAN -->
+                <div style="display:flex; justify-content:space-between; align-items:center; background:var(--card-bg); border:2px solid var(--card-border); border-radius:var(--radius-main); padding:20px 24px; margin-bottom:28px; gap:16px; flex-wrap:wrap;">
+                    <div style="display:flex; align-items:center; gap:14px;">
+                        <span style="font-size:2.5rem;">🔥</span>
+                        <div>
+                            <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; color:var(--text-main);">Streak Belajar Aktif!</div>
+                            <div style="font-size:0.8rem; color:var(--text-sub); font-weight:700;">Pertahankan kebiasaan belajarmu setiap hari untuk bonus XP maksimal.</div>
+                        </div>
+                    </div>
+                    <div class="streak-fire-badge">🔥 1 Hari Beruntun</div>
+                </div>
+
                 <div class="weekly-quest-card">
                     <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--brand-brown); margin-bottom:4px;">🎯 Misi Mingguan (Weekly Quests)</div>
                     <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Selesaikan 3 kuis atau tantangan untuk mendapatkan hadiah bonus besar!</div>
@@ -1674,6 +1712,36 @@
                                 </table>
                             `}
                         </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTrophyRoom(container) {
+            let lvl = calculateLevelInfo();
+            container.innerHTML = `
+                <div style="margin-bottom:20px;">
+                    <div style="font-family:'Fredoka',sans-serif; font-size:1.4rem; color:var(--brand-brown); margin-bottom:4px;">🏆 Ruang Pameran Piala Virtual (Trophy Room)</div>
+                    <div style="font-size:0.85rem; color:var(--text-sub); font-weight:700;">Koleksi piala eksklusif yang diraih berdasarkan tingkat level dan pencapaian belajarmu!</div>
+                </div>
+                <div class="trophy-showcase-grid">
+                    <div class="trophy-pedestal-card">
+                        <div class="trophy-icon-3d">🏆</div>
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--text-main); margin-bottom:6px;">Piala Grandmaster</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Syarat: Capai Level 3 atau Lebih</div>
+                        <div class="badge-status-tag ${lvl.levelNum >= 3 ? 'unlocked' : 'locked'}">${lvl.levelNum >= 3 ? 'Terbuka ✨' : 'Terkunci 🔒'}</div>
+                    </div>
+                    <div class="trophy-pedestal-card">
+                        <div class="trophy-icon-3d">🥇</div>
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--text-main); margin-bottom:6px;">Piala Bintang Emas</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Syarat: Kumpulkan 50 Bintang ⭐</div>
+                        <div class="badge-status-tag ${userStars >= 50 ? 'unlocked' : 'locked'}">${userStars >= 50 ? 'Terbuka ✨' : 'Terkunci 🔒'}</div>
+                    </div>
+                    <div class="trophy-pedestal-card">
+                        <div class="trophy-icon-3d">🎖️</div>
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--text-main); margin-bottom:6px;">Piala Kuis Master</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Syarat: Selesaikan 5 Kuis</div>
+                        <div class="badge-status-tag ${userCompletedQuizzes >= 5 ? 'unlocked' : 'locked'}">${userCompletedQuizzes >= 5 ? 'Terbuka ✨' : 'Terkunci 🔒'}</div>
                     </div>
                 </div>
             `;
