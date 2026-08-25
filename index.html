@@ -8,12 +8,12 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --brand-brown: #8b4513;        
-            --brand-terracotta: #a0522d;   
+            --brand-terracotta: #a0522d;    
             --brand-amber: #d97706;        
             --brand-yellow: #f59e0b;       
             --brand-cream: #fef8f0;        
@@ -26,6 +26,7 @@
             --text-light: #fcf8f5;
             --radius-main: 24px;
             --radius-sm: 16px;
+            --current-font: 'Plus Jakarta Sans', sans-serif;
         }
 
         /* DARK THEME */
@@ -44,12 +45,25 @@
             --text-light: #f5f5f4;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s, color 0.3s; }
+        /* DYSLEXIA FRIENDLY FONT MODE */
+        body.dyslexia-mode * {
+            font-family: 'Comic Neue', sans-serif !important;
+            letter-spacing: 0.5px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--current-font); transition: background-color 0.3s, color 0.3s; }
 
         body {
             background-color: var(--bg-body);
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18l1.5-1.5L14 18l-1.5 1.5zm24 6l1-2 1 2-1 2zm30-10l2 1-1 2-2-1zm-40 50l3 1-1 3-3-1zm55-15l2-2 2 2-2 2zm-20 30l1-3 3 1-1 3z' fill='%23d97706' fill-opacity='0.08'/%3E%3C/svg%3E");
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
+        }
+
+        /* ANIMASI MASKOT MELOMPAT */
+        @keyframes mascotBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.1); }
+        .mascot-jump { animation: mascotBounce 0.4s ease; }
         }
 
         /* LOGIN SCREEN */
@@ -81,7 +95,6 @@
             flex-direction: column; 
             justify-content: center; 
             background-color: var(--card-bg);
-            /* Tekstur SVG motif buku, pensil, bintang, dan topi wisuda yang elegan dan pasti tampil */
             background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b45309' fill-opacity='0.08'%3E%3C!-- Buku --%3E%3Cpath d='M20 30c5-3 15-3 20 0v25c-5-3-15-3-20 0V30zm25 0c5-3 15-3 20 0v25c-5-3-15-3-20 0V30z'/%3E%3C!-- Pensil --%3E%3Cpath d='M95 20l10 10-25 25h-10v-10l25-25z'/%3E%3C!-- Bintang --%3E%3Cpath d='M30 90l4-8 4 8 8 4-8 4-4 8-4-8-8-4 8-4z'/%3E%3C!-- Topi Wisuda --%3E%3Cpath d='M90 85l20 8-20 8-20-8 20-8zm-15 14v10c0 5 7 8 15 8s15-3 15-8V99l-15 6-15-6z'/%3E%3C/g%3E%3C/svg%3E");
             background-repeat: repeat;
             box-shadow: -10px 0 30px rgba(0,0,0,0.05); 
@@ -242,13 +255,18 @@
         .stat-val { font-family: 'Fredoka', sans-serif; font-size: 1.1rem; color: #ffffff; font-weight: 700; }
         .stat-lbl { font-size: 0.65rem; color: var(--brand-yellow); text-transform: uppercase; font-weight: 800; }
 
+        /* SIDEBAR BADGE SHOWCASE */
+        .sidebar-badges-showcase { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 10px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+        .mini-badge-item { font-size: 1.2rem; cursor: pointer; opacity: 0.4; transition: opacity 0.2s; }
+        .mini-badge-item.unlocked { opacity: 1; }
+
         .menu-group-label { font-size: 0.68rem; font-weight: 800; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.2px; margin: 16px 0 8px 4px; }
         .menu-list { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
         .menu-item a { display: flex; align-items: center; gap: 12px; padding: 10px 14px; text-decoration: none; color: #d6c7b2; font-weight: 700; font-size: 0.88rem; border-radius: var(--radius-sm); cursor: pointer; }
         .menu-item.active a, .menu-item a:hover { background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: #ffffff; }
 
         .sidebar-bottom-controls { border-top: 1px dashed rgba(255,255,255,0.12); padding-top: 14px; margin-top: 10px; z-index: 10; position: relative; }
-        .btn-refresh-app { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #ffffff; padding: 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 800; cursor: pointer; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .btn-refresh-app { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #ffffff; padding: 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 800; cursor: pointer; letter-spacing: 0.5px; margin-bottom: 8px; }
         .btn-refresh-app:hover { background: rgba(255,255,255,0.15); }
 
         .profile-card { background: rgba(255,255,255,0.05); border-radius: var(--radius-sm); padding: 10px 12px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
@@ -531,6 +549,17 @@
                     </div>
                 </div>
 
+                <!-- SIDEBAR BADGE SHOWCASE -->
+                <div class="sidebar-badges-showcase" id="sidebarBadgesShowcase">
+                    <span style="font-size:0.7rem; font-weight:800; color:var(--brand-yellow);">🎖️ BADGES:</span>
+                    <div style="display:flex; gap:6px;">
+                        <span class="mini-badge-item" id="miniBadge1" title="Langkah Pertama">🌱</span>
+                        <span class="mini-badge-item" id="miniBadge2" title="Math Wizard">🧙‍♂️</span>
+                        <span class="mini-badge-item unlocked" title="Streak Master">🔥</span>
+                        <span class="mini-badge-item" id="miniBadge4" title="Star Collector">🌟</span>
+                    </div>
+                </div>
+
                 <div class="menu-group-label">MAIN MENU</div>
                 <ul class="menu-list">
                     <li class="menu-item active" id="menuDashboard"><a onclick="playClickSound(); switchSection('dashboard')"><span>📊</span> <span>Dashboard</span></a></li>
@@ -563,8 +592,9 @@
                 <div class="sidebar-bottom-controls">
                     <button class="btn-refresh-app" id="btnToggleBgm" onclick="toggleBgmMusic()">🎵 Musik BGM: OFF</button>
                     <button class="btn-refresh-app" onclick="playClickSound(); toggleDarkMode()">🌓 Ganti Tema (Dark/Light)</button>
+                    <button class="btn-refresh-app" onclick="playClickSound(); toggleDyslexiaFont()">🔤 Font Disleksia On/Off</button>
                     <button class="btn-refresh-app" onclick="playClickSound(); refreshCurrentPage()">↺ REFRESH PORTAL</button>
-                    <button class="btn-refresh-app" style="background:rgba(217,119,6,0.2); border-color:var(--brand-amber); color:#fef08a; margin-top:6px;" onclick="openParentPinModal()">🔒 Mode Orang Tua</button>
+                    <button class="btn-refresh-app" style="background:rgba(217,119,6,0.2); border-color:var(--brand-amber); color:#fef08a; margin-top:4px;" onclick="openParentPinModal()">🔒 Mode Orang Tua</button>
                 </div>
                 <div class="profile-card">
                     <div class="profile-left">
@@ -639,18 +669,26 @@
             setTimeout(() => playTone(523.25, 'triangle', 0.1), 0);
             setTimeout(() => playTone(659.25, 'triangle', 0.1), 100);
             setTimeout(() => playTone(783.99, 'triangle', 0.2), 200);
+            triggerMascotJump();
         }
         function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
+
+        function triggerMascotJump() {
+            const petEl = document.getElementById('virtualPetDisplay');
+            if(petEl) {
+                petEl.classList.add('mascot-jump');
+                setTimeout(() => petEl.classList.remove('mascot-jump'), 400);
+            }
+        }
 
     // BGM ARANSEMEN CHIME/MUSIC BOX CERIA ANAK-ANAK
         let isBgmPlaying = false;
         let bgmTimer = null;
 
-        // Tangga nada riang (C Major pentatonic & full scale harmonis)
         const cheerfulMelody = [
-            523.25, 659.25, 783.99, 1046.50, // C5, E5, G5, C6
-            587.33, 783.99, 880.00,          // D5, G5, A5
-            659.25, 880.00, 987.77, 1046.50  // E5, A5, B5, C6
+            523.25, 659.25, 783.99, 1046.50,
+            587.33, 783.99, 880.00,          
+            659.25, 880.00, 987.77, 1046.50  
         ];
 
         let melodyStep = 0;
@@ -658,21 +696,17 @@
         function playCheerfulBgmLoop() {
             if (!isBgmPlaying) return;
             try {
-                // Memainkan pola nada berurutan ala music box/permainan anak
                 const freq = cheerfulMelody[melodyStep % cheerfulMelody.length];
                 playTone(freq, 'sine', 0.25);
                 
-                // Tambahkan harmoni kecil berselang di nada tertentu agar lebih hidup
                 if (melodyStep % 2 === 0) {
                     setTimeout(() => {
                         if (isBgmPlaying) playTone(freq * 1.25, 'triangle', 0.15);
                     }, 150);
                 }
-
                 melodyStep++;
             } catch(e) {}
 
-            // Tempo ritme ceria setiap 400ms
             bgmTimer = setTimeout(playCheerfulBgmLoop, 400);
         }
 
@@ -689,11 +723,19 @@
                 if (bgmTimer) clearTimeout(bgmTimer);
             }
         }
+
         function toggleDarkMode() {
             playClickSound();
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
             localStorage.setItem('omahles_dark_mode', isDark ? 'true' : 'false');
+        }
+
+        function toggleDyslexiaFont() {
+            playClickSound();
+            document.body.classList.toggle('dyslexia-mode');
+            const isDys = document.body.classList.contains('dyslexia-mode');
+            localStorage.setItem('omahles_dyslexia_mode', isDys ? 'true' : 'false');
         }
 
         let activeSpeakingButton = null;
@@ -706,17 +748,13 @@
 
             if (window.speechSynthesis.speaking && activeSpeakingButton === btnElement) {
                 window.speechSynthesis.cancel();
-                if (activeSpeakingButton) {
-                    activeSpeakingButton.classList.remove('playing');
-                }
+                if (activeSpeakingButton) activeSpeakingButton.classList.remove('playing');
                 activeSpeakingButton = null;
                 return;
             }
 
             window.speechSynthesis.cancel();
-            if (activeSpeakingButton) {
-                activeSpeakingButton.classList.remove('playing');
-            }
+            if (activeSpeakingButton) activeSpeakingButton.classList.remove('playing');
 
             const utterance = new SpeechSynthesisUtterance(textString);
             utterance.lang = 'id-ID';
@@ -731,7 +769,6 @@
                     activeSpeakingButton = null;
                 }
             };
-
             utterance.onerror = () => {
                 if (activeSpeakingButton === btnElement) {
                     btnElement.classList.remove('playing');
@@ -1086,6 +1123,9 @@
             if(localStorage.getItem('omahles_dark_mode') === 'true') {
                 document.body.classList.add('dark-mode');
             }
+            if(localStorage.getItem('omahles_dyslexia_mode') === 'true') {
+                document.body.classList.add('dyslexia-mode');
+            }
 
             const savedPet = localStorage.getItem('omahles_virtual_pet') || '🐱';
             document.getElementById('petSelector').value = savedPet;
@@ -1186,6 +1226,14 @@
             const lvl = calculateLevelInfo();
             document.getElementById('userLevelBadgeDisplay').innerText = `Lv.${lvl.levelNum}`;
             document.getElementById('userLevelNameDisplay').innerText = lvl.levelName;
+
+            // Update Sidebar Mini Badges Showcase
+            const m1 = document.getElementById('miniBadge1');
+            const m2 = document.getElementById('miniBadge2');
+            const m4 = document.getElementById('miniBadge4');
+            if(m1 && userCompletedQuizzes >= 1) m1.classList.add('unlocked');
+            if(m2 && userCompletedQuizzes >= 3) m2.classList.add('unlocked');
+            if(m4 && userStars >= 50) m4.classList.add('unlocked');
 
             const adminBox = document.getElementById('adminClassSwitcherBox');
             if (currentStudent.isAdmin) {
@@ -1822,6 +1870,13 @@
             const savedKey = localStorage.getItem(storageKey) || '';
             const studentName = currentStudent.name || 'Siswa';
 
+            // Muat memori chat dari localStorage khusus akun ini jika ada
+            const chatMemoryKey = `omahles_chat_history_${currentStudent.parentEmail}`;
+            const savedMemory = localStorage.getItem(chatMemoryKey);
+            if (savedMemory && chatHistoryMemory.length === 0) {
+                try { chatHistoryMemory = JSON.parse(savedMemory); } catch(e) {}
+            }
+
             container.innerHTML = `
                 <div class="lovespeak-chat-container animate-section">
                     <div class="lovespeak-top-header">
@@ -1852,13 +1907,14 @@
                                 <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                             </div>
                         </div>
+                        ${renderSavedChatBubblesHtml()}
                     </div>
 
                     <div class="lovespeak-suggestions-bar">
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Tolong jelaskan dengan bahasa anak 7 tahun!')">👶 Bahasa Anak 7 Tahun</div>
                         <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Tolong jelaskan teori gravitasi dengan cerita dongeng!')">📖 Dongeng Gravitasi</div>
                         <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana cara menghitung perkalian pecahan lewat analogi kue?')">🍕 Analogi Kue Pecahan</div>
                         <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Ceritakan proses terjadinya hujan seperti kisah petualangan air.')">🌧️ Petualangan Air Hujan</div>
-                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Tolong berikan contoh percakapan bahasa Inggris.')">🇬🇧 Bahasa Inggris</div>
                     </div>
 
                     <div class="lovespeak-input-bar">
@@ -1868,7 +1924,43 @@
                     </div>
                 </div>
             `;
+            const box = document.getElementById('lovChatMessagesBox');
+            box.scrollTop = box.scrollHeight;
             document.getElementById('lovUserChatInput').focus();
+        }
+
+        function renderSavedChatBubblesHtml() {
+            if (!chatHistoryMemory || chatHistoryMemory.length === 0) return '';
+            let html = '';
+            for (let i = 0; i < chatHistoryMemory.length; i++) {
+                const item = chatHistoryMemory[i];
+                const textRaw = item.parts[0].text || '';
+                const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                if (item.role === 'user') {
+                    html += `
+                        <div class="lovespeak-bubble-row user">
+                            <div class="lovespeak-bubble">${textRaw.replace(/</g,"&lt;")}</div>
+                            <div class="lovespeak-bubble-footer"><span>${timeStr}</span></div>
+                        </div>
+                    `;
+                } else {
+                    let formatted = textRaw.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+                                          .replace(/\*/g, '')
+                                          .replace(/\\times/g, '×')
+                                          .replace(/\\div/g, '÷')
+                                          .replace(/\n/g, '<br>');
+                    html += `
+                        <div class="lovespeak-bubble-row ai">
+                            <div class="lovespeak-bubble">${formatted}</div>
+                            <div class="lovespeak-bubble-footer">
+                                <button class="lovespeak-btn-listen" onclick="toggleSpeech(this.parentElement.previousElementSibling.innerText, this)">🔊 LISTEN</button>
+                                <span>${timeStr}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            return html;
         }
 
         function saveUserApiKey() {
@@ -1881,6 +1973,8 @@
 
         function resetChatHistory() {
             chatHistoryMemory = [];
+            const chatMemoryKey = `omahles_chat_history_${currentStudent.parentEmail}`;
+            localStorage.removeItem(chatMemoryKey);
             playClickSound();
             renderLovSpeakAiChat(document.getElementById('dynamicMainContentArea'));
             alert('🔄 Riwayat percakapan berhasil direset!');
@@ -1950,13 +2044,17 @@
                         parts: [{ text: aiReply }]
                     });
 
+                    // Simpan ke localStorage agar tidak hilang saat refresh
+                    const chatMemoryKey = `omahles_chat_history_${currentStudent.parentEmail}`;
+                    localStorage.setItem(chatMemoryKey, JSON.stringify(chatHistoryMemory));
+
                     aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
-                                     .replace(/\*/g, '')
-                                     .replace(/\\times/g, '×')
-                                     .replace(/\\div/g, '÷')
-                                     .replace(/\\pm/g, '±')
-                                     .replace(/\\le/g, '≤')
-                                     .replace(/\\ge/g, '≥');
+                                   .replace(/\*/g, '')
+                                   .replace(/\\times/g, '×')
+                                   .replace(/\\div/g, '÷')
+                                   .replace(/\\pm/g, '±')
+                                   .replace(/\\le/g, '≤')
+                                   .replace(/\\ge/g, '≥');
 
                     aiReply = aiReply.replace(/\n/g, '<br>');
                     
@@ -1972,21 +2070,15 @@
                 }
             } catch (err) {
                 console.error(err);
-                
                 const isQuotaError = err.message.toLowerCase().includes('quota') || err.message.toLowerCase().includes('exceeded');
                 
-                let errorHtmlContent = "";
-                if (isQuotaError) {
-                    errorHtmlContent = `
-                        <b>Waduh, Kak Omah kelelahan nih, kebanyakan nanya dalam waktu singkat! 😅</b><br><br>
-                        Yuk, istirahat sejenak sambil minum air putih selama <b>1 menit</b>, lalu coba kirim pertanyaannya lagi ya, Kak ${studentName}! ✨
-                    `;
-                } else {
-                    errorHtmlContent = `
-                        <b>Waduh, maaf ya! 🤖 Jaringan Kak Omah lagi agak ngantuk nih...</b><br><br>
-                        Coba klik tombol <b>"➤" (Kirim)</b> sekali lagi, atau minta bantuan Papa/Mama untuk mengecek <b>API Key</b> di pojok kanan atas ya! Kak Omah siap bantu lagi kok! ✨
-                    `;
-                }
+                let errorHtmlContent = isQuotaError ? `
+                    <b>Waduh, Kak Omah kelelahan nih, kebanyakan nanya dalam waktu singkat! 😅</b><br><br>
+                    Yuk, istirahat sejenak sambil minum air putih selama <b>1 menit</b>, lalu coba kirim pertanyaannya lagi ya, Kak ${studentName}! ✨
+                ` : `
+                    <b>Waduh, maaf ya! 🤖 Jaringan Kak Omah lagi agak ngantuk nih...</b><br><br>
+                    Coba klik tombol <b>"➤" (Kirim)</b> sekali lagi, atau minta bantuan Papa/Mama untuk mengecek <b>API Key</b> di pojok kanan atas ya! Kak Omah siap bantu lagi kok! ✨
+                `;
 
                 document.getElementById(loadingId).innerHTML = `
                     <div class="lovespeak-bubble" style="background: var(--brand-cream); border-color: var(--brand-amber); color: var(--text-main);">
