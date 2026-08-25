@@ -102,6 +102,9 @@
         .wisdom-author { font-size: 0.8rem; font-weight: 700; color: var(--text-sub); margin-bottom: 32px; }
         .btn-enter-wisdom { width: 100%; background: var(--sidebar-bg); color: #ffffff; border: none; padding: 18px; border-radius: 18px; font-weight: 800; cursor: pointer; font-family: 'Fredoka', sans-serif; text-transform: uppercase; }
 
+        /* LOCKED EXAM BANNER / MODAL */
+        .locked-banner { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #ef4444; border-radius: var(--radius-main); padding: 32px; text-align: center; margin: 20px auto; max-width: 600px; box-shadow: 0 10px 25px rgba(239, 68, 68, 0.15); }
+
         /* CERTIFICATE & REPORT MODAL */
         .cert-modal-card { background: var(--card-bg); width: 100%; max-width: 580px; border-radius: 32px; padding: 40px; text-align: center; border: 6px double var(--brand-amber); position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.25); animation: modalFadeIn 0.3s; }
         .cert-title { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--brand-brown); margin-bottom: 6px; }
@@ -893,13 +896,43 @@
             ]
         };
 
-        const examQuestionsDatabase = [
-            { q: "Apa nama alat tubuh yang digunakan untuk melihat keindahan alam?", opts: ["Mata", "Telinga", "Hidung", "Kaki"], ans: 0 },
-            { q: "Berapa hasil dari penjumlahan 7 ditambah 4?", opts: ["10", "11", "12", "13"], ans: 1 },
-            { q: "Gagasan utama atau inti pembahasan dalam paragraf disebut...?", opts: ["Judul", "Ide Pokok", "Kesimpulan", "Pantun"], ans: 1 },
-            { q: "Gaya tarik pusat bumi yang membuat benda jatuh ke bawah disebut gaya...?", opts: ["Gesek", "Otot", "Gravitasi", "Pegas"], ans: 2 },
-            { q: "Bahasa Inggris dari buah 'Apel' adalah...?", opts: ["Banana", "Apple", "Orange", "Grape"], ans: 1 }
-        ];
+        const examQuestionsDatabasePerLevel = {
+            'tk': [
+                { q: "Apa huruf pertama pada kata 'Ayam'?", opts: ["A", "B", "C", "D"], ans: 0 },
+                { q: "Warna buah pisang yang sudah matang adalah...?", opts: ["Merah", "Kuning", "Hijau", "Biru"], ans: 1 },
+                { q: "Hewan apa yang bersuara 'Meong'?", opts: ["Kucing", "Sapi", "Bebek", "Kambing"], ans: 0 }
+            ],
+            'sd1': [
+                { q: "B-U-K-U dibaca...?", opts: ["Baka", "Buku", "Baki", "Buke"], ans: 1 },
+                { q: "Berapa hasil dari 5 dikurang 2?", opts: ["2", "3", "4", "5"], ans: 1 },
+                { q: "Alat tubuh yang digunakan untuk melihat adalah...?", opts: ["Telinga", "Mata", "Hidung", "Kulit"], ans: 1 }
+            ],
+            'sd2': [
+                { q: "Tanda baca di akhir kalimat tanya adalah...?", opts: ["Titik (.)", "Tanda Tanya (?)", "Tanda Seru (!)", "Koma (,)"], ans: 1 },
+                { q: "Berapa hasil perkalian 3 dikali 4?", opts: ["10", "12", "14", "16"], ans: 1 },
+                { q: "Es batu yang mencair berubah wujud menjadi...?", opts: ["Cair (Air)", "Gas", "Padat", "Uap"], ans: 0 }
+            ],
+            'sd3': [
+                { q: "Ide utama atau inti pembahasan dalam paragraf disebut...?", opts: ["Judul", "Ide Pokok", "Kesimpulan", "Pantun"], ans: 1 },
+                { q: "Satu buah roti dibagi 2 sama besar, nilai bagiannya adalah...?", opts: ["1/2", "1/3", "1/4", "1/5"], ans: 0 },
+                { q: "Sebelum berubah menjadi kupu-kupu, ulat berada di fase...?", opts: ["Telur", "Kepompong", "Larva", "Imago"], ans: 1 }
+            ],
+            'sd4': [
+                { q: "Rumus untuk mencari luas bangun datar Persegi adalah...?", opts: ["Sisi x Sisi", "Panjang x Lebar", "2 x Sisi", "Sisi + Sisi"], ans: 0 },
+                { q: "Gaya tarik pusat bumi yang membuat benda jatuh ke bawah disebut...?", opts: ["Gaya Gesek", "Gaya Otot", "Gaya Gravitasi", "Gaya Pegas"], ans: 2 },
+                { q: "KPK dari angka 2 dan 3 adalah...?", opts: ["5", "6", "8", "12"], ans: 1 }
+            ],
+            'sd5': [
+                { q: "Kata tanya dalam 5W+1H yang menanyakan waktu kejadian adalah...?", opts: ["Apa", "Siapa", "Kapan", "Di mana"], ans: 2 },
+                { q: "Rumus volume bangun ruang Balok adalah...?", opts: ["p x l x t", "s x s x s", "1/3 x luas alas x t", "pi x r x t"], ans: 0 },
+                { q: "Di organ pencernaan manakah penyerapan sari makanan terjadi?", opts: ["Lambung", "Usus Halus", "Kerongkongan", "Mulut"], ans: 1 }
+            ],
+            'sd6': [
+                { q: "Teks ilmiah yang berisi penjelasan fenomena alam disebut teks...?", opts: ["Eksplanasi", "Deskripsi", "Narasi", "Persuasif"], ans: 0 },
+                { q: "Pergantian siang dan malam disebabkan oleh...?", opts: ["Rotasi Bumi", "Revolusi Bumi", "Gerhana Matahari", "Gravitasi Bulan"], ans: 0 },
+                { q: "Nilai rata-rata dari sekelompok data dalam matematika disebut...?", opts: ["Modus", "Median", "Mean", "Range"], ans: 2 }
+            ]
+        };
 
         let currentActiveGameQuestions = [];
         let currentLovQuestionIdx = 0;
@@ -912,6 +945,7 @@
         let examTimeRemaining = 60;
         let examCurrentIdx = 0;
         let examScoreCount = 0;
+        let currentExamQuestions = [];
 
         let currentStudent = { name: '', parentEmail: '', classLabel: 'Belum Dipilih', categoryKey: null, isAdmin: false };
         let activeSection = 'dashboard';
@@ -1100,7 +1134,7 @@
             } else if (secKey === 'exam') {
                 topBanner.style.display = 'none';
                 filterBar.style.display = 'none';
-                startExamChallenge();
+                checkAndStartExamChallenge();
             } else {
                 topBanner.style.display = 'block';
                 if (['dashboard', 'leaderboard', 'profile', 'badges', 'worksheets', 'games', 'flashcards'].includes(secKey)) {
@@ -1174,7 +1208,25 @@
             renderDashboardData();
         }
 
-        function startExamChallenge() {
+        function checkAndStartExamChallenge() {
+            const area = document.getElementById('dynamicMainContentArea');
+            if (userStars < 50 && !currentStudent.isAdmin) {
+                area.innerHTML = `
+                    <div class="locked-banner animate-section">
+                        <div style="font-size:3.5rem; margin-bottom:12px;">🔒</div>
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.6rem; color:#991b1b; margin-bottom:8px;">Ujian Terkunci (Minimal 50 Bintang ⭐)</div>
+                        <p style="font-size:0.95rem; color:#7f1d1d; font-weight:700; margin-bottom:20px; line-height:1.6;">
+                            Kamu saat ini memiliki <strong>${userStars} Bintang</strong>. Kumpulkan minimal <strong>50 Bintang</strong> dengan menyelesaikan modul pelajaran, kuis harian, atau game agar bisa membuka Quiz Challenge Mode!
+                        </p>
+                        <button class="btn-enter-wisdom" style="background:#dc2626;" onclick="switchSection('dashboard')">KEMBALI KE DASHBOARD</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const catKey = currentStudent.categoryKey || 'sd3';
+            currentExamQuestions = examQuestionsDatabasePerLevel[catKey] || examQuestionsDatabasePerLevel['sd3'];
+
             examCurrentIdx = 0;
             examScoreCount = 0;
             examTimeRemaining = 60;
@@ -1193,16 +1245,16 @@
 
         function renderExamQuestionUI() {
             const area = document.getElementById('dynamicMainContentArea');
-            if(examCurrentIdx >= examQuestionsDatabase.length) {
+            if(examCurrentIdx >= currentExamQuestions.length) {
                 clearInterval(examTimerInterval);
                 return finishExamChallenge();
             }
-            const q = examQuestionsDatabase[examCurrentIdx];
+            const q = currentExamQuestions[examCurrentIdx];
             area.innerHTML = `
                 <div class="lov-game-wrapper animate-section">
                     <div class="lov-top-bar">
                         <div class="lov-btn-close" onclick="switchSection('dashboard')">✕</div>
-                        <div class="lov-score-pill">SOAL ${examCurrentIdx + 1} / ${examQuestionsDatabase.length}</div>
+                        <div class="lov-score-pill">SOAL ${examCurrentIdx + 1} / ${currentExamQuestions.length} (${currentStudent.classLabel.toUpperCase()})</div>
                         <div style="font-family:'Fredoka',sans-serif; color:var(--brand-brown); font-weight:800;">⏱️ Sisa Waktu: <span id="examTimerDisplay">${examTimeRemaining}</span> detik</div>
                     </div>
                     <div class="insight-card-box" style="text-align:center;">
@@ -1220,7 +1272,7 @@
         function submitExamOption(selectedIdx, correctIdx) {
             if(selectedIdx === correctIdx) {
                 playSuccessSound();
-                examScoreCount += 20;
+                examScoreCount += Math.floor(100 / currentExamQuestions.length);
             } else {
                 playErrorSound();
             }
@@ -1237,7 +1289,7 @@
 
             let historyList = JSON.parse(localStorage.getItem('omahles_quiz_history') || '[]');
             historyList.push({
-                title: `Ujian Quiz Challenge (Skor: ${examScoreCount}/100)`,
+                title: `Ujian Quiz Challenge (${currentStudent.classLabel}) - Skor: ${examScoreCount}/100`,
                 time: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             });
             localStorage.setItem('omahles_quiz_history', JSON.stringify(historyList));
@@ -1247,7 +1299,7 @@
                 <div class="cert-modal-card animate-section" style="margin:40px auto; max-width:600px;">
                     <div style="font-size:3.5rem; margin-bottom:10px;">🏆</div>
                     <div class="cert-title">Ujian Selesai!</div>
-                    <div class="cert-sub">Quiz Challenge Mode Omah Les</div>
+                    <div class="cert-sub">Quiz Challenge Mode Omah Les (${currentStudent.classLabel})</div>
                     <div style="font-family:'Fredoka',sans-serif; font-size:2rem; color:var(--brand-amber); margin:20px 0;">Skor Anda: ${examScoreCount} / 100</div>
                     <p style="font-size:0.9rem; color:var(--text-sub); font-weight:700; margin-bottom:24px;">Anda mendapatkan tambahan ⭐ +${examScoreCount} Bintang ke akun Anda!</p>
                     <button class="btn-enter-wisdom" onclick="switchSection('dashboard')">KEMBALI KE DASHBOARD</button>
