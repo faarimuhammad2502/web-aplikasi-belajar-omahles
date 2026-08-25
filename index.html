@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&family=Comic+Neue:wght@700&display=stylesheet" rel="stylesheet">
 
     <style>
         :root {
@@ -27,6 +27,37 @@
             --radius-main: 24px;
             --radius-sm: 16px;
             --current-font: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* TEMA WARNA KARTUN (CUSTOMIZER) */
+        body.theme-space {
+            --brand-brown: #4f46e5;
+            --brand-terracotta: #4338ca;
+            --brand-amber: #6366f1;
+            --brand-yellow: #a5b4fc;
+            --brand-cream: #e0e7ff;
+            --bg-body: #0f172a;
+            --sidebar-bg: #1e1b4b;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --text-light: #f8fafc;
+        }
+
+        body.theme-pastel {
+            --brand-brown: #0d9488;
+            --brand-terracotta: #0f766e;
+            --brand-amber: #14b8a6;
+            --brand-yellow: #5eead4;
+            --brand-cream: #ccfbf1;
+            --bg-body: #f0fdfa;
+            --sidebar-bg: #115e59;
+            --card-bg: #ffffff;
+            --card-border: #99f6e4;
+            --text-main: #134e4a;
+            --text-sub: #5eead4;
+            --text-light: #f0fdfa;
         }
 
         /* DARK THEME */
@@ -77,7 +108,6 @@
         }
         body.focus-mode .portal-footer { display: none !important; }
         
-        /* SKALA UKURAN KONTEN FOKUS MODE DI PC/LAPTOP */
         body.focus-mode .roadmap-banner { padding: 50px; margin-bottom: 40px; }
         body.focus-mode .banner-title { font-size: 3.2rem; }
         body.focus-mode .banner-sub { font-size: 1.3rem; max-width: 1000px; }
@@ -108,7 +138,6 @@
         }
         body.focus-mode .floating-menu-focus { display: flex; align-items: center; gap: 6px; }
 
-        /* ANIMASI BINTANG MELAYANG (FLOATING REWARD) */
         @keyframes floatUpReward {
             0% { opacity: 1; transform: translateY(0) scale(1); }
             100% { opacity: 0; transform: translateY(-70px) scale(1.3); }
@@ -120,7 +149,6 @@
             pointer-events: none; animation: floatUpReward 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* ANIMASI MASKOT MELOMPAT */
         @keyframes mascotBounce {
             0%, 100% { transform: translateY(0) scale(1); }
             50% { transform: translateY(-8px) scale(1.1); }
@@ -231,6 +259,12 @@
         .daily-reward-left { display: flex; align-items: center; gap: 18px; }
         .btn-claim-reward { background: var(--brand-amber); color: white; border: none; padding: 12px 24px; border-radius: 14px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.95rem; cursor: pointer; box-shadow: 0 6px 15px rgba(217, 119, 6, 0.3); }
         .btn-claim-reward:disabled { background: #9ca3af; cursor: not-allowed; box-shadow: none; }
+
+        /* WEEKLY QUESTS STYLES */
+        .weekly-quest-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 24px; margin-bottom: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); }
+        .quest-item { display: flex; align-items: center; justify-content: space-between; background: var(--brand-cream); padding: 12px 18px; border-radius: 14px; margin-bottom: 10px; border: 1px solid var(--card-border); gap: 12px; flex-wrap: wrap; }
+        .btn-claim-quest { background: var(--brand-amber); color: white; border: none; padding: 6px 14px; border-radius: 10px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.78rem; cursor: pointer; }
+        .btn-claim-quest:disabled { background: #9ca3af; cursor: not-allowed; }
 
         .resume-learning-card { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid #3b82f6; border-radius: var(--radius-main); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; gap: 16px; flex-wrap: wrap; }
         .btn-resume { background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 12px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.88rem; cursor: pointer; }
@@ -441,7 +475,6 @@
             .banner-title { font-size: 1.6rem; }
             .roadmap-banner { padding: 20px; }
             
-            /* SKALA UKURAN KONTEN FOKUS MODE DI HP */
             body.focus-mode .content-area { padding: 25px 16px !important; }
             body.focus-mode .banner-title { font-size: 1.8rem; }
             body.focus-mode .flashcard-box { height: 260px; padding: 20px; }
@@ -498,14 +531,23 @@
         </div>
     </div>
 
-    <!-- SETTINGS / PENGATURAN MODAL -->
+    <!-- SETTINGS / PENGATURAN MODAL (DENGAN THEME CUSTOMIZER) -->
     <div class="modal-overlay" id="settingsModalOverlay">
         <div class="modal-card" style="max-width: 440px; text-align: left;">
             <button class="btn-close-modal" style="color:var(--text-main); background:var(--brand-cream);" onclick="closeSettingsModal()">✕</button>
             <div style="font-family:'Fredoka',sans-serif; font-size:1.6rem; color:var(--brand-brown); margin-bottom:4px;">⚙️ Pengaturan Portal</div>
-            <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:24px;">Sesuaikan kenyamanan belajar Anda</div>
+            <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Sesuaikan kenyamanan belajar Anda</div>
             
-            <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="margin-bottom: 14px;">
+                <label style="font-size:0.78rem; font-weight:800; color:var(--brand-brown); display:block; margin-bottom:6px;">🎨 Kustomisasi Tema Kartun:</label>
+                <div style="display: flex; gap: 8px;">
+                    <button class="admin-switch-btn active" onclick="setAppTheme('default')">Klasik Terra</button>
+                    <button class="admin-switch-btn" onclick="setAppTheme('space')">🌌 Luar Angkasa</button>
+                    <button class="admin-switch-btn" onclick="setAppTheme('pastel')">🌿 Hutan Pastel</button>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" id="btnToggleBgmModal" onclick="toggleBgmMusic()">🎵 Musik BGM: OFF</button>
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleDarkMode()">🌓 Ganti Tema (Dark/Light)</button>
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleDyslexiaFont()">🔤 Font Disleksia On/Off</button>
@@ -513,7 +555,7 @@
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); refreshCurrentPage()">↺ Refresh Portal</button>
             </div>
             
-            <button class="btn-enter-wisdom" style="margin-top: 24px; padding: 12px;" onclick="closeSettingsModal()">TUTUP</button>
+            <button class="btn-enter-wisdom" style="margin-top: 20px; padding: 12px;" onclick="closeSettingsModal()">TUTUP</button>
         </div>
     </div>
 
@@ -812,6 +854,14 @@
             localStorage.setItem('omahles_dark_mode', isDark ? 'true' : 'false');
         }
 
+        function setAppTheme(themeName) {
+            playClickSound();
+            document.body.classList.remove('theme-space', 'theme-pastel');
+            if (themeName === 'space') document.body.classList.add('theme-space');
+            if (themeName === 'pastel') document.body.classList.add('theme-pastel');
+            localStorage.setItem('omahles_app_theme', themeName);
+        }
+
         function toggleDyslexiaFont() {
             playClickSound();
             document.body.classList.toggle('dyslexia-mode');
@@ -831,13 +881,10 @@
             document.getElementById('appSidebar').classList.toggle('focus-open');
         }
 
-        // AUTO-HIDE SIDEBAR JIKA KLIK DI LUAR SIDEBAR SAAT FOCUS MODE
         document.addEventListener('click', function(event) {
             if (!document.body.classList.contains('focus-mode')) return;
             const sidebar = document.getElementById('appSidebar');
             const menuBtn = document.querySelector('.floating-menu-focus');
-            
-            // Jika sidebar terbuka dan yang diklik bukan bagian dari sidebar atau tombol menu
             if (sidebar.classList.contains('focus-open')) {
                 if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
                     sidebar.classList.remove('focus-open');
@@ -1055,11 +1102,14 @@
         let userStars = parseInt(localStorage.getItem('omahles_user_stars') || '0');
         let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
         let lastClaimDate = localStorage.getItem('omahles_last_claim_date') || '';
+        let weeklyQuestClaimed = localStorage.getItem('omahles_weekly_quest') === 'true';
         let chatHistoryMemory = [];
 
         window.addEventListener('DOMContentLoaded', () => { 
             if(localStorage.getItem('omahles_dark_mode') === 'true') document.body.classList.add('dark-mode');
             if(localStorage.getItem('omahles_dyslexia_mode') === 'true') document.body.classList.add('dyslexia-mode');
+            const savedTheme = localStorage.getItem('omahles_app_theme');
+            if(savedTheme && savedTheme !== 'default') document.body.classList.add(`theme-${savedTheme}`);
 
             const savedPet = localStorage.getItem('omahles_virtual_pet') || '🐱';
             document.getElementById('petSelector').value = savedPet;
@@ -1262,6 +1312,7 @@
             const todayStr = new Date().toISOString().split('T')[0];
             const isAlreadyClaimed = (lastClaimDate === todayStr);
             const lvl = calculateLevelInfo();
+            const questDone = userCompletedQuizzes >= 3;
 
             container.innerHTML = `
                 <div class="resume-learning-card">
@@ -1270,6 +1321,21 @@
                         <div style="font-size:0.85rem; font-weight:700; color:#3b82f6;">${lastOpenedModuleTitle}</div>
                     </div>
                     <button class="btn-resume" onclick="switchSection('roadmap')">Lanjut Belajar →</button>
+                </div>
+
+                <!-- WEEKLY QUESTS (MISI MINGGUAN) -->
+                <div class="weekly-quest-card">
+                    <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--brand-brown); margin-bottom:4px;">🎯 Misi Mingguan (Weekly Quests)</div>
+                    <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Selesaikan 3 kuis atau tantangan untuk mendapatkan hadiah bonus besar!</div>
+                    <div class="quest-item">
+                        <div>
+                            <div style="font-family:'Fredoka',sans-serif; font-size:0.95rem; color:var(--text-main);">Selesaikan Minimal 3 Kuis / Tantangan</div>
+                            <div style="font-size:0.75rem; color:var(--text-sub); font-weight:700;">Progress: ${Math.min(userCompletedQuizzes, 3)} / 3 Kuis Selesai</div>
+                        </div>
+                        <button class="btn-claim-quest" id="claimQuestBtn" ${(!questDone || weeklyQuestClaimed) ? 'disabled' : ''} onclick="claimWeeklyQuest(event)">
+                            ${weeklyQuestClaimed ? '✅ Hadiah Diklaim' : (questDone ? '🎁 Klaim +150 ⭐' : 'Belum Selesai')}
+                        </button>
+                    </div>
                 </div>
 
                 <div class="daily-reward-card">
@@ -1333,6 +1399,19 @@
             localStorage.setItem('omahles_user_stars', userStars);
             localStorage.setItem('omahles_last_claim_date', lastClaimDate);
             alert('🎉 HORE! Anda mendapatkan +50 Bintang Bonus Harian!');
+            renderDashboardMain(document.getElementById('dynamicMainContentArea'));
+            renderDashboardData();
+        }
+
+        function claimWeeklyQuest(event) {
+            if(weeklyQuestClaimed || userCompletedQuizzes < 3) return;
+            const rect = event ? event.target.getBoundingClientRect() : null;
+            playSuccessSound(rect ? rect.left : null, rect ? rect.top : null);
+            userStars += 150;
+            weeklyQuestClaimed = true;
+            localStorage.setItem('omahles_user_stars', userStars);
+            localStorage.setItem('omahles_weekly_quest', 'true');
+            alert('🏆 LUAR BIASA! Misi Mingguan Selesai! Anda mendapatkan +150 Bintang Bonus!');
             renderDashboardMain(document.getElementById('dynamicMainContentArea'));
             renderDashboardData();
         }
@@ -1474,6 +1553,7 @@
                 userStars: userStars,
                 userCompletedQuizzes: userCompletedQuizzes,
                 lastClaimDate: lastClaimDate,
+                weeklyQuestClaimed: weeklyQuestClaimed,
                 quizHistory: JSON.parse(localStorage.getItem('omahles_quiz_history') || '[]'),
                 petAccessory: currentPetAccessory,
                 virtualPet: localStorage.getItem('omahles_virtual_pet') || '🐱'
@@ -1498,11 +1578,13 @@
                         userStars = parsed.userStars;
                         userCompletedQuizzes = parsed.userCompletedQuizzes || 0;
                         lastClaimDate = parsed.lastClaimDate || '';
+                        weeklyQuestClaimed = parsed.weeklyQuestClaimed || false;
                         currentPetAccessory = parsed.petAccessory || '';
                         if (parsed.quizHistory) localStorage.setItem('omahles_quiz_history', JSON.stringify(parsed.quizHistory));
                         localStorage.setItem('omahles_user_stars', userStars);
                         localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
                         localStorage.setItem('omahles_last_claim_date', lastClaimDate);
+                        localStorage.setItem('omahles_weekly_quest', weeklyQuestClaimed ? 'true' : 'false');
                         localStorage.setItem('omahles_pet_accessory', currentPetAccessory);
                         if(parsed.virtualPet) localStorage.setItem('omahles_virtual_pet', parsed.virtualPet);
                         
