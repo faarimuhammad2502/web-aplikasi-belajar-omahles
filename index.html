@@ -330,7 +330,7 @@
         <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰ Menu</button>
     </div>
 
-    <!-- LOGIN SCREEN (HANYA EMAIL ORANG TUA SAJA) -->
+    <!-- LOGIN SCREEN -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
             <div class="brand-badge-tag">Omah Les Privat Platform</div>
@@ -493,7 +493,7 @@
                 <div class="banner-sub" id="bannerWelcomeSub">Modul materi terstruktur disesuaikan.</div>
             </div>
 
-            <!-- ADMIN SWITCHER (KHUSUS MASTER ADMIN) -->
+            <!-- ADMIN SWITCHER -->
             <div class="admin-class-switch-box" id="adminClassSwitcherBox" style="display:none;">
                 <span style="font-size:0.8rem; font-weight:800; color:var(--brand-brown); width:100%; margin-bottom:4px;">👑 MASTER ADMIN / GANTI JENJANG KELAS:</span>
                 <button class="admin-switch-btn" id="btn-cat-tk" onclick="adminSwitchClass('tk', 'TK / PAUD')">TK / PAUD</button>
@@ -553,7 +553,6 @@
             document.getElementById('appSidebar').classList.toggle('mobile-open');
         }
 
-        // DATABASE EMAIL: Master Admin (Full Access) & Akun Pembeli Paket Terkunci
         const REGISTERED_PARENT_DATABASE = {
             'faarimuhammad25@gmail.com': { name: 'Muhammad Faari Akbar', isAdmin: true, classLabel: 'Master Admin (All Access)' },
             'michellehimmelda@gmail.com': { name: 'Michelle Himmelda Cahyadi', isAdmin: true, classLabel: 'Master Admin & Founder (All Access)' },
@@ -694,6 +693,9 @@
         let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
 
         window.addEventListener('DOMContentLoaded', () => { 
+            // Bersihkan key lama global agar tidak terbawa
+            localStorage.removeItem('omahles_user_gemini_key');
+
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             if (savedStudent) {
                 currentStudent = JSON.parse(savedStudent);
@@ -719,7 +721,6 @@
                     currentStudent = { name: data.name, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: data.categoryKey, isAdmin: false };
                 }
             } else {
-                // Jika email baru tidak terdaftar, buat nama otomatis dari bagian depan email
                 const generatedName = pEmail.split('@')[0].toUpperCase();
                 currentStudent = { name: generatedName, parentEmail: pEmail, classLabel: 'Kelas 3 SD (Standar)', categoryKey: 'sd3', isAdmin: false };
             }
@@ -1056,11 +1057,14 @@
             localStorage.setItem('omahles_student_journals', JSON.stringify(j)); renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
-        // RUANG AI TUTOR DENGAN PENYEBUTAN NAMA PENGGUNA OTOMATIS
+        // RUANG AI TUTOR DENGAN PENYIMPANAN BERBASIS EMAIL MASING-MASING
         function renderLovSpeakAiChat(container) {
-            const savedKey = localStorage.getItem('omahles_user_gemini_key') || '';
+            // Ambil API key khusus berdasarkan email akun yang sedang login
+            const storageKey = `omahles_key_${currentStudent.parentEmail}`;
+            const savedKey = localStorage.getItem(storageKey) || '';
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             const studentName = currentStudent.name || 'Siswa';
+
             container.innerHTML = `
                 <div class="lovespeak-chat-container animate-section">
                     <div class="lovespeak-top-header">
@@ -1100,7 +1104,7 @@
                     <div class="lovespeak-input-bar">
                         <button class="lovespeak-input-icon-btn">📎</button>
                         <input type="text" id="lovUserChatInput" class="lovespeak-text-input" placeholder="Tanyakan PR atau materi sekolah..." onkeypress="if(event.key==='Enter') sendGeminiApiChat()">
-                        <button class="lovespeak-send-btn" onclick="sendGeminiApiChat()">➤</button>
+                        <button class="lov-submit-btn" onclick="sendGeminiApiChat()">➤</button>
                     </div>
                 </div>
             `;
@@ -1110,8 +1114,9 @@
         function saveUserApiKey() {
             const key = document.getElementById('inputUserApiKey').value.trim();
             if(!key) { alert('Masukkan API Key yang valid!'); return; }
-            localStorage.setItem('omahles_user_gemini_key', key);
-            alert('✅ API Key berhasil disimpan di browser Anda! Sekarang AI siap digunakan.');
+            const storageKey = `omahles_key_${currentStudent.parentEmail}`;
+            localStorage.setItem(storageKey, key);
+            alert('✅ API Key berhasil disimpan untuk akun ini!');
         }
 
         async function sendGeminiApiChat() {
@@ -1119,7 +1124,8 @@
             const msg = input.value.trim();
             if(!msg) return;
 
-            const apiKey = localStorage.getItem('omahles_user_gemini_key');
+            const storageKey = `omahles_key_${currentStudent.parentEmail}`;
+            const apiKey = localStorage.getItem(storageKey);
             if(!apiKey) {
                 alert('⚠️ Masukkan terlebih dahulu Google Gemini API Key Anda di kolom kanan atas sebelum bertanya!');
                 return;
