@@ -28,7 +28,7 @@
             --radius-sm: 16px;
         }
 
-        /* DARK THEME VARIABLES */
+        /* DARK THEME */
         body.dark-mode {
             --brand-brown: #d97706;
             --brand-terracotta: #b45309;
@@ -84,7 +84,7 @@
 
         .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 15px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; }
 
-        /* MODAL BASE */
+        /* MODAL */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 10, 5, 0.75); backdrop-filter: blur(8px); z-index: 5000; display: none; align-items: center; justify-content: center; padding: 20px; }
         .modal-overlay.active { display: flex !important; }
         .modal-card { background: var(--card-bg); width: 100%; max-width: 480px; border-radius: 32px; padding: 48px 40px 36px 40px; text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 2px solid var(--card-border); animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -102,16 +102,13 @@
         .wisdom-author { font-size: 0.8rem; font-weight: 700; color: var(--text-sub); margin-bottom: 32px; }
         .btn-enter-wisdom { width: 100%; background: var(--sidebar-bg); color: #ffffff; border: none; padding: 18px; border-radius: 18px; font-weight: 800; cursor: pointer; font-family: 'Fredoka', sans-serif; text-transform: uppercase; }
 
-        /* LOCKED EXAM BANNER */
         .locked-banner { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #ef4444; border-radius: var(--radius-main); padding: 32px; text-align: center; margin: 20px auto; max-width: 600px; box-shadow: 0 10px 25px rgba(239, 68, 68, 0.15); }
 
-        /* CERTIFICATE & REPORT MODAL */
         .cert-modal-card { background: var(--card-bg); width: 100%; max-width: 580px; border-radius: 32px; padding: 40px; text-align: center; border: 6px double var(--brand-amber); position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.25); animation: modalFadeIn 0.3s; }
         .cert-title { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--brand-brown); margin-bottom: 6px; }
         .cert-sub { font-size: 0.85rem; color: var(--text-sub); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
         .cert-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--brand-amber); margin: 15px 0; border-bottom: 2px solid var(--card-border); padding-bottom: 10px; display: inline-block; min-width: 80%; }
 
-        /* SEQUENCE MODAL */
         .sequence-modal-card { background: var(--card-bg); width: 100%; max-width: 540px; border-radius: 32px; padding: 0; overflow: hidden; position: relative; border: 2px solid var(--card-border); animation: modalFadeIn 0.3s; }
         .sequence-header { background: linear-gradient(135deg, var(--brand-amber) 0%, var(--brand-terracotta) 100%); color: white; padding: 28px 32px; position: relative; }
         .sequence-header-tag { font-size: 0.72rem; font-weight: 800; letter-spacing: 1.5px; opacity: 0.9; }
@@ -127,7 +124,6 @@
         .sequence-step-sub { font-size: 0.75rem; color: var(--text-sub); font-weight: 600; }
         .sequence-play-btn { width: 32px; height: 32px; border-radius: 50%; background: var(--brand-amber); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; }
 
-        /* INSIGHT MODAL */
         .insight-modal-card { background: var(--card-bg); width: 100%; max-width: 640px; border-radius: 32px; padding: 36px 40px; overflow-y: auto; max-height: 85vh; border: 2px solid var(--card-border); animation: modalFadeIn 0.3s; position: relative;}
         .insight-tag { display: inline-block; background: var(--brand-cream); color: var(--brand-brown); border: 1.5px solid var(--card-border); padding: 4px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 800; margin-bottom: 12px; }
         .insight-title { font-family: 'Fredoka', sans-serif; font-size: 2rem; color: var(--text-main); margin-bottom: 20px; }
@@ -141,7 +137,6 @@
         .quiz-btn:hover { background: var(--brand-cream); }
         .quiz-feedback { margin-top: 10px; font-weight: 800; font-size: 0.9rem; }
 
-        /* TTS & DOWNLOAD BUTTONS */
         .tts-action-btn { background: var(--brand-cream); border: 1.5px solid var(--brand-amber); color: var(--brand-brown); padding: 6px 14px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; }
         .tts-action-btn:hover { background: var(--brand-amber); color: white; }
         .tts-action-btn.playing { background: var(--brand-amber); color: white; animation: pulsePlay 1.5s infinite; }
@@ -154,17 +149,26 @@
         .dash-info-title { font-size: 0.75rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; margin-bottom: 4px; }
         .dash-info-val { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); }
 
-        /* DAILY REWARD BANNER */
+        /* DAILY REWARD & PLANNER */
         .daily-reward-card { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: var(--radius-main); padding: 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15); flex-wrap: wrap; gap: 16px; }
         .daily-reward-left { display: flex; align-items: center; gap: 18px; }
         .btn-claim-reward { background: var(--brand-amber); color: white; border: none; padding: 12px 24px; border-radius: 14px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.95rem; cursor: pointer; box-shadow: 0 6px 15px rgba(217, 119, 6, 0.3); }
         .btn-claim-reward:disabled { background: #9ca3af; cursor: not-allowed; box-shadow: none; }
 
-        /* RESUME LEARNING BANNER */
         .resume-learning-card { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid #3b82f6; border-radius: var(--radius-main); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; gap: 16px; flex-wrap: wrap; }
         .btn-resume { background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 12px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.88rem; cursor: pointer; }
 
-        /* LEADERBOARD STYLES */
+        /* STUDY PLANNER WIDGET */
+        .planner-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 24px; margin-bottom: 28px; }
+        .planner-title { font-family: 'Fredoka', sans-serif; font-size: 1.2rem; color: var(--brand-brown); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .planner-list { display: flex; flex-direction: column; gap: 8px; }
+        .planner-item { display: flex; align-items: center; justify-content: space-between; background: var(--brand-cream); padding: 10px 16px; border-radius: 12px; font-size: 0.88rem; font-weight: 700; border: 1px solid var(--card-border); }
+
+        /* PET SHOP WIDGET */
+        .pet-shop-card { background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%); border: 2px solid #d946ef; border-radius: var(--radius-main); padding: 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 10px 25px rgba(217, 70, 239, 0.1); }
+        .btn-buy-accessory { background: #c026d3; color: white; border: none; padding: 8px 16px; border-radius: 12px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.85rem; cursor: pointer; }
+
+        /* LEADERBOARD */
         .leaderboard-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: var(--radius-main); overflow: hidden; border: 2px solid var(--card-border); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         .leaderboard-table th { background: var(--sidebar-bg); color: white; padding: 16px 20px; text-align: left; font-size: 0.85rem; font-family: 'Fredoka', sans-serif; }
         .leaderboard-table td { padding: 16px 20px; border-bottom: 1px solid var(--card-border); font-weight: 700; font-size: 0.9rem; }
@@ -223,7 +227,6 @@
         .brand-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: #ffffff; font-weight: 700; line-height: 1.1; }
         .brand-sub { font-size: 0.7rem; color: var(--brand-yellow); font-weight: 800; letter-spacing: 1px; }
 
-        /* VIRTUAL PET */
         .virtual-pet-box { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; font-size: 0.78rem; font-weight: 700; color: #fef08a; }
         .pet-select { background: #2d1e18; color: #fff; border: 1px solid var(--brand-amber); border-radius: 8px; padding: 2px 6px; font-size: 0.75rem; font-weight: 700; outline: none; }
 
@@ -249,7 +252,7 @@
         .profile-badge { font-size: 0.68rem; color: var(--brand-yellow); font-weight: 700; }
         .btn-switch-user { background: var(--brand-amber); border: none; color: white; padding: 5px 8px; border-radius: 8px; font-size: 0.68rem; font-weight: 800; cursor: pointer; }
 
-        /* MAIN CONTENT AREA */
+        /* MAIN CONTENT */
         .content-area { margin-left: 280px; flex: 1; padding: 36px 48px; max-width: 1300px; }
         .roadmap-banner { background: linear-gradient(135deg, rgba(139, 69, 19, 0.95) 0%, rgba(180, 83, 9, 0.95) 100%); color: #ffffff; border-radius: var(--radius-main); padding: 32px; text-align: center; margin-bottom: 28px; box-shadow: 0 12px 28px rgba(139, 69, 19, 0.2); }
         .banner-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25); color: #fef08a; padding: 6px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
@@ -262,7 +265,6 @@
         .mastery-lbl { font-size: 0.72rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; }
         .active-level-indicator { background: var(--brand-cream); border: 2px solid var(--brand-amber); color: var(--brand-brown); font-family: 'Fredoka', sans-serif; font-size: 1rem; padding: 8px 18px; border-radius: var(--radius-sm); font-weight: 700; }
 
-        /* ADMIN CLASS SWITCHER */
         .admin-class-switch-box { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; background: var(--card-bg); padding: 16px; border-radius: 16px; border: 2px solid var(--brand-amber); align-items: center; }
         .admin-switch-btn { background: var(--brand-cream); border: 1.5px solid var(--brand-amber); color: var(--brand-brown); padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.8rem; cursor: pointer; }
         .admin-switch-btn:hover, .admin-switch-btn.active { background: var(--brand-amber); color: white; }
@@ -278,7 +280,6 @@
         .card-footer { display: flex; align-items: center; justify-content: space-between; border-top: 2px dashed var(--card-border); padding-top: 16px; }
         .btn-open-module { background: var(--brand-amber); color: white; border: none; padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
 
-        /* PROFILE & REPORT CARD */
         .profile-main-box { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 32px; display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         .profile-top-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
         .profile-user-left { display: flex; align-items: center; gap: 20px; }
@@ -293,7 +294,6 @@
         .insight-heading { font-size: 0.75rem; font-weight: 800; color: var(--brand-amber); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
         .insight-body-text { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; line-height: 1.6; color: var(--text-main); font-style: italic; }
 
-        /* BADGES */
         .badges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
         .badge-item-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; position: relative; transition: transform 0.2s; }
         .badge-item-card.unlocked { border-color: var(--brand-amber); background: linear-gradient(180deg, var(--card-bg) 0%, var(--brand-cream) 100%); cursor: pointer; }
@@ -558,6 +558,7 @@
 
             <div>
                 <div class="sidebar-bottom-controls">
+                    <button class="btn-refresh-app" id="btnToggleBgm" onclick="toggleBgmMusic()">🎵 Musik BGM: OFF</button>
                     <button class="btn-refresh-app" onclick="playClickSound(); toggleDarkMode()">🌓 Ganti Tema (Dark/Light)</button>
                     <button class="btn-refresh-app" onclick="playClickSound(); refreshCurrentPage()">↺ REFRESH PORTAL</button>
                     <button class="btn-refresh-app" style="background:rgba(217,119,6,0.2); border-color:var(--brand-amber); color:#fef08a; margin-top:6px;" onclick="openParentPinModal()">🔒 Mode Orang Tua</button>
@@ -638,6 +639,26 @@
         }
         function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
 
+        let bgmInterval = null;
+        let isBgmPlaying = false;
+        function toggleBgmMusic() {
+            isBgmPlaying = !isBgmPlaying;
+            const btn = document.getElementById('btnToggleBgm');
+            if(isBgmPlaying) {
+                btn.innerText = '🎵 Musik BGM: ON';
+                playSuccessSound();
+                bgmInterval = setInterval(() => {
+                    if(isBgmPlaying) {
+                        playTone(330, 'sine', 0.15);
+                        setTimeout(() => playTone(392, 'sine', 0.15), 300);
+                    }
+                }, 4000);
+            } else {
+                btn.innerText = '🎵 Musik BGM: OFF';
+                clearInterval(bgmInterval);
+            }
+        }
+
         function toggleDarkMode() {
             playClickSound();
             document.body.classList.toggle('dark-mode');
@@ -696,11 +717,36 @@
             document.getElementById('appSidebar').classList.toggle('mobile-open');
         }
 
+        let currentPetAccessory = localStorage.getItem('omahles_pet_accessory') || '';
         function changeVirtualPet(petEmoji) {
             playClickSound();
             localStorage.setItem('omahles_virtual_pet', petEmoji);
-            document.getElementById('virtualPetDisplay').innerText = petEmoji;
-            document.getElementById('sidebarAvatarIcon').innerText = petEmoji;
+            updatePetDisplayUI();
+        }
+
+        function updatePetDisplayUI() {
+            const petEmoji = localStorage.getItem('omahles_virtual_pet') || '🐱';
+            const acc = currentPetAccessory || '';
+            const fullDisplay = acc ? `${petEmoji}${acc}` : petEmoji;
+            document.getElementById('virtualPetDisplay').innerText = fullDisplay;
+            document.getElementById('sidebarAvatarIcon').innerText = fullDisplay;
+        }
+
+        function buyPetAccessory(accSymbol, cost) {
+            if(userStars < cost) {
+                playErrorSound();
+                alert(`⭐ Bintang tidak cukup! Kamu butuh ${cost} bintang untuk membeli aksesoris ini.`);
+                return;
+            }
+            playSuccessSound();
+            userStars -= cost;
+            currentPetAccessory = accSymbol;
+            localStorage.setItem('omahles_user_stars', userStars);
+            localStorage.setItem('omahles_pet_accessory', currentPetAccessory);
+            updatePetDisplayUI();
+            renderDashboardData();
+            renderDashboardMain(document.getElementById('dynamicMainContentArea'));
+            alert(`🎉 Hore! Aksesoris ${accSymbol} berhasil dipasang ke maskot virtualmu!`);
         }
 
         const REGISTERED_PARENT_DATABASE = {
@@ -896,7 +942,6 @@
             ]
         };
 
-        // 10 SOAL LENGKAP UNTUK MASING-MASING JENJANG UJIAN
         const examQuestionsDatabasePerLevel = {
             'tk': [
                 { q: "Apa huruf pertama pada kata 'Ayam'?", opts: ["A", "B", "C", "D"], ans: 0 },
@@ -1014,8 +1059,7 @@
 
             const savedPet = localStorage.getItem('omahles_virtual_pet') || '🐱';
             document.getElementById('petSelector').value = savedPet;
-            document.getElementById('virtualPetDisplay').innerText = savedPet;
-            document.getElementById('sidebarAvatarIcon').innerText = savedPet;
+            updatePetDisplayUI();
 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
             if (savedStudent) {
@@ -1229,6 +1273,33 @@
                     <button class="btn-claim-reward" id="claimRewardBtn" ${isAlreadyClaimed ? 'disabled' : ''} onclick="claimDailyReward()">
                         ${isAlreadyClaimed ? '✅ Sudah Diklaim Hari Ini' : '✨ Klaim +50 Bintang'}
                     </button>
+                </div>
+
+                <!-- PET SHOP WIDGET -->
+                <div class="pet-shop-card">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div style="font-size:2.8rem;">🛍️</div>
+                        <div>
+                            <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:#86198f; margin-bottom:2px;">Toko Aksesoris Peliharaan (Pet Shop)</div>
+                            <div style="font-size:0.82rem; font-weight:700; color:#a21caf;">Tukarkan bintang ⭐ untuk mendandani maskot virtualmu!</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <button class="btn-buy-accessory" onclick="buyPetAccessory('🎩', 20)">Topi 🎩 (20 ⭐)</button>
+                        <button class="btn-buy-accessory" onclick="buyPetAccessory('👑', 40)">Mahkota 👑 (40 ⭐)</button>
+                        <button class="btn-buy-accessory" onclick="buyPetAccessory('👓', 30)">Kacamata 👓 (30 ⭐)</button>
+                        <button class="btn-buy-accessory" onclick="buyPetAccessory('', 0)">Lepas</button>
+                    </div>
+                </div>
+
+                <!-- STUDY PLANNER WIDGET -->
+                <div class="planner-card">
+                    <div class="planner-title">📅 Jadwal Belajar Harian (Study Planner)</div>
+                    <div class="planner-list">
+                        <div class="planner-item"><span>📖 Sesi 1: Membaca & Literasi Bahasa</span> <span style="color:var(--brand-amber);">08:00 - 09:00</span></div>
+                        <div class="planner-item"><span>🧮 Sesi 2: Logika & Matematika Dasar</span> <span style="color:var(--brand-amber);">09:30 - 10:30</span></div>
+                        <div class="planner-item"><span>🎮 Sesi 3: Tantangan Kuis & Game Edukasi</span> <span style="color:var(--brand-amber);">15:00 - 16:00</span></div>
+                    </div>
                 </div>
 
                 <div class="dashboard-grid">
