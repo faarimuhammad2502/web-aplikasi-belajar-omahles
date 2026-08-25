@@ -73,7 +73,22 @@
         .brand-slogan-title span { color: var(--brand-yellow); }
         .brand-slogan-sub { font-size: 1rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 500px; z-index: 2; }
 
-        .login-right-form { width: 480px; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; background: var(--card-bg); box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; overflow-y: auto; }
+        /* LOGIN RIGHT FORM DENGAN TEKSTUR SAMAR BUKU, PENSIL, BOLA DLL */
+        .login-right-form { 
+            width: 480px; 
+            padding: 50px 60px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            background-color: var(--card-bg);
+            /* Tekstur samar SVG ikon buku, pensil, bola, bintang, dan topi wisuda */
+            background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d97706' fill-opacity='0.04'%3E%3Ctext x='15' y='30' font-size='18'%3E📖%3C/text%3E%3Ctext x='75' y='35' font-size='16'%3E✏️%3C/text%3E%3Ctext x='45' y='75' font-size='18'%3E⚽%3C/text%3E%3Ctext x='95' y='95' font-size='16'%3E⭐%3C/text%3E%3Ctext x='15' y='105' font-size='16'%3E🎓%3C/text%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.05); 
+            z-index: 2; 
+            overflow-y: auto; 
+        }
+
         .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: var(--brand-brown); margin-bottom: 6px; }
         .form-sub-text { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 24px; font-weight: 600; }
 
@@ -627,7 +642,6 @@
         }
         function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
 
-        // BGM AUDIO PLAYER SETUP
         const bgmAudio = new Audio('https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg'); 
         bgmAudio.loop = true;
         bgmAudio.volume = 0.25; 
