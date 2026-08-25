@@ -86,7 +86,7 @@
         .wisdom-author { font-size: 0.8rem; font-weight: 700; color: var(--text-sub); margin-bottom: 32px; }
         .btn-enter-wisdom { width: 100%; background: var(--sidebar-bg); color: #ffffff; border: none; padding: 18px; border-radius: 18px; font-weight: 800; cursor: pointer; font-family: 'Fredoka', sans-serif; text-transform: uppercase; }
 
-        /* CERTIFICATE MODAL */
+        /* CERTIFICATE & REPORT MODAL */
         .cert-modal-card { background: #ffffff; width: 100%; max-width: 580px; border-radius: 32px; padding: 40px; text-align: center; border: 6px double var(--brand-amber); position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.25); animation: modalFadeIn 0.3s; }
         .cert-title { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--brand-brown); margin-bottom: 6px; }
         .cert-sub { font-size: 0.85rem; color: var(--text-sub); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
@@ -132,6 +132,27 @@
         .dash-icon-box { width: 56px; height: 56px; border-radius: 18px; background: var(--brand-cream); border: 1.5px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
         .dash-info-title { font-size: 0.75rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; margin-bottom: 4px; }
         .dash-info-val { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); }
+
+        /* DAILY REWARD BANNER */
+        .daily-reward-card { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: var(--radius-main); padding: 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15); flex-wrap: wrap; gap: 16px; }
+        .daily-reward-left { display: flex; align-items: center; gap: 18px; }
+        .btn-claim-reward { background: var(--brand-amber); color: white; border: none; padding: 12px 24px; border-radius: 14px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.95rem; cursor: pointer; box-shadow: 0 6px 15px rgba(217, 119, 6, 0.3); }
+        .btn-claim-reward:disabled { background: #9ca3af; cursor: not-allowed; box-shadow: none; }
+
+        /* LEADERBOARD STYLES */
+        .leaderboard-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: var(--radius-main); overflow: hidden; border: 2px solid var(--card-border); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .leaderboard-table th { background: var(--sidebar-bg); color: white; padding: 16px 20px; text-align: left; font-size: 0.85rem; font-family: 'Fredoka', sans-serif; }
+        .leaderboard-table td { padding: 16px 20px; border-bottom: 1px solid var(--card-border); font-weight: 700; font-size: 0.9rem; }
+        .leaderboard-table tr:last-child td { border-bottom: none; }
+        .leaderboard-table tr:hover td { background: var(--brand-cream); }
+
+        /* WORKSHEET CENTER STYLES */
+        .worksheet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 10px; }
+        .worksheet-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; }
+        .worksheet-title { font-family: 'Fredoka', sans-serif; font-size: 1.2rem; color: var(--text-main); margin-bottom: 8px; }
+        .worksheet-desc { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; margin-bottom: 16px; }
+        .btn-download-ws { background: var(--brand-cream); border: 2px solid var(--brand-amber); color: var(--brand-brown); padding: 10px 16px; border-radius: 14px; font-weight: 800; font-size: 0.85rem; cursor: pointer; text-align: center; font-family: 'Fredoka', sans-serif; }
+        .btn-download-ws:hover { background: var(--brand-amber); color: white; }
 
         /* OMAH GAMES CENTER STYLES */
         .game-level-tag-box { background: var(--brand-cream); border: 2px solid var(--brand-amber); border-radius: 16px; padding: 12px 20px; font-weight: 800; font-size: 0.9rem; color: var(--brand-brown); margin-bottom: 20px; display: inline-block; }
@@ -227,7 +248,7 @@
         .card-footer { display: flex; align-items: center; justify-content: space-between; border-top: 2px dashed var(--card-border); padding-top: 16px; }
         .btn-open-module { background: var(--brand-amber); color: white; border: none; padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
 
-        /* MY PROFILE */
+        /* MY PROFILE & PARENT REPORT CARD */
         .profile-main-box { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 32px; display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         .profile-top-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
         .profile-user-left { display: flex; align-items: center; gap: 20px; }
@@ -284,11 +305,6 @@
         .lovespeak-text-input { flex: 1; border: none; outline: none; font-size: 0.95rem; font-weight: 600; color: var(--text-main); background: transparent; }
         .lovespeak-send-btn { width: 40px; height: 40px; border-radius: 50%; background: #f3e8ff; border: none; color: #9333ea; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 800; transition: all 0.2s; flex-shrink: 0; }
         .lovespeak-send-btn:hover { background: #9333ea; color: white; }
-
-        .journal-form-box { background: var(--brand-cream); border: 2px solid var(--card-border); border-radius: 20px; padding: 20px; margin-bottom: 24px; }
-        .journal-input { width: 100%; padding: 10px 14px; border-radius: 12px; border: 1.5px solid var(--card-border); margin-bottom: 12px; font-weight: 600; outline: none; }
-        .btn-add-journal { background: var(--brand-amber); color: white; border: none; padding: 10px 20px; border-radius: 12px; font-weight: 800; cursor: pointer; }
-        .journal-item-card { background: #ffffff; border: 1.5px solid var(--card-border); border-radius: 16px; padding: 14px 18px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
 
         .portal-footer { margin-left: 280px; background: var(--card-bg); border-top: 2px solid var(--card-border); padding: 24px 48px; display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
 
@@ -452,8 +468,9 @@
                 <ul class="menu-list">
                     <li class="menu-item active" id="menuDashboard"><a onclick="playClickSound(); switchSection('dashboard')"><span>📊</span> <span>Dashboard</span></a></li>
                     <li class="menu-item" id="menuRoadmap"><a onclick="playClickSound(); switchSection('roadmap')"><span>🗺️</span> <span>Learning Roadmap</span></a></li>
-                    <li class="menu-item" id="menuProfile"><a onclick="playClickSound(); switchSection('profile')"><span>👤</span> <span>My Profile</span></a></li>
-                    <li class="menu-item" id="menuBadges"><a onclick="playClickSound(); switchSection('badges')"><span>🏆</span> <span>Prestasi & Badges</span></a></li>
+                    <li class="menu-item" id="menuLeaderboard"><a onclick="playClickSound(); switchSection('leaderboard')"><span>🏆</span> <span>Papan Peringkat</span></a></li>
+                    <li class="menu-item" id="menuProfile"><a onclick="playClickSound(); switchSection('profile')"><span>👤</span> <span>Parent Report Card</span></a></li>
+                    <li class="menu-item" id="menuBadges"><a onclick="playClickSound(); switchSection('badges')"><span>🎖️</span> <span>Prestasi & Badges</span></a></li>
                 </ul>
 
                 <div class="menu-group-label">LEARNING / PRACTICE</div>
@@ -467,10 +484,10 @@
 
                 <div class="menu-group-label">TOOLS & FITUR</div>
                 <ul class="menu-list">
+                    <li class="menu-item" id="menuWorksheets"><a onclick="playClickSound(); switchSection('worksheets')"><span>📥</span> <span>Pusat Unduh PDF</span></a></li>
                     <li class="menu-item" id="menuAitutor"><a onclick="playClickSound(); switchSection('aitutor')"><span>🎙️</span> <span>Ruang AI Tutor</span></a></li>
                     <li class="menu-item" id="menuGames"><a onclick="playClickSound(); switchSection('games')"><span>🎮</span> <span>Game Center</span></a></li>
                     <li class="menu-item" id="menuFlashcards"><a onclick="playClickSound(); switchSection('flashcards')"><span>🃏</span> <span>Flashcards</span></a></li>
-                    <li class="menu-item" id="menuDiary"><a onclick="playClickSound(); switchSection('diary')"><span>📝</span> <span>Jurnal Belajar</span></a></li>
                 </ul>
             </div>
 
@@ -554,13 +571,12 @@
         }
         function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
 
-        // TEXT-TO-SPEECH (TTS) BROWSER HELPER
         function speakText(textString) {
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // Hentikan suara sebelumnya
+                window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(textString);
-                utterance.lang = 'id-ID'; // Bahasa Indonesia
-                utterance.rate = 0.9; // Sedikit lebih lambat agar ramah anak
+                utterance.lang = 'id-ID';
+                utterance.rate = 0.9;
                 window.speechSynthesis.speak(utterance);
             } else {
                 alert("Maaf, browser Anda tidak mendukung fitur suara baca teks.");
@@ -590,13 +606,52 @@
             { quote: "Jangan batasi tantanganmu, tapi tantang batasmu setiap hari.", author: "Omah Les Mentor" }
         ];
 
-        const flashcardsDatabase = [
-            { q: "Apa ide utama di awal/akhir paragraf?", a: "Ide Pokok / Kalimat Utama" },
-            { q: "Berapa hasil dari 7 x 8 dalam perkalian dasar?", a: "56" },
-            { q: "Sebutkan 3 wujud benda di alam!", a: "Padat, Cair, Gas" },
-            { q: "Apa bahasa Inggris dari 'Buku'?", a: "Book" },
-            { q: "Apa gaya tarik pusat bumi yang membuat buah jatuh?", a: "Gaya Gravitasi" }
-        ];
+        // FLASHCARDS BERDASARKAN JENJANG & KELAS (TK & SD 1-6)
+        const flashcardsDatabasePerLevel = {
+            'tk': [
+                { q: "Sebutkan huruf vokal pertama dalam abjad!", a: "Huruf A" },
+                { q: "Apa warna buah pisang yang sudah matang?", a: "Warna Kuning" },
+                { q: "Hewan apa yang bersuara 'Meong'?", a: "Kucing" },
+                { q: "Berapa jumlah jari dalam satu tangan?", a: "5 Jari" }
+            ],
+            'sd1': [
+                { q: "Bagaimana cara membaca suku kata B-A dan B-I?", a: "Ba - Bi" },
+                { q: "Apa nama alat tubuh yang digunakan untuk melihat?", a: "Mata" },
+                { q: "Berapa hasil dari penjumlahan 5 ditambah 3?", a: "8" },
+                { q: "Apa bahasa Inggris dari 'Selamat Pagi'?", a: "Good Morning" }
+            ],
+            'sd2': [
+                { q: "Apa tanda baca yang digunakan di akhir kalimat tanya?", a: "Tanda Tanya (?)" },
+                { q: "Berapa hasil perkalian dasar dari 3 dikali 4?", a: "12" },
+                { q: "Es batu yang mencair berubah wujud menjadi...?", a: "Benda Cair (Air)" },
+                { q: "Apa bahasa Inggris dari buah 'Apel'?", a: "Apple" }
+            ],
+            'sd3': [
+                { q: "Apa nama ide utama atau inti pembahasan dalam paragraf?", a: "Ide Pokok / Kalimat Utama" },
+                { q: "Berapa nilai pecahan dari satu buah roti yang dibagi 2 sama besar?", a: "1/2 (Setengah)" },
+                { q: "Apa tahapan sebelum ulat berubah menjadi kupu-kupu?", a: "Kepompong (Pupa)" },
+                { q: "Berapa gram nilai konversi dari 1 Kg beras?", a: "1000 Gram" }
+            ],
+            'sd4': [
+                { q: "Apa rumus untuk mencari luas bangun datar Persegi?", a: "Sisi x Sisi" },
+                { q: "Apa gaya tarik pusat bumi yang membuat benda jatuh ke bawah?", a: "Gaya Gravitasi" },
+                { q: "Apa nama gaya bahasa (majas) yang menghidupkan benda mati?", a: "Majas Personifikasi" },
+                { q: "Berapa nilai KPK dari angka 2 dan 3?", a: "6" }
+            ],
+            'sd5': [
+                { q: "Apa saja unsur penting yang ditanyakan dalam rumus teks sejarah 5W+1H?", a: "What, Who, Where, When, Why, How" },
+                { q: "Apa rumus matematika untuk menghitung Volume Balok?", a: "Panjang x Lebar x Tinggi (p x l x t)" },
+                { q: "Di organ pencernaan manakah penyerapan sari-sari makanan terjadi?", a: "Usus Halus" },
+                { q: "Apa bentuk V2 (Past Tense) dari kata kerja 'Go'?", a: "Went" }
+            ],
+            'sd6': [
+                { q: "Apa nama teks ilmiah yang berisi penjelasan proses terjadinya fenomena alam?", a: "Teks Eksplanasi" },
+                { q: "Apa akibat utama dari proses Rotasi Bumi terhadap waktu sehari-hari?", a: "Terjadinya Siang dan Malam" },
+                { q: "Apa istilah matematika untuk nilai rata-rata dari sekumpulan data?", a: "Mean (Rata-rata)" },
+                { q: "Apa jenis pidato yang bertujuan untuk mengajak atau membujuk pendengar?", a: "Pidato Persuasif" }
+            ]
+        };
+
         let currentFlashcardIdx = 0;
         let isFlashcardFlipped = false;
 
@@ -710,6 +765,7 @@
         
         let userStars = parseInt(localStorage.getItem('omahles_user_stars') || '0');
         let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
+        let lastClaimDate = localStorage.getItem('omahles_last_claim_date') || '';
 
         window.addEventListener('DOMContentLoaded', () => { 
             localStorage.removeItem('omahles_user_gemini_key');
@@ -809,17 +865,18 @@
             const sectionHeaders = {
                 'dashboard': { tag: '📊 Overview', title: 'Portal Dashboard', sub: `Selamat datang kembali, ${currentStudent.name || 'Siswa'}!` },
                 'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Materi khusus ${currentStudent.classLabel}.` },
-                'profile': { tag: '👤 Personal Space', title: 'My Profile', sub: 'Pantau perkembangan belajarmu.' },
-                'badges': { tag: '🏆 Pencapaian', title: 'Prestasi & Badges', sub: `Koleksi trofi berdasarkan hasil belajar.` },
+                'leaderboard': { tag: '🏆 Papan Peringkat', title: 'Leaderboard Siswa', sub: 'Siswa paling aktif dan bintang terbanyak minggu ini.' },
+                'profile': { tag: '👤 Parent Report', title: 'Parent Report Card', sub: 'Laporan perkembangan belajar anak untuk orang tua.' },
+                'badges': { tag: '🎖️ Pencapaian', title: 'Prestasi & Badges', sub: `Koleksi trofi berdasarkan hasil belajar.` },
                 'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia', sub: 'Melatih kemampuan literasi.' },
                 'math': { tag: '🧮 Logika & Angka', title: 'Matematika Dasar', sub: 'Berhitung itu menyenangkan.' },
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & IPA', sub: 'Eksplorasi alam semesta.' },
                 'english': { tag: '🇬🇧 Bahasa Internasional', title: 'Bahasa Inggris', sub: 'Let us practice English together.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni Budaya', sub: 'Berkreasi tanpa batas.' },
+                'worksheets': { tag: '📥 Unduh Materi', title: 'Pusat Lembar Kerja (Worksheet)', sub: 'Unduh lembar latihan cetak PDF untuk anak.' },
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
                 'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif.` },
-                'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan', sub: 'Latihan kilat rumus.' },
-                'diary': { tag: '📝 Catatan', title: 'Jurnal Belajar', sub: 'Tulis target harianmu.' }
+                'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan', sub: `Latihan kilat khusus jenjang ${currentStudent.classLabel}.` }
             };
 
             const h = sectionHeaders[secKey] || sectionHeaders['dashboard'];
@@ -840,7 +897,7 @@
                 renderLovSpeakAiChat(area);
             } else {
                 topBanner.style.display = 'block';
-                if (['dashboard', 'profile', 'badges', 'games', 'flashcards', 'diary'].includes(secKey)) {
+                if (['dashboard', 'leaderboard', 'profile', 'badges', 'worksheets', 'games', 'flashcards'].includes(secKey)) {
                     filterBar.style.display = 'none';
                 } else {
                     filterBar.style.display = 'flex';
@@ -848,17 +905,34 @@
                 renderDashboardData();
 
                 if (secKey === 'dashboard') renderDashboardMain(area);
-                else if (secKey === 'profile') renderProfile(area);
+                else if (secKey === 'leaderboard') renderLeaderboard(area);
+                else if (secKey === 'profile') renderParentReportCard(area);
                 else if (secKey === 'badges') renderBadges(area);
+                else if (secKey === 'worksheets') renderWorksheetCenter(area);
                 else if (secKey === 'games') renderGameCenterGrid(area);
-                else if (secKey === 'flashcards') renderFlashcardsUI(area);
-                else if (secKey === 'diary') renderJournal(area);
+                else if (secKey === 'flashcards') { currentFlashcardIdx = 0; renderFlashcardsUI(area); }
                 else renderModules(area, secKey);
             }
         }
 
         function renderDashboardMain(container) {
+            const todayStr = new Date().toISOString().split('T')[0];
+            const isAlreadyClaimed = (lastClaimDate === todayStr);
+
             container.innerHTML = `
+                <div class="daily-reward-card">
+                    <div class="daily-reward-left">
+                        <div style="font-size:3rem;">🎁</div>
+                        <div>
+                            <div style="font-family:'Fredoka',sans-serif; font-size:1.3rem; color:#92400e; margin-bottom:4px;">Tantangan & Bonus Harian</div>
+                            <div style="font-size:0.85rem; font-weight:700; color:#b45309;">Klaim bonus 50 bintang harianmu untuk mempercepat naik level!</div>
+                        </div>
+                    </div>
+                    <button class="btn-claim-reward" id="claimRewardBtn" ${isAlreadyClaimed ? 'disabled' : ''} onclick="claimDailyReward()">
+                        ${isAlreadyClaimed ? '✅ Sudah Diklaim Hari Ini' : '✨ Klaim +50 Bintang'}
+                    </button>
+                </div>
+
                 <div class="dashboard-grid">
                     <div class="dash-card"><div class="dash-icon-box">⭐</div><div><div class="dash-info-title">Total Stars</div><div class="dash-info-val">${userStars}</div></div></div>
                     <div class="dash-card"><div class="dash-icon-box">🎯</div><div><div class="dash-info-title">Kuis Selesai</div><div class="dash-info-val">${userCompletedQuizzes}</div></div></div>
@@ -867,6 +941,103 @@
                 <div class="insight-card-box">
                     <div class="insight-heading">💡 Paket Belajar Aktif</div>
                     <div class="insight-body-text">"Halo <strong>${currentStudent.name || 'Siswa'}</strong>! Akun Anda terdaftar pada paket <strong>${currentStudent.classLabel}</strong>. Akses materi dan game dikunci khusus untuk jenjang kelas ini."</div>
+                </div>
+            `;
+        }
+
+        function claimDailyReward() {
+            const todayStr = new Date().toISOString().split('T')[0];
+            if(lastClaimDate === todayStr) return;
+            playSuccessSound();
+            userStars += 50;
+            lastClaimDate = todayStr;
+            localStorage.setItem('omahles_user_stars', userStars);
+            localStorage.setItem('omahles_last_claim_date', lastClaimDate);
+            alert('🎉 Berhasil! Anda mendapatkan +50 Bintang Bonus Harian.');
+            renderDashboardMain(document.getElementById('dynamicMainContentArea'));
+            renderDashboardData();
+        }
+
+        function renderLeaderboard(container) {
+            const mockLeaders = [
+                { rank: 1, name: 'Rezky (Siswa Binaan)', stars: 450, quizzes: 22 },
+                { rank: 2, name: currentStudent.name || 'Siswa Aktif', stars: userStars, quizzes: userCompletedQuizzes },
+                { rank: 3, name: 'Budi Santoso', stars: 290, quizzes: 14 },
+                { rank: 4, name: 'Siti Aminah', stars: 210, quizzes: 10 }
+            ].sort((a,b) => b.stars - a.stars);
+
+            container.innerHTML = `
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Peringkat</th>
+                            <th>Nama Siswa</th>
+                            <th>Kuis Selesai</th>
+                            <th>Total Bintang ⭐</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${mockLeaders.map((l, idx) => `
+                            <tr>
+                                <td>${idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx+1}`}</td>
+                                <td><strong>${l.name}</strong></td>
+                                <td>${l.quizzes} Kuis</td>
+                                <td style="color:var(--brand-amber); font-family:'Fredoka',sans-serif;">${l.stars} Stars</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function renderParentReportCard(container) {
+            let xpTotal = userCompletedQuizzes * 50;
+            container.innerHTML = `
+                <div id="printAreaReport">
+                    <div class="profile-main-box">
+                        <div class="profile-top-row">
+                            <div class="profile-user-left">
+                                <div class="profile-big-avatar">📋</div>
+                                <div>
+                                    <div class="profile-user-name">Parent Report Card: ${currentStudent.name || 'Siswa'}</div>
+                                    <div class="profile-user-badge-pill">🌱 Paket: ${currentStudent.classLabel} | Email Ortu: ${currentStudent.parentEmail || '-'}</div>
+                                </div>
+                            </div>
+                            <button class="btn-open-module" onclick="window.print()">🖨️ Cetak / Simpan PDF Report</button>
+                        </div>
+                        <div class="profile-stats-card">
+                            <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem;">
+                                <span>⚡ Total XP: ${xpTotal} XP</span><span style="color:var(--brand-amber);">Kuis Selesai: ${userCompletedQuizzes} | Bintang: ${userStars} ⭐</span>
+                            </div>
+                            <div class="profile-xp-bar-bg"><div class="profile-xp-bar-fill" style="width: ${Math.min(100, (xpTotal/200)*100)}%;"></div></div>
+                        </div>
+                        <div style="font-size:0.9rem; font-weight:700; color:var(--text-sub); line-height:1.6;">
+                            <strong>Catatan Evaluasi Mentor:</strong> Ananda menunjukkan konsistensi yang sangat baik dalam menyelesaikan latihan soal interaktif dan aktif menggunakan fitur AI Tutor di portal Omah Les.
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderWorksheetCenter(container) {
+            const listWs = [
+                { title: 'Lembar Kerja Bahasa Indonesia - Dasar Suku Kata', desc: 'Latihan membaca dan menyusun huruf.', cat: 'Bahasa Indonesia' },
+                { title: 'Lembar Kerja Matematika - Penjumlahan & Pengurangan', desc: 'Latihan berhitung angka 1-20.', cat: 'Matematika' },
+                { title: 'Lembar Kerja Sains IPA - Panca Indra & Hewan', desc: 'Mengenal lingkungan sekitar.', cat: 'Sains IPA' },
+                { title: 'Lembar Kerja Bahasa Inggris - Animals & Colors', desc: 'Kosakata dasar anak.', cat: 'Bahasa Inggris' }
+            ];
+            container.innerHTML = `
+                <div class="worksheet-grid">
+                    ${listWs.map(w => `
+                        <div class="worksheet-card">
+                            <div>
+                                <div style="font-size:0.75rem; font-weight:800; color:var(--brand-amber); text-transform:uppercase; margin-bottom:6px;">📄 ${w.cat}</div>
+                                <div class="worksheet-title">${w.title}</div>
+                                <div class="worksheet-desc">${w.desc}</div>
+                            </div>
+                            <button class="btn-download-ws" onclick="alert('📥 Mengunduh lembar kerja PDF: ${w.title}'); window.print();">📥 Download & Cetak PDF</button>
+                        </div>
+                    `).join('')}
                 </div>
             `;
         }
@@ -885,30 +1056,6 @@
                 </div>
             `).join('');
             container.innerHTML = ''; container.appendChild(grid);
-        }
-
-        function renderProfile(container) {
-            let xpTotal = userCompletedQuizzes * 50;
-            container.innerHTML = `
-                <div id="printAreaReport">
-                    <div class="profile-main-box">
-                        <div class="profile-top-row">
-                            <div class="profile-user-left">
-                                <div class="profile-big-avatar">🎓</div>
-                                <div><div class="profile-user-name">${currentStudent.name || 'Siswa'}</div>
-                                <div class="profile-user-badge-pill">🌱 Paket: ${currentStudent.classLabel}</div></div>
-                            </div>
-                            <button class="btn-open-module" onclick="window.print()">🖨️ Cetak Laporan</button>
-                        </div>
-                        <div class="profile-stats-card">
-                            <div style="display:flex; justify-content:space-between; font-weight:800; font-size:0.85rem;">
-                                <span>⚡ ${xpTotal} XP Total</span><span style="color:var(--brand-amber);">Kuis Selesai: ${userCompletedQuizzes}</span>
-                            </div>
-                            <div class="profile-xp-bar-bg"><div class="profile-xp-bar-fill" style="width: ${Math.min(100, (xpTotal/200)*100)}%;"></div></div>
-                        </div>
-                    </div>
-                </div>
-            `;
         }
 
         function renderBadges(container) {
@@ -930,12 +1077,17 @@
         }
         function closeCertModal() { document.getElementById('certModalOverlay').classList.remove('active'); }
 
+        // FLASHCARDS DINAMIS SESUAI JENJANG / KELAS
         function renderFlashcardsUI(container) {
-            const fc = flashcardsDatabase[currentFlashcardIdx];
+            const catKey = currentStudent.categoryKey || 'sd3';
+            const currentDeck = flashcardsDatabasePerLevel[catKey] || flashcardsDatabasePerLevel['sd3'];
+            if(currentFlashcardIdx >= currentDeck.length) currentFlashcardIdx = 0;
+            const fc = currentDeck[currentFlashcardIdx];
             isFlashcardFlipped = false;
+
             container.innerHTML = `
                 <div class="flashcard-wrapper animate-section">
-                    <div style="font-weight:800; color:var(--text-sub);">KARTU HAFALAN ${currentFlashcardIdx + 1} / ${flashcardsDatabase.length}</div>
+                    <div style="font-weight:800; color:var(--brand-brown); text-transform:uppercase; font-size:0.85rem;">🃏 FLASHCARDS: ${currentStudent.classLabel.toUpperCase()} (${currentFlashcardIdx + 1} / ${currentDeck.length})</div>
                     <div class="flashcard-box" onclick="flipFlashcard()">
                         <div class="flashcard-instruction" id="fcInstruction">Klik kartu untuk melihat jawaban</div>
                         <div class="flashcard-content" id="fcText">${fc.q}</div>
@@ -949,13 +1101,25 @@
         }
         function flipFlashcard() {
             playClickSound();
-            const fc = flashcardsDatabase[currentFlashcardIdx];
+            const catKey = currentStudent.categoryKey || 'sd3';
+            const currentDeck = flashcardsDatabasePerLevel[catKey] || flashcardsDatabasePerLevel['sd3'];
+            const fc = currentDeck[currentFlashcardIdx];
             isFlashcardFlipped = !isFlashcardFlipped;
             document.getElementById('fcInstruction').innerText = isFlashcardFlipped ? "JAWABAN:" : "Klik kartu untuk melihat jawaban";
             document.getElementById('fcText').innerText = isFlashcardFlipped ? fc.a : fc.q;
         }
-        function nextFlashcard() { currentFlashcardIdx = (currentFlashcardIdx + 1) % flashcardsDatabase.length; renderFlashcardsUI(document.getElementById('dynamicMainContentArea')); }
-        function prevFlashcard() { currentFlashcardIdx = (currentFlashcardIdx - 1 + flashcardsDatabase.length) % flashcardsDatabase.length; renderFlashcardsUI(document.getElementById('dynamicMainContentArea')); }
+        function nextFlashcard() { 
+            const catKey = currentStudent.categoryKey || 'sd3';
+            const currentDeck = flashcardsDatabasePerLevel[catKey] || flashcardsDatabasePerLevel['sd3'];
+            currentFlashcardIdx = (currentFlashcardIdx + 1) % currentDeck.length; 
+            renderFlashcardsUI(document.getElementById('dynamicMainContentArea')); 
+        }
+        function prevFlashcard() { 
+            const catKey = currentStudent.categoryKey || 'sd3';
+            const currentDeck = flashcardsDatabasePerLevel[catKey] || flashcardsDatabasePerLevel['sd3'];
+            currentFlashcardIdx = (currentFlashcardIdx - 1 + currentDeck.length) % currentDeck.length; 
+            renderFlashcardsUI(document.getElementById('dynamicMainContentArea')); 
+        }
 
         function renderGameCenterGrid(container) {
             let catKey = currentStudent.categoryKey;
@@ -1069,28 +1233,6 @@
         function closeInsightModal() { 
             if('speechSynthesis' in window) window.speechSynthesis.cancel();
             document.getElementById('insightModalOverlay').classList.remove('active'); 
-        }
-
-        function renderJournal(container) {
-            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [{ text: 'Mengerjakan modul belajar.', date: '2026-08-23' }];
-            container.innerHTML = `
-                <div class="journal-form-box">
-                    <h3>➕ Catatan Jurnal</h3>
-                    <input type="text" id="inputJournalText" class="journal-input" placeholder="Tulis rencana...">
-                    <button class="btn-add-journal" onclick="addJournal()">Simpan 💾</button>
-                </div>
-                ${j.map((x, i) => `<div class="journal-item-card"><div><strong>${x.text}</strong><br><small>${x.date}</small></div><button onclick="delJournal(${i})" style="background:#fee2e2; color:#b91c1c; border:none; padding:6px 12px; border-radius:8px;">Hapus</button></div>`).join('')}
-            `;
-        }
-        function addJournal() {
-            const t = document.getElementById('inputJournalText').value.trim(); if(!t) return;
-            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [];
-            j.unshift({ text: t, date: new Date().toISOString().split('T')[0] });
-            localStorage.setItem('omahles_student_journals', JSON.stringify(j)); renderJournal(document.getElementById('dynamicMainContentArea'));
-        }
-        function delJournal(i) {
-            let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || []; j.splice(i, 1);
-            localStorage.setItem('omahles_student_journals', JSON.stringify(j)); renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
         function renderLovSpeakAiChat(container) {
