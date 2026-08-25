@@ -1423,7 +1423,8 @@
             box.scrollTop = box.scrollHeight;
 
             try {
-                const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+                // Menggunakan endpoint stabil v1 dengan model gemini-1.5-flash untuk Free Tier
+                const apiEndpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
                 
                 const systemInstruction = {
                     role: "model",
