@@ -122,19 +122,20 @@
         body.focus-mode .floating-menu-focus { display: flex; align-items: center; gap: 6px; }
 
         @keyframes floatUpReward {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-70px) scale(1.3); }
+            0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+            50% { transform: translateY(-40px) scale(1.4) rotate(15deg); }
+            100% { opacity: 0; transform: translateY(-90px) scale(1.2) rotate(-15deg); }
         }
         .floating-star-badge {
             position: fixed; z-index: 99999;
-            font-family: 'Fredoka', sans-serif; font-size: 1.4rem; font-weight: 800;
-            color: #d97706; text-shadow: 0 2px 10px rgba(245, 158, 11, 0.5);
-            pointer-events: none; animation: floatUpReward 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            font-family: 'Fredoka', sans-serif; font-size: 1.6rem; font-weight: 800;
+            color: #d97706; text-shadow: 0 2px 10px rgba(245, 158, 11, 0.6);
+            pointer-events: none; animation: floatUpReward 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes mascotBounce {
             0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-8px) scale(1.1); }
+            50% { transform: translateY(-10px) scale(1.15); }
         }
         .mascot-jump { animation: mascotBounce 0.4s ease; }
 
@@ -324,7 +325,6 @@
         .brand-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: #ffffff; font-weight: 700; line-height: 1.1; }
         .brand-sub { font-size: 0.7rem; color: var(--brand-yellow); font-weight: 800; letter-spacing: 1px; }
 
-        /* VIRTUAL PET STAGE BOX DI SIDEBAR - KELAS ABSOLUTE DENGAN POSISI YANG MENYATU */
         .virtual-pet-stage-box { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 14px 12px; margin-bottom: 16px; text-align: center; }
         .virtual-pet-render-area { position: relative; width: 80px; height: 75px; margin: 0 auto 6px auto; display: flex; align-items: center; justify-content: center; }
         .pet-base-avatar { font-size: 2.8rem; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); z-index: 1; }
@@ -650,12 +650,9 @@
                     </div>
                 </div>
 
-                <!-- STAGE RENDER MASKOT DI SIDEBAR: TOP & EYES BENAR-BENAR MENEMPEL DI KEPALA KARAKTER -->
                 <div class="virtual-pet-stage-box">
                     <div style="font-size:0.7rem; font-weight:800; color:var(--brand-yellow); text-transform:uppercase; margin-bottom:4px;">🐾 Maskot Peliharaan:</div>
-                    <div class="virtual-pet-render-area" id="virtualPetDisplay" title="Maskot Peliharaan Virtual">
-                        <!-- Render bertumpuk dinamis via script -->
-                    </div>
+                    <div class="virtual-pet-render-area" id="virtualPetDisplay" title="Maskot Peliharaan Virtual"></div>
                     <select class="pet-select" id="petSelector" onchange="changeVirtualPet(this.value)">
                         <option value="🐱">Kucing Meo</option>
                         <option value="🐰">Kelinci Ciko</option>
@@ -681,7 +678,6 @@
                     </div>
                 </div>
 
-                <!-- SIDEBAR BADGE SHOWCASE -->
                 <div class="sidebar-badges-showcase" id="sidebarBadgesShowcase">
                     <span style="font-size:0.7rem; font-weight:800; color:var(--brand-yellow);">🎖️ BADGES:</span>
                     <div style="display:flex; gap:6px;">
@@ -786,7 +782,7 @@
                 const gain = audioCtx.createGain();
                 osc.type = type;
                 osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
@@ -794,7 +790,7 @@
                 osc.stop(audioCtx.currentTime + duration);
             } catch(e) {}
         }
-        function playClickSound() { playTone(440, 'sine', 0.08); }
+        function playClickSound() { playTone(500, 'sine', 0.06); }
         function playSuccessSound(targetElementOrX, targetElementOrY) { 
             setTimeout(() => playTone(523.25, 'triangle', 0.1), 0);
             setTimeout(() => playTone(659.25, 'triangle', 0.1), 100);
@@ -802,18 +798,26 @@
             triggerMascotJump();
             triggerFloatingStar(targetElementOrX, targetElementOrY);
         }
-        function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
+        function playErrorSound() { playTone(180, 'sawtooth', 0.22); }
+        function playFanfareSound() {
+            setTimeout(() => playTone(440, 'triangle', 0.15), 0);
+            setTimeout(() => playTone(554.37, 'triangle', 0.15), 150);
+            setTimeout(() => playTone(659.25, 'triangle', 0.15), 300);
+            setTimeout(() => playTone(880, 'triangle', 0.4), 450);
+        }
 
         function triggerFloatingStar(x, y) {
             const posX = typeof x === 'number' ? x : window.innerWidth / 2;
             const posY = typeof y === 'number' ? y : window.innerHeight / 2;
-            const el = document.createElement('div');
-            el.className = 'floating-star-badge';
-            el.innerText = '+⭐ Star!';
-            el.style.left = (posX + (Math.random() * 40 - 20)) + 'px';
-            el.style.top = posY + 'px';
-            document.body.appendChild(el);
-            setTimeout(() => { el.remove(); }, 1000);
+            for(let i=0; i<3; i++) {
+                const el = document.createElement('div');
+                el.className = 'floating-star-badge';
+                el.innerText = '+⭐ Star!';
+                el.style.left = (posX + (Math.random() * 60 - 30)) + 'px';
+                el.style.top = (posY + (Math.random() * 20 - 10)) + 'px';
+                document.body.appendChild(el);
+                setTimeout(() => { el.remove(); }, 1200);
+            }
         }
 
         function triggerMascotJump() {
@@ -945,8 +949,8 @@
             document.getElementById('appSidebar').classList.toggle('mobile-open');
         }
 
-        let currentPetHead = localStorage.getItem('omahles_pet_head') || ''; // Topi atau Mahkota
-        let currentPetEyes = localStorage.getItem('omahles_pet_eyes') || ''; // Kacamata
+        let currentPetHead = localStorage.getItem('omahles_pet_head') || '';
+        let currentPetEyes = localStorage.getItem('omahles_pet_eyes') || '';
 
         function changeVirtualPet(petEmoji) {
             playClickSound();
@@ -959,7 +963,6 @@
             const headAcc = currentPetHead ? `<div class="pet-overlay-head">${currentPetHead}</div>` : '';
             const eyesAcc = currentPetEyes ? `<div class="pet-overlay-eyes">${currentPetEyes}</div>` : '';
             
-            // Render bertumpuk mutlak (absolute positioning) sehingga Topi/Mahkota tepat di kepala, Kacamata tepat di mata karakter
             const fullDisplay = `
                 <div class="pet-base-avatar">${petEmoji}</div>
                 ${eyesAcc}
@@ -1452,6 +1455,7 @@
             if(lastClaimDate === todayStr) return;
             const rect = event ? event.target.getBoundingClientRect() : null;
             playSuccessSound(rect ? rect.left : null, rect ? rect.top : null);
+            playFanfareSound();
             userStars += 50;
             lastClaimDate = todayStr;
             localStorage.setItem('omahles_user_stars', userStars);
@@ -1465,6 +1469,7 @@
             if(weeklyQuestClaimed || userCompletedQuizzes < 3) return;
             const rect = event ? event.target.getBoundingClientRect() : null;
             playSuccessSound(rect ? rect.left : null, rect ? rect.top : null);
+            playFanfareSound();
             userStars += 150;
             weeklyQuestClaimed = true;
             localStorage.setItem('omahles_user_stars', userStars);
@@ -1549,6 +1554,7 @@
 
         function finishExamChallenge() {
             clearInterval(examTimerInterval);
+            playFanfareSound();
             userStars += examScoreCount;
             userCompletedQuizzes += 1;
             localStorage.setItem('omahles_user_stars', userStars);
@@ -1844,6 +1850,7 @@
 
         function openCertModal() {
             playSuccessSound();
+            playFanfareSound();
             document.getElementById('certStudentName').innerText = currentStudent.name || 'Siswa';
             document.getElementById('certModalOverlay').classList.add('active');
         }
@@ -1908,6 +1915,12 @@
                             <div style="font-size:0.75rem; font-weight:800; color:var(--text-sub);">REWARD: ⭐ +20</div>
                         </div>
                     `).join('')}
+                    <!-- FITUR TAMBAHAN: MINI GAME TARIK/PASANGKAN KATA (DRAG-MATCH) -->
+                    <div class="game-item-card" onclick="startDragMatchGame()" style="border-color:#3b82f6;">
+                        <div><div class="game-icon-box" style="background:#dbeafe; color:#2563eb;">🧩</div>
+                        <div class="game-card-title">Tarik & Pasangkan (Match)</div><div class="game-card-desc">Pasangkan kata kunci dengan kategori yang tepat!</div></div>
+                        <div style="font-size:0.75rem; font-weight:800; color:#2563eb;">REWARD: ⭐ +30</div>
+                    </div>
                 </div>
             `;
         }
@@ -1957,6 +1970,84 @@
                 playErrorSound(); lovLives--; alert(`❌ Ups! Jawaban yang benar adalah: ${ans}`); 
             }
             renderOmahGameUI(document.getElementById('dynamicMainContentArea'));
+        }
+
+        /* MINI GAME BARU: TARIK & PASANGKAN KATA (DRAG-MATCH) */
+        let matchScore = 0;
+        function startDragMatchGame() {
+            matchScore = 0;
+            renderDragMatchUI();
+        }
+
+        function renderDragMatchUI() {
+            const area = document.getElementById('dynamicMainContentArea');
+            area.innerHTML = `
+                <div class="lov-game-wrapper animate-section">
+                    <div class="lov-top-bar">
+                        <div class="lov-btn-close" onclick="switchSection('games')">✕</div>
+                        <div class="lov-score-pill">MINI GAME: TARIK & PASANGKAN 🧩</div>
+                        <div>Skor: <span id="matchScoreDisplay">${matchScore}</span></div>
+                    </div>
+                    <div class="insight-card-box" style="text-align:center;">
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--text-main); margin-bottom:12px;">Pilih pasangan kategori yang cocok:</div>
+                        <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:20px;">Klik kata di sebelah kiri, lalu klik pasangannya di sebelah kanan!</p>
+                        
+                        <div style="display:flex; justify-content:space-around; gap:20px; flex-wrap:wrap;">
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <div style="font-weight:800; color:var(--brand-brown); margin-bottom:4px;">KATA KUNCI</div>
+                                <button class="quiz-btn" onclick="selectMatchItem('Apel', this)" style="background:var(--brand-cream);">🍎 Apel</button>
+                                <button class="quiz-btn" onclick="selectMatchItem('Kucing', this)" style="background:var(--brand-cream);">🐱 Kucing</button>
+                                <button class="quiz-btn" onclick="selectMatchItem('Matematika', this)" style="background:var(--brand-cream);">➕ Matematika</button>
+                            </div>
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <div style="font-weight:800; color:var(--brand-brown); margin-bottom:4px;">KATEGORI</div>
+                                <button class="quiz-btn" onclick="checkMatchPair('Hewan', this)">Hewan Peliharaan</button>
+                                <button class="quiz-btn" onclick="checkMatchPair('Buah', this)">Buah-buahan</button>
+                                <button class="quiz-btn" onclick="checkMatchPair('Hitung', this)">Angka & Berhitung</button>
+                            </div>
+                        </div>
+                        <div id="matchFeedbackText" style="margin-top:20px; font-weight:800; font-size:0.95rem;"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        let selectedMatchKey = null;
+        function selectMatchItem(key, btn) {
+            playClickSound();
+            document.querySelectorAll('.quiz-btn').forEach(b => b.style.borderColor = 'var(--card-border)');
+            selectedMatchKey = key;
+            btn.style.borderColor = 'var(--brand-amber)';
+        }
+
+        function checkMatchPair(category, btn) {
+            if(!selectedMatchKey) {
+                alert('Pilih dulu kata kunci di sebelah kiri!');
+                return;
+            }
+            const isCorrect = (selectedMatchKey === 'Apel' && category === 'Buah') ||
+                              (selectedMatchKey === 'Kucing' && category === 'Hewan') ||
+                              (selectedMatchKey === 'Matematika' && category === 'Hitung');
+
+            if(isCorrect) {
+                playSuccessSound();
+                matchScore += 10;
+                userStars += 10;
+                localStorage.setItem('omahles_user_stars', userStars);
+                document.getElementById('matchScoreDisplay').innerText = matchScore;
+                document.getElementById('matchFeedbackText.innerHTML').style.color = '#16a34a';
+                document.getElementById('matchFeedbackText').innerText = '🎉 Pasangan Benar! ⭐ +10 Bintang';
+                selectedMatchKey = null;
+                if(matchScore >= 30) {
+                    playFanfareSound();
+                    alert('🏆 Luar Biasa! Kamu menyelesaikan Minigame Tarik & Pasangkan dengan sempurna!');
+                    switchSection('games');
+                }
+            } else {
+                playErrorSound();
+                document.getElementById('matchFeedbackText').style.color = '#dc2626';
+                document.getElementById('matchFeedbackText').innerText = '❌ Ups, pasangannya kurang tepat. Coba lagi!';
+            }
         }
 
         function openSequenceModal(secKey, idx) {
