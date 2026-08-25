@@ -59,18 +59,55 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* FOCUS MODE: SIDEBAR DISEMBUNYIKAN TOTAL, KONTEN LEBAR DI TENGAH */
-        body.focus-mode .sidebar { transform: translateX(-100%); }
-        body.focus-mode .content-area { margin-left: 0 !important; max-width: 1400px; margin-right: auto; margin-left: auto !important; padding-left: 30px; padding-right: 30px; }
-        body.focus-mode .portal-footer { margin-left: 0 !important; }
-
-        .floating-exit-focus {
-            position: fixed; top: 20px; right: 25px; z-index: 99999;
-            background: linear-gradient(135deg, var(--brand-brown), var(--brand-amber)); color: white;
-            border: 2px solid #fff; padding: 10px 20px; border-radius: 30px; font-weight: 800; font-size: 0.85rem;
-            cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.25); display: none; font-family: 'Fredoka', sans-serif;
+        /* FOCUS MODE: SIDEBAR SEMBUNYI DULU, BISA DIBUKA VIA TOMBOL FLOATING */
+        body.focus-mode .sidebar { 
+            transform: translateX(-100%); 
+            z-index: 999998;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.4);
         }
-        body.focus-mode .floating-exit-focus { display: flex; align-items: center; gap: 8px; }
+        body.focus-mode .sidebar.focus-open {
+            transform: translateX(0) !important;
+        }
+
+        body.focus-mode .content-area { 
+            margin-left: 0 !important; 
+            max-width: 100% !important; 
+            width: 100% !important;
+            padding: 50px 80px !important; 
+            font-size: 1.2rem;
+        }
+        body.focus-mode .portal-footer { margin-left: 0 !important; }
+        
+        /* MEMBESARKAN ELEMEN KONTEN SAAT FOCUS MODE */
+        body.focus-mode .roadmap-banner { padding: 45px; margin-bottom: 36px; }
+        body.focus-mode .banner-title { font-size: 3rem; }
+        body.focus-mode .banner-sub { font-size: 1.2rem; max-width: 900px; }
+        body.focus-mode .flashcard-box { height: 380px; padding: 48px; }
+        body.focus-mode .flashcard-content { font-size: 2.4rem; }
+        body.focus-mode .flashcard-instruction { font-size: 0.95rem; }
+        body.focus-mode .module-card, body.focus-mode .dash-card, body.focus-mode .profile-main-box { padding: 36px; }
+        body.focus-mode .card-body h3, body.focus-mode .game-card-title { font-size: 1.6rem; }
+        body.focus-mode .card-body p, body.focus-mode .game-card-desc { font-size: 1.1rem; }
+        body.focus-mode .quiz-btn, body.focus-mode .form-input, body.focus-mode .lov-text-input { font-size: 1.2rem; padding: 18px 24px; }
+        body.focus-mode .lov-emoji-display { font-size: 8rem; }
+        body.focus-mode .lov-stage-card { padding: 80px; }
+
+        /* TOMBOL FLOATING RINGKAS DI FOCUS MODE */
+        .floating-exit-focus {
+            position: fixed; top: 15px; right: 15px; z-index: 99999;
+            background: linear-gradient(135deg, var(--brand-brown), var(--brand-amber)); color: white;
+            border: 1.5px solid #fff; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.8rem;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; font-family: 'Fredoka', sans-serif;
+        }
+        body.focus-mode .floating-exit-focus { display: flex; align-items: center; gap: 6px; }
+
+        .floating-menu-focus {
+            position: fixed; top: 15px; left: 15px; z-index: 99999;
+            background: var(--brand-amber); color: white;
+            border: 1.5px solid #fff; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.8rem;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; font-family: 'Fredoka', sans-serif;
+        }
+        body.focus-mode .floating-menu-focus { display: flex; align-items: center; gap: 6px; }
 
         /* ANIMASI BINTANG MELAYANG (FLOATING REWARD) */
         @keyframes floatUpReward {
@@ -289,7 +326,7 @@
         .profile-badge { font-size: 0.68rem; color: var(--brand-yellow); font-weight: 700; }
         .btn-switch-user { background: var(--brand-amber); border: none; color: white; padding: 5px 8px; border-radius: 8px; font-size: 0.68rem; font-weight: 800; cursor: pointer; }
 
-        .content-area { margin-left: 280px; flex: 1; padding: 36px 48px; max-width: 1300px; transition: margin-left 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .content-area { margin-left: 280px; flex: 1; padding: 36px 48px; max-width: 1300px; transition: margin-left 0.3s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.3s; }
         .roadmap-banner { background: linear-gradient(135deg, rgba(139, 69, 19, 0.95) 0%, rgba(180, 83, 9, 0.95) 100%); color: #ffffff; border-radius: var(--radius-main); padding: 32px; text-align: center; margin-bottom: 28px; box-shadow: 0 12px 28px rgba(139, 69, 19, 0.2); }
         .banner-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25); color: #fef08a; padding: 6px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
         .banner-title { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; margin-bottom: 8px; }
@@ -408,8 +445,9 @@
 </head>
 <body>
 
-    <!-- TOMBOL MELAYANG KELUAR FOCUS MODE -->
-    <button class="floating-exit-focus" onclick="toggleFocusMode()">🎯 Keluar Focus Mode</button>
+    <!-- TOMBOL FLOATING RINGKAS DI FOCUS MODE -->
+    <button class="floating-menu-focus" onclick="toggleFocusSidebar()">☰ Menu</button>
+    <button class="floating-exit-focus" onclick="toggleFocusMode()">🎯 Keluar</button>
 
     <div class="mobile-header-bar">
         <div style="display:flex; align-items:center; gap:10px;">
@@ -775,6 +813,12 @@
         function toggleFocusMode() {
             playClickSound();
             document.body.classList.toggle('focus-mode');
+            document.getElementById('appSidebar').classList.remove('focus-open');
+        }
+
+        function toggleFocusSidebar() {
+            playClickSound();
+            document.getElementById('appSidebar').classList.toggle('focus-open');
         }
 
         function openSettingsModal() {
@@ -1125,6 +1169,7 @@
             activeSection = secKey;
             sessionStorage.setItem('omahles_active_section', secKey);
             document.getElementById('appSidebar').classList.remove('mobile-open');
+            document.getElementById('appSidebar').classList.remove('focus-open');
 
             document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
             const activeMenu = document.getElementById(`menu${secKey.charAt(0).toUpperCase() + secKey.slice(1)}`);
