@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&family=Comic+Neue:wght@700&display=stylesheet" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -59,11 +59,26 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* FOCUS MODE (SEMBUNYIKAN SIDEBAR & TAMPILKAN TOMBOL KELUAR MELAYANG) */
-        body.focus-mode .sidebar { transform: translateX(-100%); width: 0; padding: 0; overflow: hidden; border: none; }
-        body.focus-mode .content-area { margin-left: 0 !important; max-width: 1000px; margin: 0 auto; padding-top: 50px; }
-        body.focus-mode .portal-footer { margin-left: 0 !important; }
+        /* FOCUS MODE: SIDEBAR MENYUSUT JADI ICON COMPACT, KONTEN DI TENGAH DENGAN MAKSIMAL LEBAR */
+        body.focus-mode .sidebar { width: 80px; padding: 16px 10px; }
+        body.focus-mode .sidebar .brand-title,
+        body.focus-mode .sidebar .brand-sub,
+        body.focus-mode .sidebar .virtual-pet-box,
+        body.focus-mode .sidebar .gamification-bar,
+        body.focus-mode .sidebar .sidebar-badges-showcase,
+        body.focus-mode .sidebar .menu-group-label,
+        body.focus-mode .sidebar .menu-item span:nth-child(2),
+        body.focus-mode .sidebar .sidebar-bottom-controls button span,
+        body.focus-mode .sidebar .profile-card .profile-info,
+        body.focus-mode .sidebar .profile-card .btn-switch-user { display: none !important; }
         
+        body.focus-mode .sidebar .menu-item a { justify-content: center; padding: 12px; font-size: 1.2rem; }
+        body.focus-mode .sidebar .brand-header { justify-content: center; }
+        body.focus-mode .sidebar .profile-card { justify-content: center; padding: 8px; }
+
+        body.focus-mode .content-area { margin-left: 80px !important; max-width: 1000px; margin-right: auto; padding-left: 40px; padding-right: 40px; }
+        body.focus-mode .portal-footer { margin-left: 80px !important; }
+
         .floating-exit-focus {
             position: fixed; top: 20px; right: 25px; z-index: 99999;
             background: linear-gradient(135deg, var(--brand-brown), var(--brand-amber)); color: white;
