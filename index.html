@@ -389,15 +389,11 @@
         </div>
         <div class="login-right-form">
             <div class="form-header-text">Login Student</div>
-            <div class="form-sub-text">Masukkan Email Orang Tua / Profil Anak</div>
+            <div class="form-sub-text">Masukkan Email Orang Tua / Pembeli Paket</div>
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
-                    <label class="form-label">Email Orang Tua / Profil</label>
+                    <label class="form-label">Email Orang Tua / Pembeli</label>
                     <input type="email" class="form-input" id="inputParentEmail" placeholder="orangtua@gmail.com" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Nama Anak (Multi-Profil)</label>
-                    <input type="text" class="form-input" id="inputChildName" placeholder="Contoh: Budi" required>
                 </div>
                 <button type="submit" class="btn-submit-login">Enter Omah Les Portal 🚀</button>
             </form>
@@ -954,18 +950,16 @@
             e.preventDefault();
             playClickSound();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
-            const childNameInput = document.getElementById('inputChildName').value.trim();
             
             if (REGISTERED_PARENT_DATABASE[pEmail]) {
                 const data = REGISTERED_PARENT_DATABASE[pEmail];
-                const finalName = childNameInput ? childNameInput : data.name;
                 if (data.isAdmin) {
-                    currentStudent = { name: finalName, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: 'sd3', isAdmin: true };
+                    currentStudent = { name: data.name, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: 'sd3', isAdmin: true };
                 } else {
-                    currentStudent = { name: finalName, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: data.categoryKey, isAdmin: false };
+                    currentStudent = { name: data.name, parentEmail: pEmail, classLabel: data.classLabel, categoryKey: data.categoryKey, isAdmin: false };
                 }
             } else {
-                const generatedName = childNameInput ? childNameInput : pEmail.split('@')[0].toUpperCase();
+                const generatedName = pEmail.split('@')[0].toUpperCase();
                 currentStudent = { name: generatedName, parentEmail: pEmail, classLabel: 'Kelas 3 SD (Standar)', categoryKey: 'sd3', isAdmin: false };
             }
             
