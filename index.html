@@ -59,11 +59,11 @@
             color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column;
         }
 
-        /* FOCUS MODE: SIDEBAR SEMBUNYI DULU, BISA DIBUKA VIA TOMBOL FLOATING */
+        /* FOCUS MODE: FULLSCREEN & RESPONSIVE UNTUK PC & HP */
         body.focus-mode .sidebar { 
             transform: translateX(-100%); 
             z-index: 999998;
-            box-shadow: 10px 0 30px rgba(0,0,0,0.4);
+            box-shadow: 15px 0 40px rgba(0,0,0,0.5);
         }
         body.focus-mode .sidebar.focus-open {
             transform: translateX(0) !important;
@@ -73,38 +73,37 @@
             margin-left: 0 !important; 
             max-width: 100% !important; 
             width: 100% !important;
-            padding: 50px 80px !important; 
-            font-size: 1.2rem;
+            padding: 40px 60px !important; 
         }
-        body.focus-mode .portal-footer { margin-left: 0 !important; }
+        body.focus-mode .portal-footer { display: none !important; }
         
-        /* MEMBESARKAN ELEMEN KONTEN SAAT FOCUS MODE */
-        body.focus-mode .roadmap-banner { padding: 45px; margin-bottom: 36px; }
-        body.focus-mode .banner-title { font-size: 3rem; }
-        body.focus-mode .banner-sub { font-size: 1.2rem; max-width: 900px; }
-        body.focus-mode .flashcard-box { height: 380px; padding: 48px; }
-        body.focus-mode .flashcard-content { font-size: 2.4rem; }
-        body.focus-mode .flashcard-instruction { font-size: 0.95rem; }
-        body.focus-mode .module-card, body.focus-mode .dash-card, body.focus-mode .profile-main-box { padding: 36px; }
-        body.focus-mode .card-body h3, body.focus-mode .game-card-title { font-size: 1.6rem; }
-        body.focus-mode .card-body p, body.focus-mode .game-card-desc { font-size: 1.1rem; }
-        body.focus-mode .quiz-btn, body.focus-mode .form-input, body.focus-mode .lov-text-input { font-size: 1.2rem; padding: 18px 24px; }
-        body.focus-mode .lov-emoji-display { font-size: 8rem; }
-        body.focus-mode .lov-stage-card { padding: 80px; }
+        /* SKALA UKURAN KONTEN FOKUS MODE DI PC/LAPTOP */
+        body.focus-mode .roadmap-banner { padding: 50px; margin-bottom: 40px; }
+        body.focus-mode .banner-title { font-size: 3.2rem; }
+        body.focus-mode .banner-sub { font-size: 1.3rem; max-width: 1000px; }
+        body.focus-mode .flashcard-box { height: 420px; padding: 60px; }
+        body.focus-mode .flashcard-content { font-size: 2.8rem; }
+        body.focus-mode .flashcard-instruction { font-size: 1.1rem; }
+        body.focus-mode .module-card, body.focus-mode .dash-card, body.focus-mode .profile-main-box { padding: 40px; }
+        body.focus-mode .card-body h3, body.focus-mode .game-card-title { font-size: 1.8rem; }
+        body.focus-mode .card-body p, body.focus-mode .game-card-desc { font-size: 1.2rem; }
+        body.focus-mode .quiz-btn, body.focus-mode .form-input, body.focus-mode .lov-text-input { font-size: 1.3rem; padding: 20px 28px; }
+        body.focus-mode .lov-emoji-display { font-size: 9rem; }
+        body.focus-mode .lov-stage-card { padding: 90px; }
 
         /* TOMBOL FLOATING RINGKAS DI FOCUS MODE */
         .floating-exit-focus {
-            position: fixed; top: 15px; right: 15px; z-index: 99999;
+            position: fixed; top: 12px; right: 15px; z-index: 99999;
             background: linear-gradient(135deg, var(--brand-brown), var(--brand-amber)); color: white;
-            border: 1.5px solid #fff; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.8rem;
+            border: 1.5px solid #fff; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.78rem;
             cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; font-family: 'Fredoka', sans-serif;
         }
         body.focus-mode .floating-exit-focus { display: flex; align-items: center; gap: 6px; }
 
         .floating-menu-focus {
-            position: fixed; top: 15px; left: 15px; z-index: 99999;
+            position: fixed; top: 12px; left: 15px; z-index: 99999;
             background: var(--brand-amber); color: white;
-            border: 1.5px solid #fff; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.8rem;
+            border: 1.5px solid #fff; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.78rem;
             cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; font-family: 'Fredoka', sans-serif;
         }
         body.focus-mode .floating-menu-focus { display: flex; align-items: center; gap: 6px; }
@@ -265,11 +264,11 @@
         .game-card-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: var(--text-main); margin-bottom: 6px; }
         .game-card-desc { font-size: 0.85rem; color: var(--text-sub); font-weight: 600; line-height: 1.5; margin-bottom: 24px; }
 
-        .flashcard-wrapper { display: flex; flex-direction: column; align-items: center; gap: 24px; max-width: 600px; margin: 0 auto; }
-        .flashcard-box { width: 100%; height: 280px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 3px solid var(--brand-amber); border-radius: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; text-align: center; cursor: pointer; box-shadow: 0 10px 25px rgba(217, 119, 6, 0.15); transition: transform 0.3s; position: relative; }
+        .flashcard-wrapper { display: flex; flex-direction: column; align-items: center; gap: 24px; max-width: 650px; margin: 0 auto; }
+        .flashcard-box { width: 100%; height: 320px; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 3px solid var(--brand-amber); border-radius: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; text-align: center; cursor: pointer; box-shadow: 0 10px 25px rgba(217, 119, 6, 0.15); transition: transform 0.3s; position: relative; }
         .flashcard-box:hover { transform: scale(1.02); }
-        .flashcard-instruction { font-size: 0.75rem; font-weight: 800; color: #b45309; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
-        .flashcard-content { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); line-height: 1.4; }
+        .flashcard-instruction { font-size: 0.8rem; font-weight: 800; color: #b45309; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+        .flashcard-content { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--text-main); line-height: 1.4; }
         .flashcard-controls { display: flex; gap: 16px; width: 100%; }
         .btn-flashcard { flex: 1; padding: 14px; border-radius: 16px; font-weight: 800; font-size: 0.95rem; cursor: pointer; border: none; font-family: 'Fredoka', sans-serif; }
 
@@ -422,14 +421,15 @@
             .sidebar, .portal-footer, button { display: none !important; }
         }
 
+        /* RESPONSIVE UNTUK HP / MOBILE */
         @media (max-width: 768px) {
             .mobile-header-bar { display: flex; }
             .sidebar { 
-                position: fixed; top: 60px; left: -100%; width: 280px; height: calc(100vh - 60px); 
-                transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1); z-index: 2000; 
+                position: fixed; top: 0; left: -100%; width: 280px; height: 100vh; 
+                transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1); z-index: 200000; 
                 box-shadow: 10px 0 30px rgba(0,0,0,0.3);
             }
-            .sidebar.mobile-open { left: 0; }
+            .sidebar.mobile-open, .sidebar.focus-open { left: 0 !important; transform: none !important; }
             .content-area { margin-left: 0 !important; padding: 20px 16px !important; width: 100%; }
             .portal-footer { margin-left: 0 !important; padding: 20px; flex-direction: column; text-align: center; gap: 10px; }
             .login-page-container { flex-direction: column; }
@@ -440,13 +440,22 @@
             .api-key-config-box { width: 100%; justify-content: space-between; }
             .banner-title { font-size: 1.6rem; }
             .roadmap-banner { padding: 20px; }
+            
+            /* SKALA UKURAN KONTEN FOKUS MODE DI HP */
+            body.focus-mode .content-area { padding: 25px 16px !important; }
+            body.focus-mode .banner-title { font-size: 1.8rem; }
+            body.focus-mode .flashcard-box { height: 260px; padding: 20px; }
+            body.focus-mode .flashcard-content { font-size: 1.5rem; }
+            body.focus-mode .card-body h3, body.focus-mode .game-card-title { font-size: 1.2rem; }
+            body.focus-mode .quiz-btn, body.focus-mode .form-input { font-size: 0.95rem; padding: 12px 16px; }
+            body.focus-mode .lov-emoji-display { font-size: 5rem; }
         }
     </style>
 </head>
 <body>
 
     <!-- TOMBOL FLOATING RINGKAS DI FOCUS MODE -->
-    <button class="floating-menu-focus" onclick="toggleFocusSidebar()">☰ Menu</button>
+    <button class="floating-menu-focus" onclick="toggleFocusSidebar(event)">☰ Menu</button>
     <button class="floating-exit-focus" onclick="toggleFocusMode()">🎯 Keluar</button>
 
     <div class="mobile-header-bar">
@@ -816,10 +825,25 @@
             document.getElementById('appSidebar').classList.remove('focus-open');
         }
 
-        function toggleFocusSidebar() {
+        function toggleFocusSidebar(event) {
+            if(event) event.stopPropagation();
             playClickSound();
             document.getElementById('appSidebar').classList.toggle('focus-open');
         }
+
+        // AUTO-HIDE SIDEBAR JIKA KLIK DI LUAR SIDEBAR SAAT FOCUS MODE
+        document.addEventListener('click', function(event) {
+            if (!document.body.classList.contains('focus-mode')) return;
+            const sidebar = document.getElementById('appSidebar');
+            const menuBtn = document.querySelector('.floating-menu-focus');
+            
+            // Jika sidebar terbuka dan yang diklik bukan bagian dari sidebar atau tombol menu
+            if (sidebar.classList.contains('focus-open')) {
+                if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
+                    sidebar.classList.remove('focus-open');
+                }
+            }
+        });
 
         function openSettingsModal() {
             playClickSound();
