@@ -104,19 +104,6 @@
             padding: 40px 60px !important; 
         }
         body.focus-mode .portal-footer { display: none !important; }
-        
-        body.focus-mode .roadmap-banner { padding: 50px; margin-bottom: 40px; }
-        body.focus-mode .banner-title { font-size: 3.2rem; }
-        body.focus-mode .banner-sub { font-size: 1.3rem; max-width: 1000px; }
-        body.focus-mode .flashcard-box { height: 420px; padding: 60px; }
-        body.focus-mode .flashcard-content { font-size: 2.8rem; }
-        body.focus-mode .flashcard-instruction { font-size: 1.1rem; }
-        body.focus-mode .module-card, body.focus-mode .dash-card, body.focus-mode .profile-main-box { padding: 40px; }
-        body.focus-mode .card-body h3, body.focus-mode .game-card-title { font-size: 1.8rem; }
-        body.focus-mode .card-body p, body.focus-mode .game-card-desc { font-size: 1.2rem; }
-        body.focus-mode .quiz-btn, body.focus-mode .form-input, body.focus-mode .lov-text-input { font-size: 1.3rem; padding: 20px 28px; }
-        body.focus-mode .lov-emoji-display { font-size: 9rem; }
-        body.focus-mode .lov-stage-card { padding: 90px; }
 
         .floating-exit-focus {
             position: fixed; top: 12px; right: 15px; z-index: 99999;
@@ -331,14 +318,16 @@
         .app-wrapper { display: flex; flex: 1; position: relative; }
         .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); overflow-y: auto; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         
-        .brand-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .brand-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
         .brand-logo-area { display: flex; align-items: center; gap: 12px; }
         .brand-logo { width: 44px; height: 44px; border-radius: 14px; object-fit: cover; border: 2px solid var(--brand-amber); }
         .brand-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: #ffffff; font-weight: 700; line-height: 1.1; }
         .brand-sub { font-size: 0.7rem; color: var(--brand-yellow); font-weight: 800; letter-spacing: 1px; }
 
-        .virtual-pet-box { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; font-size: 0.78rem; font-weight: 700; color: #fef08a; }
-        .pet-select { background: #2d1e18; color: #fff; border: 1px solid var(--brand-amber); border-radius: 8px; padding: 2px 6px; font-size: 0.75rem; font-weight: 700; outline: none; }
+        /* VIRTUAL PET STAGE BOX DI SIDEBAR */
+        .virtual-pet-stage-box { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 12px; margin-bottom: 16px; text-align: center; }
+        .virtual-pet-render-area { font-size: 2.8rem; line-height: 1.1; margin-bottom: 6px; min-height: 50px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+        .pet-select { background: #2d1e18; color: #fff; border: 1px solid var(--brand-amber); border-radius: 8px; padding: 4px 8px; font-size: 0.78rem; font-weight: 700; outline: none; width: 100%; margin-top: 4px; }
 
         .gamification-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
         .stat-badge-card { background: rgba(255, 255, 255, 0.06); border: 1.5px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
@@ -656,16 +645,17 @@
                             <div class="brand-sub">LEARNING PORTAL</div>
                         </div>
                     </div>
-                    <div id="virtualPetDisplay" style="font-size:1.8rem;" title="Maskot Peliharaan Virtual">🐱</div>
                 </div>
 
-                <div class="virtual-pet-box">
-                    <span>🐾 Maskot:</span>
+                <!-- STAGE RENDER MASKOT DI SIDEBAR YANG JELAS DAN RAPI -->
+                <div class="virtual-pet-stage-box">
+                    <div style="font-size:0.7rem; font-weight:800; color:var(--brand-yellow); text-transform:uppercase; margin-bottom:4px;">🐾 Maskot Peliharaan:</div>
+                    <div class="virtual-pet-render-area" id="virtualPetDisplay" title="Maskot Peliharaan Virtual">🐶</div>
                     <select class="pet-select" id="petSelector" onchange="changeVirtualPet(this.value)">
                         <option value="🐱">Kucing Meo</option>
                         <option value="🐰">Kelinci Ciko</option>
                         <option value="🐼">Panda Pandy</option>
-                        <option value="🐶">Anjing Doby</option>
+                        <option value="🐶" selected>Anjing Doby</option>
                     </select>
                 </div>
 
@@ -733,7 +723,7 @@
                 </div>
                 <div class="profile-card">
                     <div class="profile-left">
-                        <div class="avatar-box" id="sidebarAvatarIcon">🐱</div>
+                        <div class="avatar-box" id="sidebarAvatarIcon">🐶</div>
                         <div class="profile-info">
                             <div class="profile-name" id="userNameDisplay">Siswa</div>
                             <div class="profile-badge" id="userLevelDisplay">Paket Kelas</div>
@@ -960,13 +950,19 @@
         }
 
         function updatePetDisplayUI() {
-            const petEmoji = localStorage.getItem('omahles_virtual_pet') || '🐱';
+            const petEmoji = localStorage.getItem('omahles_virtual_pet') || '🐶';
             const headAcc = currentPetHead || '';
             const eyesAcc = currentPetEyes || '';
-            // Kombinasi: Pet + Head + Eyes
-            const fullDisplay = `${petEmoji}${headAcc}${eyesAcc}`;
-            document.getElementById('virtualPetDisplay').innerText = fullDisplay;
-            document.getElementById('sidebarAvatarIcon').innerText = fullDisplay;
+            
+            // Susunan visual realistis di atas karakter: [Topi/Mahkota] [Kacamata] [Karakter Pet]
+            // Supaya posisinya proporsional, kita render bertumpuk atau berjejer rapi di stage box sidebar.
+            const fullDisplay = `<div style="font-size:1.4rem; line-height:1; margin-bottom:-6px; position:relative; z-index:2;">${headAcc}</div><div style="font-size:1.1rem; line-height:1; margin-bottom:-4px; position:relative; z-index:3;">${eyesAcc}</div><div style="font-size:2.4rem; line-height:1; position:relative; z-index:1;">${petEmoji}</div>`;
+
+            const displayEl = document.getElementById('virtualPetDisplay');
+            if(displayEl) displayEl.innerHTML = fullDisplay;
+            
+            const sidebarAvatar = document.getElementById('sidebarAvatarIcon');
+            if(sidebarAvatar) sidebarAvatar.innerText = petEmoji;
         }
 
         function equipPetAccessory(type, symbol, cost, event) {
@@ -994,7 +990,9 @@
 
             updatePetDisplayUI();
             renderDashboardData();
-            renderDashboardMain(document.getElementById('dynamicMainContentArea'));
+            if(activeSection === 'dashboard') {
+                renderDashboardMain(document.getElementById('dynamicMainContentArea'));
+            }
         }
 
         const REGISTERED_PARENT_DATABASE = {
@@ -1149,8 +1147,9 @@
             const savedTheme = localStorage.getItem('omahles_app_theme');
             if(savedTheme && savedTheme !== 'default') document.body.classList.add(`theme-${savedTheme}`);
 
-            const savedPet = localStorage.getItem('omahles_virtual_pet') || '🐱';
-            document.getElementById('petSelector').value = savedPet;
+            const savedPet = localStorage.getItem('omahles_virtual_pet') || '🐶';
+            const petSel = document.getElementById('petSelector');
+            if(petSel) petSel.value = savedPet;
             updatePetDisplayUI();
 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
@@ -1608,7 +1607,7 @@
                 quizHistory: JSON.parse(localStorage.getItem('omahles_quiz_history') || '[]'),
                 petHead: currentPetHead,
                 petEyes: currentPetEyes,
-                virtualPet: localStorage.getItem('omahles_virtual_pet') || '🐱'
+                virtualPet: localStorage.getItem('omahles_virtual_pet') || '🐶'
             };
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
             const downloadAnchor = document.createElement('a');
