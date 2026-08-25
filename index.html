@@ -614,7 +614,7 @@
         <div><span>© 2026 Omah Les Privat Platform • Learning System</span></div>
     </footer>
 
-    <script>
+<script>
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playTone(freq, type, duration) {
             try {
@@ -639,23 +639,25 @@
         }
         function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
 
-        let bgmInterval = null;
+        // BGM AUDIO PLAYER SETUP
+        // Menggunakan link instrumen musik latar yang lembut dan menenangkan untuk belajar
+        const bgmAudio = new Audio('https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg'); 
+        bgmAudio.loop = true;
+        bgmAudio.volume = 0.25; // Volume diatur pas agar tidak menutupi suara TTS/interaksi
         let isBgmPlaying = false;
+
         function toggleBgmMusic() {
+            playClickSound();
             isBgmPlaying = !isBgmPlaying;
             const btn = document.getElementById('btnToggleBgm');
-            if(isBgmPlaying) {
+            if (isBgmPlaying) {
                 btn.innerText = '🎵 Musik BGM: ON';
-                playSuccessSound();
-                bgmInterval = setInterval(() => {
-                    if(isBgmPlaying) {
-                        playTone(330, 'sine', 0.15);
-                        setTimeout(() => playTone(392, 'sine', 0.15), 300);
-                    }
-                }, 4000);
+                bgmAudio.play().catch(err => {
+                    console.log("Autoplay dicegah browser, klik sekali lagi untuk memutar.");
+                });
             } else {
                 btn.innerText = '🎵 Musik BGM: OFF';
-                clearInterval(bgmInterval);
+                bgmAudio.pause();
             }
         }
 
@@ -748,6 +750,9 @@
             renderDashboardMain(document.getElementById('dynamicMainContentArea'));
             alert(`🎉 Hore! Aksesoris ${accSymbol} berhasil dipasang ke maskot virtualmu!`);
         }
+        
+        // ... (fungsi aplikasi lainnya tetap sama seperti sebelumnya)
+    </script>
 
         const REGISTERED_PARENT_DATABASE = {
             'faarimuhammad25@gmail.com': { name: 'Muhammad Faari Akbar', isAdmin: true, classLabel: 'Master Admin (All Access)' },
