@@ -139,6 +139,10 @@
         .btn-claim-reward { background: var(--brand-amber); color: white; border: none; padding: 12px 24px; border-radius: 14px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.95rem; cursor: pointer; box-shadow: 0 6px 15px rgba(217, 119, 6, 0.3); }
         .btn-claim-reward:disabled { background: #9ca3af; cursor: not-allowed; box-shadow: none; }
 
+        /* RESUME LEARNING BANNER */
+        .resume-learning-card { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid #3b82f6; border-radius: var(--radius-main); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; gap: 16px; flex-wrap: wrap; }
+        .btn-resume { background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 12px; font-family: 'Fredoka', sans-serif; font-weight: 800; font-size: 0.88rem; cursor: pointer; }
+
         /* LEADERBOARD STYLES */
         .leaderboard-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: var(--radius-main); overflow: hidden; border: 2px solid var(--card-border); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         .leaderboard-table th { background: var(--sidebar-bg); color: white; padding: 16px 20px; text-align: left; font-size: 0.85rem; font-family: 'Fredoka', sans-serif; }
@@ -382,6 +386,22 @@
         </div>
     </div>
 
+    <!-- PARENT PIN LOCK MODAL (POINT 1) -->
+    <div class="modal-overlay" id="parentPinModalOverlay">
+        <div class="modal-card">
+            <div style="font-size:3rem; margin-bottom:10px;">🔒</div>
+            <div class="cert-title">Parent Control Mode</div>
+            <div class="cert-sub" style="margin-bottom:16px;">Masukkan PIN Orang Tua (Default: 2026)</div>
+            <div class="form-group">
+                <input type="password" class="form-input" id="inputParentPin" placeholder="Masukkan 4 digit PIN" style="text-align:center; font-size:1.2rem;" maxlength="4">
+            </div>
+            <div style="display:flex; gap:10px; margin-top:16px;">
+                <button class="btn-flashcard" style="background:#f3f4f6;" onclick="closeParentPinModal()">Batal</button>
+                <button class="btn-flashcard" style="background:var(--brand-amber); color:#fff;" onclick="verifyParentPin()">Buka Mode Ortu</button>
+            </div>
+        </div>
+    </div>
+
     <!-- CERTIFICATE MODAL -->
     <div class="modal-overlay" id="certModalOverlay">
         <div class="cert-modal-card">
@@ -494,6 +514,7 @@
             <div>
                 <div class="sidebar-bottom-controls">
                     <button class="btn-refresh-app" onclick="playClickSound(); refreshCurrentPage()">↺ REFRESH PORTAL</button>
+                    <button class="btn-refresh-app" style="background:rgba(217,119,6,0.2); border-color:var(--brand-amber); color:#fef08a; margin-top:6px;" onclick="openParentPinModal()">🔒 Mode Orang Tua</button>
                 </div>
                 <div class="profile-card">
                     <div class="profile-left">
@@ -606,7 +627,6 @@
             { quote: "Jangan batasi tantanganmu, tapi tantang batasmu setiap hari.", author: "Omah Les Mentor" }
         ];
 
-        // FLASHCARDS BERDASARKAN JENJANG & KELAS (TK & SD 1-6)
         const flashcardsDatabasePerLevel = {
             'tk': [
                 { q: "Sebutkan huruf vokal pertama dalam abjad!", a: "Huruf A" },
@@ -717,6 +737,37 @@
             }
         };
 
+        const worksheetsDatabasePerLevel = {
+            'tk': [
+                { title: 'Lembar Kerja TK - Mengenal Huruf Vokal A-I-U-E-O', desc: 'Latihan motorik menebalkan huruf vokal dasar.', cat: 'TK / PAUD' },
+                { title: 'Lembar Kerja TK - Mewarnai Bentuk Geometri & Buah', desc: 'Mengenal bentuk lingkaran, segitiga, dan warna dasar.', cat: 'TK / PAUD' }
+            ],
+            'sd1': [
+                { title: 'Lembar Kerja SD 1 - Suku Kata Ba-Bi-Bu-Be-Bo', desc: 'Latihan merangkai dan membaca suku kata sederhana.', cat: 'Kelas 1 SD' },
+                { title: 'Lembar Kerja SD 1 - Penjumlahan Angka 1 sampai 10', desc: 'Latihan berhitung dasar dengan bantuan gambar.', cat: 'Kelas 1 SD' }
+            ],
+            'sd2': [
+                { title: 'Lembar Kerja SD 2 - Kalimat Tanya & Tanda Baca', desc: 'Latihan menggunakan kata apa, siapa, dan di mana.', cat: 'Kelas 2 SD' },
+                { title: 'Lembar Kerja SD 2 - Pengukuran Panjang Benda (cm)', desc: 'Latihan membaca penggaris dan konversi satuan.', cat: 'Kelas 2 SD' }
+            ],
+            'sd3': [
+                { title: 'Lembar Kerja SD 3 - Menemukan Ide Pokok Paragraf', desc: 'Latihan membaca teks dan menentukan kalimat utama.', cat: 'Kelas 3 SD' },
+                { title: 'Lembar Kerja SD 3 - Pecahan Sederhana (1/2, 1/4)', desc: 'Latihan memotong dan menghitung bagian pecahan.', cat: 'Kelas 3 SD' }
+            ],
+            'sd4': [
+                { title: 'Lembar Kerja SD 4 - Luas dan Keliling Persegi', desc: 'Latihan rumus matematika bangun datar dasar.', cat: 'Kelas 4 SD' },
+                { title: 'Lembar Kerja SD 4 - Gaya Tarik & Gaya Dorong (Sains)', desc: 'Eksplorasi pengaruh gaya pada benda di sekitar.', cat: 'Kelas 4 SD' }
+            ],
+            'sd5': [
+                { title: 'Lembar Kerja SD 5 - Analisis Teks Sejarah 5W+1H', desc: 'Latihan menyusun ringkasan peristiwa penting sejarah.', cat: 'Kelas 5 SD' },
+                { title: 'Lembar Kerja SD 5 - Menghitung Volume Balok & Kubus', desc: 'Latihan soal rumus volume bangun ruang.', cat: 'Kelas 5 SD' }
+            ],
+            'sd6': [
+                { title: 'Lembar Kerja SD 6 - Teks Eksplanasi & Sebab Akibat', desc: 'Analisis fenomena alam dan teks ilmiah.', cat: 'Kelas 6 SD' },
+                { title: 'Lembar Kerja SD 6 - Statistika: Menghitung Nilai Mean', desc: 'Latihan mengolah data nilai rata-rata kelas.', cat: 'Kelas 6 SD' }
+            ]
+        };
+
         const omahGamesDatabasePerLevel = {
             'tk': [
                 { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🐱', title: 'Tebak Hewan & Suara', desc: 'Mengenal hewan peliharaan dari emoji & cirinya.', questions: [{ emojis: '🐱 🥛', clue: 'Hewan berbulu suka minum susu', answer: 'kucing' }, { emojis: '🐰 🥕', clue: 'Telinga panjang suka melompat makan wortel', answer: 'kelinci' }, { emojis: '🐮 🌾', clue: 'Penghasil susu segar bersuara moo', answer: 'sapi' }] },
@@ -762,6 +813,7 @@
         let currentStudent = { name: '', parentEmail: '', classLabel: 'Belum Dipilih', categoryKey: null, isAdmin: false };
         let activeSection = 'dashboard';
         let currentActiveModule = null;
+        let lastOpenedModuleTitle = localStorage.getItem('omahles_last_module') || 'Belum ada modul yang dibuka';
         
         let userStars = parseInt(localStorage.getItem('omahles_user_stars') || '0');
         let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
@@ -824,6 +876,27 @@
             switchSection(activeSection);
         }
 
+        function openParentPinModal() {
+            playClickSound();
+            document.getElementById('inputParentPin').value = '';
+            document.getElementById('parentPinModalOverlay').classList.add('active');
+        }
+        function closeParentPinModal() {
+            document.getElementById('parentPinModalOverlay').classList.remove('active');
+        }
+        function verifyParentPin() {
+            const pin = document.getElementById('inputParentPin').value.trim();
+            if(pin === '2026') {
+                playSuccessSound();
+                closeParentPinModal();
+                alert('🔓 PIN Berhasil! Mengalihkan ke Parent Report Card.');
+                switchSection('profile');
+            } else {
+                playErrorSound();
+                alert('❌ PIN Salah! Default PIN orang tua adalah 2026.');
+            }
+        }
+
         function renderDashboardData() {
             document.getElementById('userNameDisplay').innerText = currentStudent.name || 'Siswa';
             document.getElementById('userLevelDisplay').innerText = currentStudent.classLabel;
@@ -873,7 +946,7 @@
                 'sains': { tag: '🔬 Dunia IPA', title: 'Sains & IPA', sub: 'Eksplorasi alam semesta.' },
                 'english': { tag: '🇬🇧 Bahasa Internasional', title: 'Bahasa Inggris', sub: 'Let us practice English together.' },
                 'seni': { tag: '🎨 Kreativitas', title: 'Seni Budaya', sub: 'Berkreasi tanpa batas.' },
-                'worksheets': { tag: '📥 Unduh Materi', title: 'Pusat Lembar Kerja (Worksheet)', sub: 'Unduh lembar latihan cetak PDF untuk anak.' },
+                'worksheets': { tag: '📥 Unduh Materi', title: 'Pusat Lembar Kerja (Worksheet)', sub: 'Unduh lembar latihan cetak PDF khusus jenjang aktif.' },
                 'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab langsung bersama Kak Omah.' },
                 'games': { tag: '🎮 Game Center', title: 'Omah Games', sub: `Tantangan edukasi interaktif.` },
                 'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan', sub: `Latihan kilat khusus jenjang ${currentStudent.classLabel}.` }
@@ -920,6 +993,14 @@
             const isAlreadyClaimed = (lastClaimDate === todayStr);
 
             container.innerHTML = `
+                <div class="resume-learning-card">
+                    <div>
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; color:#1e40af; margin-bottom:2px;">📌 Lanjutkan Sesi Belajar Terakhir</div>
+                        <div style="font-size:0.85rem; font-weight:700; color:#3b82f6;">${lastOpenedModuleTitle}</div>
+                    </div>
+                    <button class="btn-resume" onclick="switchSection('roadmap')">Lanjut Belajar →</button>
+                </div>
+
                 <div class="daily-reward-card">
                     <div class="daily-reward-left">
                         <div style="font-size:3rem;">🎁</div>
@@ -953,13 +1034,12 @@
             lastClaimDate = todayStr;
             localStorage.setItem('omahles_user_stars', userStars);
             localStorage.setItem('omahles_last_claim_date', lastClaimDate);
-            alert('🎉 Berhasil! Anda mendapatkan +50 Bintang Bonus Harian.');
+            alert('🎉 HORE! Anda mendapatkan +50 Bintang Bonus Harian dari Tantangan Streak!');
             renderDashboardMain(document.getElementById('dynamicMainContentArea'));
             renderDashboardData();
         }
 
         function renderLeaderboard(container) {
-            // Hanya menampilkan akun/siswa yang sedang aktif login (tanpa nama tiruan)
             const activeLeader = {
                 rank: 1,
                 name: currentStudent.name || 'Siswa Aktif',
@@ -1018,14 +1098,12 @@
             `;
         }
 
+        // PUSAT UNDUH PDF DINAMIS BERDASARKAN JENJANG KELAS (POINT 3)
         function renderWorksheetCenter(container) {
-            const listWs = [
-                { title: 'Lembar Kerja Bahasa Indonesia - Dasar Suku Kata', desc: 'Latihan membaca dan menyusun huruf.', cat: 'Bahasa Indonesia' },
-                { title: 'Lembar Kerja Matematika - Penjumlahan & Pengurangan', desc: 'Latihan berhitung angka 1-20.', cat: 'Matematika' },
-                { title: 'Lembar Kerja Sains IPA - Panca Indra & Hewan', desc: 'Mengenal lingkungan sekitar.', cat: 'Sains IPA' },
-                { title: 'Lembar Kerja Bahasa Inggris - Animals & Colors', desc: 'Kosakata dasar anak.', cat: 'Bahasa Inggris' }
-            ];
+            const catKey = currentStudent.categoryKey || 'sd3';
+            const listWs = worksheetsDatabasePerLevel[catKey] || worksheetsDatabasePerLevel['sd3'];
             container.innerHTML = `
+                <div style="margin-bottom:16px; font-weight:800; color:var(--brand-brown); font-size:0.95rem;">📥 DAFTAR LEMBAR KERJA CETAK PDF KHUSUS: ${currentStudent.classLabel.toUpperCase()}</div>
                 <div class="worksheet-grid">
                     ${listWs.map(w => `
                         <div class="worksheet-card">
@@ -1171,14 +1249,19 @@
                 playSuccessSound(); lovScore += 100; userStars += 20; userCompletedQuizzes++;
                 localStorage.setItem('omahles_user_stars', userStars);
                 localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
-                currentLovQuestionIdx++; alert('🎉 Benar! ⭐ +20 Stars');
-            } else { playErrorSound(); lovLives--; alert(`❌ Salah! Jawaban: ${ans}`); }
+                currentLovQuestionIdx++; alert('🎉 HORE! Jawaban Benar! ⭐ +20 Stars');
+            } else { playErrorSound(); lovLives--; alert(`❌ Ups! Jawaban yang benar adalah: ${ans}`); }
             renderOmahGameUI(document.getElementById('dynamicMainContentArea'));
         }
 
         function openSequenceModal(secKey, idx) {
             const pkg = masterSectionDatabase[currentStudent.categoryKey] || masterSectionDatabase['sd3'];
             currentActiveModule = (pkg[secKey] || pkg['roadmap'])[idx];
+            
+            // Simpan Resume Learning (POINT 4)
+            lastOpenedModuleTitle = currentActiveModule.title;
+            localStorage.setItem('omahles_last_module', lastOpenedModuleTitle);
+
             document.getElementById('seqHeaderTag').innerText = currentActiveModule.tierTag;
             document.getElementById('seqHeaderTitle').innerText = currentActiveModule.title;
             document.getElementById('sequenceStepsContainer').innerHTML = currentActiveModule.steps.map((st, s) => `
@@ -1222,11 +1305,11 @@
         function checkQuiz(s, c) {
             if(s === c) {
                 playSuccessSound(); document.getElementById('quizFeedbackText').style.color = '#16a34a';
-                document.getElementById('quizFeedbackText').innerText = '🎉 Benar! ⭐ +15 Stars';
+                document.getElementById('quizFeedbackText').innerText = '🎉 HORE! Benar! ⭐ +15 Stars';
                 userStars += 15; userCompletedQuizzes++;
                 localStorage.setItem('omahles_user_stars', userStars);
                 localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
-            } else { playErrorSound(); document.getElementById('quizFeedbackText').style.color = '#dc2626'; document.getElementById('quizFeedbackText').innerText = '❌ Salah!'; }
+            } else { playErrorSound(); document.getElementById('quizFeedbackText').style.color = '#dc2626'; document.getElementById('quizFeedbackText').innerText = '❌ Ups, coba lagi ya!'; }
         }
         function closeInsightModal() { 
             if('speechSynthesis' in window) window.speechSynthesis.cancel();
