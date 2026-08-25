@@ -865,7 +865,7 @@
             const sectionHeaders = {
                 'dashboard': { tag: '📊 Overview', title: 'Portal Dashboard', sub: `Selamat datang kembali, ${currentStudent.name || 'Siswa'}!` },
                 'roadmap': { tag: '🎓 Master Path', title: 'Curriculum Roadmap', sub: `Materi khusus ${currentStudent.classLabel}.` },
-                'leaderboard': { tag: '🏆 Papan Peringkat', title: 'Leaderboard Siswa', sub: 'Siswa paling aktif dan bintang terbanyak minggu ini.' },
+                'leaderboard': { tag: '🏆 Papan Peringkat', title: 'Leaderboard Siswa', sub: 'Peringkat progres siswa aktif saat ini.' },
                 'profile': { tag: '👤 Parent Report', title: 'Parent Report Card', sub: 'Laporan perkembangan belajar anak untuk orang tua.' },
                 'badges': { tag: '🎖️ Pencapaian', title: 'Prestasi & Badges', sub: `Koleksi trofi berdasarkan hasil belajar.` },
                 'indo': { tag: '📖 Subjek Utama', title: 'Bahasa Indonesia', sub: 'Melatih kemampuan literasi.' },
@@ -959,12 +959,13 @@
         }
 
         function renderLeaderboard(container) {
-            const mockLeaders = [
-                { rank: 1, name: 'Rezky (Siswa Binaan)', stars: 450, quizzes: 22 },
-                { rank: 2, name: currentStudent.name || 'Siswa Aktif', stars: userStars, quizzes: userCompletedQuizzes },
-                { rank: 3, name: 'Budi Santoso', stars: 290, quizzes: 14 },
-                { rank: 4, name: 'Siti Aminah', stars: 210, quizzes: 10 }
-            ].sort((a,b) => b.stars - a.stars);
+            // Hanya menampilkan akun/siswa yang sedang aktif login (tanpa nama tiruan)
+            const activeLeader = {
+                rank: 1,
+                name: currentStudent.name || 'Siswa Aktif',
+                stars: userStars,
+                quizzes: userCompletedQuizzes
+            };
 
             container.innerHTML = `
                 <table class="leaderboard-table">
@@ -977,14 +978,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        ${mockLeaders.map((l, idx) => `
-                            <tr>
-                                <td>${idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx+1}`}</td>
-                                <td><strong>${l.name}</strong></td>
-                                <td>${l.quizzes} Kuis</td>
-                                <td style="color:var(--brand-amber); font-family:'Fredoka',sans-serif;">${l.stars} Stars</td>
-                            </tr>
-                        `).join('')}
+                        <tr>
+                            <td>🥇</td>
+                            <td><strong>${activeLeader.name}</strong></td>
+                            <td>${activeLeader.quizzes} Kuis</td>
+                            <td style="color:var(--brand-amber); font-family:'Fredoka',sans-serif;">${activeLeader.stars} Stars</td>
+                        </tr>
                     </tbody>
                 </table>
             `;
@@ -1077,7 +1076,6 @@
         }
         function closeCertModal() { document.getElementById('certModalOverlay').classList.remove('active'); }
 
-        // FLASHCARDS DINAMIS SESUAI JENJANG / KELAS
         function renderFlashcardsUI(container) {
             const catKey = currentStudent.categoryKey || 'sd3';
             const currentDeck = flashcardsDatabasePerLevel[catKey] || flashcardsDatabasePerLevel['sd3'];
