@@ -122,6 +122,10 @@
         .quiz-btn:hover { background: #fef3c7; }
         .quiz-feedback { margin-top: 10px; font-weight: 800; font-size: 0.9rem; }
 
+        /* TTS & DOWNLOAD WORKSHEET BUTTONS */
+        .tts-action-btn { background: var(--brand-cream); border: 1.5px solid var(--brand-amber); color: var(--brand-brown); padding: 6px 14px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+        .tts-action-btn:hover { background: var(--brand-amber); color: white; }
+
         /* DASHBOARD STYLES */
         .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 28px; }
         .dash-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 24px; display: flex; align-items: center; gap: 18px; }
@@ -388,7 +392,8 @@
                 <div class="sequence-sub" id="seqHeaderSub">Sub judul</div>
             </div>
             <div class="sequence-body" id="sequenceStepsContainer"></div>
-            <div class="sequence-footer" style="padding:16px 32px; background:#fdfbf7; display:flex; justify-content:flex-end; gap:12px;">
+            <div class="sequence-footer" style="padding:16px 32px; background:#fdfbf7; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+                <button class="tts-action-btn" onclick="downloadWorksheetPDF()">📥 Unduh Lembar Kerja (PDF)</button>
                 <button class="btn-modal-close" onclick="closeSequenceModal()" style="padding:10px 20px; border-radius:12px; border:1px solid var(--card-border); background:#fff; font-weight:800; cursor:pointer;">TUTUP</button>
             </div>
         </div>
@@ -399,6 +404,7 @@
         <div class="insight-modal-card">
             <button class="btn-close-modal" style="color:var(--text-main); background:var(--brand-cream);" onclick="closeInsightModal()">✕</button>
             <span class="insight-tag" id="insTag">INSIGHT</span>
+            <button class="tts-action-btn" id="btnTtsSpeak" onclick="speakCurrentInsight()">🔊 Bacakan Materi</button>
             <h1 class="insight-title" id="insTitle">Judul Materi</h1>
             <div class="quote-box-insight" id="insQuote">"Quote"</div>
             <div class="insight-section-title">💡 CONTEXT</div>
@@ -547,6 +553,19 @@
             setTimeout(() => playTone(783.99, 'triangle', 0.2), 200);
         }
         function playErrorSound() { playTone(180, 'sawtooth', 0.25); }
+
+        // TEXT-TO-SPEECH (TTS) BROWSER HELPER
+        function speakText(textString) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Hentikan suara sebelumnya
+                const utterance = new SpeechSynthesisUtterance(textString);
+                utterance.lang = 'id-ID'; // Bahasa Indonesia
+                utterance.rate = 0.9; // Sedikit lebih lambat agar ramah anak
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("Maaf, browser Anda tidak mendukung fitur suara baca teks.");
+            }
+        }
 
         function toggleMobileSidebar() {
             playClickSound();
@@ -1011,8 +1030,16 @@
         }
         function closeSequenceModal() { document.getElementById('sequenceModalOverlay').classList.remove('active'); }
 
+        function downloadWorksheetPDF() {
+            if(!currentActiveModule) return;
+            alert(`📥 Mengunduh lembar kerja PDF untuk modul: ${currentActiveModule.title}`);
+            window.print();
+        }
+
+        let currentOpenStepData = null;
         function openInsightModal(s) {
             const st = currentActiveModule.steps[s];
+            currentOpenStepData = st;
             document.getElementById('insTag').innerText = st.tag;
             document.getElementById('insTitle').innerText = st.title;
             document.getElementById('insQuote').innerText = st.quote;
@@ -1023,6 +1050,13 @@
             document.getElementById('quizFeedbackText').innerText = '';
             document.getElementById('insightModalOverlay').classList.add('active');
         }
+
+        function speakCurrentInsight() {
+            if(!currentOpenStepData) return;
+            const fullText = `${currentOpenStepData.title}. ${currentOpenStepData.quote}. Konteks: ${currentOpenStepData.context}. Logika: ${currentOpenStepData.logic}. Pertanyaan kuis: ${currentOpenStepData.quiz.q}`;
+            speakText(fullText);
+        }
+
         function checkQuiz(s, c) {
             if(s === c) {
                 playSuccessSound(); document.getElementById('quizFeedbackText').style.color = '#16a34a';
@@ -1032,7 +1066,10 @@
                 localStorage.setItem('omahles_completed_quizzes', userCompletedQuizzes);
             } else { playErrorSound(); document.getElementById('quizFeedbackText').style.color = '#dc2626'; document.getElementById('quizFeedbackText').innerText = '❌ Salah!'; }
         }
-        function closeInsightModal() { document.getElementById('insightModalOverlay').classList.remove('active'); }
+        function closeInsightModal() { 
+            if('speechSynthesis' in window) window.speechSynthesis.cancel();
+            document.getElementById('insightModalOverlay').classList.remove('active'); 
+        }
 
         function renderJournal(container) {
             let j = JSON.parse(localStorage.getItem('omahles_student_journals')) || [{ text: 'Mengerjakan modul belajar.', date: '2026-08-23' }];
@@ -1056,7 +1093,6 @@
             localStorage.setItem('omahles_student_journals', JSON.stringify(j)); renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
-        // RUANG AI TUTOR DENGAN TOMBOL KIRIM BULAT KECIL
         function renderLovSpeakAiChat(container) {
             const storageKey = `omahles_key_${currentStudent.parentEmail}`;
             const savedKey = localStorage.getItem(storageKey) || '';
@@ -1086,7 +1122,7 @@
                                 Assalamu'alaikum ${studentName}! Masukkan Gemini API Key kamu di kolom kanan atas (jika belum), lalu tanyakan PR atau materi sekolah apa pun ke Kak Omah ya! ✨
                             </div>
                             <div class="lovespeak-bubble-footer">
-                                <button class="lovespeak-btn-listen" onclick="alert('🔊 Memutar audio...')">🔊 LISTEN</button>
+                                <button class="lovespeak-btn-listen" onclick="speakText(this.parentElement.previousElementSibling.innerText)">🔊 LISTEN</button>
                                 <span>${timeStr}</span>
                             </div>
                         </div>
@@ -1174,7 +1210,7 @@
                     document.getElementById(loadingId).innerHTML = `
                         <div class="lovespeak-bubble">${aiReply}</div>
                         <div class="lovespeak-bubble-footer">
-                            <button class="lovespeak-btn-listen" onclick="alert('🔊 Memutar audio...')">🔊 LISTEN</button>
+                            <button class="lovespeak-btn-listen" onclick="speakText(this.parentElement.previousElementSibling.innerText)">🔊 LISTEN</button>
                             <span>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                         </div>
                     `;
