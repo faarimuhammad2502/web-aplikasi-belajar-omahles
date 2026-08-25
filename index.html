@@ -278,7 +278,7 @@
         .lovespeak-input-bar { display: flex; align-items: center; gap: 12px; padding: 16px 28px; background: #ffffff; border-top: 2px solid var(--card-border); }
         .lovespeak-input-icon-btn { background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-sub); padding: 4px; }
         .lovespeak-text-input { flex: 1; border: none; outline: none; font-size: 0.95rem; font-weight: 600; color: var(--text-main); background: transparent; }
-        .lovespeak-send-btn { width: 38px; height: 38px; border-radius: 50%; background: #f3e8ff; border: none; color: #9333ea; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 800; transition: all 0.2s; }
+        .lovespeak-send-btn { width: 40px; height: 40px; border-radius: 50%; background: #f3e8ff; border: none; color: #9333ea; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 800; transition: all 0.2s; flex-shrink: 0; }
         .lovespeak-send-btn:hover { background: #9333ea; color: white; }
 
         .journal-form-box { background: var(--brand-cream); border: 2px solid var(--card-border); border-radius: 20px; padding: 20px; margin-bottom: 24px; }
@@ -693,7 +693,6 @@
         let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_completed_quizzes') || '0');
 
         window.addEventListener('DOMContentLoaded', () => { 
-            // Bersihkan key lama global agar tidak terbawa
             localStorage.removeItem('omahles_user_gemini_key');
 
             const savedStudent = sessionStorage.getItem('omahles_active_student');
@@ -1057,9 +1056,8 @@
             localStorage.setItem('omahles_student_journals', JSON.stringify(j)); renderJournal(document.getElementById('dynamicMainContentArea'));
         }
 
-        // RUANG AI TUTOR DENGAN PENYIMPANAN BERBASIS EMAIL MASING-MASING
+        // RUANG AI TUTOR DENGAN TOMBOL KIRIM BULAT KECIL
         function renderLovSpeakAiChat(container) {
-            // Ambil API key khusus berdasarkan email akun yang sedang login
             const storageKey = `omahles_key_${currentStudent.parentEmail}`;
             const savedKey = localStorage.getItem(storageKey) || '';
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -1104,7 +1102,7 @@
                     <div class="lovespeak-input-bar">
                         <button class="lovespeak-input-icon-btn">📎</button>
                         <input type="text" id="lovUserChatInput" class="lovespeak-text-input" placeholder="Tanyakan PR atau materi sekolah..." onkeypress="if(event.key==='Enter') sendGeminiApiChat()">
-                        <button class="lov-submit-btn" onclick="sendGeminiApiChat()">➤</button>
+                        <button class="lovespeak-send-btn" onclick="sendGeminiApiChat()">➤</button>
                     </div>
                 </div>
             `;
