@@ -1236,8 +1236,21 @@
             currentPackage = pkgVal;
         }
 
-        function changePackageFromSettings(pkgVal) {
+function changePackageFromSettings(pkgVal) {
             playClickSound();
+            
+            // Cek apakah akun terdaftar di database khusus (bukan admin)
+            const pEmail = currentStudent.parentEmail;
+            if (REGISTERED_PARENT_DATABASE[pEmail] && !REGISTERED_PARENT_DATABASE[pEmail].isAdmin) {
+                const registeredPkg = REGISTERED_PARENT_DATABASE[pEmail].defaultPkg;
+                if (registeredPkg !== pkgVal) {
+                    playErrorSound();
+                    alert(`❌ Akun Anda terdaftar khusus untuk ${packageMeta[registeredPkg].title}. Anda tidak diizinkan mengubah ke jenjang/kelas lain.`);
+                    document.getElementById('settingsPackageSelect').value = currentPackage;
+                    return;
+                }
+            }
+
             currentPackage = pkgVal;
             currentStudent.pkg = currentPackage;
             sessionStorage.setItem('omahles_portal_active_student', JSON.stringify(currentStudent));
@@ -1248,17 +1261,28 @@
             alert(`✅ Paket berhasil diubah ke: ${packageMeta[currentPackage].title}`);
         }
 
-        function handleFormLogin(e) {
+function handleFormLogin(e) {
             e.preventDefault();
             playClickSound();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
             const selPkg = document.getElementById('inputPackageSelect').value;
-            currentPackage = selPkg;
             
+            // Periksa apakah email terdaftar dalam database
             if (REGISTERED_PARENT_DATABASE[pEmail]) {
                 const data = REGISTERED_PARENT_DATABASE[pEmail];
+                
+                // Validasi: Jika email terdaftar, pastikan paket yang dipilih sesuai dengan defaultPkg terdaftar
+                if (data.defaultPkg !== selPkg && !data.isAdmin) {
+                    playErrorSound();
+                    alert(`❌ Maaf, email ${pEmail} terdaftar untuk paket ${packageMeta[data.defaultPkg].title}. Anda tidak dapat mengakses jenjang/kelas yang berbeda.`);
+                    return;
+                }
+                
+                currentPackage = data.isAdmin ? selPkg : data.defaultPkg;
                 currentStudent = { name: data.name, parentEmail: pEmail, pkg: currentPackage };
             } else {
+                // Jika email belum terdaftar di database, izinkan dengan paket yang dipilih
+                currentPackage = selPkg;
                 const generatedName = pEmail.split('@')[0].toUpperCase();
                 currentStudent = { name: `Ananda ${generatedName}`, parentEmail: pEmail, pkg: currentPackage };
             }
@@ -1269,7 +1293,6 @@
             applyPackageThemeToSidebar();
             showRandomDailyWisdom();
         }
-
         function openLoginForm() { 
             sessionStorage.clear();
             document.getElementById('loginPage').style.display = 'flex'; 
