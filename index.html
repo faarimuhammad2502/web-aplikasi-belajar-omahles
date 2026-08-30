@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omah Les Privat - Portal Belajar TK Interaktif</title>
+    <title>Omah Les Privat - Portal Belajar Multi-Jenjang (TK & SD 1-6)</title>
     <link rel="icon" type="image/jpeg" href="./logo.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,42 +90,24 @@
         button, .menu-item a, .game-item-card, .module-card, .worksheet-card, .flashcard-box {
             touch-action: manipulation;
         }
-        button:active, .menu-item a:active {
-            transform: scale(0.97);
-        }
+        button:active, .menu-item a:active { transform: scale(0.97); }
 
         body.focus-mode .sidebar { 
-            transform: translateX(-100%); 
-            z-index: 999998;
-            box-shadow: 15px 0 40px rgba(0,0,0,0.5);
+            transform: translateX(-100%); z-index: 999998; box-shadow: 15px 0 40px rgba(0,0,0,0.5); 
         }
-        body.focus-mode .sidebar.focus-open {
-            transform: translateX(0) !important;
-        }
-
-        body.focus-mode .content-area { 
-            margin-left: 0 !important; 
-            max-width: 100% !important; 
-            width: 100% !important;
-            padding: 40px 60px !important; 
-        }
+        body.focus-mode .sidebar.focus-open { transform: translateX(0) !important; }
+        body.focus-mode .content-area { margin-left: 0 !important; max-width: 100% !important; width: 100% !important; padding: 40px 60px !important; }
         body.focus-mode .portal-footer { display: none !important; }
 
-        .floating-exit-focus {
-            position: fixed; top: 12px; right: 15px; z-index: 99999;
+        .floating-exit-focus, .floating-menu-focus {
+            position: fixed; top: 12px; z-index: 99999;
             background: linear-gradient(135deg, var(--brand-brown), var(--brand-amber)); color: white;
             border: 1.5px solid #fff; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.78rem;
             cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; font-family: 'Fredoka', sans-serif;
         }
-        body.focus-mode .floating-exit-focus { display: flex; align-items: center; gap: 6px; }
-
-        .floating-menu-focus {
-            position: fixed; top: 12px; left: 15px; z-index: 99999;
-            background: var(--brand-amber); color: white;
-            border: 1.5px solid #fff; padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.78rem;
-            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; font-family: 'Fredoka', sans-serif;
-        }
-        body.focus-mode .floating-menu-focus { display: flex; align-items: center; gap: 6px; }
+        .floating-exit-focus { right: 15px; }
+        .floating-menu-focus { left: 15px; background: var(--brand-amber); }
+        body.focus-mode .floating-exit-focus, body.focus-mode .floating-menu-focus { display: flex; align-items: center; gap: 6px; }
 
         @keyframes floatUpReward {
             0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
@@ -133,10 +115,9 @@
             100% { opacity: 0; transform: translateY(-90px) scale(1.2) rotate(-15deg); }
         }
         .floating-star-badge {
-            position: fixed; z-index: 99999;
-            font-family: 'Fredoka', sans-serif; font-size: 1.6rem; font-weight: 800;
-            color: #d97706; text-shadow: 0 2px 10px rgba(245, 158, 11, 0.6);
-            pointer-events: none; animation: floatUpReward 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: fixed; z-index: 99999; font-family: 'Fredoka', sans-serif; font-size: 1.6rem; font-weight: 800;
+            color: #d97706; text-shadow: 0 2px 10px rgba(245, 158, 11, 0.6); pointer-events: none;
+            animation: floatUpReward 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes mascotBounce {
@@ -146,10 +127,8 @@
         .mascot-jump { animation: mascotBounce 0.4s ease; }
 
         .streak-fire-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: linear-gradient(135deg, #f97316, #ef4444); color: white;
-            padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.8rem;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); font-family: 'Fredoka', sans-serif;
+            display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #f97316, #ef4444); color: white;
+            padding: 6px 14px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); font-family: 'Fredoka', sans-serif;
         }
 
         .trophy-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
@@ -158,20 +137,11 @@
         .trophy-icon-3d { font-size: 4.5rem; margin-bottom: 16px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15)); animation: floatEmoji 3s infinite ease-in-out; }
         @keyframes floatEmoji { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-        .login-page-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; z-index: 10000; background: var(--bg-body);
-        }
-
+        .login-page-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; z-index: 10000; background: var(--bg-body); }
         .login-left-brand {
-            flex: 1.2; 
-            background: linear-gradient(135deg, rgba(45, 22, 12, 0.90) 0%, rgba(20, 10, 5, 0.94) 100%), 
-                        url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover; background-position: center;
-            color: #ffffff; padding: 60px 70px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
-            position: relative; overflow-y: auto;
+            flex: 1.2; background: linear-gradient(135deg, rgba(45, 22, 12, 0.90) 0%, rgba(20, 10, 5, 0.94) 100%), url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center; color: #ffffff; padding: 60px 70px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; position: relative; overflow-y: auto;
         }
-
         .brand-badge-tag { background: rgba(217, 119, 6, 0.35); border: 1.5px solid var(--brand-amber); color: #fef08a; padding: 6px 18px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 24px; z-index: 2; }
         .brand-logo-img { width: 130px; height: 130px; border-radius: 32px; border: 4px solid var(--brand-yellow); object-fit: cover; margin-bottom: 24px; box-shadow: 0 14px 35px rgba(245, 158, 11, 0.4); z-index: 2; }
         .brand-slogan-title { font-family: 'Fredoka', sans-serif; font-size: 2.8rem; line-height: 1.25; color: #ffffff; margin-bottom: 16px; font-weight: 700; z-index: 2; }
@@ -179,18 +149,16 @@
         .brand-slogan-sub { font-size: 1rem; color: #e2d1c3; line-height: 1.6; font-weight: 600; max-width: 500px; z-index: 2; }
 
         .login-right-form { 
-            width: 480px; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; 
-            background-color: var(--card-bg);
-            background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b45309' fill-opacity='0.08'%3E%3Cpath d='M20 30c5-3 15-3 20 0v25c-5-3-15-3-20 0V30zm25 0c5-3 15-3 20 0v25c-5-3-15-3-20 0V30z'/%3E%3Cpath d='M95 20l10 10-25 25h-10v-10l25-25z'/%3E%3Cpath d='M30 90l4-8 4 8 8 4-8 4-4 8-4-8-8-4 8-4z'/%3E%3Cpath d='M90 85l20 8-20 8-20-8 20-8zm-15 14v10c0 5 7 8 15 8s15-3 15-8V99l-15 6-15-6z'/%3E%3C/g%3E%3C/svg%3E");
+            width: 480px; padding: 50px 60px; display: flex; flex-direction: column; justify-content: center; background-color: var(--card-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b45309' fill-opacity='0.08'%3E%3Cpath d='M20 30c5-3 15-3 20 0v25c-5-3-15-3-20 0V30zm25 0c5-3 15-3 20 0v25c-5-3-15-3-20 0V30z'/%3E%3C/g%3E%3C/svg%3E");
             background-repeat: repeat; box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2; overflow-y: auto; 
         }
-
-        .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: var(--brand-brown); margin-bottom: 6px; }
-        .form-sub-text { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 24px; font-weight: 600; }
+        .form-header-text { font-family: 'Fredoka', sans-serif; font-size: 2rem; color: var(--brand-brown); margin-bottom: 6px; }
+        .form-sub-text { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 20px; font-weight: 600; }
         .form-group { margin-bottom: 16px; text-align: left; }
-        .form-label { display: block; font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
-        .form-input { width: 100%; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: var(--brand-cream); }
-        .form-input:focus { border-color: var(--brand-amber); background: var(--card-bg); }
+        .form-label { display: block; font-size: 0.82rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
+        .form-input, .form-select { width: 100%; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: var(--brand-cream); }
+        .form-input:focus, .form-select:focus { border-color: var(--brand-amber); background: var(--card-bg); }
         .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 15px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; }
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 10, 5, 0.75); backdrop-filter: blur(8px); z-index: 5000; display: none; align-items: center; justify-content: center; padding: 20px; }
@@ -312,7 +280,6 @@
 
         .lov-stage-card { background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border: 2px solid #d8b4fe; border-radius: 32px; padding: 60px 32px; display: flex; align-items: center; justify-content: center; gap: 30px; box-shadow: 0 12px 30px rgba(168, 85, 247, 0.12); }
         .lov-emoji-display { font-size: 6rem; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); animation: floatEmoji 2.5s infinite ease-in-out; }
-
         .lov-clue-box { background: var(--card-bg); border: 1.5px solid var(--brand-amber); color: var(--brand-brown); padding: 12px 24px; border-radius: 20px; font-weight: 700; font-size: 0.95rem; text-align: center; margin: -15px auto 10px auto; max-width: 500px; position: relative; z-index: 5;}
         .lov-input-container { display: flex; flex-direction: column; gap: 16px; align-items: center; margin-top: 10px; }
         .lov-text-input { width: 100%; max-width: 600px; padding: 18px 24px; border-radius: 20px; border: 2px solid var(--brand-amber); font-size: 1.15rem; font-weight: 700; text-align: center; outline: none; background: var(--card-bg); color: var(--text-main); }
@@ -326,7 +293,7 @@
         .brand-logo-area { display: flex; align-items: center; gap: 12px; }
         .brand-logo { width: 44px; height: 44px; border-radius: 14px; object-fit: cover; border: 2px solid var(--brand-amber); }
         .brand-title { font-family: 'Fredoka', sans-serif; font-size: 1.35rem; color: #ffffff; font-weight: 700; line-height: 1.1; }
-        .brand-sub { font-size: 0.7rem; color: var(--brand-yellow); font-weight: 800; letter-spacing: 1px; }
+        .brand-sub { font-size: 0.68rem; color: var(--brand-yellow); font-weight: 800; letter-spacing: 0.8px; }
 
         .virtual-pet-stage-box { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 14px 12px; margin-bottom: 16px; text-align: center; }
         .virtual-pet-render-area { position: relative; width: 80px; height: 75px; margin: 0 auto 6px auto; display: flex; align-items: center; justify-content: center; }
@@ -490,28 +457,40 @@
     <div class="mobile-header-bar">
         <div style="display:flex; align-items:center; gap:10px;">
             <img src="./logo.jpg" alt="Logo" style="width:32px; height:32px; border-radius:8px; border:1px solid var(--brand-amber);" onerror="this.src='https://via.placeholder.com/32?text=OLP'">
-            <span style="font-family:'Fredoka', sans-serif; font-size:1.1rem; font-weight:700;">OmahLes TK Portal</span>
+            <span style="font-family:'Fredoka', sans-serif; font-size:1.1rem; font-weight:700;" id="mobileHeaderTitle">OmahLes Portal</span>
         </div>
         <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰ Menu</button>
     </div>
 
-    <!-- LOGIN SCREEN -->
+    <!-- LOGIN SCREEN WITH PACKAGE SELECTOR -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
-            <div class="brand-badge-tag">Omah Les Privat — Jenjang TK / PAUD</div>
+            <div class="brand-badge-tag">Omah Les Privat — Multi-Jenjang (TK & SD 1-6)</div>
             <img src="./logo.jpg" alt="Logo Omah Les Privat" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/130?text=OLP'">
-            <div class="brand-slogan-title">Belajar Ceria & Bermakna Bersama <span>Omah Les TK</span>.</div>
-            <div class="brand-slogan-sub">Portal belajar khusus siswa TK / PAUD berdasarkan Alur Tujuan Pembelajaran (ATP) Resmi Omah Les Privat (Kurikulum Merdeka, Montessori, & Deep Learning).</div>
+            <div class="brand-slogan-title">Belajar Cerdas & Bermakna Bersama <span>Omah Les</span>.</div>
+            <div class="brand-slogan-sub">Portal belajar interaktif berdasar Kurikulum Merdeka, Montessori, & Deep Learning untuk jenjang TK serta SD Kelas 1 sampai 6.</div>
         </div>
         <div class="login-right-form">
-            <div class="form-header-text">Login Siswa TK</div>
-            <div class="form-sub-text">Masukkan Email Orang Tua / Pembeli Paket</div>
+            <div class="form-header-text">Login Portal Belajar</div>
+            <div class="form-sub-text">Pilih jenjang & kelas sesuai paket yang dibeli</div>
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
                     <label class="form-label">Email Orang Tua / Pembeli</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="ortu.tk@gmail.com" required>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="ortu.siswa@gmail.com" required>
                 </div>
-                <button type="submit" class="btn-submit-login">Mulai Belajar TK 🚀</button>
+                <div class="form-group">
+                    <label class="form-label">Pilih Paket / Jenjang & Kelas</label>
+                    <select class="form-select" id="inputPackageSelect" onchange="onPackageSelectChange(this.value)">
+                        <option value="tk">Jenjang TK / PAUD (Fase Fondasi)</option>
+                        <option value="sd1">SD Kelas 1 (Fase A - Kurikulum Merdeka)</option>
+                        <option value="sd2">SD Kelas 2 (Fase A - Kurikulum Merdeka)</option>
+                        <option value="sd3">SD Kelas 3 (Fase B - Kurikulum Merdeka)</option>
+                        <option value="sd4">SD Kelas 4 (Fase B - Kurikulum Merdeka)</option>
+                        <option value="sd5">SD Kelas 5 (Fase C - Kurikulum Merdeka)</option>
+                        <option value="sd6">SD Kelas 6 (Fase C - Kurikulum Merdeka)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit-login">Mulai Belajar 🚀</button>
             </form>
         </div>
     </div>
@@ -520,10 +499,10 @@
     <div class="modal-overlay" id="wisdomModalOverlay">
         <div class="modal-card">
             <div class="wisdom-quote-icon">“</div>
-            <div class="wisdom-tag-title">Daily Wisdom — Omah Les TK</div>
-            <div class="wisdom-quote-text" id="wisdomQuoteText">"Pendidikan anak usia dini yang personal, menyenangkan, dan bermakna."</div>
+            <div class="wisdom-tag-title">Daily Wisdom — Omah Les Privat</div>
+            <div class="wisdom-quote-text" id="wisdomQuoteText">"Pendidikan yang personal, menyenangkan, dan bermakna."</div>
             <div class="wisdom-author" id="wisdomAuthorText">— Michelle Himmelda C, S.Psi</div>
-            <button class="btn-enter-wisdom" onclick="playClickSound(); closeWisdomModal()">MASUK KE PORTAL TK</button>
+            <button class="btn-enter-wisdom" onclick="playClickSound(); closeWisdomModal()">MASUK KE PORTAL</button>
         </div>
     </div>
 
@@ -531,23 +510,36 @@
     <div class="modal-overlay" id="settingsModalOverlay">
         <div class="modal-card" style="max-width: 440px; text-align: left;">
             <button class="btn-close-modal" style="color:var(--text-main); background:var(--brand-cream);" onclick="closeSettingsModal()">✕</button>
-            <div style="font-family:'Fredoka',sans-serif; font-size:1.6rem; color:var(--brand-brown); margin-bottom:4px;">⚙️ Pengaturan Portal TK</div>
-            <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Sesuaikan kenyamanan belajar anak</div>
+            <div style="font-family:'Fredoka',sans-serif; font-size:1.6rem; color:var(--brand-brown); margin-bottom:4px;">⚙️ Pengaturan Portal</div>
+            <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Ubah jenjang kelas atau kustomisasi tampilan</div>
             
+            <div style="margin-bottom: 14px;">
+                <label style="font-size:0.78rem; font-weight:800; color:var(--brand-brown); display:block; margin-bottom:6px;">📚 Ganti Jenjang / Kelas Aktif:</label>
+                <select id="settingsPackageSelect" class="form-select" style="padding: 10px 14px; font-size:0.88rem;" onchange="changePackageFromSettings(this.value)">
+                    <option value="tk">Jenjang TK / PAUD (Fase Fondasi)</option>
+                    <option value="sd1">SD Kelas 1</option>
+                    <option value="sd2">SD Kelas 2</option>
+                    <option value="sd3">SD Kelas 3</option>
+                    <option value="sd4">SD Kelas 4</option>
+                    <option value="sd5">SD Kelas 5</option>
+                    <option value="sd6">SD Kelas 6</option>
+                </select>
+            </div>
+
             <div style="margin-bottom: 12px;">
-                <label style="font-size:0.78rem; font-weight:800; color:var(--brand-brown); display:block; margin-bottom:6px;">🎨 Kustomisasi Tema Kartun:</label>
+                <label style="font-size:0.78rem; font-weight:800; color:var(--brand-brown); display:block; margin-bottom:6px;">🎨 Kustomisasi Tema:</label>
                 <div style="display: flex; gap: 6px;">
-                    <button class="admin-switch-btn active" onclick="setAppTheme('default')">Klasik</button>
-                    <button class="admin-switch-btn" onclick="setAppTheme('space')">🌌 Space</button>
-                    <button class="admin-switch-btn" onclick="setAppTheme('pastel')">🌿 Pastel</button>
+                    <button class="quiz-btn" style="padding: 6px 12px; font-size:0.78rem;" onclick="setAppTheme('default')">Klasik</button>
+                    <button class="quiz-btn" style="padding: 6px 12px; font-size:0.78rem;" onclick="setAppTheme('space')">🌌 Space</button>
+                    <button class="quiz-btn" style="padding: 6px 12px; font-size:0.78rem;" onclick="setAppTheme('pastel')">🌿 Pastel</button>
                 </div>
             </div>
 
             <div style="margin-bottom: 14px;">
                 <label style="font-size:0.78rem; font-weight:800; color:var(--brand-brown); display:block; margin-bottom:6px;">🎙️ Kecepatan Suara AI (Voice Speed):</label>
                 <select id="voiceSpeedSelect" class="form-input" style="padding: 8px 12px; font-size:0.85rem;" onchange="updateVoiceSpeed(this.value)">
-                    <option value="0.7" selected>Lambat (Santai untuk Anak TK)</option>
-                    <option value="0.9">Normal</option>
+                    <option value="0.7">Lambat (Santai)</option>
+                    <option value="0.9" selected>Normal</option>
                     <option value="1.2">Cepat</option>
                 </select>
             </div>
@@ -555,7 +547,6 @@
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" id="btnToggleBgmModal" onclick="toggleBgmMusic()">🎵 Musik BGM: OFF</button>
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleDarkMode()">🌓 Ganti Tema (Dark/Light)</button>
-                <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleDyslexiaFont()">🔤 Font Disleksia On/Off</button>
                 <button class="btn-refresh-app" style="background:var(--brand-cream); color:var(--brand-brown); border-color:var(--brand-amber);" onclick="playClickSound(); toggleFocusMode(); closeSettingsModal();">🎯 Focus Mode On/Off</button>
             </div>
             
@@ -567,7 +558,7 @@
     <div class="modal-overlay" id="parentPinModalOverlay">
         <div class="modal-card">
             <div style="font-size:3rem; margin-bottom:10px;">🔒</div>
-            <div class="cert-title">Parent Control Mode TK</div>
+            <div class="cert-title">Parent Control Mode</div>
             <div class="cert-sub" style="margin-bottom:16px;">Masukkan PIN Orang Tua (Default: 2026)</div>
             <div class="form-group">
                 <input type="password" class="form-input" id="inputParentPin" placeholder="Masukkan 4 digit PIN" style="text-align:center; font-size:1.2rem;" maxlength="4">
@@ -584,12 +575,12 @@
         <div class="cert-modal-card">
             <button class="btn-close-modal" style="color:var(--text-main); background:var(--brand-cream);" onclick="closeCertModal()">✕</button>
             <div style="font-size:3rem; margin-bottom:10px;">🎉🏆✨</div>
-            <div class="cert-title">Sertifikat Prestasi TK</div>
-            <div class="cert-sub">Omah Les Privat — Fase Fondasi TK</div>
+            <div class="cert-title">Sertifikat Prestasi Belajar</div>
+            <div class="cert-sub" id="certSubtitleModal">Omah Les Privat — Kurikulum Merdeka</div>
             <p style="font-size:0.9rem; color:var(--text-sub); margin-top:10px;">Diberikan dengan bangga kepada:</p>
-            <div class="cert-name" id="certStudentName">Nama Siswa TK</div>
+            <div class="cert-name" id="certStudentName">Nama Siswa</div>
             <p style="font-size:0.85rem; color:var(--text-main); font-weight:600; line-height:1.6; max-width:400px; margin:0 auto 20px auto;" id="certDescText">
-                Atas semangat luar biasa dalam menyelesaikan eksplorasi 6 Aspek Perkembangan dan Calistung Bertahap di Omah Les Privat.
+                Atas semangat luar biasa dalam menyelesaikan eksplorasi modul belajar dan latihan soal di Omah Les Privat.
             </p>
             <button class="btn-enter-wisdom" onclick="window.print()">🖨️ Cetak / Simpan Sertifikat</button>
         </div>
@@ -600,13 +591,13 @@
         <div class="sequence-modal-card">
             <div class="sequence-header">
                 <button class="btn-close-modal" onclick="closeSequenceModal()">✕</button>
-                <div class="sequence-header-tag" id="seqHeaderTag">ASPEK TK</div>
+                <div class="sequence-header-tag" id="seqHeaderTag">MATERI BELAJAR</div>
                 <div class="sequence-title" id="seqHeaderTitle">Judul</div>
                 <div class="sequence-sub" id="seqHeaderSub">Sub judul</div>
             </div>
             <div class="sequence-body" id="sequenceStepsContainer"></div>
             <div class="sequence-footer" style="padding:16px 32px; background:var(--brand-cream); display:flex; justify-content:space-between; align-items:center; gap:12px;">
-                <button class="tts-action-btn" onclick="downloadWorksheetPDF()">📥 Unduh Lembar Kerja TK (PDF)</button>
+                <button class="tts-action-btn" onclick="downloadWorksheetPDF()">📥 Unduh Lembar Kerja (PDF)</button>
                 <button class="btn-modal-close" onclick="closeSequenceModal()" style="padding:10px 20px; border-radius:12px; border:1px solid var(--card-border); background:var(--card-bg); color:var(--text-main); font-weight:800; cursor:pointer;">TUTUP</button>
             </div>
         </div>
@@ -616,13 +607,13 @@
     <div class="modal-overlay" id="insightModalOverlay">
         <div class="insight-modal-card">
             <button class="btn-close-modal" style="color:var(--text-main); background:var(--brand-cream);" onclick="closeInsightModal()">✕</button>
-            <span class="insight-tag" id="insTag">MATERI TK</span>
+            <span class="insight-tag" id="insTag">MATERI</span>
             <button class="tts-action-btn" id="btnTtsSpeak" onclick="toggleSpeakCurrentInsight(this)">🔊 Bacakan Materi</button>
             <h1 class="insight-title" id="insTitle">Judul Materi</h1>
             <div class="quote-box-insight" id="insQuote">"Quote"</div>
             <div class="insight-section-title">💡 TUJUAN PEMBELAJARAN (ATP)</div>
             <div class="insight-text-body" id="insContext">Konteks...</div>
-            <div class="insight-section-title">📌 PANDUAN PRAKTIK (MONTESSORI & DEEP LEARNING)</div>
+            <div class="insight-section-title">📌 PANDUAN BELAJAR (DEEP LEARNING)</div>
             <div class="insight-text-body" id="insLogic">Logika...</div>
             <div class="quiz-box">
                 <div class="quiz-question">
@@ -643,14 +634,14 @@
                     <div class="brand-logo-area">
                         <img src="./logo.jpg" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/44?text=OLP'">
                         <div>
-                            <div class="brand-title">OmahLes TK</div>
-                            <div class="brand-sub">FASE FONDASI PAUD</div>
+                            <div class="brand-title" id="sidebarBrandTitle">OmahLes Portal</div>
+                            <div class="brand-sub" id="sidebarBrandSub">PAUD / TK & SD 1-6</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="virtual-pet-stage-box">
-                    <div style="font-size:0.7rem; font-weight:800; color:var(--brand-yellow); text-transform:uppercase; margin-bottom:4px;">🐾 Maskot Peliharaan TK:</div>
+                    <div style="font-size:0.7rem; font-weight:800; color:var(--brand-yellow); text-transform:uppercase; margin-bottom:4px;" id="petLabelText">🐾 Maskot Peliharaan:</div>
                     <div class="virtual-pet-render-area" id="virtualPetDisplay" title="Maskot Peliharaan Virtual"></div>
                     <select class="pet-select" id="petSelector" onchange="changeVirtualPet(this.value)">
                         <option value="🐱">Kucing Meo</option>
@@ -672,7 +663,7 @@
                         <div class="stat-icon">🏆</div>
                         <div>
                             <div class="stat-val" id="userLevelBadgeDisplay">Lv.1</div>
-                            <div class="stat-lbl" id="userLevelNameDisplay">Murid Cilik</div>
+                            <div class="stat-lbl" id="userLevelNameDisplay">Murid Cerdas</div>
                         </div>
                     </div>
                 </div>
@@ -683,51 +674,46 @@
                         <span class="mini-badge-item" id="miniBadge1" title="Langkah Pertama">🌱</span>
                         <span class="mini-badge-item" id="miniBadge2" title="Bintang Cilik">🌟</span>
                         <span class="mini-badge-item unlocked" title="Streak Master">🔥</span>
-                        <span class="mini-badge-item" id="miniBadge4" title="Master Tk">🎓</span>
+                        <span class="mini-badge-item" id="miniBadge4" title="Master Akademik">🎓</span>
                     </div>
                 </div>
 
-                <div class="menu-group-label">MENU UTAMA TK</div>
+                <div class="menu-group-label">MENU UTAMA PORTAL</div>
                 <ul class="menu-list">
-                    <li class="menu-item active" id="menuDashboard"><a onclick="playClickSound(); switchSection('dashboard')"><span>📊</span> <span>Dashboard TK</span></a></li>
-                    <li class="menu-item" id="menuRoadmap"><a onclick="playClickSound(); switchSection('roadmap')"><span>🗺️</span> <span>Kurikulum & ATP TK</span></a></li>
+                    <li class="menu-item active" id="menuDashboard"><a onclick="playClickSound(); switchSection('dashboard')"><span>📊</span> <span>Dashboard Utama</span></a></li>
+                    <li class="menu-item" id="menuRoadmap"><a onclick="playClickSound(); switchSection('roadmap')"><span>🗺️</span> <span>Kurikulum & ATP Kelas</span></a></li>
                     <li class="menu-item" id="menuLeaderboard"><a onclick="playClickSound(); switchSection('leaderboard')"><span>🏆</span> <span>Papan Bintang</span></a></li>
-                    <li class="menu-item" id="menuProfile"><a onclick="playClickSound(); switchSection('profile')"><span>👤</span> <span>Rapor TK (Orang Tua)</span></a></li>
+                    <li class="menu-item" id="menuProfile"><a onclick="playClickSound(); switchSection('profile')"><span>👤</span> <span>Rapor Belajar (Ortu)</span></a></li>
                     <li class="menu-item" id="menuTrophy"><a onclick="playClickSound(); switchSection('trophy')"><span>🏆</span> <span>Ruang Piala (3D)</span></a></li>
                     <li class="menu-item" id="menuBadges"><a onclick="playClickSound(); switchSection('badges')"><span>🎖️</span> <span>Lencana Prestasi</span></a></li>
                 </ul>
 
-                <div class="menu-group-label">6 ASPEK PERKEMBANGAN & CALISTUNG</div>
-                <ul class="menu-list">
-                    <li class="menu-item" id="menuAspek1"><a onclick="playClickSound(); switchSection('aspek1')"><span>🙏</span> <span>Nilai Agama & Moral</span></a></li>
-                    <li class="menu-item" id="menuAspek2"><a onclick="playClickSound(); switchSection('aspek2')"><span>🏃</span> <span>Fisik & Motorik</span></a></li>
-                    <li class="menu-item" id="menuAspek3"><a onclick="playClickSound(); switchSection('aspek3')"><span>🧩</span> <span>Kognitif & Berhitung</span></a></li>
-                    <li class="menu-item" id="menuAspek4"><a onclick="playClickSound(); switchSection('aspek4')"><span>📖</span> <span>Bahasa & Calistung</span></a></li>
-                    <li class="menu-item" id="menuAspek5"><a onclick="playClickSound(); switchSection('aspek5')"><span>🤝</span> <span>Sosial-Emosional</span></a></li>
-                    <li class="menu-item" id="menuAspek6"><a onclick="playClickSound(); switchSection('aspek6')"><span>🎨</span> <span>Seni & Kreatif</span></a></li>
+                <div class="menu-group-label" id="subjectGroupLabel">MATA PELAJARAN / ASPEK</div>
+                <ul class="menu-list" id="sidebarSubjectMenuList">
+                    <!-- Dinamis terisi berdasarkan Jenjang TK atau SD -->
                 </ul>
 
                 <div class="menu-group-label">FITUR & ALAT BELAJAR</div>
                 <ul class="menu-list">
                     <li class="menu-item" id="menuWorksheets"><a onclick="playClickSound(); switchSection('worksheets')"><span>📥</span> <span>Pusat Lembar Kerja PDF</span></a></li>
-                    <li class="menu-item" id="menuExam"><a onclick="playClickSound(); switchSection('exam')"><span>⏱️</span> <span>Kuis Tantangan TK</span></a></li>
-                    <li class="menu-item" id="menuAitutor"><a onclick="playClickSound(); switchSection('aitutor')"><span>🎙️</span> <span>Kak Omah AI Tutor TK</span></a></li>
-                    <li class="menu-item" id="menuGames"><a onclick="playClickSound(); switchSection('games')"><span>🎮</span> <span>Game Edukasi TK</span></a></li>
-                    <li class="menu-item" id="menuFlashcards"><a onclick="playClickSound(); switchSection('flashcards')"><span>🃏</span> <span>Flashcards TK</span></a></li>
+                    <li class="menu-item" id="menuExam"><a onclick="playClickSound(); switchSection('exam')"><span>⏱️</span> <span>Kuis Tantangan / Ujian</span></a></li>
+                    <li class="menu-item" id="menuAitutor"><a onclick="playClickSound(); switchSection('aitutor')"><span>🎙️</span> <span>Kak Omah AI Tutor</span></a></li>
+                    <li class="menu-item" id="menuGames"><a onclick="playClickSound(); switchSection('games')"><span>🎮</span> <span>Game Edukasi Interaktif</span></a></li>
+                    <li class="menu-item" id="menuFlashcards"><a onclick="playClickSound(); switchSection('flashcards')"><span>🃏</span> <span>Flashcards Hafalan</span></a></li>
                 </ul>
             </div>
 
             <div>
                 <div class="sidebar-bottom-controls">
-                    <button class="btn-refresh-app" onclick="playClickSound(); openSettingsModal()">⚙️ Pengaturan Portal</button>
+                    <button class="btn-refresh-app" onclick="playClickSound(); openSettingsModal()">⚙️ Pengaturan & Ganti Kelas</button>
                     <button class="btn-refresh-app" style="background:rgba(217,119,6,0.2); border-color:var(--brand-amber); color:#fef08a;" onclick="openParentPinModal()">🔒 Mode Orang Tua</button>
                 </div>
                 <div class="profile-card">
                     <div class="profile-left">
                         <div class="avatar-box" id="sidebarAvatarIcon">🐰</div>
                         <div class="profile-info">
-                            <div class="profile-name" id="userNameDisplay">Siswa TK</div>
-                            <div class="profile-badge" id="userLevelDisplay">Fase Fondasi TK</div>
+                            <div class="profile-name" id="userNameDisplay">Siswa Omah Les</div>
+                            <div class="profile-badge" id="userLevelDisplay">Paket Aktif</div>
                         </div>
                     </div>
                     <button class="btn-switch-user" onclick="playClickSound(); openLoginForm()">Switch</button>
@@ -738,19 +724,19 @@
         <!-- MAIN CONTENT AREA -->
         <main class="content-area" id="mainContentAreaContainer">
             <div class="roadmap-banner" id="topBannerSection">
-                <div class="banner-tag" id="bannerTagText">🎓 Fase Fondasi TK</div>
-                <div class="banner-title" id="bannerWelcomeTitle">Kurikulum & ATP TK</div>
+                <div class="banner-tag" id="bannerTagText">🎓 Kurikulum Merdeka</div>
+                <div class="banner-title" id="bannerWelcomeTitle">Portal Belajar Omah Les</div>
                 <div class="banner-sub" id="bannerWelcomeSub">Pembelajaran mindful, meaningful, dan joyful sesuai kurikulum resmi Omah Les Privat.</div>
             </div>
 
             <div class="filter-header-bar" id="filterHeaderBar">
                 <div class="mastery-badge-box">
                     <div>
-                        <div class="mastery-lbl">Mastery Level TK</div>
+                        <div class="mastery-lbl">Mastery Level</div>
                         <div class="mastery-val" id="masteryPercentDisplay">0% Selesai</div>
                     </div>
                 </div>
-                <div class="active-level-indicator" id="activeLevelText">Fase Fondasi: TK / PAUD Resmi</div>
+                <div class="active-level-indicator" id="activeLevelText">Paket: Aktif</div>
             </div>
 
             <div id="dynamicMainContentArea"></div>
@@ -779,12 +765,12 @@
             } catch(e) {}
         }
         function playClickSound() { playTone(500, 'sine', 0.06); }
-        function playSuccessSound(targetElementOrX, targetElementOrY) { 
+        function playSuccessSound(x, y) { 
             setTimeout(() => playTone(523.25, 'triangle', 0.1), 0);
             setTimeout(() => playTone(659.25, 'triangle', 0.1), 100);
             setTimeout(() => playTone(783.99, 'triangle', 0.2), 200);
             triggerMascotJump();
-            triggerFloatingStar(targetElementOrX, targetElementOrY);
+            triggerFloatingStar(x, y);
         }
         function playErrorSound() { playTone(180, 'sawtooth', 0.22); }
         function playFanfareSound() {
@@ -852,7 +838,7 @@
             playClickSound();
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('omahles_tk_dark_mode', isDark ? 'true' : 'false');
+            localStorage.setItem('omahles_portal_dark_mode', isDark ? 'true' : 'false');
         }
 
         function setAppTheme(themeName) {
@@ -860,14 +846,14 @@
             document.body.classList.remove('theme-space', 'theme-pastel');
             if (themeName === 'space') document.body.classList.add('theme-space');
             if (themeName === 'pastel') document.body.classList.add('theme-pastel');
-            localStorage.setItem('omahles_tk_app_theme', themeName);
+            localStorage.setItem('omahles_portal_app_theme', themeName);
         }
 
-        let currentVoiceSpeed = parseFloat(localStorage.getItem('omahles_tk_voice_speed') || '0.7');
+        let currentVoiceSpeed = parseFloat(localStorage.getItem('omahles_portal_voice_speed') || '0.9');
 
         function updateVoiceSpeed(val) {
             currentVoiceSpeed = parseFloat(val);
-            localStorage.setItem('omahles_tk_voice_speed', currentVoiceSpeed);
+            localStorage.setItem('omahles_portal_voice_speed', currentVoiceSpeed);
             playClickSound();
         }
 
@@ -875,7 +861,7 @@
             playClickSound();
             document.body.classList.toggle('dyslexia-mode');
             const isDys = document.body.classList.contains('dyslexia-mode');
-            localStorage.setItem('omahles_tk_dyslexia_mode', isDys ? 'true' : 'false');
+            localStorage.setItem('omahles_portal_dyslexia_mode', isDys ? 'true' : 'false');
         }
 
         function toggleFocusMode() {
@@ -904,11 +890,10 @@
         function openSettingsModal() {
             playClickSound();
             document.getElementById('voiceSpeedSelect').value = currentVoiceSpeed;
+            document.getElementById('settingsPackageSelect').value = currentPackage;
             document.getElementById('settingsModalOverlay').classList.add('active');
         }
-        function closeSettingsModal() {
-            document.getElementById('settingsModalOverlay').classList.remove('active');
-        }
+        function closeSettingsModal() { document.getElementById('settingsModalOverlay').classList.remove('active'); }
 
         let activeSpeakingButton = null;
         function toggleSpeech(textString, btnElement) {
@@ -937,17 +922,17 @@
             document.getElementById('appSidebar').classList.toggle('mobile-open');
         }
 
-        let currentPetHead = localStorage.getItem('omahles_tk_pet_head') || '';
-        let currentPetEyes = localStorage.getItem('omahles_tk_pet_eyes') || '';
+        let currentPetHead = localStorage.getItem('omahles_portal_pet_head') || '';
+        let currentPetEyes = localStorage.getItem('omahles_portal_pet_eyes') || '';
 
         function changeVirtualPet(petEmoji) {
             playClickSound();
-            localStorage.setItem('omahles_tk_virtual_pet', petEmoji);
+            localStorage.setItem('omahles_portal_virtual_pet', petEmoji);
             updatePetDisplayUI();
         }
 
         function updatePetDisplayUI() {
-            const petEmoji = localStorage.getItem('omahles_tk_virtual_pet') || '🐰';
+            const petEmoji = localStorage.getItem('omahles_portal_virtual_pet') || '🐰';
             const headAcc = currentPetHead ? `<div class="pet-overlay-head">${currentPetHead}</div>` : '';
             const eyesAcc = currentPetEyes ? `<div class="pet-overlay-eyes">${currentPetEyes}</div>` : '';
             
@@ -981,10 +966,10 @@
 
             if (type === 'head') {
                 currentPetHead = symbol;
-                localStorage.setItem('omahles_tk_pet_head', currentPetHead);
+                localStorage.setItem('omahles_portal_pet_head', currentPetHead);
             } else if (type === 'eyes') {
                 currentPetEyes = symbol;
-                localStorage.setItem('omahles_tk_pet_eyes', currentPetEyes);
+                localStorage.setItem('omahles_portal_pet_eyes', currentPetEyes);
             }
 
             updatePetDisplayUI();
@@ -995,115 +980,251 @@
         }
 
         const REGISTERED_PARENT_DATABASE = {
-            'faarimuhammad25@gmail.com': { name: 'Muhammad Faari Akbar (Admin)', isAdmin: true },
-            'michellehimmelda@gmail.com': { name: 'Michelle Himmelda C, S.Psi (Founder)', isAdmin: true },
-            'siswa.tk@gmail.com': { name: 'Ananda TK Ceria', isAdmin: false }
+            'faarimuhammad25@gmail.com': { name: 'Muhammad Faari Akbar (Admin)', isAdmin: true, defaultPkg: 'sd4' },
+            'michellehimmelda@gmail.com': { name: 'Michelle Himmelda C, S.Psi (Founder)', isAdmin: true, defaultPkg: 'tk' },
+            'siswa.tk@gmail.com': { name: 'Ananda TK Ceria', isAdmin: false, defaultPkg: 'tk' },
+            'siswa.sd@gmail.com': { name: 'Ananda SD Hebat', isAdmin: false, defaultPkg: 'sd4' }
         };
 
         const DAILY_WISDOM_LIST = [
-            { quote: "Pendidikan anak usia dini adalah fondasi masa depan yang penuh warna dan kegembiraan.", author: "Michelle Himmelda C, S.Psi" },
-            { quote: "Belajar yang personal, menyenangkan, dan bermakna (Mindful, Meaningful, Joyful).", author: "Omah Les Privat TK" },
-            { quote: "Setiap anak adalah bintang yang bersinar dengan temponya masing-masing.", author: "Montessori Philosophy" }
+            { quote: "Pendidikan adalah senjata paling ampuh untuk mengubah dunia.", author: "Nelson Mandela" },
+            { quote: "Belajar personal, menyenangkan, dan bermakna (Mindful, Meaningful, Joyful).", author: "Michelle Himmelda C, S.Psi" },
+            { quote: "Setiap anak adalah bintang yang bersinar dengan temponya masing-masing.", author: "Omah Les Privat" }
         ];
 
-        const flashcardsDatabaseTK = [
-            { q: "Ciptaan Tuhan (Alam & Diri Sendiri)", a: "Mengenal ciptaan Tuhan & doa harian" }, 
-            { q: "Motorik Halus: Memegang Pensil", a: "Menjiplak garis, meronce manik, & pra-menulis" },
-            { q: "Warna Primer & Bentuk Dasar", a: "Lingkaran, Segitiga, Kotak, Merah, Kuning, Biru" },
-            { q: "Literasi Awal: Huruf & Bunyi", a: "Mengenal seluruh bentuk dan bunyi huruf" },
-            { q: "Calistung Dasar: Angka 1-10", a: "Korespondensi satu-satu menghitung benda konkret" },
-            { q: "Merangkai Suku Kata Terbuka", a: "Ba - Bi - Bu - Be - Bo" }
-        ];
+        /* --- DATABASE KONTEN MULTI-JENJANG (TK & SD 1-6) --- */
+        let currentPackage = localStorage.getItem('omahles_portal_package') || 'tk';
+
+        const packageMeta = {
+            'tk': { title: 'Jenjang TK / PAUD', sub: 'Fase Fondasi (6 Aspek Perkembangan & Calistung)', badge: '🌱 Fase Fondasi TK' },
+            'sd1': { title: 'SD Kelas 1', sub: 'Fase A Kurikulum Merdeka (Literasi & Numerasi Dasar)', badge: '🎒 SD Kelas 1' },
+            'sd2': { title: 'SD Kelas 2', sub: 'Fase A Kurikulum Merdeka (Matematika & Bahasa Indonesia)', badge: '🎒 SD Kelas 2' },
+            'sd3': { title: 'SD Kelas 3', sub: 'Fase B Kurikulum Merdeka (IPAS & Matematika Lanjutan)', badge: '📚 SD Kelas 3' },
+            'sd4': { title: 'SD Kelas 4', sub: 'Fase B Kurikulum Merdeka (IPAS, Matematika, & Bahasa)', badge: '📚 SD Kelas 4' },
+            'sd5': { title: 'SD Kelas 5', sub: 'Fase C Kurikulum Merdeka (Sains, Matematika, & Sosial)', badge: '🔬 SD Kelas 5' },
+            'sd6': { title: 'SD Kelas 6', sub: 'Fase C Kurikulum Merdeka (Persiapan Kelulusan & Ujian)', badge: '🎓 SD Kelas 6' }
+        };
+
+        /* Master Database Konten Berdasarkan Paket */
+        const contentDatabaseByPackage = {
+            'tk': {
+                subjects: [
+                    { key: 'aspek1', icon: '🙏', label: 'Nilai Agama & Moral' },
+                    { key: 'aspek2', icon: '🏃', label: 'Fisik & Motorik' },
+                    { key: 'aspek3', icon: '🧩', label: 'Kognitif & Berhitung' },
+                    { key: 'aspek4', icon: '📖', label: 'Bahasa & Calistung' },
+                    { key: 'aspek5', icon: '🤝', label: 'Sosial-Emosional' },
+                    { key: 'aspek6', icon: '🎨', label: 'Seni & Kreatif' }
+                ],
+                roadmap: [
+                    { tierTag: 'Fase Fondasi TK', title: 'Aspek 1: Nilai Agama & Moral', desc: 'Mengenal ciptaan Tuhan, doa harian, dan perbuatan baik.', progress: '0/3', steps: [{ icon: '🙏', tag: 'TAHAP DASAR & MAHIR', title: 'Ciptaan Tuhan & Doa Harian', sub: 'Mengenal alam & doa pendek.', quote: '"Bersyukur pada Tuhan Yang Maha Esa."', context: 'Anak belajar mengenal keberadaan Tuhan lewat ciptaan-Nya (alam, diri sendiri) dan mulai meniru gerakan ibadah sederhana.', logic: 'Melafalkan doa harian pendek, membedakan perbuatan baik dan buruk dalam contoh kehidupan sehari-hari.', tips: 'Bimbing dengan teladan lembut dan pujian positif.', quiz: { q: 'Siapa pencipta alam semesta dan diri kita?', opts: ['Tuhan Yang Maha Esa', 'Manusia'], ans: 0 } }] },
+                    { tierTag: 'Fase Fondasi TK', title: 'Aspek 2: Fisik & Motorik', desc: 'Gerak kasar dan motorik halus matang untuk pra-menulis.', progress: '0/3', steps: [{ icon: '🏃', tag: 'TAHAP MENENGAH', title: 'Motorik Halus & Kasar', sub: 'Memegang pensil & melompat.', quote: '"Terampil bergerak dan lentur berkarya."', context: 'Melakukan gerak kasar terkoordinasi dan latihan motorik halus matang untuk pra-menulis.', logic: 'Memegang pensil dengan benar, menjiplak bentuk kompleks, meronce manik besar, serta melempar dan menangkap bola.', tips: 'Gunakan krayon besar dan media bermain konkret.', quiz: { q: 'Alat tulis dan pensil sebaiknya dipegang dengan?', opts: ['Jari tangan dengan benar', 'Kaki'], ans: 0 } }] },
+                    { tierTag: 'Fase Fondasi TK', title: 'Aspek 3: Kognitif & Berhitung', desc: 'Bentuk dasar, warna primer, dan hitung benda 1-10.', progress: '0/3', steps: [{ icon: '🧩', tag: 'TAHAP MAHIR', title: 'Bentuk, Warna, & Angka 1-10', sub: 'Lingkaran, Kotak, Angka.', quote: '"Pintar berpikir dan memecahkan masalah."', context: 'Mengenal bentuk dasar (lingkaran, segitiga, kotak), warna primer, serta mengelompokkan benda.', logic: 'Mengenal simbol angka 1-10, menghitung benda dengan korespondensi satu-satu, dan membandingkan jumlah.', tips: 'Gunakan balok geometri dan benda nyata di sekitar anak.', quiz: { q: 'Bentuk bola atau roda sepeda adalah contoh dari?', opts: ['Lingkaran', 'Persegi'], ans: 0 } }] },
+                    { tierTag: 'Fase Fondasi TK', title: 'Aspek 4: Bahasa & Calistung Awal', desc: 'Menyimak cerita dan merangkai suku kata ba-bi-bu.', progress: '0/3', steps: [{ icon: '📖', tag: 'TAHAP LANJUTAN', title: 'Literasi Awal & Suku Kata Ba-Bi-Bu', sub: 'Mengeja kata sederhana.', quote: '"Gemar menyimak cerita dan membaca."', context: 'Menyimak cerita pendek, menjawab pertanyaan siapa, apa, mengapa, serta mengenal huruf dan bunyinya.', logic: 'Merangkai huruf jadi suku kata terbuka (ba-bi-bu) dan membaca kata sederhana dengan bimbingan gambar.', tips: 'Ajak anak membaca buku bergambar bersama setiap hari.', quiz: { q: 'Huruf B dirangkai dengan A dibaca?', opts: ['Ba', 'Bu'], ans: 0 } }] },
+                    { tierTag: 'Fase Fondasi TK', title: 'Aspek 5 & 6: Sosial-Emosional & Seni', desc: 'Kemandirian, empati, dan berekspresi kreatif.', progress: '0/3', steps: [{ icon: '🎨', tag: 'TAHAP KREASI', title: 'Kemandirian, Empati, & Seni', sub: 'Omah Ceria & Peduli.', quote: '"Kreatif, mandiri, dan penuh empati."', context: 'Sosialisasi, berbagi dengan teman, mengenali emosi dasar (senang, sedih, marah), dan berekspresi seni.', logic: 'Menggambar bentuk, bernyanyi dengan gerakan, serta menceritakan makna karya seninya sendiri dengan percaya diri.', tips: 'Puji setiap proses kreatif anak tanpa membandingkan.', quiz: { q: 'Jika tidak sengaja berbuat salah kepada teman, kita mengucapkan?', opts: ['Maaf', 'Terima kasih'], ans: 0 } }] }
+                ],
+                flashcards: [
+                    { q: "Ciptaan Tuhan & Doa Harian", a: "Mengenal alam & doa pendek sehari-hari" },
+                    { q: "Motorik Halus: Memegang Pensil", a: "Menjiplak garis, meronce manik, & pra-menulis" },
+                    { q: "Warna Primer & Bentuk Dasar", a: "Lingkaran, Segitiga, Kotak, Merah, Kuning, Biru" },
+                    { q: "Literasi Awal: Huruf & Bunyi", a: "Mengenal seluruh bentuk dan bunyi huruf" },
+                    { q: "Berhitung Angka 1-10", a: "Korespondensi satu-satu menghitung benda konkret" }
+                ],
+                exams: [
+                    { q: "Siapa pencipta alam semesta dan seluruh makhluk hidup?", opts: ["Tuhan Yang Maha Esa", "Manusia"], ans: 0 },
+                    { q: "Alat tulis atau pensil sebaiknya dipegang menggunakan?", opts: ["Jari tangan dengan benar", "Kaki"], ans: 0 },
+                    { q: "Bentuk roda sepeda atau bola adalah contoh dari?", opts: ["Lingkaran", "Persegi"], ans: 0 },
+                    { q: "Huruf B jika dirangkai dengan huruf A akan dibaca?", opts: ["Ba", "Bu"], ans: 0 },
+                    { q: "Jika tidak sengaja melakukan kesalahan, kita harus mengucapkan?", opts: ["Maaf", "Terima kasih"], ans: 0 }
+                ]
+            },
+            'sd1': {
+                subjects: [
+                    { key: 'mat1', icon: '🔢', label: 'Matematika Kelas 1' },
+                    { key: 'bindo1', icon: '📖', label: 'Bahasa Indonesia' },
+                    { key: 'pancasila1', icon: '🦅', label: 'Pancasila & PPKn' },
+                    { key: 'seni1', icon: '🎨', label: 'Seni Rupa & Musik' }
+                ],
+                roadmap: [
+                    { tierTag: 'SD Kelas 1 (Fase A)', title: 'Matematika: Bilangan sampai 20', desc: 'Mengenal bilangan cacah dan operasi hitung dasar.', progress: '0/3', steps: [{ icon: '🔢', tag: 'KURIKULUM MERDEKA', title: 'Menghitung & Menulis Bilangan 1-20', sub: 'Mengenal angka dan nilai tempat.', quote: '"Matematika itu seru dan mudah dipahami."', context: 'Siswa belajar membaca dan menulis lambang bilangan 1 sampai 20 serta menggunakannya dalam kehidupan sehari-hari.', logic: 'Penjumlahan dan pengurangan bersusun ke bawah dengan hasil maksimal 20 menggunakan benda konkret.', tips: 'Gunakan lidi atau kelereng sebagai alat bantu hitung.', quiz: { q: 'Hasil dari 12 ditambah 5 adalah?', opts: ['17', '15'], ans: 0 } }] },
+                    { tierTag: 'SD Kelas 1 (Fase A)', title: 'Bahasa Indonesia: Bunyi Huruf & Suku Kata', desc: 'Lancar membaca kata sederhana dan memahami cerita.', progress: '0/3', steps: [{ icon: '📖', tag: 'LITERASI DASAR', title: 'Mengenal Suku Kata dan Kata Baru', sub: 'Membaca lancar.', quote: '"Membaca adalah jendela dunia."', context: 'Membedakan bunyi huruf vokal dan konsonan serta merangkainya menjadi kata bermakna.', logic: 'Membaca kalimat pendek yang terdiri dari 3-4 kata dengan intonasi yang tepat.', tips: 'Sering membaca nyaring bersama anak setiap hari.', quiz: { q: 'Buku cerita dibaca dengan cara?', opts: ['Dilihat dan dibaca tulisannya', 'Dilempar'], ans: 0 } }] }
+                ],
+                flashcards: [
+                    { q: "Penjumlahan 1-20", a: "Operasi hitung dasar bilangan cacah" },
+                    { q: "Suku Kata & Membaca Lancar", a: "Merangkai konsonan dan vokal menjadi kata" },
+                    { q: "Pancasila Sila ke-1", a: "Ketuhanan Yang Maha Esa (Simbol Bintang)" }
+                ],
+                exams: [
+                    { q: "Berapa hasil dari 8 ditambah 7?", opts: ["15", "14"], ans: 0 },
+                    { q: "Huruf vokal dalam abjad bahasa Indonesia adalah?", opts: ["A, I, U, E, O", "B, C, D"], ans: 0 },
+                    { q: "Lambang sila pertama Pancasila adalah?", opts: ["Bintang", "Pohon Beringin"], ans: 0 }
+                ]
+            },
+            'sd2': {
+                subjects: [
+                    { key: 'mat2', icon: '📐', label: 'Matematika Kelas 2' },
+                    { key: 'bindo2', icon: '📚', label: 'Bahasa Indonesia' },
+                    { key: 'ipas2', icon: '🌱', label: 'IPAS & Lingkungan' }
+                ],
+                roadmap: [
+                    { tierTag: 'SD Kelas 2 (Fase A)', title: 'Matematika: Bilangan sampai 500', desc: 'Nilai tempat ratusan, puluhan, dan satuan.', progress: '0/3', steps: [{ icon: '📐', tag: 'NILAI TEMPAT', title: 'Bilangan Cacah Sampai 500', sub: 'Ratusan, puluhan, satuan.', quote: '"Matematika tingkat lanjut yang menyenangkan."', context: 'Mengenal nilai tempat ratusan pada bilangan cacah sampai 500 dan membandingkan nilainya.', logic: 'Menyelesaikan soal cerita penjumlahan dan pengurangan bilangan tiga angka.', tips: 'Gunakan kartu angka ratusan.', quiz: { q: 'Pada angka 345, angka 4 menempati nilai tempat?', opts: ['Puluhan', 'Ratusan'], ans: 0 } }] }
+                ],
+                flashcards: [
+                    { q: "Nilai Tempat Ratusan", a: "Menentukan ratusan, puluhan, dan satuan" },
+                    { q: "Perkalian Dasar 1-5", a: "Konsep penjumlahan berulang" }
+                ],
+                exams: [
+                    { q: "Angka 2 pada bilangan 258 menempati nilai tempat?", opts: ["Ratusan", "Puluhan"], ans: 0 },
+                    { q: "Hasil dari 250 ditambah 150 adalah?", opts: ["400", "350"], ans: 0 }
+                ]
+            },
+            'sd3': {
+                subjects: [
+                    { key: 'mat3', icon: '✖️', label: 'Matematika Kelas 3' },
+                    { key: 'ipas3', icon: '🔬', label: 'IPAS (Sains & Sosial)' },
+                    { key: 'bindo3', icon: '📝', label: 'Bahasa Indonesia' }
+                ],
+                roadmap: [
+                    { tierTag: 'SD Kelas 3 (Fase B)', title: 'Matematika: Perkalian & Pembagian', desc: 'Konsep perkalian sebagai penjumlahan berulang.', progress: '0/3', steps: [{ icon: '✖️', tag: 'PERKALIAN', title: 'Operasi Hitung Perkalian & Pembagian', sub: 'Tabel perkalian.', quote: '"Hafal dan paham perkalian dengan mudah."', context: 'Memahami konsep perkalian dan pembagian bilangan cacah sampai 100.', logic: 'Menyelesaikan perkalian bersusun dan soal cerita sehari-hari.', tips: 'Gunakan metode tabel perkalian interaktif.', quiz: { q: 'Berapa hasil dari 7 dikali 8?', opts: ["56", "54"], ans: 0 } }] }
+                ],
+                flashcards: [
+                    { q: "Perkalian 1-10", a: "Penjumlahan berulang cepat" },
+                    { q: "Wujud Benda", a: "Padat, cair, dan gas" }
+                ],
+                exams: [
+                    { q: "Hasil dari 9 dikali 9 adalah?", opts: ["81", "72"], ans: 0 },
+                    { q: "Benda yang bentuk dan volumenya tetap adalah benda?", opts: ["Padat", "Cair"], ans: 0 }
+                ]
+            },
+            'sd4': {
+                subjects: [
+                    { key: 'mat4', icon: '📊', label: 'Matematika Kelas 4' },
+                    { key: 'ipas4', icon: '⚡', label: 'IPAS (Energi & Gaya)' },
+                    { key: 'bindo4', icon: '📖', label: 'Bahasa Indonesia' },
+                    { key: 'pancasila4', icon: '🇮🇩', label: 'PPKn' }
+                ],
+                roadmap: [
+                    { tierTag: 'SD Kelas 4 (Fase B)', title: 'Matematika: Pecahan & Kelipatan', desc: 'Pecahan senilai, KPK, dan FPB.', progress: '0/3', steps: [{ icon: '📊', tag: 'PECAHAN', title: 'Pecahan Senilai & Operasi Hitung', sub: 'Mengenal pembilang & penyebut.', quote: '"Pecahan itu seperti potongan kue."', context: 'Mengenal pecahan senilai, membandingkan pecahan, serta menentukan KPK dan FPB.', logic: 'Menyelesaikan penjumlahan dan pengurangan pecahan berpenyebut sama.', tips: 'Gunakan ilustrasi gambar lingkaran kue.', quiz: { q: 'Pecahan 2/4 senilai dengan pecahan?', opts: ['1/2', '3/4'], ans: 0 } }] },
+                    { tierTag: 'SD Kelas 4 (Fase B)', title: 'IPAS: Energi & Perubahannya', desc: 'Sumber energi, gaya otot, dan gaya magnet.', progress: '0/3', steps: [{ icon: '⚡', tag: 'SAINS', title: 'Gaya dan Energi di Sekitar Kita', sub: 'Energi alternatif.', quote: '"Energi tidak dapat diciptakan dan dimusnahkan."', context: 'Mempelajari macam-macam gaya (otot, gesek, magnet, gravitasi) dan perubahan bentuk energi.', logic: 'Mengidentifikasi pemanfaatan energi surya, angin, dan air dalam kehidupan sehari-hari.', tips: 'Lakukan percobaan sederhana magnet.', quiz: { q: 'Benda yang dapat ditarik oleh magnet terbuat dari?', opts: ['Besi / Logam', 'Plastik'], ans: 0 } }] }
+                ],
+                flashcards: [
+                    { q: "Pecahan Senilai", a: "Pecahan dengan nilai yang sama (misal 1/2 dan 2/4)" },
+                    { q: "Macam-Macam Gaya", a: "Gaya otot, gaya gesek, gaya magnet, gaya gravitasi" },
+                    { q: "KPK & FPB", a: "Kelipatan Persekutuan Terkecil & Faktor Persekutuan Terbesar" }
+                ],
+                exams: [
+                    { q: "Pecahan 3/6 jika disederhanakan menjadi?", opts: ["1/2", "2/3"], ans: 0 },
+                    { q: "Gaya yang timbul karena sentuhan fisik disebut gaya?", opts: ["Gaya otot", "Gaya magnet"], ans: 0 },
+                    { q: "KPK dari 4 dan 6 adalah?", opts: ["12", "24"], ans: 0 }
+                ]
+            },
+            'sd5': {
+                subjects: [
+                    { key: 'mat5', icon: '📐', label: 'Matematika Kelas 5' },
+                    { key: 'sains5', icon: '🧬', label: 'Sains / IPAS Kelas 5' },
+                    { key: 'bindo5', icon: '📝', label: 'Bahasa Indonesia' }
+                ],
+                roadmap: [
+                    { tierTag: 'SD Kelas 5 (Fase C)', title: 'Matematika: Volume Bangun Ruang', desc: 'Kubus, balok, dan debit air.', progress: '0/3', steps: [{ icon: '📐', tag: 'GEOMETRI', title: 'Volume Kubus dan Balok', sub: 'Rumus sisi x sisi x sisi.', quote: '"Menghitung ruang tiga dimensi secara akurat."', context: 'Menghitung volume bangun ruang kubus dan balok menggunakan kubus satuan.', logic: 'Penerapan rumus V = s x s x s untuk kubus dan V = p x l x t untuk balok.', tips: 'Gunakan alat peraga kotak kardus.', quiz: { q: 'Rumus volume kubus adalah?', opts: ['s x s x s', 'p x l x t'], ans: 0 } }] }
+                ],
+                flashcards: [
+                    { q: "Volume Kubus", a: "Sisi x Sisi x Sisi (s³)" },
+                    { q: "Sistem Pernapasan Manusia", a: "Hidung, trakea, bronkus, paru-paru" }
+                ],
+                exams: [
+                    { q: "Berapa volume kubus dengan panjang sisi 5 cm?", opts: ["125 cm³", "75 cm³"], ans: 0 },
+                    { q: "Alat pernapasan utama pada manusia adalah?", opts: ["Paru-paru", "Jantung"], ans: 0 }
+                ]
+            },
+            'sd6': {
+                subjects: [
+                    { key: 'mat6', icon: '📈', label: 'Matematika Kelas 6 (Ujian)' },
+                    { key: 'sains6', icon: '🌍', label: 'IPA / IPAS Ujian Sekolah' },
+                    { key: 'bindo6', icon: '📚', label: 'Bahasa Indonesia Ujian' }
+                ],
+                roadmap: [
+                    { tierTag: 'SD Kelas 6 (Fase C)', title: 'Matematika: Statistika & Pengolahan Data', desc: 'Mean, median, modus, dan diagram.', progress: '0/3', steps: [{ icon: '📈', tag: 'STATISTIKA', title: 'Mean, Median, & Modus', sub: 'Menganalisis data angka.', quote: '"Analisis data cerdas untuk masa depan."', context: 'Menghitung rata-rata (mean), nilai tengah (nilai median), dan nilai yang sering muncul (modus).', logic: 'Menyajikan data dalam bentuk diagram batang dan tabel frekuensi.', tips: 'Latihan soal cerita ujian sekolah secara rutin.', quiz: { q: 'Nilai yang sering muncul dalam suatu data disebut?', opts: ['Modus', 'Median'], ans: 0 } }] }
+                ],
+                flashcards: [
+                    { q: "Mean (Rata-rata)", a: "Jumlah data dibagi banyaknya data" },
+                    { q: "Modus", a: "Nilai yang paling sering muncul" },
+                    { q: "Tata Surya", a: "Merkurius, Venus, Bumi, Mars, Jupiter, Saturnus, Uranus, Neptunus" }
+                ],
+                exams: [
+                    { q: "Rata-rata dari nilai 8, 9, 7, 8, 8 adalah?", opts: ["8", "7.5"], ans: 0 },
+                    { q: "Planet terbesar di tata surya kita adalah?", opts: ["Jupiter", "Saturnus"], ans: 0 }
+                ]
+            }
+        };
+
+        const worksheetsDatabaseMulti = {
+            'tk': [
+                { title: 'Lembar Kerja TK - Aspek Agama & Moral (Doa & Ciptaan Tuhan)', desc: 'Mengenal ciptaan Tuhan & mewarnai gambar ibadah.', cat: 'TK' },
+                { title: 'Lembar Kerja TK - Fisik Motorik Halus (Menjiplak & Menulis)', desc: 'Latihan memegang pensil dan menjiplak bentuk.', cat: 'TK' }
+            ],
+            'sd1': [
+                { title: 'Lembar Kerja SD Kelas 1 - Matematika Penjumlahan 1-20', desc: 'Latihan soal berhitung bilangan cacah.', cat: 'SD Kelas 1' },
+                { title: 'Lembar Kerja SD Kelas 1 - Membaca Suku Kata & Huruf', desc: 'Latihan literasi dasar dan membaca nyaring.', cat: 'SD Kelas 1' }
+            ],
+            'sd2': [
+                { title: 'Lembar Kerja SD Kelas 2 - Nilai Tempat Ratusan', desc: 'Latihan bilangan cacah sampai 500.', cat: 'SD Kelas 2' }
+            ],
+            'sd3': [
+                { title: 'Lembar Kerja SD Kelas 3 - Perkalian & Pembagian Dasar', desc: 'Latihan tabel perkalian dan soal cerita.', cat: 'SD Kelas 3' }
+            ],
+            'sd4': [
+                { title: 'Lembar Kerja SD Kelas 4 - Pecahan Senilai & KPK FPB', desc: 'Latihan matematika pecahan dan gaya.', cat: 'SD Kelas 4' }
+            ],
+            'sd5': [
+                { title: 'Lembar Kerja SD Kelas 5 - Volume Kubus & Balok', desc: 'Latihan geometri bangun ruang.', cat: 'SD Kelas 5' }
+            ],
+            'sd6': [
+                { title: 'Lembar Kerja SD Kelas 6 - Latihan Soal Ujian & Statistika', desc: 'Mean, median, modus, dan latihan tryout.', cat: 'SD Kelas 6' }
+            ]
+        };
 
         let currentFlashcardIdx = 0;
         let isFlashcardFlipped = false;
-
-        const tkDatabase = {
-            'roadmap': [
-                { tierTag: 'Fase Fondasi TK', title: 'Aspek 1: Nilai Agama & Moral', desc: 'Mengenal ciptaan Tuhan, doa harian, dan perbuatan baik.', progress: '0/3', steps: [{ icon: '🙏', tag: 'TAHAP DASAR & MAHIR', title: 'Ciptaan Tuhan & Doa Harian', sub: 'Mengenal alam & doa pendek.', quote: '"Bersyukur pada Tuhan Yang Maha Esa."', context: 'Anak belajar mengenal keberadaan Tuhan lewat ciptaan-Nya (alam, diri sendiri) dan mulai meniru gerakan ibadah sederhana.', logic: 'Melafalkan doa harian pendek, membedakan perbuatan baik dan buruk dalam contoh kehidupan sehari-hari.', tips: 'Bimbing dengan teladan lembut dan pujian positif.', quiz: { q: 'Siapa pencipta alam semesta dan diri kita?', opts: ['Tuhan Yang Maha Esa', 'Manusia'], ans: 0 } }] },
-                { tierTag: 'Fase Fondasi TK', title: 'Aspek 2: Fisik & Motorik', desc: 'Gerak kasar dan motorik halus matang untuk pra-menulis.', progress: '0/3', steps: [{ icon: '🏃', tag: 'TAHAP MENENGAH', title: 'Motorik Halus & Kasar', sub: 'Memegang pensil & melompat.', quote: '"Terampil bergerak dan lentur berkarya."', context: 'Melakukan gerak kasar terkoordinasi dan latihan motorik halus matang untuk pra-menulis.', logic: 'Memegang pensil dengan benar, menjiplak bentuk kompleks, meronce manik besar, serta melempar dan menangkap bola.', tips: 'Gunakan krayon besar dan media bermain konkret.', quiz: { q: 'Alat tulis dan pensil sebaiknya dipegang dengan?', opts: ['Jari tangan dengan benar', 'Kaki'], ans: 0 } }] },
-                { tierTag: 'Fase Fondasi TK', title: 'Aspek 3: Kognitif & Berhitung', desc: 'Bentuk dasar, warna primer, dan hitung benda 1-10.', progress: '0/3', steps: [{ icon: '🧩', tag: 'TAHAP MAHIR', title: 'Bentuk, Warna, & Angka 1-10', sub: 'Lingkaran, Kotak, Angka.', quote: '"Pintar berpikir dan memecahkan masalah."', context: 'Mengenal bentuk dasar (lingkaran, segitiga, kotak), warna primer, serta mengelompokkan benda.', logic: 'Mengenal simbol angka 1-10, menghitung benda dengan korespondensi satu-satu, dan membandingkan jumlah.', tips: 'Gunakan balok geometri dan benda nyata di sekitar anak.', quiz: { q: 'Bentuk bola atau roda sepeda adalah contoh dari?', opts: ['Lingkaran', 'Persegi'], ans: 0 } }] },
-                { tierTag: 'Fase Fondasi TK', title: 'Aspek 4: Bahasa & Calistung Awal', desc: 'Menyimak cerita dan merangkai suku kata ba-bi-bu.', progress: '0/3', steps: [{ icon: '📖', tag: 'TAHAP LANJUTAN', title: 'Literasi Awal & Suku Kata Ba-Bi-Bu', sub: 'Mengeja kata sederhana.', quote: '"Gemar menyimak cerita dan membaca."', context: 'Menyimak cerita pendek, menjawab pertanyaan siapa, apa, mengapa, serta mengenal huruf dan bunyinya.', logic: 'Merangkai huruf jadi suku kata terbuka (ba-bi-bu) dan membaca kata sederhana dengan bimbingan gambar.', tips: 'Ajak anak membaca buku bergambar bersama setiap hari.', quiz: { q: 'Huruf B dirangkai dengan A dibaca?', opts: ['Ba', 'Bu'], ans: 0 } }] },
-                { tierTag: 'Fase Fondasi TK', title: 'Aspek 5 & 6: Sosial-Emosional & Seni', desc: 'Kemandirian, empati, dan berekspresi kreatif.', progress: '0/3', steps: [{ icon: '🎨', tag: 'TAHAP KREASI', title: 'Kemandirian, Empati, & Seni', sub: 'Omah Ceria & Peduli.', quote: '"Kreatif, mandiri, dan penuh empati."', context: 'Sosialisasi, berbagi dengan teman, mengenali emosi dasar (senang, sedih, marah), dan berekspresi seni.', logic: 'Menggambar bentuk, bernyanyi dengan gerakan, serta menceritakan makna karya seninya sendiri dengan percaya diri.', tips: 'Puji setiap proses kreatif anak tanpa membandingkan.', quiz: { q: 'Jika tidak sengaja berbuat salah kepada teman, kita mengucapkan?', opts: ['Maaf', 'Terima kasih'], ans: 0 } }] }
-            ],
-            'aspek1': [{ tierTag: 'NILAI AGAMA & MORAL', title: 'Mengenal Ciptaan Tuhan & Doa Harian', desc: 'Tahap Dasar hingga Mahir.', progress: '0/3', steps: [{ icon: '🙏', tag: 'TAHAP DASAR', title: 'Doa Harian & Sopan Santun', sub: 'Akhlak mulia.', quote: '"Berakhlak mulia dan santun."', context: 'Mengenal keberadaan Tuhan lewat ciptaan alam dan membiasakan salam, terima kasih, serta maaf.', logic: 'Melafalkan doa pendek sehari-hari dan membedakan perbuatan baik dan buruk.', tips: 'Praktik langsung dalam keseharian.', quiz: { q: 'Mengucapkan terima kasih adalah perbuatan yang?', opts: ['Baik', 'Buruk'], ans: 0 } }] }],
-            'aspek2': [{ tierTag: 'FISIK & MOTORIK', title: 'Motorik Kasar & Halus TK', desc: 'Pra-menulis dan koordinasi fisik.', progress: '0/3', steps: [{ icon: '🏃', tag: 'TAHAP MENENGAH', title: 'Menjiplak Garis & Melempar Bola', sub: 'Koordinasi tubuh.', quote: '"Sehat, lincah, dan terampil."', context: 'Melakukan gerak kasar seimbang dan motorik halus memegang pensil.', logic: 'Menjiplak bentuk geometri dan meronce manik untuk kekuatan jari.', tips: 'Lakukan senam ceria rutin.', quiz: { q: 'Alat tulis dipegang dengan menggunakan?', opts: ['Jari tangan dengan benar', 'Kaki'], ans: 0 } }] }],
-            'aspek3': [{ tierTag: 'KOGNITIF', title: 'Bentuk, Warna, & Berhitung 1-10', desc: 'Matematika konkret Montessori.', progress: '0/3', steps: [{ icon: '🧩', tag: 'TAHAP MAHIR', title: 'Menghitung Benda 1-10', sub: 'Korespondensi satu-satu.', quote: '"Logika cerdas dan teliti."', context: 'Mengenal bentuk geometri, warna primer, dan simbol angka.', logic: 'Menghitung jumlah benda nyata dan membandingkan lebih banyak atau lebih sedikit.', tips: 'Gunakan kancing atau buah mainan.', quiz: { q: 'Setelah angka 2 dalam urutan berhitung adalah?', opts: ['3', '5'], ans: 0 } }] }],
-            'aspek4': [{ tierTag: 'BAHASA & CALISTUNG', title: 'Literasi Awal & Suku Kata Ba-Bi-Bu', desc: 'Membaca dan menyimak.', progress: '0/3', steps: [{ icon: '📖', tag: 'TAHAP LANJUT', title: 'Merangkai Suku Kata Ba-Bi-Bu', sub: 'Mengeja kata.', quote: '"Lancar membaca dan menyimak."', context: 'Menyimak cerita pendek dan mengenal seluruh bentuk serta bunyi huruf.', logic: 'Merangkai huruf menjadi suku kata terbuka (ba-bi-bu) dan membaca kata sederhana 2 suku kata.', tips: 'Gunakan kartu huruf bergambar.', quiz: { q: 'B dan I jika digabung dibaca?', opts: ['Bi', 'Bu'], ans: 0 } }] }],
-            'aspek5': [{ tierTag: 'SOSIAL-EMOSIONAL', title: 'Kemandirian & Empati (Omah Peduli)', desc: 'Mengelola emosi dan berbagi.', progress: '0/3', steps: [{ icon: '🤝', tag: 'TAHAP MANDIRI', title: 'Berbagi & Mengelola Emosi', sub: 'Omah Mandiri.', quote: '"Anak mandiri, percaya diri, dan peduli."', context: 'Mau berpisah sementara dari orang tua dan mengenali emosi dasar.', logic: 'Berbagi mainan bergantian dengan teman serta menunjukkan empati.', tips: 'Bermain peran situasi sosial.', quiz: { q: 'Saat teman sedang sedih, sikap kita sebaiknya?', opts: ['Menghibur dan peduli', 'Tertawakan'], ans: 0 } }] }],
-            'aspek6': [{ tierTag: 'SENI', title: 'Kreativitas & Seni (Omah Ceria)', desc: 'Menggambar dan bernyanyi.', progress: '0/3', steps: [{ icon: '🎨', tag: 'TAHAP KREASI', title: 'Mewarnai & Bernyanyi Ceria', sub: 'Ekspresi diri.', quote: '"Seni indah penuh warna."', context: 'Mencoret bebas dengan krayon dan menyanyikan lagu anak.', logic: 'Menggambar bentuk sederhana (orang, rumah) dan percaya diri menceritakan maknanya.', tips: 'Bebaskan anak berkreasi dengan warna.', quiz: { q: 'Menyanyi bersama guru dan teman membuat hati menjadi?', opts: ['Ceria dan gembira', 'Sedih'], ans: 0 } }] }]
-        };
-
-        const worksheetsDatabaseTK = [
-            { title: 'Lembar Kerja TK - Aspek Agama & Moral (Doa & Ciptaan Tuhan)', desc: 'Mengenal ciptaan Tuhan & mewarnai gambar ibadah.', cat: 'TK' },
-            { title: 'Lembar Kerja TK - Fisik Motorik Halus (Menjiplak & Menulis)', desc: 'Latihan memegang pensil dan menjiplak bentuk.', cat: 'TK' },
-            { title: 'Lembar Kerja TK - Kognitif Berhitung Angka 1-10', desc: 'Menghitung jumlah benda konkret secara akurat.', cat: 'TK' },
-            { title: 'Lembar Kerja TK - Bahasa & Suku Kata Ba-Bi-Bu', desc: 'Latihan membaca dan merangkai suku kata terbuka.', cat: 'TK' },
-            { title: 'Lembar Kerja TK - Sosial-Emosional & Seni Kreatif', desc: 'Mewarnai bentuk kreatif dan lembar kemandirian.', cat: 'TK' }
-        ];
-
-        const omahGamesDatabaseTK = [
-            { id: 'g1', bg: '#f3e8ff', color: '#7e22ce', icon: '🙏', title: 'Kuis Agama & Moral TK', desc: 'Mengenal doa & ciptaan Tuhan.', questions: [{ emojis: '🌟 🤲', clue: 'Tempat kita berdoa memohon pertolongan', answer: 'tuhan' }] },
-            { id: 'g2', bg: '#ccfbf1', color: '#0f766e', icon: '🧩', title: 'Tebak Angka 1-10 TK', desc: 'Menghitung jumlah buah.', questions: [{ emojis: '🍎 🍎 🍎', clue: 'Berapa jumlah apel di atas?', answer: 'tiga' }] },
-            { id: 'g3', bg: '#fef3c7', color: '#b45309', icon: '📖', title: 'Tebak Suku Kata Ba-Bi-Bu', desc: 'Mengeja huruf awal.', questions: [{ emojis: '👶 🍼', clue: 'B and A dibaca...', answer: 'ba' }] }
-        ];
-
-        const examQuestionsDatabaseTK = [
-            { q: "Siapa pencipta alam semesta dan seluruh makhluk hidup?", opts: ["Tuhan Yang Maha Esa", "Manusia"], ans: 0 },
-            { q: "Alat tulis atau pensil sebaiknya dipegang menggunakan?", opts: ["Jari tangan dengan benar", "Kaki"], ans: 0 },
-            { q: "Bentuk roda sepeda atau bola adalah contoh dari?", opts: ["Lingkaran", "Persegi"], ans: 0 },
-            { q: "Huruf B jika dirangkai dengan huruf A akan dibaca?", opts: ["Ba", "Bu"], ans: 0 },
-            { q: "Jika tidak sengaja melakukan kesalahan, kita harus mengucapkan?", opts: ["Maaf", "Terima kasih"], ans: 0 }
-        ];
-
-        let currentActiveGameQuestions = [];
-        let currentLovQuestionIdx = 0;
-        let lovScore = 0;
-        let lovLives = 3;
-        let lovInterval = null;
-
-        let examTimerInterval = null;
-        let examTimeRemaining = 90;
-        let examCurrentIdx = 0;
-        let examScoreCount = 0;
-
-        let currentStudent = { name: 'Siswa TK Ceria', parentEmail: 'siswa.tk@gmail.com', classLabel: 'Fase Fondasi TK / PAUD' };
+        let currentStudent = { name: 'Ananda Cerdas', parentEmail: 'siswa@gmail.com', pkg: 'tk' };
         let activeSection = 'dashboard';
         let currentActiveModule = null;
-        let lastOpenedModuleTitle = localStorage.getItem('omahles_tk_last_module') || 'Belum ada modul yang dibuka';
+        let lastOpenedModuleTitle = localStorage.getItem('omahles_portal_last_module') || 'Belum ada modul yang dibuka';
         
-        let userStars = parseInt(localStorage.getItem('omahles_tk_user_stars') || '0');
-        let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_tk_completed_quizzes') || '0');
-        let lastClaimDate = localStorage.getItem('omahles_tk_last_claim_date') || '';
-        let weeklyQuestClaimed = localStorage.getItem('omahles_tk_weekly_quest') === 'true';
+        let userStars = parseInt(localStorage.getItem('omahles_portal_user_stars') || '25');
+        let userCompletedQuizzes = parseInt(localStorage.getItem('omahles_portal_completed_quizzes') || '1');
+        let lastClaimDate = localStorage.getItem('omahles_portal_last_claim_date') || '';
+        let weeklyQuestClaimed = localStorage.getItem('omahles_portal_weekly_quest') === 'true';
         let chatHistoryMemory = [];
 
         function persistUserDataRealtime() {
-            localStorage.setItem('omahles_tk_user_stars', userStars);
-            localStorage.setItem('omahles_tk_completed_quizzes', userCompletedQuizzes);
-            localStorage.setItem('omahles_tk_last_claim_date', lastClaimDate);
-            localStorage.setItem('omahles_tk_weekly_quest', weeklyQuestClaimed ? 'true' : 'false');
-            localStorage.setItem('omahles_tk_pet_head', currentPetHead);
-            localStorage.setItem('omahles_tk_pet_eyes', currentPetEyes);
-            localStorage.setItem('omahles_tk_last_module', lastOpenedModuleTitle);
+            localStorage.setItem('omahles_portal_user_stars', userStars);
+            localStorage.setItem('omahles_portal_completed_quizzes', userCompletedQuizzes);
+            localStorage.setItem('omahles_portal_last_claim_date', lastClaimDate);
+            localStorage.setItem('omahles_portal_weekly_quest', weeklyQuestClaimed ? 'true' : 'false');
+            localStorage.setItem('omahles_portal_pet_head', currentPetHead);
+            localStorage.setItem('omahles_portal_pet_eyes', currentPetEyes);
+            localStorage.setItem('omahles_portal_last_module', lastOpenedModuleTitle);
+            localStorage.setItem('omahles_portal_package', currentPackage);
         }
 
         window.addEventListener('DOMContentLoaded', () => { 
-            if(localStorage.getItem('omahles_tk_dark_mode') === 'true') document.body.classList.add('dark-mode');
-            if(localStorage.getItem('omahles_tk_dyslexia_mode') === 'true') document.body.classList.add('dyslexia-mode');
-            const savedTheme = localStorage.getItem('omahles_tk_app_theme');
+            if(localStorage.getItem('omahles_portal_dark_mode') === 'true') document.body.classList.add('dark-mode');
+            if(localStorage.getItem('omahles_portal_dyslexia_mode') === 'true') document.body.classList.add('dyslexia-mode');
+            const savedTheme = localStorage.getItem('omahles_portal_app_theme');
             if(savedTheme && savedTheme !== 'default') document.body.classList.add(`theme-${savedTheme}`);
 
-            const savedPet = localStorage.getItem('omahles_tk_virtual_pet') || '🐰';
+            const savedPet = localStorage.getItem('omahles_portal_virtual_pet') || '🐰';
             const petSel = document.getElementById('petSelector');
             if(petSel) petSel.value = savedPet;
             updatePetDisplayUI();
 
-            const savedStudent = sessionStorage.getItem('omahles_tk_active_student');
+            const savedStudent = sessionStorage.getItem('omahles_portal_active_student');
             if (savedStudent) {
                 currentStudent = JSON.parse(savedStudent);
-                activeSection = sessionStorage.getItem('omahles_tk_active_section') || 'dashboard';
+                currentPackage = currentStudent.pkg || 'tk';
+                activeSection = sessionStorage.getItem('omahles_portal_active_section') || 'dashboard';
                 document.getElementById('loginPage').style.display = 'none';
+                applyPackageThemeToSidebar();
                 renderDashboardData();
                 switchSection(activeSection);
             } else {
@@ -1111,21 +1232,41 @@
             }
         });
 
+        function onPackageSelectChange(pkgVal) {
+            currentPackage = pkgVal;
+        }
+
+        function changePackageFromSettings(pkgVal) {
+            playClickSound();
+            currentPackage = pkgVal;
+            currentStudent.pkg = currentPackage;
+            sessionStorage.setItem('omahles_portal_active_student', JSON.stringify(currentStudent));
+            persistUserDataRealtime();
+            applyPackageThemeToSidebar();
+            closeSettingsModal();
+            refreshCurrentPage();
+            alert(`✅ Paket berhasil diubah ke: ${packageMeta[currentPackage].title}`);
+        }
+
         function handleFormLogin(e) {
             e.preventDefault();
             playClickSound();
             const pEmail = document.getElementById('inputParentEmail').value.trim().toLowerCase();
+            const selPkg = document.getElementById('inputPackageSelect').value;
+            currentPackage = selPkg;
             
             if (REGISTERED_PARENT_DATABASE[pEmail]) {
                 const data = REGISTERED_PARENT_DATABASE[pEmail];
-                currentStudent = { name: data.name, parentEmail: pEmail, classLabel: 'Fase Fondasi TK / PAUD' };
+                currentStudent = { name: data.name, parentEmail: pEmail, pkg: currentPackage };
             } else {
                 const generatedName = pEmail.split('@')[0].toUpperCase();
-                currentStudent = { name: `Ananda ${generatedName}`, parentEmail: pEmail, classLabel: 'Fase Fondasi TK / PAUD' };
+                currentStudent = { name: `Ananda ${generatedName}`, parentEmail: pEmail, pkg: currentPackage };
             }
             
-            sessionStorage.setItem('omahles_tk_active_student', JSON.stringify(currentStudent));
+            sessionStorage.setItem('omahles_portal_active_student', JSON.stringify(currentStudent));
+            persistUserDataRealtime();
             document.getElementById('loginPage').style.display = 'none';
+            applyPackageThemeToSidebar();
             showRandomDailyWisdom();
         }
 
@@ -1160,7 +1301,7 @@
             if(pin === '2026') {
                 playSuccessSound();
                 closeParentPinModal();
-                alert('🔓 PIN Berhasil! Mengalihkan ke Rapor TK (Orang Tua).');
+                alert('🔓 PIN Berhasil! Mengalihkan ke Rapor & Laporan Orang Tua.');
                 switchSection('profile');
             } else {
                 playErrorSound();
@@ -1171,17 +1312,32 @@
         function calculateLevelInfo() {
             let totalXp = userCompletedQuizzes * 50;
             let levelNum = 1;
-            let levelName = 'Murid Cilik';
-            if(totalXp >= 150) { levelNum = 2; levelName = 'Penjelajah Ceria'; }
-            if(totalXp >= 350) { levelNum = 3; levelName = 'Bintang Pintar'; }
-            if(totalXp >= 600) { levelNum = 4; levelName = 'Master TK'; }
+            let levelName = 'Murid Pemula';
+            if(totalXp >= 150) { levelNum = 2; levelName = 'Penjelajah Aktif'; }
+            if(totalXp >= 350) { levelNum = 3; levelName = 'Bintang Akademik'; }
+            if(totalXp >= 600) { levelNum = 4; levelName = 'Master Akademik'; }
             return { totalXp, levelNum, levelName };
         }
 
+        function applyPackageThemeToSidebar() {
+            const meta = packageMeta[currentPackage] || packageMeta['tk'];
+            document.getElementById('sidebarBrandTitle').innerText = currentPackage === 'tk' ? 'OmahLes TK' : `OmahLes SD`;
+            document.getElementById('sidebarBrandSub').innerText = meta.title;
+            document.getElementById('mobileHeaderTitle').innerText = `OmahLes ${meta.title}`;
+            document.getElementById('subjectGroupLabel').innerText = currentPackage === 'tk' ? '6 ASPEK PERKEMBANGAN' : 'MATA PELAJARAN';
+
+            const subListEl = document.getElementById('sidebarSubjectMenuList');
+            const subjects = contentDatabaseByPackage[currentPackage].subjects || [];
+            subListEl.innerHTML = subjects.map(s => `
+                <li class="menu-item" id="menuSub_${s.key}"><a onclick="playClickSound(); switchSection('${s.key}')"><span>${s.icon}</span> <span>${s.label}</span></a></li>
+            `).join('');
+        }
+
         function renderDashboardData() {
-            document.getElementById('userNameDisplay').innerText = currentStudent.name || 'Siswa TK';
-            document.getElementById('userLevelDisplay').innerText = currentStudent.classLabel;
-            document.getElementById('activeLevelText').innerText = `Paket Aktif: ${currentStudent.classLabel} (Resmi)`;
+            document.getElementById('userNameDisplay').innerText = currentStudent.name || 'Siswa Omah Les';
+            const meta = packageMeta[currentPackage] || packageMeta['tk'];
+            document.getElementById('userLevelDisplay').innerText = meta.title;
+            document.getElementById('activeLevelText').innerText = `Paket Aktif: ${meta.title} (Kurikulum Merdeka)`;
             document.getElementById('userStarDisplay').innerText = userStars;
 
             const lvl = calculateLevelInfo();
@@ -1198,35 +1354,30 @@
 
         function switchSection(secKey) {
             activeSection = secKey;
-            sessionStorage.setItem('omahles_tk_active_section', secKey);
+            sessionStorage.setItem('omahles_portal_active_section', secKey);
             document.getElementById('appSidebar').classList.remove('mobile-open');
             document.getElementById('appSidebar').classList.remove('focus-open');
 
             document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
-            const activeMenu = document.getElementById(`menu${secKey.charAt(0).toUpperCase() + secKey.slice(1)}`);
+            const activeMenu = document.getElementById(`menu${secKey.charAt(0).toUpperCase() + secKey.slice(1)}`) || document.getElementById(`menuSub_${secKey}`);
             if (activeMenu) activeMenu.classList.add('active');
 
+            const meta = packageMeta[currentPackage] || packageMeta['tk'];
             const sectionHeaders = {
-                'dashboard': { tag: '📊 Overview TK', title: 'Portal Dashboard TK', sub: `Selamat datang kembali, ${currentStudent.name || 'Siswa'}!` },
-                'roadmap': { tag: '🎓 Kurikulum & ATP', title: 'Alur Tujuan Pembelajaran TK', sub: 'Kurikulum Merdeka, Montessori, & Deep Learning.' },
-                'leaderboard': { tag: '🏆 Papan Bintang', title: 'Papan Bintang Siswa TK', sub: 'Peringkat progres bintang siswa TK aktif.' },
-                'profile': { tag: '👤 Rapor Orang Tua', title: 'Rapor Perkembangan TK', sub: 'Laporan 6 aspek perkembangan anak untuk orang tua.' },
-                'trophy': { tag: '🏆 Ruang Piala', title: 'Piala Prestasi TK (3D Gallery)', sub: 'Koleksi piala dan penghargaan eksklusif jenjang TK.' },
-                'badges': { tag: '🎖️ Lencana', title: 'Lencana Prestasi TK', sub: 'Koleksi trofi berdasarkan eksplorasi materi TK.' },
-                'aspek1': { tag: '🙏 Aspek 1', title: 'Nilai Agama & Moral', sub: 'Ciptaan Tuhan & doa harian sederhana.' },
-                'aspek2': { tag: '🏃 Aspek 2', title: 'Fisik & Motorik', sub: 'Motorik kasar & halus pra-menulis.' },
-                'aspek3': { tag: '🧩 Aspek 3', title: 'Kognitif & Berhitung', sub: 'Bentuk dasar, warna, & angka 1-10.' },
-                'aspek4': { tag: '📖 Aspek 4', title: 'Bahasa & Calistung Awal', sub: 'Menyimak cerita & suku kata ba-bi-bu.' },
-                'aspek5': { tag: '🤝 Aspek 5', title: 'Sosial-Emosional', sub: 'Kemandirian & empati (Omah Peduli).' },
-                'aspek6': { tag: '🎨 Aspek 6', title: 'Seni & Kreativitas', sub: 'Berekspresi kreatif & percaya diri (Omah Ceria).' },
-                'worksheets': { tag: '📥 Unduh Materi', title: 'Pusat Lembar Kerja TK (PDF)', sub: 'Unduh lembar latihan cetak khusus TK.' },
-                'exam': { tag: '⏱️ Ujian Evaluasi', title: 'Kuis Tantangan TK', sub: 'Uji pemahaman materi TK dengan batasan waktu!' },
-                'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor TK', sub: 'Tanya jawab seputar kurikulum TK bersama Kak Omah.' },
-                'games': { tag: '🎮 Game Center', title: 'Game Edukasi TK', sub: 'Tantangan edukasi interaktif khusus anak TK.' },
-                'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan TK', sub: 'Latihan kilat materi & kosakata TK.' }
+                'dashboard': { tag: '📊 Overview Portal', title: `Dashboard ${meta.title}`, sub: `Selamat datang kembali, ${currentStudent.name || 'Siswa'}!` },
+                'roadmap': { tag: '🎓 Kurikulum & ATP', title: `Alur Tujuan Pembelajaran (${meta.title})`, sub: 'Kurikulum Merdeka & Deep Learning.' },
+                'leaderboard': { tag: '🏆 Papan Bintang', title: 'Papan Bintang Siswa Aktif', sub: 'Peringkat progres bintang siswa.' },
+                'profile': { tag: '👤 Rapor Orang Tua', title: 'Rapor Perkembangan Akademik', sub: 'Laporan kemajuan belajar siswa untuk orang tua.' },
+                'trophy': { tag: '🏆 Ruang Piala', title: 'Piala Prestasi (3D Gallery)', sub: 'Koleksi piala dan penghargaan eksklusif.' },
+                'badges': { tag: '🎖️ Lencana', title: 'Lencana Prestasi Siswa', sub: 'Koleksi penghargaan berdasarkan eksplorasi materi.' },
+                'worksheets': { tag: '📥 Unduh Materi', title: 'Pusat Lembar Kerja PDF', sub: 'Unduh lembar latihan cetak sesuai jenjang.' },
+                'exam': { tag: '⏱️ Ujian Evaluasi', title: 'Kuis Tantangan & Ujian', sub: 'Uji pemahaman materi dengan batasan waktu!' },
+                'aitutor': { tag: '🎙️ Asisten Cerdas', title: 'Kak Omah AI Tutor', sub: 'Tanya jawab seputar materi pelajaran bersama Kak Omah.' },
+                'games': { tag: '🎮 Game Center', title: 'Game Edukasi Interaktif', sub: 'Tantangan edukasi interaktif khusus siswa.' },
+                'flashcards': { tag: '🃏 Flashcards', title: 'Flashcards Hafalan Kilat', sub: 'Latihan kilat materi & rumus pelajaran.' }
             };
 
-            const h = sectionHeaders[secKey] || sectionHeaders['dashboard'];
+            const h = sectionHeaders[secKey] || { tag: '📚 Materi Pelajaran', title: 'Materi & Modul Belajar', sub: `Eksplorasi materi ${meta.title}.` };
             document.getElementById('bannerTagText').innerText = h.tag;
             document.getElementById('bannerWelcomeTitle').innerText = h.title;
             document.getElementById('bannerWelcomeSub').innerText = h.sub;
@@ -1234,7 +1385,6 @@
             const area = document.getElementById('dynamicMainContentArea');
             const filterBar = document.getElementById('filterHeaderBar');
             const topBanner = document.getElementById('topBannerSection');
-            clearInterval(lovInterval);
             clearInterval(examTimerInterval);
 
             area.className = ''; void area.offsetWidth; area.className = 'animate-section';
@@ -1264,6 +1414,7 @@
                 else if (secKey === 'worksheets') renderWorksheetCenter(area);
                 else if (secKey === 'games') renderGameCenterGrid(area);
                 else if (secKey === 'flashcards') { currentFlashcardIdx = 0; renderFlashcardsUI(area); }
+                else if (secKey === 'roadmap') renderModules(area, 'roadmap');
                 else renderModules(area, secKey);
             }
         }
@@ -1273,6 +1424,7 @@
             const isAlreadyClaimed = (lastClaimDate === todayStr);
             const lvl = calculateLevelInfo();
             const questDone = userCompletedQuizzes >= 3;
+            const meta = packageMeta[currentPackage] || packageMeta['tk'];
 
             container.innerHTML = `
                 <div class="resume-learning-card">
@@ -1287,8 +1439,8 @@
                     <div style="display:flex; align-items:center; gap:14px;">
                         <span style="font-size:2.5rem;">🔥</span>
                         <div>
-                            <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; color:var(--text-main);">Streak Belajar Ceria!</div>
-                            <div style="font-size:0.8rem; color:var(--text-sub); font-weight:700;">Buka portal setiap hari untuk menjaga semangat belajar anak.</div>
+                            <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; color:var(--text-main);">Streak Belajar Konsisten!</div>
+                            <div style="font-size:0.8rem; color:var(--text-sub); font-weight:700;">Buka portal setiap hari untuk menjaga semangat belajar. (${meta.title})</div>
                         </div>
                     </div>
                     <div class="streak-fire-badge">🔥 1 Hari Beruntun</div>
@@ -1296,10 +1448,10 @@
 
                 <div class="weekly-quest-card">
                     <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--brand-brown); margin-bottom:4px;">🎯 Misi Bintang Mingguan</div>
-                    <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Selesaikan minimal 3 kuis atau game untuk mendapatkan hadiah bintang ekstra!</div>
+                    <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Selesaikan minimal 3 kuis atau modul untuk mendapatkan hadiah bintang ekstra!</div>
                     <div class="quest-item">
                         <div>
-                            <div style="font-family:'Fredoka',sans-serif; font-size:0.95rem; color:var(--text-main);">Selesaikan 3 Kuis / Aktivitas TK</div>
+                            <div style="font-family:'Fredoka',sans-serif; font-size:0.95rem; color:var(--text-main);">Selesaikan 3 Aktivitas / Kuis</div>
                             <div style="font-size:0.75rem; color:var(--text-sub); font-weight:700;">Progress: ${Math.min(userCompletedQuizzes, 3)} / 3 Selesai</div>
                         </div>
                         <button class="btn-claim-quest" id="claimQuestBtn" ${(!questDone || weeklyQuestClaimed) ? 'disabled' : ''} onclick="claimWeeklyQuest(event)">
@@ -1325,7 +1477,7 @@
                     <div style="display:flex; align-items:center; gap:16px;">
                         <div style="font-size:2.8rem;">🛍️</div>
                         <div>
-                            <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:#86198f; margin-bottom:2px;">Toko Aksesoris Kelinci Ciko & Teman-Teman</div>
+                            <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:#86198f; margin-bottom:2px;">Toko Aksesoris Peliharaan Virtual</div>
                             <div style="font-size:0.82rem; font-weight:700; color:#a21caf;">Pasang Topi/Mahkota di kepala & Kacamata di mata menggunakan Bintang ⭐!</div>
                         </div>
                     </div>
@@ -1341,9 +1493,9 @@
                 <div class="planner-card">
                     <div class="planner-title">📅 Jadwal Belajar Harian (Nilai Karakter Omah)</div>
                     <div class="planner-list">
-                        <div class="planner-item"><span>🙏 Sesi 1: Nilai Agama & Moral / Doa Harian</span> <span style="color:var(--brand-amber);">08:00 - 08:45</span></div>
-                        <div class="planner-item"><span>🏃 Sesi 2: Fisik Motorik & Kognitif Berhitung</span> <span style="color:var(--brand-amber);">09:00 - 09:45</span></div>
-                        <div class="planner-item"><span>🎨 Sesi 3: Bahasa, Seni, & Game Edukasi Ceria</span> <span style="color:var(--brand-amber);">15:30 - 16:15</span></div>
+                        <div class="planner-item"><span>📚 Sesi 1: Eksplorasi Modul & Konsep Inti</span> <span style="color:var(--brand-amber);">08:00 - 08:45</span></div>
+                        <div class="planner-item"><span>✍️ Sesi 2: Latihan Soal & Lembar Kerja PDF</span> <span style="color:var(--brand-amber);">09:00 - 09:45</span></div>
+                        <div class="planner-item"><span>🎮 Sesi 3: Game Edukasi & Konsultasi AI Tutor</span> <span style="color:var(--brand-amber);">15:30 - 16:15</span></div>
                     </div>
                 </div>
 
@@ -1351,11 +1503,11 @@
                     <div class="dash-card"><div class="dash-icon-box">⭐</div><div><div class="dash-info-title">Total Bintang</div><div class="dash-info-val">${userStars}</div></div></div>
                     <div class="dash-card"><div class="dash-icon-box">🏆</div><div><div class="dash-info-title">Level Siswa</div><div class="dash-info-val">Lv.${lvl.levelNum} (${lvl.levelName})</div></div></div>
                     <div class="dash-card"><div class="dash-icon-box">🎯</div><div><div class="dash-info-title">Aktivitas Selesai</div><div class="dash-info-val">${userCompletedQuizzes}</div></div></div>
-                    <div class="dash-card"><div class="dash-icon-box">🔥</div><div><div class="dash-info-title">Streak Ceria</div><div class="dash-info-val">1 Hari</div></div></div>
+                    <div class="dash-card"><div class="dash-icon-box">🔥</div><div><div class="dash-info-title">Streak Belajar</div><div class="dash-info-val">1 Hari</div></div></div>
                 </div>
                 <div class="insight-card-box">
                     <div class="insight-heading">💡 Nilai Karakter Inti (Nilai Omah)</div>
-                    <div class="insight-body-text">"Halo <strong>${currentStudent.name || 'Siswa TK'}</strong>! Mari tumbuh cerdas dan ceria bersama semangat <b>Omah Mandiri</b>, <b>Omah Tanya</b>, <b>Omah Tekun</b>, <b>Omah Peduli</b>, dan <b>Omah Ceria</b>!"</div>
+                    <div class="insight-body-text">"Halo <strong>${currentStudent.name || 'Siswa'}</strong>! Mari tumbuh cerdas dan berkarakter bersama semangat <b>Omah Mandiri</b>, <b>Omah Tanya</b>, <b>Omah Tekun</b>, <b>Omah Peduli</b>, dan <b>Omah Ceria</b>!"</div>
                 </div>
             `;
         }
@@ -1387,6 +1539,11 @@
             renderDashboardData();
         }
 
+        let examTimerInterval = null;
+        let examTimeRemaining = 90;
+        let examCurrentIdx = 0;
+        let examScoreCount = 0;
+
         function startExamChallenge() {
             const area = document.getElementById('dynamicMainContentArea');
             if (userStars < 20 && !currentStudent.isAdmin) {
@@ -1395,7 +1552,7 @@
                         <div style="font-size:3.5rem; margin-bottom:12px;">🔒</div>
                         <div style="font-family:'Fredoka',sans-serif; font-size:1.6rem; color:#991b1b; margin-bottom:8px;">Kuis Tantangan Terkunci (Minimal 20 Bintang ⭐)</div>
                         <p style="font-size:0.95rem; color:#7f1d1d; font-weight:700; margin-bottom:20px; line-height:1.6;">
-                            Kamu saat ini memiliki <strong>${userStars} Bintang</strong>. Kumpulkan minimal <strong>20 Bintang</strong> dari aktivitas atau game agar bisa membuka Kuis Tantangan TK!
+                            Kamu saat ini memiliki <strong>${userStars} Bintang</strong>. Kumpulkan minimal <strong>20 Bintang</strong> dari aktivitas atau game agar bisa membuka Kuis Tantangan!
                         </p>
                         <button class="btn-enter-wisdom" style="background:#dc2626;" onclick="switchSection('dashboard')">KEMBALI KE DASHBOARD</button>
                     </div>
@@ -1421,16 +1578,17 @@
 
         function renderExamQuestionUI() {
             const area = document.getElementById('dynamicMainContentArea');
-            if(examCurrentIdx >= examQuestionsDatabaseTK.length) {
+            const examList = contentDatabaseByPackage[currentPackage].exams || contentDatabaseByPackage['tk'].exams;
+            if(examCurrentIdx >= examList.length) {
                 clearInterval(examTimerInterval);
                 return finishExamChallenge();
             }
-            const q = examQuestionsDatabaseTK[examCurrentIdx];
+            const q = examList[examCurrentIdx];
             area.innerHTML = `
                 <div class="lov-game-wrapper animate-section">
                     <div class="lov-top-bar">
                         <div class="lov-btn-close" onclick="switchSection('dashboard')">✕</div>
-                        <div class="lov-score-pill">SOAL ${examCurrentIdx + 1} / ${examQuestionsDatabaseTK.length} (TK / PAUD)</div>
+                        <div class="lov-score-pill">SOAL ${examCurrentIdx + 1} / ${examList.length} (${packageMeta[currentPackage].title})</div>
                         <div style="font-family:'Fredoka',sans-serif; color:var(--brand-brown); font-weight:800;">⏱️ Sisa Waktu: <span id="examTimerDisplay">${examTimeRemaining}</span> detik</div>
                     </div>
                     <div class="insight-card-box" style="text-align:center;">
@@ -1447,9 +1605,10 @@
 
         function submitExamOption(selectedIdx, correctIdx, event) {
             const rect = event ? event.target.getBoundingClientRect() : null;
+            const examList = contentDatabaseByPackage[currentPackage].exams || contentDatabaseByPackage['tk'].exams;
             if(selectedIdx === correctIdx) {
                 playSuccessSound(rect ? rect.left : null, rect ? rect.top : null);
-                examScoreCount += Math.floor(100 / examQuestionsDatabaseTK.length);
+                examScoreCount += Math.floor(100 / examList.length);
             } else {
                 playErrorSound();
             }
@@ -1464,22 +1623,22 @@
             userCompletedQuizzes += 1;
             persistUserDataRealtime();
 
-            let historyList = JSON.parse(localStorage.getItem('omahles_tk_quiz_history') || '[]');
+            let historyList = JSON.parse(localStorage.getItem('omahles_portal_quiz_history') || '[]');
             historyList.push({
-                title: `Kuis Tantangan TK - Skor: ${examScoreCount}/100`,
+                title: `Ujian ${packageMeta[currentPackage].title} - Skor: ${examScoreCount}/100`,
                 time: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             });
-            localStorage.setItem('omahles_tk_quiz_history', JSON.stringify(historyList));
+            localStorage.setItem('omahles_portal_quiz_history', JSON.stringify(historyList));
 
             const area = document.getElementById('dynamicMainContentArea');
             area.innerHTML = `
                 <div class="cert-modal-card animate-section" style="margin:40px auto; max-width:600px;">
                     <div style="font-size:3.5rem; margin-bottom:10px;">🏆✨</div>
-                    <div class="cert-title">Kuis Tantangan Selesai!</div>
-                    <div class="cert-sub">Fase Fondasi TK / PAUD Omah Les Privat</div>
+                    <div class="cert-title">Ujian Evaluasi Selesai!</div>
+                    <div class="cert-sub">${packageMeta[currentPackage].title} — Omah Les Privat</div>
                     <div style="font-family:'Fredoka',sans-serif; font-size:2rem; color:var(--brand-amber); margin:20px 0;">Skor Anda: ${examScoreCount} / 100</div>
                     <p style="font-size:0.9rem; color:var(--text-sub); font-weight:700; margin-bottom:24px;">Anda mendapatkan tambahan ⭐ +${examScoreCount} Bintang ke akun Anda!</p>
-                    <button class="btn-enter-wisdom" onclick="switchSection('dashboard')">KEMBALI KE DASHBOARD TK</button>
+                    <button class="btn-enter-wisdom" onclick="switchSection('dashboard')">KEMBALI KE DASHBOARD</button>
                 </div>
             `;
         }
@@ -1487,7 +1646,7 @@
         function renderLeaderboard(container) {
             const activeLeader = {
                 rank: 1,
-                name: currentStudent.name || 'Siswa TK Ceria',
+                name: currentStudent.name || 'Siswa Cerdas',
                 stars: userStars,
                 quizzes: userCompletedQuizzes
             };
@@ -1497,7 +1656,7 @@
                     <thead>
                         <tr>
                             <th>Peringkat</th>
-                            <th>Nama Siswa TK</th>
+                            <th>Nama Siswa</th>
                             <th>Aktivitas Selesai</th>
                             <th>Total Bintang ⭐</th>
                         </tr>
@@ -1505,7 +1664,7 @@
                     <tbody>
                         <tr>
                             <td>🥇</td>
-                            <td><strong>${activeLeader.name}</strong></td>
+                            <td><strong>${activeLeader.name}</strong> (${packageMeta[currentPackage].title})</td>
                             <td>${activeLeader.quizzes} Aktivitas</td>
                             <td style="color:var(--brand-amber); font-family:'Fredoka',sans-serif;">${activeLeader.stars} Stars</td>
                         </tr>
@@ -1516,7 +1675,8 @@
 
         function renderParentReportCard(container) {
             let lvl = calculateLevelInfo();
-            let historyList = JSON.parse(localStorage.getItem('omahles_tk_quiz_history') || '[]');
+            let historyList = JSON.parse(localStorage.getItem('omahles_portal_quiz_history') || '[]');
+            const meta = packageMeta[currentPackage] || packageMeta['tk'];
 
             container.innerHTML = `
                 <div id="printAreaReport">
@@ -1525,8 +1685,8 @@
                             <div class="profile-user-left">
                                 <div class="profile-big-avatar">📋</div>
                                 <div>
-                                    <div class="profile-user-name">Rapor TK: ${currentStudent.name || 'Siswa TK'}</div>
-                                    <div class="profile-user-badge-pill">🌱 Paket: Fase Fondasi TK | Level: Lv.${lvl.levelNum} (${lvl.levelName}) | Ortu: ${currentStudent.parentEmail || '-'}</div>
+                                    <div class="profile-user-name">Rapor Belajar: ${currentStudent.name || 'Siswa'}</div>
+                                    <div class="profile-user-badge-pill">🌱 Paket: ${meta.title} | Level: Lv.${lvl.levelNum} (${lvl.levelName}) | Ortu: ${currentStudent.parentEmail || '-'}</div>
                                 </div>
                             </div>
                             <div>
@@ -1541,32 +1701,30 @@
                         </div>
                         
                         <div style="background:var(--brand-cream); border:1.5px solid var(--card-border); border-radius:16px; padding:18px;">
-                            <div style="font-family:'Fredoka',sans-serif; font-size:1rem; color:var(--brand-brown); margin-bottom:10px;">📈 6 Aspek Perkembangan Utama (ATP Resmi TK)</div>
+                            <div style="font-family:'Fredoka',sans-serif; font-size:1rem; color:var(--brand-brown); margin-bottom:10px;">📈 Grafik Capaian Kompetensi Kurikulum Merdeka</div>
                             <p style="font-size:0.85rem; color:var(--text-main); font-weight:600; line-height:1.6; margin-bottom:12px;">
-                                Pelaporan didasarkan pada tahap capaian tiap aspek (Dasar, Menengah, Mahir) sesuai prinsip Kurikulum Merdeka & Montessori.
+                                Pelaporan didasarkan pada tingkat penguasaan materi pada tiap mata pelajaran atau aspek perkembangan secara komprehensif.
                             </p>
                             <div style="display:flex; align-items:flex-end; gap:12px; height:90px; padding-top:10px; border-bottom:2px solid var(--card-border);">
-                                <div style="flex:1; background:var(--brand-amber); border-radius:6px 6px 0 0; height:75%; display:flex; justify-content:center; align-items:flex-start; font-size:0.7rem; color:#fff; font-weight:800; padding-top:4px;">Agama</div>
-                                <div style="flex:1; background:var(--brand-amber); border-radius:6px 6px 0 0; height:70%; display:flex; justify-content:center; align-items:flex-start; font-size:0.7rem; color:#fff; font-weight:800; padding-top:4px;">Fisik</div>
-                                <div style="flex:1; background:var(--brand-amber); border-radius:6px 6px 0 0; height:85%; display:flex; justify-content:center; align-items:flex-start; font-size:0.7rem; color:#fff; font-weight:800; padding-top:4px;">Kognitif</div>
-                                <div style="flex:1; background:var(--brand-amber); border-radius:6px 6px 0 0; height:80%; display:flex; justify-content:center; align-items:flex-start; font-size:0.7rem; color:#fff; font-weight:800; padding-top:4px;">Bahasa</div>
-                                <div style="flex:1; background:var(--brand-amber); border-radius:6px 6px 0 0; height:85%; display:flex; justify-content:center; align-items:flex-start; font-size:0.7rem; color:#fff; font-weight:800; padding-top:4px;">Sosial</div>
-                                <div style="flex:1; background:var(--brand-amber); border-radius:6px 6px 0 0; height:90%; display:flex; justify-content:center; align-items:flex-start; font-size:0.7rem; color:#fff; font-weight:800; padding-top:4px;">Seni</div>
+                                <div style="flex:1; background:var(--brand-amber); border-radius:6px 6px 0 0; height:80%; display:flex; justify-content:center; align-items:flex-start; font-size:0.7rem; color:#fff; font-weight:800; padding-top:4px;">Lit</div>
+                                <div style="flex:1; background:var(--brand-amber); border-radius:6px 6px 0 0; height:85%; display:flex; justify-content:center; align-items:flex-start; font-size:0.7rem; color:#fff; font-weight:800; padding-top:4px;">Num</div>
+                                <div style="flex:1; background:var(--brand-amber); border-radius:6px 6px 0 0; height:90%; display:flex; justify-content:center; align-items:flex-start; font-size:0.7rem; color:#fff; font-weight:800; padding-top:4px;">Sains</div>
+                                <div style="flex:1; background:var(--brand-amber); border-radius:6px 6px 0 0; height:82%; display:flex; justify-content:center; align-items:flex-start; font-size:0.7rem; color:#fff; font-weight:800; padding-top:4px;">Sosial</div>
                             </div>
                         </div>
 
                         <div style="font-size:0.9rem; font-weight:700; color:var(--text-sub); line-height:1.6;">
-                            <strong>Catatan Evaluasi Mentor (Michelle Himmelda C, S.Psi):</strong> Ananda menunjukkan antusiasme yang sangat baik dalam mengeksplorasi materi 6 aspek perkembangan dan Calistung bertahap dengan gembira.
+                            <strong>Catatan Evaluasi Mentor (Michelle Himmelda C, S.Psi):</strong> Siswa menunjukkan perkembangan dan dedikasi yang sangat baik dalam memahami konsep materi serta aktif menyelesaikan latihan soal.
                         </div>
 
                         <div style="margin-top:10px;">
-                            <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; margin-bottom:12px; color:var(--text-main);">📊 Riwayat Aktivitas TK Terbaru:</div>
+                            <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; margin-bottom:12px; color:var(--text-main);">📊 Riwayat Aktivitas Terbaru:</div>
                             ${historyList.length === 0 ? '<p style="font-size:0.85rem; color:var(--text-sub);">Belum ada riwayat aktivitas yang diselesaikan.</p>' : `
                                 <table class="leaderboard-table" style="font-size:0.85rem;">
                                     <thead>
                                         <tr>
                                             <th>Waktu</th>
-                                            <th>Aktivitas / Kuis</th>
+                                            <th>Aktivitas / Ujian</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -1591,13 +1749,13 @@
             let lvl = calculateLevelInfo();
             container.innerHTML = `
                 <div style="margin-bottom:20px;">
-                    <div style="font-family:'Fredoka',sans-serif; font-size:1.4rem; color:var(--brand-brown); margin-bottom:4px;">🏆 Ruang Pameran Piala TK (Trophy Room)</div>
-                    <div style="font-size:0.85rem; color:var(--text-sub); font-weight:700;">Koleksi piala eksklusif yang diraih berdasarkan pencapaian belajarmu di jenjang TK!</div>
+                    <div style="font-family:'Fredoka',sans-serif; font-size:1.4rem; color:var(--brand-brown); margin-bottom:4px;">🏆 Ruang Pameran Piala (Trophy Room)</div>
+                    <div style="font-size:0.85rem; color:var(--text-sub); font-weight:700;">Koleksi piala eksklusif yang diraih berdasarkan pencapaian belajarmu!</div>
                 </div>
                 <div class="trophy-showcase-grid">
                     <div class="trophy-pedestal-card">
                         <div class="trophy-icon-3d">🏆</div>
-                        <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--text-main); margin-bottom:6px;">Piala Master TK</div>
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--text-main); margin-bottom:6px;">Piala Master Akademik</div>
                         <div style="font-size:0.8rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Syarat: Capai Level 3 atau Lebih</div>
                         <div class="badge-status-tag ${lvl.levelNum >= 3 ? 'unlocked' : 'locked'}">${lvl.levelNum >= 3 ? 'Terbuka ✨' : 'Terkunci 🔒'}</div>
                     </div>
@@ -1609,7 +1767,7 @@
                     </div>
                     <div class="trophy-pedestal-card">
                         <div class="trophy-icon-3d">🎖️</div>
-                        <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--text-main); margin-bottom:6px;">Piala Eksplorasi Ceria</div>
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--text-main); margin-bottom:6px;">Piala Eksplorasi Aktif</div>
                         <div style="font-size:0.8rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Syarat: Selesaikan 5 Aktivitas</div>
                         <div class="badge-status-tag ${userCompletedQuizzes >= 5 ? 'unlocked' : 'locked'}">${userCompletedQuizzes >= 5 ? 'Terbuka ✨' : 'Terkunci 🔒'}</div>
                     </div>
@@ -1618,10 +1776,11 @@
         }
 
         function renderWorksheetCenter(container) {
+            const list = worksheetsDatabaseMulti[currentPackage] || worksheetsDatabaseMulti['tk'];
             container.innerHTML = `
-                <div style="margin-bottom:16px; font-weight:800; color:var(--brand-brown); font-size:0.95rem;">📥 DAFTAR LEMBAR KERJA CETAK PDF TK (FASE FONDASI)</div>
+                <div style="margin-bottom:16px; font-weight:800; color:var(--brand-brown); font-size:0.95rem;">📥 DAFTAR LEMBAR KERJA CETAK PDF (${packageMeta[currentPackage].title})</div>
                 <div class="worksheet-grid">
-                    ${worksheetsDatabaseTK.map(w => `
+                    ${list.map(w => `
                         <div class="worksheet-card">
                             <div>
                                 <div style="font-size:0.75rem; font-weight:800; color:var(--brand-amber); text-transform:uppercase; margin-bottom:6px;">📄 ${w.cat}</div>
@@ -1638,7 +1797,8 @@
         function renderModules(container, secKey) {
             const grid = document.createElement('div');
             grid.className = 'modules-grid';
-            const list = tkDatabase[secKey] || tkDatabase['roadmap'];
+            const dbPkg = contentDatabaseByPackage[currentPackage] || contentDatabaseByPackage['tk'];
+            const list = dbPkg.roadmap || dbPkg['roadmap'];
             grid.innerHTML = list.map((m, idx) => `
                 <div class="module-card">
                     <div><div class="card-top"><span class="tier-badge">${m.tierTag}</span><span class="progress-count">${m.progress}</span></div>
@@ -1660,7 +1820,7 @@
                     <div class="badge-item-card ${isUnlocked1 ? 'unlocked' : ''}" ${isUnlocked1 ? `onclick="openCertModal()"` : ''}>
                         <div class="badge-icon-wrap">🌱</div>
                         <div class="badge-title-text">Langkah Pertama</div>
-                        <div style="font-size:0.8rem; color:var(--text-sub);">Selesaikan 1 aktivitas TK.</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub);">Selesaikan 1 aktivitas belajar.</div>
                         <div class="badge-status-tag ${isUnlocked1 ? 'unlocked' : 'locked'}">${isUnlocked1 ? 'Unlocked ✨' : 'Locked 🔒'}</div>
                     </div>
                     <div class="badge-item-card ${isUnlockedStar ? 'unlocked' : ''}" ${isUnlockedStar ? `onclick="openCertModal()"` : ''}>
@@ -1671,14 +1831,14 @@
                     </div>
                     <div class="badge-item-card unlocked" onclick="openCertModal()">
                         <div class="badge-icon-wrap">🔥</div>
-                        <div class="badge-title-text">Streak Ceria</div>
+                        <div class="badge-title-text">Streak Belajar</div>
                         <div style="font-size:0.8rem; color:var(--text-sub);">Aktivasi kebiasaan belajar harian.</div>
                         <div class="badge-status-tag unlocked">Unlocked ✨</div>
                     </div>
                     <div class="badge-item-card ${isUnlockedMaster ? 'unlocked' : ''}" ${isUnlockedMaster ? `onclick="openCertModal()"` : ''}>
                         <div class="badge-icon-wrap">🎓</div>
-                        <div class="badge-title-text">Master TK Ceria</div>
-                        <div style="font-size:0.8rem; color:var(--text-sub);">Selesaikan 5 aktivitas TK.</div>
+                        <div class="badge-title-text">Master Akademik</div>
+                        <div style="font-size:0.8rem; color:var(--text-sub);">Selesaikan 5 aktivitas belajar.</div>
                         <div class="badge-status-tag ${isUnlockedMaster ? 'unlocked' : 'locked'}">${isUnlockedMaster ? 'Unlocked ✨' : 'Locked 🔒'}</div>
                     </div>
                 </div>
@@ -1688,24 +1848,26 @@
         function openCertModal() {
             playSuccessSound();
             playFanfareSound();
-            document.getElementById('certStudentName').innerText = currentStudent.name || 'Siswa TK Ceria';
+            document.getElementById('certStudentName').innerText = currentStudent.name || 'Siswa Cerdas';
+            document.getElementById('certSubtitleModal').innerText = `${packageMeta[currentPackage].title} — Omah Les Privat`;
             document.getElementById('certModalOverlay').classList.add('active');
         }
         function closeCertModal() { document.getElementById('certModalOverlay').classList.remove('active'); }
 
         function renderFlashcardsUI(container) {
-            if(currentFlashcardIdx >= flashcardsDatabaseTK.length) currentFlashcardIdx = 0;
-            const fc = flashcardsDatabaseTK[currentFlashcardIdx];
+            const fcList = contentDatabaseByPackage[currentPackage].flashcards || contentDatabaseByPackage['tk'].flashcards;
+            if(currentFlashcardIdx >= fcList.length) currentFlashcardIdx = 0;
+            const fc = fcList[currentFlashcardIdx];
             isFlashcardFlipped = false;
 
             container.innerHTML = `
                 <div class="flashcard-wrapper animate-section">
                     <div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
-                        <div style="font-weight:800; color:var(--brand-brown); text-transform:uppercase; font-size:0.85rem;">🃏 FLASHCARDS TK (${currentFlashcardIdx + 1} / ${flashcardsDatabaseTK.length})</div>
+                        <div style="font-weight:800; color:var(--brand-brown); text-transform:uppercase; font-size:0.85rem;">🃏 FLASHCARDS (${currentFlashcardIdx + 1} / ${fcList.length})</div>
                         <button class="tts-action-btn" style="margin:0;" onclick="toggleSpeech(document.getElementById('fcText').innerText, this)">🔊 Dengar Kartu</button>
                     </div>
                     <div class="flashcard-box" onclick="flipFlashcard()">
-                        <div class="flashcard-instruction" id="fcInstruction">Klik kartu untuk melihat jawaban</div>
+                        <div class="flashcard-instruction" id="fcInstruction">Klik kartu untuk melihat penjelasan</div>
                         <div class="flashcard-content" id="fcText">${fc.q}</div>
                     </div>
                     <div class="flashcard-controls">
@@ -1717,84 +1879,34 @@
         }
         function flipFlashcard() {
             playClickSound();
-            const fc = flashcardsDatabaseTK[currentFlashcardIdx];
+            const fcList = contentDatabaseByPackage[currentPackage].flashcards || contentDatabaseByPackage['tk'].flashcards;
+            const fc = fcList[currentFlashcardIdx];
             isFlashcardFlipped = !isFlashcardFlipped;
-            document.getElementById('fcInstruction').innerText = isFlashcardFlipped ? "JAWABAN / PENJELASAN:" : "Klik kartu untuk melihat jawaban";
+            document.getElementById('fcInstruction').innerText = isFlashcardFlipped ? "PENJELASAN / RUMUS:" : "Klik kartu untuk melihat penjelasan";
             document.getElementById('fcText').innerText = isFlashcardFlipped ? fc.a : fc.q;
         }
         function nextFlashcard() { 
-            currentFlashcardIdx = (currentFlashcardIdx + 1) % flashcardsDatabaseTK.length; 
+            const fcList = contentDatabaseByPackage[currentPackage].flashcards || contentDatabaseByPackage['tk'].flashcards;
+            currentFlashcardIdx = (currentFlashcardIdx + 1) % fcList.length; 
             renderFlashcardsUI(document.getElementById('dynamicMainContentArea')); 
         }
         function prevFlashcard() { 
-            currentFlashcardIdx = (currentFlashcardIdx - 1 + flashcardsDatabaseTK.length) % flashcardsDatabaseTK.length; 
+            const fcList = contentDatabaseByPackage[currentPackage].flashcards || contentDatabaseByPackage['tk'].flashcards;
+            currentFlashcardIdx = (currentFlashcardIdx - 1 + fcList.length) % fcList.length; 
             renderFlashcardsUI(document.getElementById('dynamicMainContentArea')); 
         }
 
         function renderGameCenterGrid(container) {
             container.innerHTML = `
-                <div class="game-level-tag-box">🎮 GAME EDUKASI TK: <strong>FASE FONDASI</strong></div>
+                <div class="game-level-tag-box">🎮 GAME EDUKASI: <strong>${packageMeta[currentPackage].title}</strong></div>
                 <div class="game-card-grid">
-                    ${omahGamesDatabaseTK.map((g, idx) => `
-                        <div class="game-item-card" onclick="startOmahGame(${idx})">
-                            <div><div class="game-icon-box" style="background:${g.bg}; color:${g.color};">${g.icon}</div>
-                            <div class="game-card-title">${g.title}</div><div class="game-card-desc">${g.desc}</div></div>
-                            <div style="font-size:0.75rem; font-weight:800; color:var(--text-sub);">REWARD: ⭐ +20</div>
-                        </div>
-                    `).join('')}
                     <div class="game-item-card" onclick="startDragMatchGame()" style="border-color:#3b82f6;">
                         <div><div class="game-icon-box" style="background:#dbeafe; color:#2563eb;">🧩</div>
-                        <div class="game-card-title">Tarik & Pasangkan (Match)</div><div class="game-card-desc">Pasangkan kata kunci TK dengan kategori yang tepat!</div></div>
+                        <div class="game-card-title">Tarik & Pasangkan (Match)</div><div class="game-card-desc">Pasangkan istilah materi pelajaran dengan definisi yang tepat!</div></div>
                         <div style="font-size:0.75rem; font-weight:800; color:#2563eb;">REWARD: ⭐ +30</div>
                     </div>
                 </div>
             `;
-        }
-
-        function startOmahGame(idx) {
-            currentActiveGameQuestions = omahGamesDatabaseTK[idx].questions;
-            currentLovQuestionIdx = 0; lovScore = 0; lovLives = 3;
-            renderOmahGameUI(document.getElementById('dynamicMainContentArea'));
-        }
-
-        function renderOmahGameUI(container) {
-            if (lovLives <= 0 || currentLovQuestionIdx >= currentActiveGameQuestions.length) {
-                alert(`Permainan Selesai! Score: ${lovScore}`); return switchSection('games');
-            }
-            const q = currentActiveGameQuestions[currentLovQuestionIdx];
-            container.innerHTML = `
-                <div class="lov-game-wrapper animate-section">
-                    <div class="lov-top-bar">
-                        <div class="lov-btn-close" onclick="switchSection('games')">✕</div>
-                        <div class="lov-score-pill">SCORE: ${lovScore}</div>
-                        <div style="display:flex; gap:12px; align-items:center;">
-                            <button class="tts-action-btn" style="margin:0;" onclick="toggleSpeech('${q.clue}', this)">🔊 Dengar Clue</button>
-                            <span>❤️❤️❤️</span>
-                        </div>
-                    </div>
-                    <div class="lov-stage-card"><div class="lov-emoji-display">${q.emojis}</div></div>
-                    <div class="lov-clue-box">💡 ${q.clue}</div>
-                    <div class="lov-input-container">
-                        <input type="text" id="lovAnswerInput" class="lov-text-input" placeholder="Ketik jawaban..." onkeypress="if(event.key==='Enter') submitOmahGameAnswer('${q.answer}', event)">
-                        <button class="lov-submit-btn" onclick="submitOmahGameAnswer('${q.answer}', event)">Kirim</button>
-                    </div>
-                </div>
-            `;
-            document.getElementById('lovAnswerInput').focus();
-        }
-
-        function submitOmahGameAnswer(ans, event) {
-            const rect = event ? event.target.getBoundingClientRect() : null;
-            const val = document.getElementById('lovAnswerInput').value.trim().toLowerCase();
-            if(val === ans.toLowerCase()) {
-                playSuccessSound(rect ? rect.left : null, rect ? rect.top : null);
-                lovScore += 100; userStars += 20; userCompletedQuizzes++;
-                persistUserDataRealtime();
-                currentLovQuestionIdx++; alert('🎉 HORE! Jawaban Benar! ⭐ +20 Bintang');
-            } else { 
-                playErrorSound(); lovLives--; alert(`❌ Ups! Jawaban yang benar adalah: ${ans}`); 
-            }
-            renderOmahGameUI(document.getElementById('dynamicMainContentArea'));
         }
 
         let matchScore = 0;
@@ -1813,21 +1925,21 @@
                         <div>Skor: <span id="matchScoreDisplay">${matchScore}</span></div>
                     </div>
                     <div class="insight-card-box" style="text-align:center;">
-                        <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--text-main); margin-bottom:12px;">Pilih pasangan kategori yang cocok:</div>
-                        <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:20px;">Klik kata di sebelah kiri, lalu klik pasangannya di sebelah kanan!</p>
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--text-main); margin-bottom:12px;">Pilih pasangan konsep yang cocok:</div>
+                        <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:20px;">Klik pertanyaan di sebelah kiri, lalu klik jawabannya di sebelah kanan!</p>
                         
                         <div style="display:flex; justify-content:space-around; gap:20px; flex-wrap:wrap;">
                             <div style="display:flex; flex-direction:column; gap:10px;">
-                                <div style="font-weight:800; color:var(--brand-brown); margin-bottom:4px;">KATA KUNCI TK</div>
-                                <button class="quiz-btn" onclick="selectMatchItem('Apel', this)" style="background:var(--brand-cream);">🍎 Apel</button>
-                                <button class="quiz-btn" onclick="selectMatchItem('Kucing', this)" style="background:var(--brand-cream);">🐱 Kucing</button>
-                                <button class="quiz-btn" onclick="selectMatchItem('Doa', this)" style="background:var(--brand-cream);">🤲 Doa Harian</button>
+                                <div style="font-weight:800; color:var(--brand-brown); margin-bottom:4px;">KATA KUNCI</div>
+                                <button class="quiz-btn" onclick="selectMatchItem('KPK', this)" style="background:var(--brand-cream);">KPK 4 dan 6</button>
+                                <button class="quiz-btn" onclick="selectMatchItem('Volume', this)" style="background:var(--brand-cream);">Volume Kubus</button>
+                                <button class="quiz-btn" onclick="selectMatchItem('Mean', this)" style="background:var(--brand-cream);">Mean (Rata-rata)</button>
                             </div>
                             <div style="display:flex; flex-direction:column; gap:10px;">
-                                <div style="font-weight:800; color:var(--brand-brown); margin-bottom:4px;">KATEGORI</div>
-                                <button class="quiz-btn" onclick="checkMatchPair('Agama', this)">Nilai Agama & Moral</button>
-                                <button class="quiz-btn" onclick="checkMatchPair('Buah', this)">Buah-buahan (Kognitif)</button>
-                                <button class="quiz-btn" onclick="checkMatchPair('Hewan', this)">Hewan Peliharaan</button>
+                                <div style="font-weight:800; color:var(--brand-brown); margin-bottom:4px;">JAWABAN</div>
+                                <button class="quiz-btn" onclick="checkMatchPair('12', this)">12</button>
+                                <button class="quiz-btn" onclick="checkMatchPair('s3', this)">s x s x s</button>
+                                <button class="quiz-btn" onclick="checkMatchPair('jumlah', this)">Jumlah data dibagi banyak data</button>
                             </div>
                         </div>
                         <div id="matchFeedbackText" style="margin-top:20px; font-weight:800; font-size:0.95rem;"></div>
@@ -1844,14 +1956,14 @@
             btn.style.borderColor = 'var(--brand-amber)';
         }
 
-        function checkMatchPair(category, btn) {
+        function checkMatchPair(ans, btn) {
             if(!selectedMatchKey) {
                 alert('Pilih dulu kata kunci di sebelah kiri!');
                 return;
             }
-            const isCorrect = (selectedMatchKey === 'Apel' && category === 'Buah') ||
-                              (selectedMatchKey === 'Kucing' && category === 'Hewan') ||
-                              (selectedMatchKey === 'Doa' && category === 'Agama');
+            const isCorrect = (selectedMatchKey === 'KPK' && ans === '12') ||
+                              (selectedMatchKey === 'Volume' && ans === 's3') ||
+                              (selectedMatchKey === 'Mean' && ans === 'jumlah');
 
             if(isCorrect) {
                 playSuccessSound();
@@ -1864,7 +1976,7 @@
                 selectedMatchKey = null;
                 if(matchScore >= 30) {
                     playFanfareSound();
-                    alert('🏆 Luar Biasa! Kamu menyelesaikan Minigame Tarik & Pasangkan TK dengan sempurna!');
+                    alert('🏆 Luar Biasa! Kamu menyelesaikan Minigame dengan sempurna!');
                     switchSection('games');
                 }
             } else {
@@ -1875,8 +1987,9 @@
         }
 
         function openSequenceModal(secKey, idx) {
-            const list = tkDatabase[secKey] || tkDatabase['roadmap'];
-            currentActiveModule = list[idx];
+            const dbPkg = contentDatabaseByPackage[currentPackage] || contentDatabaseByPackage['tk'];
+            const list = dbPkg.roadmap || dbPkg['roadmap'];
+            currentActiveModule = list[idx] || list[0];
             
             lastOpenedModuleTitle = currentActiveModule.title;
             persistUserDataRealtime();
@@ -1896,7 +2009,7 @@
 
         function downloadWorksheetPDF() {
             if(!currentActiveModule) return;
-            alert(`📥 Mengunduh lembar kerja PDF resmi untuk modul TK: ${currentActiveModule.title}`);
+            alert(`📥 Mengunduh lembar kerja PDF resmi untuk modul: ${currentActiveModule.title}`);
             window.print();
         }
 
@@ -1909,7 +2022,7 @@
             document.getElementById('insQuote').innerText = st.quote;
             document.getElementById('insContext').innerText = st.context;
             document.getElementById('insLogic').innerText = st.logic;
-            document.getElementById('quizQuestionText').innerText = `❓ Kuis TK: ${st.quiz.q}`;
+            document.getElementById('quizQuestionText').innerText = `❓ Kuis: ${st.quiz.q}`;
             document.getElementById('quizOptionsContainer').innerHTML = st.quiz.opts.map((o, i) => `<button class="quiz-btn" onclick="checkQuiz(${i}, ${st.quiz.ans}, event)">${o}</button>`).join('');
             document.getElementById('quizFeedbackText').innerText = '';
             document.getElementById('insightModalOverlay').classList.add('active');
@@ -1930,12 +2043,12 @@
                 userStars += 15; userCompletedQuizzes++;
                 persistUserDataRealtime();
 
-                let historyList = JSON.parse(localStorage.getItem('omahles_tk_quiz_history') || '[]');
+                let historyList = JSON.parse(localStorage.getItem('omahles_portal_quiz_history') || '[]');
                 historyList.push({
-                    title: currentActiveModule ? currentActiveModule.title : 'Kuis ATP TK',
+                    title: currentActiveModule ? currentActiveModule.title : 'Kuis ATP',
                     time: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
                 });
-                localStorage.setItem('omahles_tk_quiz_history', JSON.stringify(historyList));
+                localStorage.setItem('omahles_portal_quiz_history', JSON.stringify(historyList));
             } else { 
                 playErrorSound(); 
                 document.getElementById('quizFeedbackText').style.color = '#dc2626'; 
@@ -1950,11 +2063,12 @@
         }
 
         function renderLovSpeakAiChat(container) {
-            const storageKey = `omahles_tk_key_${currentStudent.parentEmail}`;
+            const storageKey = `omahles_portal_key_${currentStudent.parentEmail}`;
             const savedKey = localStorage.getItem(storageKey) || '';
-            const studentName = currentStudent.name || 'Siswa TK';
+            const studentName = currentStudent.name || 'Siswa';
+            const meta = packageMeta[currentPackage] || packageMeta['tk'];
 
-            const chatMemoryKey = `omahles_tk_chat_history_${currentStudent.parentEmail}`;
+            const chatMemoryKey = `omahles_portal_chat_history_${currentStudent.parentEmail}_${currentPackage}`;
             const savedMemory = localStorage.getItem(chatMemoryKey);
             if (savedMemory && chatHistoryMemory.length === 0) {
                 try { chatHistoryMemory = JSON.parse(savedMemory); } catch(e) {}
@@ -1966,7 +2080,7 @@
                         <div class="lovespeak-profile-info">
                             <div class="lovespeak-avatar">👑</div>
                             <div>
-                                <div class="lovespeak-name">Kak Omah AI Tutor TK (Montessori & Deep Learning)</div>
+                                <div class="lovespeak-name">Kak Omah AI Tutor (${meta.title})</div>
                                 <div class="lovespeak-status">● ONLINE, AI CONNECTED</div>
                             </div>
                         </div>
@@ -1983,7 +2097,7 @@
                     <div class="lovespeak-messages-area" id="lovChatMessagesBox">
                         <div class="lovespeak-bubble-row ai">
                             <div class="lovespeak-bubble">
-                                Halo ${studentName}! Kak Omah siap mendampingi proses belajar anak TK dengan pendekatan <b>Mindful, Meaningful, dan Joyful</b> sesuai Alur Tujuan Pembelajaran resmi Omah Les Privat! ✨
+                                Halo ${studentName}! Kak Omah siap mendampingi proses belajar untuk <b>${meta.title}</b> dengan pendekatan Kurikulum Merdeka dan Deep Learning! ✨
                             </div>
                             <div class="lovespeak-bubble-footer">
                                 <button class="lovespeak-btn-listen" onclick="toggleSpeech(this.parentElement.previousElementSibling.innerText, this)">🔊 LISTEN</button>
@@ -1994,15 +2108,14 @@
                     </div>
 
                     <div class="lovespeak-suggestions-bar">
-                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Tolong jelaskan materi Aspek Nilai Agama dan Moral untuk anak TK!')">🙏 Nilai Agama & Moral</div>
-                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana cara melatih motorik halus anak TK sesuai metode Montessori?')">🏃 Motorik Halus Montessori</div>
-                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Berikan contoh latihan berhitung angka 1-10 secara konkret!')">🧩 Berhitung 1-10 TK</div>
-                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Jelaskan kesiapan Calistung bertahap untuk anak TK!')">📖 Calistung Bertahap TK</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Tolong jelaskan materi utama untuk ${meta.title}!')">📚 Materi ${meta.title}</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Berikan latihan soal beserta pembahasannya!')">📝 Latihan Soal</div>
+                        <div class="lovespeak-suggestion-chip" onclick="quickSendPrompt('Bagaimana cara memahami konsep sulit dengan mudah?')">💡 Tips Belajar</div>
                     </div>
 
                     <div class="lovespeak-input-bar">
                         <button class="lovespeak-input-icon-btn">📎</button>
-                        <input type="text" id="lovUserChatInput" class="lovespeak-text-input" placeholder="Tanyakan seputar kurikulum TK..." onkeypress="if(event.key==='Enter') sendGeminiApiChat()">
+                        <input type="text" id="lovUserChatInput" class="lovespeak-text-input" placeholder="Tanyakan seputar materi pelajaran..." onkeypress="if(event.key==='Enter') sendGeminiApiChat()">
                         <button class="lovespeak-send-btn" onclick="sendGeminiApiChat()">➤</button>
                     </div>
                 </div>
@@ -2049,14 +2162,14 @@
         function saveUserApiKey() {
             const key = document.getElementById('inputUserApiKey').value.trim();
             if(!key) { alert('Masukkan API Key yang valid!'); return; }
-            const storageKey = `omahles_tk_key_${currentStudent.parentEmail}`;
+            const storageKey = `omahles_portal_key_${currentStudent.parentEmail}`;
             localStorage.setItem(storageKey, key);
             alert('✅ API Key berhasil disimpan untuk akun ini!');
         }
 
         function resetChatHistory() {
             chatHistoryMemory = [];
-            const chatMemoryKey = `omahles_tk_chat_history_${currentStudent.parentEmail}`;
+            const chatMemoryKey = `omahles_portal_chat_history_${currentStudent.parentEmail}_${currentPackage}`;
             localStorage.removeItem(chatMemoryKey);
             playClickSound();
             renderLovSpeakAiChat(document.getElementById('dynamicMainContentArea'));
@@ -2068,7 +2181,7 @@
             const msg = input.value.trim();
             if(!msg) return;
 
-            const storageKey = `omahles_tk_key_${currentStudent.parentEmail}`;
+            const storageKey = `omahles_portal_key_${currentStudent.parentEmail}`;
             const apiKey = localStorage.getItem(storageKey);
             if(!apiKey) {
                 alert('⚠️ Masukkan terlebih dahulu Google Gemini API Key Anda di kolom kanan atas sebelum bertanya!');
@@ -2077,7 +2190,8 @@
 
             const box = document.getElementById('lovChatMessagesBox');
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            const studentName = currentStudent.name || 'Siswa TK';
+            const studentName = currentStudent.name || 'Siswa';
+            const meta = packageMeta[currentPackage] || packageMeta['tk'];
 
             box.innerHTML += `
                 <div class="lovespeak-bubble-row user">
@@ -2092,7 +2206,7 @@
             const loadingId = 'load-' + Date.now();
             box.innerHTML += `
                 <div class="lovespeak-bubble-row ai" id="${loadingId}">
-                    <div class="lovespeak-bubble">⏳ Kak Omah sedang menyusun penjelasan kurikulum TK Omah Les Privat...</div>
+                    <div class="lovespeak-bubble">⏳ Kak Omah sedang menyusun penjelasan untuk ${meta.title}...</div>
                 </div>
             `;
             box.scrollTop = box.scrollHeight;
@@ -2101,7 +2215,7 @@
                 const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
                 const systemInstruction = {
                     role: "model",
-                    parts: [{ text: `Anda adalah Kak Omah, tutor privat ramah untuk anak TK di Omah Les Privat yang didirikan oleh Michelle Himmelda C, S.Psi. Siswa yang bertanya bernama "${studentName}". Acuan kurikulum Anda adalah Alur Tujuan Pembelajaran (ATP) Resmi Jenjang PAUD/TK Omah Les Privat yang memadukan Kurikulum Merdeka (Fase Fondasi), Pendekatan Montessori, referensi Internasional, serta prinsip deep learning (mindful, meaningful, joyful). Fokus khusus pada 6 Aspek Perkembangan (Nilai Agama & Moral, Fisik & Motorik, Kognitif, Bahasa, Sosial-Emosional, Seni) serta Calistung bertahap (Dasar, Menengah, Mahir). Tekankan nilai karakter 'Nilai Omah' (Mandiri, Ingin Tahu, Tekun, Empati, Ceria & Percaya Diri). JANGAN gunakan simbol bintang ganda (**) sama sekali di seluruh jawaban Anda. Gunakan tag HTML <b>...</b> jika ingin menebalkan teks.` }]
+                    parts: [{ text: `Anda adalah Kak Omah, tutor privat profesional untuk siswa di Omah Les Privat yang didirikan oleh Michelle Himmelda C, S.Psi. Siswa yang bertanya bernama "${studentName}" dengan jenjang paket "${meta.title}". Acuan kurikulum Anda adalah Kurikulum Merdeka dan Deep Learning (mindful, meaningful, joyful). JANGAN gunakan simbol bintang ganda (**) sama sekali di seluruh jawaban Anda. Gunakan tag HTML <b>...</b> jika ingin menebalkan teks.` }]
                 };
 
                 const response = await fetch(apiEndpoint, {
@@ -2117,7 +2231,7 @@
                     let aiReply = data.candidates[0].content.parts[0].text;
                     chatHistoryMemory.push({ role: "model", parts: [{ text: aiReply }] });
 
-                    const chatMemoryKey = `omahles_tk_chat_history_${currentStudent.parentEmail}`;
+                    const chatMemoryKey = `omahles_portal_chat_history_${currentStudent.parentEmail}_${currentPackage}`;
                     localStorage.setItem(chatMemoryKey, JSON.stringify(chatHistoryMemory));
 
                     aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
