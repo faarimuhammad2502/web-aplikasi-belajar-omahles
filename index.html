@@ -12,6 +12,17 @@
 
     <style>
         :root {
+            .dashboard-main-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 900px) {
+            .dashboard-main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
             --brand-brown: #8b4513;        
             --brand-terracotta: #a0522d;    
             --brand-amber: #d97706;        
@@ -1419,7 +1430,7 @@
             }
         }
 
-        function renderDashboardMain(container) {
+function renderDashboardMain(container) {
             const todayStr = new Date().toISOString().split('T')[0];
             const isAlreadyClaimed = (lastClaimDate === todayStr);
             const lvl = calculateLevelInfo();
@@ -1427,87 +1438,90 @@
             const meta = packageMeta[currentPackage] || packageMeta['tk'];
 
             container.innerHTML = `
-                <div class="resume-learning-card">
+                <!-- Baris 1: Lanjutkan Eksplorasi (Full Width) -->
+                <div class="resume-learning-card" style="margin-bottom: 20px;">
                     <div>
-                        <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; color:#1e40af; margin-bottom:2px;">📌 Lanjutkan Eksplorasi Terakhir</div>
+                        <div style="font-family:'Fredoka',sans-serif; font-size:1.05rem; color:#1e40af; margin-bottom:2px;">📌 Lanjutkan Eksplorasi Terakhir</div>
                         <div style="font-size:0.85rem; font-weight:700; color:#3b82f6;">${lastOpenedModuleTitle}</div>
                     </div>
                     <button class="btn-resume" onclick="switchSection('roadmap')">Lanjut Belajar →</button>
                 </div>
 
-                <div style="display:flex; justify-content:space-between; align-items:center; background:var(--card-bg); border:2px solid var(--card-border); border-radius:var(--radius-main); padding:20px 24px; margin-bottom:28px; gap:16px; flex-wrap:wrap;">
+                <!-- Baris 2: Grid 2 Kolom (Kiri: Streak & Misi | Kanan: Hadiah & Statistik) -->
+                <div class="dashboard-main-grid">
+                    <!-- Kolom Kiri -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div style="background:var(--card-bg); border:2px solid var(--card-border); border-radius:var(--radius-main); padding:20px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                <span style="font-size:2.2rem;">🔥</span>
+                                <div>
+                                    <div style="font-family:'Fredoka',sans-serif; font-size:1rem; color:var(--text-main);">Streak Konsisten</div>
+                                    <div style="font-size:0.75rem; color:var(--text-sub); font-weight:700;">${meta.title}</div>
+                                </div>
+                            </div>
+                            <div class="streak-fire-badge">🔥 1 Hari</div>
+                        </div>
+
+                        <div class="weekly-quest-card" style="margin-bottom:0; padding:20px;">
+                            <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; color:var(--brand-brown); margin-bottom:4px;">🎯 Misi Mingguan</div>
+                            <div style="font-size:0.78rem; color:var(--text-sub); font-weight:700; margin-bottom:12px;">Selesaikan 3 kuis/modul.</div>
+                            <div class="quest-item" style="padding:10px 14px; margin-bottom:0;">
+                                <div>
+                                    <div style="font-family:'Fredoka',sans-serif; font-size:0.88rem; color:var(--text-main);">3 Aktivitas</div>
+                                    <div style="font-size:0.72rem; color:var(--text-sub); font-weight:700;">Progress: ${Math.min(userCompletedQuizzes, 3)} / 3</div>
+                                </div>
+                                <button class="btn-claim-quest" id="claimQuestBtn" ${(!questDone || weeklyQuestClaimed) ? 'disabled' : ''} onclick="claimWeeklyQuest(event)">
+                                    ${weeklyQuestClaimed ? '✅ Klaim' : (questDone ? '🎁 +150 ⭐' : 'Belum')}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div class="daily-reward-card" style="margin-bottom:0; padding:20px;">
+                            <div class="daily-reward-left" style="gap:12px;">
+                                <div style="font-size:2.2rem;">🎁</div>
+                                <div>
+                                    <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; color:#92400e; margin-bottom:2px;">Bintang Harian</div>
+                                    <div style="font-size:0.78rem; font-weight:700; color:#b45309;">Klaim +50 bintang gratis!</div>
+                                </div>
+                            </div>
+                            <button class="btn-claim-reward" style="padding:10px 16px; font-size:0.85rem;" id="claimRewardBtn" ${isAlreadyClaimed ? 'disabled' : ''} onclick="claimDailyReward(event)">
+                                ${isAlreadyClaimed ? '✅ Selesai' : '✨ Klaim 50⭐'}
+                            </button>
+                        </div>
+
+                        <div class="dash-card" style="padding:20px;">
+                            <div class="dash-icon-box" style="width:48px; height:48px; font-size:1.5rem;">⭐</div>
+                            <div>
+                                <div class="dash-info-title">Total Bintang & Aktivitas</div>
+                                <div class="dash-info-val" style="font-size:1.3rem;">${userStars} ⭐ | ${userCompletedQuizzes} Selesai</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Baris 3: Toko Aksesoris Peliharaan & Nilai Omah (Full Width / Grid Rapih) -->
+                <div class="pet-shop-card" style="margin-bottom: 20px; padding: 20px 24px;">
                     <div style="display:flex; align-items:center; gap:14px;">
-                        <span style="font-size:2.5rem;">🔥</span>
+                        <div style="font-size:2.2rem;">🛍️</div>
                         <div>
-                            <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; color:var(--text-main);">Streak Belajar Konsisten!</div>
-                            <div style="font-size:0.8rem; color:var(--text-sub); font-weight:700;">Buka portal setiap hari untuk menjaga semangat belajar. (${meta.title})</div>
+                            <div style="font-family:'Fredoka',sans-serif; font-size:1.1rem; color:#86198f; margin-bottom:2px;">Toko Aksesoris Peliharaan</div>
+                            <div style="font-size:0.78rem; font-weight:700; color:#a21caf;">Pasang topi/mahkota di maskotmu!</div>
                         </div>
                     </div>
-                    <div class="streak-fire-badge">🔥 1 Hari Beruntun</div>
-                </div>
-
-                <div class="weekly-quest-card">
-                    <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:var(--brand-brown); margin-bottom:4px;">🎯 Misi Bintang Mingguan</div>
-                    <div style="font-size:0.82rem; color:var(--text-sub); font-weight:700; margin-bottom:16px;">Selesaikan minimal 3 kuis atau modul untuk mendapatkan hadiah bintang ekstra!</div>
-                    <div class="quest-item">
-                        <div>
-                            <div style="font-family:'Fredoka',sans-serif; font-size:0.95rem; color:var(--text-main);">Selesaikan 3 Aktivitas / Kuis</div>
-                            <div style="font-size:0.75rem; color:var(--text-sub); font-weight:700;">Progress: ${Math.min(userCompletedQuizzes, 3)} / 3 Selesai</div>
-                        </div>
-                        <button class="btn-claim-quest" id="claimQuestBtn" ${(!questDone || weeklyQuestClaimed) ? 'disabled' : ''} onclick="claimWeeklyQuest(event)">
-                            ${weeklyQuestClaimed ? '✅ Hadiah Diklaim' : (questDone ? '🎁 Klaim +150 ⭐' : 'Belum Selesai')}
-                        </button>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                        <button class="btn-buy-accessory" style="padding:6px 12px; font-size:0.78rem;" onclick="equipPetAccessory('head', '🎩', 20, event)">Topi 🎩 (20⭐)</button>
+                        <button class="btn-buy-accessory" style="padding:6px 12px; font-size:0.78rem;" onclick="equipPetAccessory('head', '👑', 40, event)">Mahkota 👑 (40⭐)</button>
+                        <button class="btn-buy-accessory" style="padding:6px 12px; font-size:0.78rem;" onclick="equipPetAccessory('eyes', '👓', 30, event)">Kacamata 👓 (30⭐)</button>
+                        <button class="btn-buy-accessory" style="padding:6px 12px; font-size:0.78rem;" onclick="equipPetAccessory('head', '', 0, event)">Reset</button>
                     </div>
                 </div>
 
-                <div class="daily-reward-card">
-                    <div class="daily-reward-left">
-                        <div style="font-size:3rem;">🎁</div>
-                        <div>
-                            <div style="font-family:'Fredoka',sans-serif; font-size:1.3rem; color:#92400e; margin-bottom:4px;">Hadiah Bintang Harian</div>
-                            <div style="font-size:0.85rem; font-weight:700; color:#b45309;">Klaim 50 bintang gratis setiap hari untuk mendandani maskot peliharaan!</div>
-                        </div>
-                    </div>
-                    <button class="btn-claim-reward" id="claimRewardBtn" ${isAlreadyClaimed ? 'disabled' : ''} onclick="claimDailyReward(event)">
-                        ${isAlreadyClaimed ? '✅ Sudah Diklaim Hari Ini' : '✨ Klaim +50 Bintang'}
-                    </button>
-                </div>
-
-                <div class="pet-shop-card">
-                    <div style="display:flex; align-items:center; gap:16px;">
-                        <div style="font-size:2.8rem;">🛍️</div>
-                        <div>
-                            <div style="font-family:'Fredoka',sans-serif; font-size:1.2rem; color:#86198f; margin-bottom:2px;">Toko Aksesoris Peliharaan Virtual</div>
-                            <div style="font-size:0.82rem; font-weight:700; color:#a21caf;">Pasang Topi/Mahkota di kepala & Kacamata di mata menggunakan Bintang ⭐!</div>
-                        </div>
-                    </div>
-                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                        <button class="btn-buy-accessory" onclick="equipPetAccessory('head', '🎩', 20, event)">Topi 🎩 (20 ⭐)</button>
-                        <button class="btn-buy-accessory" onclick="equipPetAccessory('head', '👑', 40, event)">Mahkota 👑 (40 ⭐)</button>
-                        <button class="btn-buy-accessory" onclick="equipPetAccessory('eyes', '👓', 30, event)">Kacamata 👓 (30 ⭐)</button>
-                        <button class="btn-buy-accessory" onclick="equipPetAccessory('head', '', 0, event)">Lepas Kepala</button>
-                        <button class="btn-buy-accessory" onclick="equipPetAccessory('eyes', '', 0, event)">Lepas Kacamata</button>
-                    </div>
-                </div>
-
-                <div class="planner-card">
-                    <div class="planner-title">📅 Jadwal Belajar Harian (Nilai Karakter Omah)</div>
-                    <div class="planner-list">
-                        <div class="planner-item"><span>📚 Sesi 1: Eksplorasi Modul & Konsep Inti</span> <span style="color:var(--brand-amber);">08:00 - 08:45</span></div>
-                        <div class="planner-item"><span>✍️ Sesi 2: Latihan Soal & Lembar Kerja PDF</span> <span style="color:var(--brand-amber);">09:00 - 09:45</span></div>
-                        <div class="planner-item"><span>🎮 Sesi 3: Game Edukasi & Konsultasi AI Tutor</span> <span style="color:var(--brand-amber);">15:30 - 16:15</span></div>
-                    </div>
-                </div>
-
-                <div class="dashboard-grid">
-                    <div class="dash-card"><div class="dash-icon-box">⭐</div><div><div class="dash-info-title">Total Bintang</div><div class="dash-info-val">${userStars}</div></div></div>
-                    <div class="dash-card"><div class="dash-icon-box">🏆</div><div><div class="dash-info-title">Level Siswa</div><div class="dash-info-val">Lv.${lvl.levelNum} (${lvl.levelName})</div></div></div>
-                    <div class="dash-card"><div class="dash-icon-box">🎯</div><div><div class="dash-info-title">Aktivitas Selesai</div><div class="dash-info-val">${userCompletedQuizzes}</div></div></div>
-                    <div class="dash-card"><div class="dash-icon-box">🔥</div><div><div class="dash-info-title">Streak Belajar</div><div class="dash-info-val">1 Hari</div></div></div>
-                </div>
-                <div class="insight-card-box">
+                <div class="insight-card-box" style="padding: 20px 24px; margin-bottom: 0;">
                     <div class="insight-heading">💡 Nilai Karakter Inti (Nilai Omah)</div>
-                    <div class="insight-body-text">"Halo <strong>${currentStudent.name || 'Siswa'}</strong>! Mari tumbuh cerdas dan berkarakter bersama semangat <b>Omah Mandiri</b>, <b>Omah Tanya</b>, <b>Omah Tekun</b>, <b>Omah Peduli</b>, dan <b>Omah Ceria</b>!"</div>
+                    <div class="insight-body-text" style="font-size: 0.95rem;">"Halo <strong>${currentStudent.name || 'Siswa'}</strong>! Mari tumbuh cerdas dan berkarakter bersama semangat <b>Omah Mandiri</b>, <b>Omah Tanya</b>, <b>Omah Tekun</b>, <b>Omah Peduli</b>, dan <b>Omah Ceria</b>!"</div>
                 </div>
             `;
         }
