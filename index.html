@@ -8,21 +8,10 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&family=Comic+Neue:wght@700&display=stylesheet" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            .dashboard-main-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 24px;
-        }
-        @media (max-width: 900px) {
-            .dashboard-main-grid {
-                grid-template-columns: 1fr;
-            }
-        }
             --brand-brown: #8b4513;        
             --brand-terracotta: #a0522d;    
             --brand-amber: #d97706;        
@@ -38,6 +27,18 @@
             --radius-main: 24px;
             --radius-sm: 16px;
             --current-font: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .dashboard-main-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 900px) {
+            .dashboard-main-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         body.theme-space {
@@ -1003,7 +1004,6 @@
             { quote: "Setiap anak adalah bintang yang bersinar dengan temponya masing-masing.", author: "Omah Les Privat" }
         ];
 
-        /* --- DATABASE KONTEN MULTI-JENJANG (TK & SD 1-6) --- */
         let currentPackage = localStorage.getItem('omahles_portal_package') || 'tk';
 
         const packageMeta = {
@@ -1016,7 +1016,6 @@
             'sd6': { title: 'SD Kelas 6', sub: 'Fase C Kurikulum Merdeka (Persiapan Kelulusan & Ujian)', badge: '🎓 SD Kelas 6' }
         };
 
-        /* Master Database Konten Berdasarkan Paket */
         const contentDatabaseByPackage = {
             'tk': {
                 subjects: [
@@ -1430,7 +1429,7 @@
             }
         }
 
-function renderDashboardMain(container) {
+        function renderDashboardMain(container) {
             const todayStr = new Date().toISOString().split('T')[0];
             const isAlreadyClaimed = (lastClaimDate === todayStr);
             const lvl = calculateLevelInfo();
@@ -1438,7 +1437,6 @@ function renderDashboardMain(container) {
             const meta = packageMeta[currentPackage] || packageMeta['tk'];
 
             container.innerHTML = `
-                <!-- Baris 1: Lanjutkan Eksplorasi (Full Width) -->
                 <div class="resume-learning-card" style="margin-bottom: 20px;">
                     <div>
                         <div style="font-family:'Fredoka',sans-serif; font-size:1.05rem; color:#1e40af; margin-bottom:2px;">📌 Lanjutkan Eksplorasi Terakhir</div>
@@ -1447,9 +1445,7 @@ function renderDashboardMain(container) {
                     <button class="btn-resume" onclick="switchSection('roadmap')">Lanjut Belajar →</button>
                 </div>
 
-                <!-- Baris 2: Grid 2 Kolom (Kiri: Streak & Misi | Kanan: Hadiah & Statistik) -->
                 <div class="dashboard-main-grid">
-                    <!-- Kolom Kiri -->
                     <div style="display: flex; flex-direction: column; gap: 20px;">
                         <div style="background:var(--card-bg); border:2px solid var(--card-border); border-radius:var(--radius-main); padding:20px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
                             <div style="display:flex; align-items:center; gap:12px;">
@@ -1477,7 +1473,6 @@ function renderDashboardMain(container) {
                         </div>
                     </div>
 
-                    <!-- Kolom Kanan -->
                     <div style="display: flex; flex-direction: column; gap: 20px;">
                         <div class="daily-reward-card" style="margin-bottom:0; padding:20px;">
                             <div class="daily-reward-left" style="gap:12px;">
@@ -1502,7 +1497,6 @@ function renderDashboardMain(container) {
                     </div>
                 </div>
 
-                <!-- Baris 3: Toko Aksesoris Peliharaan & Nilai Omah (Full Width / Grid Rapih) -->
                 <div class="pet-shop-card" style="margin-bottom: 20px; padding: 20px 24px;">
                     <div style="display:flex; align-items:center; gap:14px;">
                         <div style="font-size:2.2rem;">🛍️</div>
@@ -2249,10 +2243,10 @@ function renderDashboardMain(container) {
                     localStorage.setItem(chatMemoryKey, JSON.stringify(chatHistoryMemory));
 
                     aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
-                                   .replace(/\*/g, '')
-                                   .replace(/\\times/g, '×')
-                                   .replace(/\\div/g, '÷')
-                                   .replace(/\n/g, '<br>');
+                                     .replace(/\*/g, '')
+                                     .replace(/\\times/g, '×')
+                                     .replace(/\\div/g, '÷')
+                                     .replace(/\n/g, '<br>');
                     
                     document.getElementById(loadingId).innerHTML = `
                         <div class="lovespeak-bubble">${aiReply}</div>
