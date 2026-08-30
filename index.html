@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omah Les Privat - Portal Belajar Multi-Jenjang (Proteksi Paket)</title>
+    <title>Omah Les Privat - Portal Belajar Lengkap (Multi-Jenjang & Proteksi Paket)</title>
     <link rel="icon" type="image/jpeg" href="./logo.jpg">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,6 +53,7 @@
         }
 
         button, .menu-item a, .game-item-card, .module-card, .worksheet-card { touch-action: manipulation; cursor: pointer; }
+        button:active, .menu-item a:active { transform: scale(0.97); }
 
         .login-page-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; z-index: 10000; background: var(--bg-body); }
         .login-left-brand {
@@ -76,12 +77,10 @@
         .form-input, .form-select { width: 100%; padding: 12px 16px; border-radius: 14px; border: 2px solid var(--card-border); font-size: 0.92rem; font-weight: 700; color: var(--text-main); outline: none; background: var(--brand-cream); }
         .btn-submit-login { width: 100%; background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-terracotta) 100%); color: white; border: none; padding: 15px; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25); margin-top: 10px; font-family: 'Fredoka', sans-serif; }
 
-        /* UPGRADE BANNER / LOCKED GATE MODAL */
+        /* UPGRADE NOTIFICATION MODAL */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 10, 5, 0.75); backdrop-filter: blur(8px); z-index: 5000; display: none; align-items: center; justify-content: center; padding: 20px; }
         .modal-overlay.active { display: flex !important; }
         .modal-card { background: var(--card-bg); width: 100%; max-width: 480px; border-radius: 32px; padding: 48px 40px 36px 40px; text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 2px solid var(--card-border); }
-
-        .locked-banner-box { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 3px solid #ef4444; border-radius: var(--radius-main); padding: 36px 28px; text-align: center; margin: 30px auto; max-width: 650px; box-shadow: 0 15px 35px rgba(239, 68, 68, 0.2); }
 
         .app-wrapper { display: flex; flex: 1; position: relative; }
         .sidebar { width: 280px; background: var(--sidebar-bg); border-right: 2px solid var(--card-border); padding: 24px 20px; display: flex; flex-direction: column; justify-content: space-between; position: fixed; height: 100vh; z-index: 100; color: var(--text-light); overflow-y: auto; }
@@ -108,6 +107,12 @@
         .tier-badge { background: var(--brand-cream); color: var(--brand-brown); border: 1px solid var(--card-border); font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 10px; }
         .btn-open-module { background: var(--brand-amber); color: white; border: none; padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 0.85rem; cursor: pointer; font-family: 'Fredoka', sans-serif; }
 
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 28px; }
+        .dash-card { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: var(--radius-main); padding: 24px; display: flex; align-items: center; gap: 18px; }
+        .dash-icon-box { width: 56px; height: 56px; border-radius: 18px; background: var(--brand-cream); border: 1.5px solid var(--brand-amber); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+        .dash-info-title { font-size: 0.75rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase; margin-bottom: 4px; }
+        .dash-info-val { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; color: var(--text-main); }
+
         .portal-footer { margin-left: 280px; background: var(--card-bg); border-top: 2px solid var(--card-border); padding: 24px 48px; display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
 
         @media (max-width: 768px) {
@@ -122,27 +127,32 @@
 </head>
 <body>
 
-    <!-- LOGIN SCREEN -->
+    <!-- LOGIN SCREEN & PACKAGE SELECTOR -->
     <div class="login-page-container" id="loginPage">
         <div class="login-left-brand">
-            <div class="brand-badge-tag">Omah Les Privat — Sistem Proteksi Akses</div>
+            <div class="brand-badge-tag">Omah Les Privat — Sistem Hak Akses Paket</div>
             <img src="./logo.jpg" alt="Logo" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/130?text=OLP'">
-            <div class="brand-slogan-title">Simulasi Pembelian <span>Paket Belajar</span>.</div>
-            <div class="brand-slogan-sub">Coba masukkan email akun uji coba di bawah untuk melihat bagaimana sistem mengunci akses jenjang yang tidak dibeli.</div>
+            <div class="brand-slogan-title">Portal Belajar Multi-Jenjang <span>Terintegrasi</span>.</div>
+            <div class="brand-slogan-sub">Sistem otomatis mencocokkan hak akses paket yang dibeli (TK atau SD Kelas 1–6) berdasarkan akun email orang tua.</div>
         </div>
         <div class="login-right-form">
             <div class="form-header-text">Login Akses Portal</div>
-            <div class="form-sub-text">Pilih akun simulasi / masukkan email Anda</div>
+            <div class="form-sub-text">Masukkan email dan paket terdaftar</div>
             <form onsubmit="handleFormLogin(event)">
                 <div class="form-group">
-                    <label class="form-label">Email Akun Orang Tua</label>
-                    <input type="email" class="form-input" id="inputParentEmail" placeholder="contoh: ortu.tk@gmail.com" value="ortu.tk@gmail.com" required>
+                    <label class="form-label">Email Orang Tua</label>
+                    <input type="email" class="form-input" id="inputParentEmail" placeholder="ortu.siswa@gmail.com" value="ortu.tk@gmail.com" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Paket yang Sudah Dibeli (Terdaftar di Database)</label>
+                    <label class="form-label">Pilih Paket Akses Terbeli</label>
                     <select class="form-select" id="inputPackageSelect">
                         <option value="tk" selected>Paket TK / PAUD (Fase Fondasi)</option>
-                        <option value="sd4">Paket SD Kelas 4 (Kurikulum Merdeka)</option>
+                        <option value="sd1">Paket SD Kelas 1</option>
+                        <option value="sd2">Paket SD Kelas 2</option>
+                        <option value="sd3">Paket SD Kelas 3</option>
+                        <option value="sd4">Paket SD Kelas 4</option>
+                        <option value="sd5">Paket SD Kelas 5</option>
+                        <option value="sd6">Paket SD Kelas 6</option>
                     </select>
                 </div>
                 <button type="submit" class="btn-submit-login">Masuk ke Portal 🚀</button>
@@ -150,14 +160,14 @@
         </div>
     </div>
 
-    <!-- UPGRADE NOTIFICATION MODAL (MUNCUL JIKA DIAKSES DI LUAR PAKET) -->
+    <!-- UPGRADE NOTIFICATION MODAL (MUNCUL JIKA COBA AKSES DI LUAR PAKET) -->
     <div class="modal-overlay" id="upgradeModalOverlay">
         <div class="modal-card">
             <div style="font-size:3.5rem; margin-bottom:10px;">🔒🚫</div>
-            <div style="font-family:'Fredoka',sans-serif; font-size:1.6rem; color:#991b1b; margin-bottom:6px;">Akses Terkunci!</div>
+            <div style="font-family:'Fredoka',sans-serif; font-size:1.6rem; color:#991b1b; margin-bottom:6px;">Akses Jenjang Terkunci!</div>
             <div style="font-size:0.78rem; font-weight:800; color:#b91c1c; text-transform:uppercase; letter-spacing:1px; margin-bottom:16px;">Paket Belum Terdaftar</div>
             <p style="font-size:0.9rem; color:var(--text-main); font-weight:600; line-height:1.6; margin-bottom:24px;" id="upgradeModalMessage">
-                Akun Anda terdaftar untuk <b>Paket TK</b>. Anda belum memiliki akses untuk membuka materi jenjang SD. Silakan lakukan upgrade paket terlebih dahulu.
+                Akun Anda terdaftar untuk paket lain. Anda tidak memiliki hak akses ke jenjang ini. Silakan lakukan upgrade paket terlebih dahulu.
             </p>
             <div style="display:flex; flex-direction:column; gap:10px;">
                 <button style="background:#2563eb; color:#fff; border:none; padding:14px; border-radius:14px; font-weight:800; font-family:'Fredoka',sans-serif; cursor:pointer;" onclick="alert('📲 Mengarahkan ke Admin Omah Les Privat untuk konfirmasi upgrade paket & pembayaran.');">Hubungi Admin / Upgrade Paket 💬</button>
@@ -183,13 +193,15 @@
                 <div class="menu-group-label">MENU UTAMA</div>
                 <ul class="menu-list">
                     <li class="menu-item active" id="menuDashboard"><a onclick="switchSection('dashboard')"><span>📊</span> <span>Dashboard Utama</span></a></li>
-                    <li class="menu-item" id="menuTk"><a onclick="switchSection('tk')"><span>🌱</span> <span>Materi TK / PAUD (Aktif)</span></a></li>
-                    <li class="menu-item" id="menuSd"><a onclick="switchSection('sd')"><span>🎒</span> <span>Materi SD Kelas 1-6 (Terkunci jika beli TK)</span></a></li>
+                    <li class="menu-item" id="menuTk"><a onclick="switchSection('tk')"><span>🌱</span> <span>Jenjang TK / PAUD</span></a></li>
+                    <li class="menu-item" id="menuSd"><a onclick="switchSection('sd')"><span>🎒</span> <span>Jenjang SD Kelas 1 - 6</span></a></li>
+                    <li class="menu-item" id="menuAitutor"><a onclick="switchSection('aitutor')"><span>🎙️</span> <span>Kak Omah AI Tutor</span></a></li>
+                    <li class="menu-item" id="menuWorksheets"><a onclick="switchSection('worksheets')"><span>📥</span> <span>Pusat Lembar Kerja PDF</span></a></li>
                 </ul>
             </div>
 
             <div>
-                <button style="width:100%; background:rgba(217,119,6,0.2); border:1px solid var(--brand-amber); color:#fef08a; padding:10px; border-radius:12px; font-size:0.78rem; font-weight:800; cursor:pointer;" onclick="openLoginForm()">🔄 Keluar / Ganti Akun</button>
+                <button style="width:100%; background:rgba(217,119,6,0.2); border:1px solid var(--brand-amber); color:#fef08a; padding:10px; border-radius:12px; font-size:0.78rem; font-weight:800; cursor:pointer;" onclick="openLoginForm()">🔄 Keluar / Ganti Paket</button>
             </div>
         </aside>
 
@@ -198,7 +210,7 @@
             <div class="roadmap-banner" id="topBannerSection">
                 <div class="banner-tag" id="bannerTagText">🌱 Paket Aktif: TK / PAUD</div>
                 <div class="banner-title" id="bannerWelcomeTitle">Dashboard Belajar Siswa</div>
-                <div class="banner-sub" id="bannerWelcomeSub">Anda saat ini memiliki hak akses eksklusif untuk materi jenjang TK.</div>
+                <div class="banner-sub" id="bannerWelcomeSub">Pembelajaran mindful, meaningful, dan joyful sesuai kurikulum resmi Omah Les Privat.</div>
             </div>
 
             <div id="dynamicMainContentArea"></div>
@@ -212,19 +224,30 @@
     <script>
         let currentStudent = { name: 'Ananda Ceria', email: 'ortu.tk@gmail.com', purchasedPkg: 'tk' };
 
+        const packageMeta = {
+            'tk': { title: 'Jenjang TK / PAUD', type: 'tk' },
+            'sd1': { title: 'SD Kelas 1', type: 'sd' },
+            'sd2': { title: 'SD Kelas 2', type: 'sd' },
+            'sd3': { title: 'SD Kelas 3', type: 'sd' },
+            'sd4': { title: 'SD Kelas 4', type: 'sd' },
+            'sd5': { title: 'SD Kelas 5', type: 'sd' },
+            'sd6': { title: 'SD Kelas 6', type: 'sd' }
+        };
+
         function handleFormLogin(e) {
             e.preventDefault();
             const email = document.getElementById('inputParentEmail').value.trim();
             const pkg = document.getElementById('inputPackageSelect').value;
             
             currentStudent = {
-                name: email.includes('tk') ? 'Ananda TK Ceria' : 'Ananda SD Hebat',
+                name: email.split('@')[0].toUpperCase(),
                 email: email,
                 purchasedPkg: pkg
             };
 
             document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('sidebarBrandSub').innerText = pkg === 'tk' ? 'Paket: TK / PAUD' : 'Paket: SD Kelas 4';
+            const meta = packageMeta[pkg];
+            document.getElementById('sidebarBrandSub').innerText = `Paket: ${meta.title}`;
             switchSection('dashboard');
         }
 
@@ -232,55 +255,53 @@
             document.getElementById('loginPage').style.display = 'flex';
         }
 
+        function closeUpgradeModal() {
+            document.getElementById('upgradeModalOverlay').classList.remove('active');
+        }
+
         function switchSection(secKey) {
             document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
             const activeMenu = document.getElementById(`menu${secKey.charAt(0).toUpperCase() + secKey.slice(1)}`);
             if(activeMenu) activeMenu.classList.add('active');
 
-            const area = document.getElementById('dynamicMainContentArea');
+            const currentMeta = packageMeta[currentStudent.purchasedPkg];
+            const targetType = (secKey === 'tk') ? 'tk' : (secKey === 'sd') ? 'sd' : currentMeta.type;
 
-            // --- LOGIKA PENGECEKAN HAK AKSES (PACKAGE AUTHORIZATION CHECK) ---
-            if (secKey === 'sd' && currentStudent.purchasedPkg !== 'sd4') {
-                // Jika mencoba akses SD tapi paketnya TK -> Tampilkan Notifikasi Blokir & Upgrade
+            // --- SISTEM PROTEKSI & VALIDASI PAKET (PACKAGE ACCESS LOCK) ---
+            if ((secKey === 'tk' && currentMeta.type !== 'tk') || (secKey === 'sd' && currentMeta.type !== 'sd')) {
                 document.getElementById('upgradeModalMessage').innerHTML = `
-                    Akun Anda (<b>${currentStudent.email}</b>) terdaftar membeli <b>Paket TK / PAUD</b>. Anda tidak memiliki akses ke materi jenjang SD.<br><br>
-                    Ingin membuka akses lengkap SD Kelas 1-6? Silakan lakukan upgrade paket bersama admin Omah Les Privat.
+                    Akun Anda (<b>${currentStudent.email}</b>) terdaftar membeli <b>Paket ${currentMeta.title}</b>.<br><br>
+                    Anda tidak memiliki hak akses untuk membuka materi jenjang ini. Silakan hubungi admin untuk upgrade paket.
                 `;
                 document.getElementById('upgradeModalOverlay').classList.add('active');
                 return; // Batalkan perpindahan halaman
             }
+            // -------------------------------------------------------------
 
-            if (secKey === 'tk' && currentStudent.purchasedPkg !== 'tk') {
-                document.getElementById('upgradeModalMessage').innerHTML = `
-                    Akun Anda terdaftar untuk <b>Paket SD Kelas 4</b>. Akses khusus jenjang TK terkunci.
-                `;
-                document.getElementById('upgradeModalOverlay').classList.add('active');
-                return;
-            }
-            // -----------------------------------------------------------------
+            const area = document.getElementById('dynamicMainContentArea');
 
             if (secKey === 'dashboard') {
-                document.getElementById('bannerTagText').innerText = `🌱 Paket Aktif: ${currentStudent.purchasedPkg.toUpperCase()}`;
+                document.getElementById('bannerTagText').innerText = `🌱 Paket Aktif: ${currentMeta.title}`;
                 document.getElementById('bannerWelcomeTitle').innerText = `Selamat Datang, ${currentStudent.name}!`;
-                document.getElementById('bannerWelcomeSub').innerText = 'Silakan pilih menu di samping untuk mulai belajar.';
+                document.getElementById('bannerWelcomeSub').innerText = 'Pilih menu di samping untuk mulai belajar atau uji coba proteksi paket.';
 
                 area.innerHTML = `
-                    <div style="background:var(--card-bg); border:2px solid var(--card-border); border-radius:var(--radius-main); padding:32px;">
-                        <h2 style="font-family:'Fredoka',sans-serif; margin-bottom:12px; color:var(--brand-brown);">📌 Status Langganan Akun Anda</h2>
-                        <p style="font-size:0.95rem; font-weight:600; line-height:1.6; margin-bottom:20px;">
-                            Email Terdaftar: <b>${currentStudent.email}</b><br>
-                            Paket Aktif: <span style="background:var(--brand-cream); padding:4px 12px; border-radius:8px; color:var(--brand-brown); font-weight:800;">${currentStudent.purchasedPkg.toUpperCase()}</span>
-                        </p>
-                        <p style="font-size:0.85rem; color:var(--text-sub); font-weight:700;">
-                            💡 Coba klik menu <b>"Materi SD Kelas 1-6"</b> di sebelah kiri untuk melihat reaksi sistem ketika akun TK mencoba membuka materi SD!
+                    <div class="dashboard-grid">
+                        <div class="dash-card"><div class="dash-icon-box">⭐</div><div><div class="dash-info-title">Total Bintang</div><div class="dash-info-val">25 ⭐</div></div></div>
+                        <div class="dash-card"><div class="dash-icon-box">🏆</div><div><div class="dash-info-title">Level Siswa</div><div class="dash-info-val">Lv.1 Pemula</div></div></div>
+                        <div class="dash-card"><div class="dash-icon-box">🎯</div><div><div class="dash-info-title">Paket Terdaftar</div><div class="dash-info-val">${currentMeta.title}</div></div></div>
+                    </div>
+                    <div style="background:var(--card-bg); border:2px solid var(--card-border); border-radius:var(--radius-main); padding:28px;">
+                        <h3 style="font-family:'Fredoka',sans-serif; color:var(--brand-brown); margin-bottom:8px;">💡 Cara Uji Coba Proteksi Akses:</h3>
+                        <p style="font-size:0.9rem; font-weight:600; line-height:1.6; color:var(--text-main);">
+                            Saat ini Anda login dengan paket <b>${currentMeta.title}</b>. Coba klik menu <b>"${currentMeta.type === 'tk' ? 'Jenjang SD' : 'Jenjang TK'}"</b> di sidebar sebelah kiri untuk melihat notifikasi blokir sistem!
                         </p>
                     </div>
                 `;
             } else if (secKey === 'tk') {
                 document.getElementById('bannerTagText').innerText = '🌱 Jenjang TK / PAUD';
-                document.getElementById('bannerWelcomeTitle').innerText = 'Modul Belajar Fase Fondasi TK';
-                document.getElementById('bannerWelcomeSub').innerText = 'Akses terbuka penuh karena Anda telah membeli paket ini.';
-
+                document.getElementById('bannerWelcomeTitle').innerText = 'Modul Belajar Fase Fondasi';
+                document.getElementById('bannerWelcomeSub').innerText = 'Akses terbuka penuh.';
                 area.innerHTML = `
                     <div class="modules-grid">
                         <div class="module-card">
@@ -290,16 +311,28 @@
                     </div>
                 `;
             } else if (secKey === 'sd') {
-                // Jika lolos (karena membeli paket SD)
                 document.getElementById('bannerTagText').innerText = '🎒 Jenjang SD Kurikulum Merdeka';
                 document.getElementById('bannerWelcomeTitle').innerText = 'Modul Belajar SD Kelas 1-6';
-                document.getElementById('bannerWelcomeSub').innerText = 'Akses terbuka penuh karena Anda membeli paket SD.';
-                area.innerHTML = `<div style="padding:20px; font-weight:800; color:#16a34a;">✅ Anda memiliki akses penuh ke materi SD!</div>`;
+                document.getElementById('bannerWelcomeSub').innerText = 'Akses terbuka penuh.';
+                area.innerHTML = `
+                    <div class="modules-grid">
+                        <div class="module-card">
+                            <div><span class="tier-badge">Kurikulum Merdeka</span><h3 style="margin:10px 0 6px 0;">Matematika & Literasi SD</h3><p style="font-size:0.85rem; color:var(--text-sub);">Modul belajar interaktif tingkat SD.</p></div>
+                            <div style="margin-top:20px;"><button class="btn-open-module" onclick="alert('Membuka modul pembelajaran SD!')">Buka Modul →</button></div>
+                        </div>
+                    </div>
+                `;
+            } else if (secKey === 'aitutor') {
+                document.getElementById('bannerTagText').innerText = '🎙️ AI Assistant';
+                document.getElementById('bannerWelcomeTitle').innerText = 'Kak Omah AI Tutor';
+                document.getElementById('bannerWelcomeSub').innerText = 'Tanya jawab seputar materi pelajaran.';
+                area.innerHTML = `<div style="background:var(--card-bg); padding:30px; border-radius:24px; border:2px solid var(--card-border);"><b>Kak Omah AI Tutor siap membantu siswa belajar hari ini!</b></div>`;
+            } else if (secKey === 'worksheets') {
+                document.getElementById('bannerTagText').innerText = '📥 Unduh PDF';
+                document.getElementById('bannerWelcomeTitle').innerText = 'Pusat Lembar Kerja PDF';
+                document.getElementById('bannerWelcomeSub').innerText = 'Cetak lembar latihan sesuai jenjang paket.';
+                area.innerHTML = `<div style="background:var(--card-bg); padding:30px; border-radius:24px; border:2px solid var(--card-border);"><b>Daftar Lembar Kerja Cetak siap diunduh.</b></div>`;
             }
-        }
-
-        function closeUpgradeModal() {
-            document.getElementById('upgradeModalOverlay').classList.remove('active');
         }
     </script>
 </body>
