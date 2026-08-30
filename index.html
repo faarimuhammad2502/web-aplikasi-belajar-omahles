@@ -79,7 +79,7 @@
         <!-- CONTENT -->
         <main class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full">
             <div id="mainDynamicContent">
-                <!-- Dashboard Content Default -->
+                <!-- Dashboard Utama -->
             </div>
         </main>
     </div>
@@ -103,9 +103,11 @@
         </div>
     </div>
 
-    <!-- SCRIPT APLIKASI -->
+    <!-- SCRIPT APLIKASI DAN DATA JSON -->
     <script>
-        // Data Materi TK, Flashcard, dan Bank Soal Terintegrasi
+        // ==========================================
+        // DATA JSON TK TERINTEGRASI
+        // ==========================================
         const TK_MATERI_DATA = {
             "judul_halaman": "Materi Belajar Omah Les Privat — Untuk Ananda, Ditemani Ayah & Bunda",[cite: 3]
             "materi_belajar": [
@@ -173,13 +175,22 @@
                     { "tahap": "Mahir", "penjelasan": "Menjumlahkan benda konkret sampai 10, memahami konsep pengurangan sederhana dengan benda nyata.",[cite: 3], "aktivitas": ["Gunakan permen atau kancing untuk latihan menjumlahkan, misalnya '3 kancing ditambah 2 kancing jadi berapa?'", "Latih pengurangan dengan cerita sederhana, misalnya 'Ada 5 apel, dimakan 2, sisa berapa?'", "Main toko-tokoan sederhana untuk latihan hitung uang mainan."] }[cite: 3]
                   ]
                 }
-              ],
-              "catatan_untuk_orang_tua": [
-                "Tidak perlu terburu-buru — setiap anak punya waktunya sendiri untuk berpindah tahap.",[cite: 3]
-                "Anak boleh berada di tahap berbeda untuk tiap aspek, ini normal dan sesuai prinsip pembelajaran individual.",[cite: 3]
-                "Untuk anak berkebutuhan khusus, aktivitas di atas bisa disesuaikan (diferensiasi) sesuai kesiapan anak.",[cite: 3]
-                "Yang terpenting adalah proses belajar yang mindful, meaningful, dan joyful — bukan mengejar target usia."[cite: 3]
               ]
+        };
+
+        const TK_FLASHCARDS_DATA = {
+            "flashcard_categories": [
+                { "kategori": "Nilai Agama dan Moral", "icon": "🙏", "cards": [
+                    { "id": "agama-1", "tahap": "Dasar", "front": "Mengenal Ciptaan Tuhan", "back": "Tuhan menciptakan alam semesta, seperti matahari, pohon, dan diri kita sendiri. Coba ajak ananda melihat langit atau tanaman sambil bertanya, 'Siapa yang menciptakan ini ya?'" },[cite: 2]
+                    { "id": "agama-2", "tahap": "Dasar", "front": "Meniru Gerakan Ibadah", "back": "Anak mulai meniru gerakan ibadah sederhana saat duduk di samping Ayah/Bunda beribadah. Biarkan ananda ikut menundukkan kepala atau melipat tangan." }[cite: 2]
+                ]}
+            ]
+        };
+
+        const TK_QUIZ_BANK = {
+            "quiz_bank": [
+                { "id": "agama-dasar-1", "aspek": "Nilai Agama dan Moral", "tahap": "Dasar", "question": "Mana yang termasuk ciptaan Tuhan?", "options": [{"id":"a","label":"Matahari"},{"id":"b","label":"Mobil mainan"}], "correct_option_id": "a", "explanation": "Matahari adalah ciptaan Tuhan." }[cite: 4]
+            ]
         };
 
         const REGISTERED_PARENT_DATABASE = {
@@ -278,7 +289,7 @@
                     </div>
                 </div>
 
-                <!-- Info Materi Terintegrasi -->
+                <!-- Modul Data TK Aktif Terintegrasi -->
                 <div style="background:white; border:2px solid #e2e8f0; border-radius:1rem; padding:24px;">
                     <h3 style="font-family:'Fredoka',sans-serif; font-size:1.2rem; margin-bottom:12px; color:#1e293b;">📚 Modul Materi & Bank Soal TK Aktif</h3>
                     <p style="font-size:0.9rem; color:#64748b; margin-bottom:16px;">${TK_MATERI_DATA.judul_halaman}[cite: 3]</p>
