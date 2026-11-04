@@ -19,3 +19,4 @@ Buka `index.html` di peramban. Antarmuka ada di satu berkas itu.
 ## Teknologi
 
 HTML, CSS, dan JavaScript.
+
