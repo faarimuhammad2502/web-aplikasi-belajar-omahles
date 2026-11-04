@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./banner.svg" alt="Omah Les Learning Portal" width="100%" />
+<img src="./banner.png" alt="Omah Les Learning Portal" width="100%" />
 
 # OMAH LES LEARNING PORTAL
 ### Interactive Multi-Tier Educational Platform for Kindergarten &bull; Grades 1–6
