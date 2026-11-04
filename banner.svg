@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    
+    <!-- Accent Mesh Glows -->
+    <radialGradient id="amberGlow" cx="15%" cy="30%" r="45%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+    </radialGradient>
+    
+    <radialGradient id="cyanGlow" cx="85%" cy="70%" r="50%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Card Backgrounds -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.85" />
+    </linearGradient>
+
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.75" stroke-opacity="0.3" />
+    </pattern>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="420" fill="url(#bgGrad)" />
+  <rect width="1200" height="420" fill="url(#grid)" />
+  <rect width="1200" height="420" fill="url(#amberGlow)" />
+  <rect width="1200" height="420" fill="url(#cyanGlow)" />
+
+  <!-- Outer Border Frame -->
+  <rect x="1" y="1" width="1198" height="418" fill="none" stroke="#334155" stroke-width="1.5" stroke-opacity="0.6" rx="8" />
+
+  <!-- Top Decorative Kicker -->
+  <g transform="translate(60, 55)">
+    <rect x="0" y="0" width="310" height="28" rx="14" fill="#f59e0b" fill-opacity="0.12" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.4" />
+    <circle cx="14" cy="14" r="4" fill="#f59e0b" />
+    <text x="28" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#fbbf24" letter-spacing="1.5">CHILD DEVELOPMENT &bull; EDTECH</text>
+  </g>
+
+  <!-- Main Hero Headline -->
+  <text x="60" y="135" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="44" font-weight="900" fill="#f8fafc" letter-spacing="-0.5">
+    OMAH LES LEARNING PORTAL
+  </text>
+
+  <!-- Subheadline -->
+  <text x="60" y="172" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#94a3b8" letter-spacing="0.2">
+    Multi-Tier Interactive Educational Platform for Kindergarten (TK) &amp; Grades 1–6 (SD)
+  </text>
+
+  <!-- Bento Metric Cards (Bottom Row) -->
+  <!-- Card 1 -->
+  <g transform="translate(60, 220)">
+    <rect width="330" height="145" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1" stroke-opacity="0.7" />
+    <circle cx="36" cy="36" r="14" fill="#f59e0b" fill-opacity="0.15" />
+    <text x="36" y="41" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#f59e0b" text-anchor="middle">01</text>
+    <text x="64" y="41" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="800" fill="#f1f5f9" letter-spacing="0.5">SCAFFOLDED LEARNING</text>
+    <text x="24" y="80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#94a3b8">Modular multi-grade sequence cards</text>
+    <text x="24" y="100" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#94a3b8">tailored to child developmental pacing.</text>
+    <rect x="24" y="118" width="85" height="16" rx="4" fill="#334155" fill-opacity="0.6" />
+    <text x="66" y="129" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#cbd5e1" text-anchor="middle">TK &bull; SD 1 TO 6</text>
+  </g>
+
+  <!-- Card 2 -->
+  <g transform="translate(435, 220)">
+    <rect width="330" height="145" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1" stroke-opacity="0.7" />
+    <circle cx="36" cy="36" r="14" fill="#06b6d4" fill-opacity="0.15" />
+    <text x="36" y="41" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#06b6d4" text-anchor="middle">02</text>
+    <text x="64" y="41" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="800" fill="#f1f5f9" letter-spacing="0.5">GAMIFIED RETENTION</text>
+    <text x="24" y="80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#94a3b8">Daily quest chains, interactive quizzes,</text>
+    <text x="24" y="100" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#94a3b8">and instant positive feedback reward loops.</text>
+    <rect x="24" y="118" width="105" height="16" rx="4" fill="#334155" fill-opacity="0.6" />
+    <text x="76" y="129" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#cbd5e1" text-anchor="middle">POSITIVE MOTIVATION</text>
+  </g>
+
+  <!-- Card 3 -->
+  <g transform="translate(810, 220)">
+    <rect width="330" height="145" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1" stroke-opacity="0.7" />
+    <circle cx="36" cy="36" r="14" fill="#10b981" fill-opacity="0.15" />
+    <text x="36" y="41" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#10b981" text-anchor="middle">03</text>
+    <text x="64" y="41" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="800" fill="#f1f5f9" letter-spacing="0.5">LIGHTWEIGHT CLIENT</text>
+    <text x="24" y="80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#94a3b8">Zero-dependency vanilla architecture</text>
+    <text x="24" y="100" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#94a3b8">optimized for budget tablets and low latency.</text>
+    <rect x="24" y="118" width="95" height="16" rx="4" fill="#334155" fill-opacity="0.6" />
+    <text x="71" y="129" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#cbd5e1" text-anchor="middle">VERCEL DISTRIBUTED</text>
+  </g>
+
+  <!-- Top Right Status Badge -->
+  <g transform="translate(1010, 45)">
+    <rect width="130" height="32" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <circle cx="20" cy="16" r="4.5" fill="#10b981" />
+    <text x="34" y="21" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">LIVE ON VERCEL</text>
+  </g>
+</svg>
